@@ -1,5 +1,6 @@
 package com.example.scoutmanager.model.entities;
 
+
 import java.util.Date;
 
 import com.mobandme.ada.Entity;

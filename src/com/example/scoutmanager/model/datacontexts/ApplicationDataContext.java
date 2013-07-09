@@ -14,7 +14,6 @@ public class ApplicationDataContext extends ObjectContext {
 	public ObjectSet<Educando> EducandosSet;
 	public ApplicationDataContext(Context pContext) throws Exception {
 		super(pContext);
-		// TODO Auto-generated constructor stub
 		this.EducandosSet = new ObjectSet<Educando>(Educando.class, this);
 	}
 
