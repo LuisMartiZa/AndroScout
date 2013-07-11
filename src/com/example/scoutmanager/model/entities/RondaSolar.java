@@ -8,6 +8,33 @@ import com.mobandme.ada.annotations.TableField;
 public class RondaSolar extends Entity {
 	
 	@TableField(name= "nombreRonda", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	public String Nombre = "";
+	private String Nombre = "";
+	
+	 /*
+     * Methods of Usuario class.
+     */
+    
+    //CONSTRUCTORS
+    public RondaSolar(){
+    	super();
+    }
+    
+    public RondaSolar(String nombre)
+    {
+    	super();
+    	
+    	this.Nombre=nombre;
+    }
+    
+    //GETTERS AND SETTERS
+    public String getNombre()
+    {
+    	return Nombre;
+    }
+    
+    public void setNombre(String nombre)
+    {
+    	this.Nombre=nombre;
+    }
 	
 }

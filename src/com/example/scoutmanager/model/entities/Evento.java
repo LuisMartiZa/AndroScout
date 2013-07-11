@@ -8,12 +8,61 @@ import com.mobandme.ada.annotations.TableField;
 public class Evento extends Entity {
 	
 	@TableField(name= "nombreEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	public String Nombre = "";
+	private String Nombre = "";
 	
 	@TableField(name= "lugarEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	public String Lugar = "";
+	private String Lugar = "";
 	
 	@TableField(name= "tipoEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	public String Tipo = "";
+	private String Tipo = "";
+	
+	 /*
+     * Methods of Usuario class.
+     */
+    
+    //CONSTRUCTORS
+    public Evento(){
+    	super();
+    }
+    
+    public Evento(String nombre, String lugar, String tipo)
+    {
+    	super();
+    	
+    	this.Nombre=nombre;
+    	this.Lugar=lugar;
+    	this.Tipo=tipo;
+    }
+    
+    //GETTERS AND SETTERS
+    public String getNombre()
+    {
+    	return Nombre;
+    }
+    
+    public void setNombre(String nombre)
+    {
+    	this.Nombre=nombre;
+    }
+    
+    public String getLugar()
+    {
+    	return Lugar;
+    }
+    
+    public void setLugar(String lugar)
+    {
+    	this.Lugar=lugar;
+    }
+    
+    public String getTipo()
+    {
+    	return Tipo;
+    }
+    
+    public void setTipo(String tipo)
+    {
+    	this.Tipo=tipo;
+    }
 	
 }

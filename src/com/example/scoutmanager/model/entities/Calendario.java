@@ -10,6 +10,33 @@ import com.mobandme.ada.annotations.TableField;
 public class Calendario extends Entity {
 	
 	@TableField(name= "fechaCalendario", datatype= Entity.DATATYPE_DATE_BINARY, required= true, maxLength= 100)
-	public Date Fecha = new Date();
+	private Date Fecha = new Date();
+	
+	 /*
+     * Methods of Usuario class.
+     */
+    
+    //CONSTRUCTORS
+    public Calendario(){
+    	super();
+    }
+    
+    public Calendario(Date fecha)
+    {
+    	super();
+    	
+    	this.Fecha=fecha;
+    }
+    
+    //GETTERS AND SETTERS
+    public Date getFecha()
+    {
+    	return Fecha;
+    }
+    
+    public void setFecha(Date fecha)
+    {
+    	this.Fecha=fecha;
+    }
 	
 }

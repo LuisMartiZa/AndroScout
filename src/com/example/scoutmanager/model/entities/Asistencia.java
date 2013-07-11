@@ -8,6 +8,33 @@ import com.mobandme.ada.annotations.TableField;
 public class Asistencia extends Entity {
 	
 	@TableField(name= "asiste", datatype= Entity.DATATYPE_BOOLEAN, required= true, maxLength= 100)
-	public Boolean Asiste;
+	private Boolean Asiste;
+	
+	 /*
+     * Methods of Usuario class.
+     */
+    
+    //CONSTRUCTORS
+    public Asistencia(){
+    	super();
+    }
+    
+    public Asistencia(Boolean asiste)
+    {
+    	super();
+    	
+    	this.Asiste=asiste;
+    }
+    
+    //GETTERS AND SETTERS
+    public Boolean getAsiste()
+    {
+    	return Asiste;
+    }
+    
+    public void setAsiste(Boolean asiste)
+    {
+    	this.Asiste=asiste;
+    }
 	
 }

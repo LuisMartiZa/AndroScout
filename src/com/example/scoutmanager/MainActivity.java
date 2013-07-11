@@ -31,15 +31,15 @@ public class MainActivity extends Activity {
     private void populateDataBase() throws Exception{
     	if(dataContext != null){
     		Educando educando = new Educando();
-    		educando.Nombre="LuisMartiza";
-    		educando.Apellidos="Jelly Bean";
+    		educando.setNombre("LuisMartiza");
+    		educando.setApellidos("JellyBean");
     		
     		Calendar cal = Calendar.getInstance();
     	    cal.set(Calendar.YEAR, 1988);
     	    cal.set(Calendar.MONTH, 8);
     	    cal.set(Calendar.DAY_OF_MONTH, 2);
     	    Date dateRepresentation = cal.getTime();
-    		educando.F_Nacimiento= dateRepresentation;
+    		educando.setFechaNacimiento(dateRepresentation);
     		
     		dataContext.EducandosSet.add(educando);
     		dataContext.EducandosSet.save();
