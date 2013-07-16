@@ -1,7 +1,9 @@
 package com.example.scoutmanager.model.entities;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.widget.ImageView;
 
@@ -22,15 +24,23 @@ public class Educando extends Entity {
 	
     private ImageView fotografiaEducando;
     
-    @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY)
+    @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     private Seccion seccion;
     
-    @TableField(name= "etapaEducando", datatype= Entity.DATATYPE_ENTITY)
+    @TableField(name= "etapaEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     private Etapa etapa;
     
+    @TableField(name= "tutorEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
+    private List<Tutor> tutores= new ArrayList<Tutor>();
+    
+    @TableField(name= "comunicacionEducando", datatype= Entity.DATATYPE_ENTITY)
+    private List<Comunicaciones> comunicaciones = new ArrayList<Comunicaciones>();
+    
+    @TableField(name= "insigniasEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
+    private List<Insignias> insignias = new ArrayList<Insignias>();
     
     /*
-     * Methods of Usuario class.
+     * Methods of Educando class.
      */
     
     //CONSTRUCTORS
@@ -96,5 +106,35 @@ public class Educando extends Entity {
     public void setSeccionEducando(Seccion seccion)
     {
     	this.seccion=seccion;
+    }
+    
+    public List<Tutor> getTutorEducando(String nombreTutor)
+    {
+    	return this.tutores;
+    }
+    
+    public void setTutorEducando(Tutor tutor)
+    {
+    	this.tutores.add(tutor);
+    }
+    
+    public List<Comunicaciones> getComunicacionesEducando()
+    {
+    	return this.comunicaciones;
+    }
+    
+    public void setComunicacionesEducando(Comunicaciones com)
+    {
+    	this.comunicaciones.add(com);
+    }
+    
+    public List<Insignias> getInsigniasEducando()
+    {
+    	return this.insignias;
+    }
+    
+    public void setInsigniasEducando(Insignias insignias)
+    {
+    	this.insignias.add(insignias);
     }
 }

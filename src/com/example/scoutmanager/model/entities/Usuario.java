@@ -29,7 +29,7 @@ public class Usuario extends Entity {
 	
     private ImageView fotografiaUsuario;
     
-    @TableField(name= "seccionUsuario", datatype= Entity.DATATYPE_ENTITY)
+    @TableField(name= "seccionUsuario", datatype= Entity.DATATYPE_ENTITY_LINK)
     private Seccion seccion;
     
     /*
