@@ -1,5 +1,8 @@
 package com.example.scoutmanager.model.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
@@ -16,6 +19,8 @@ public class Evento extends Entity {
 	@TableField(name= "tipoEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	private String Tipo = "";
 	
+	@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
+    private List<Educando> educandosEvento = new ArrayList<Educando>();
 	 /*
      * Methods of Usuario class.
      */
@@ -65,4 +70,13 @@ public class Evento extends Entity {
     	this.Tipo=tipo;
     }
 	
+    public List<Educando> getEducandosEvento()
+    {
+    	return this.educandosEvento;
+    }
+    
+    public void setEducandoEvento(Educando educando)
+    {
+    	this.educandosEvento.add(educando);
+    }
 }
