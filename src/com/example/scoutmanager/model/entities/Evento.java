@@ -75,7 +75,7 @@ public class Evento extends Entity {
     	return this.educandosEvento;
     }
     
-    public void setEducandoEvento(Educando educando)
+    public void addEducandoEvento(Educando educando)
     {
     	this.educandosEvento.add(educando);
     }

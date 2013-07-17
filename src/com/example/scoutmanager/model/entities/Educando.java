@@ -113,7 +113,7 @@ public class Educando extends Entity {
     	return this.tutores;
     }
     
-    public void setTutorEducando(Tutor tutor)
+    public void addTutorEducando(Tutor tutor)
     {
     	this.tutores.add(tutor);
     }
@@ -123,7 +123,7 @@ public class Educando extends Entity {
     	return this.comunicaciones;
     }
     
-    public void setComunicacionesEducando(Comunicaciones com)
+    public void addComunicacionEducando(Comunicaciones com)
     {
     	this.comunicaciones.add(com);
     }
@@ -133,7 +133,7 @@ public class Educando extends Entity {
     	return this.insignias;
     }
     
-    public void setInsigniasEducando(Insignias insignias)
+    public void addInsigniaEducando(Insignias insignias)
     {
     	this.insignias.add(insignias);
     }
