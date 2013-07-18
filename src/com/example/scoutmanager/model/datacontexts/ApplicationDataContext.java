@@ -11,10 +11,10 @@ public class ApplicationDataContext extends ObjectContext {
 	/*
 	 * Este es el object set para la prueba de educandos.
 	 */
-	public ObjectSet<Educando> EducandosSet;
+	//public ObjectSet<Educando> EducandosSet;
 	public ApplicationDataContext(Context pContext) throws Exception {
 		super(pContext);
-		this.EducandosSet = new ObjectSet<Educando>(Educando.class, this);
+		//this.EducandosSet = new ObjectSet<Educando>(Educando.class, this);
 	}
 
 }
