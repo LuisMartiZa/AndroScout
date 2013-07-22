@@ -1,0 +1,15 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="#AAAAAA"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#CCCCCC"
+        android:visibility="visible" >
+
+    </TableRow>
+
+</TableLayout>
