@@ -5,11 +5,11 @@ package com.example.scoutmanager;
 
 //import com.example.scoutmanager.model.datacontexts.ApplicationDataContext;
 //import com.example.scoutmanager.model.entities.Educando;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.ListView;
 
 //import android.widget.Toast;
 
@@ -21,12 +21,16 @@ public class MainActivity extends SlidingActivity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
         setBehindContentView(R.layout.activity_menu);
+
         
-        getSlidingMenu().setBehindOffset(100);
-        
-        
+        SlidingMenu menu = getSlidingMenu();
+
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindWidth(100);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        setSlidingActionBarEnabled(true);
         /*try {
 			dataContext = new ApplicationDataContext(this);
 			//populateDataBase();
@@ -34,25 +38,6 @@ public class MainActivity extends SlidingActivity {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}*/
     }
-    
-   /* private void populateDataBase() throws Exception{
-    	if(dataContext != null){
-    		Educando educando = new Educando();
-    		educando.setNombre("LuisMartiza");
-    		educando.setApellidos("JellyBean");
-    		
-    		Calendar cal = Calendar.getInstance();
-    	    cal.set(Calendar.YEAR, 1988);
-    	    cal.set(Calendar.MONTH, 8);
-    	    cal.set(Calendar.DAY_OF_MONTH, 2);
-    	    Date dateRepresentation = cal.getTime();
-    		educando.setFechaNacimiento(dateRepresentation);
-    		
-    		//dataContext.EducandosSet.add(educando);
-    		//dataContext.EducandosSet.save();
-    	}
-    }*/
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
