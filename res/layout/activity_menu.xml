@@ -7,13 +7,8 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="192dp" >
-    </ListView>
-
-    <TimePicker
-        android:id="@+id/timePicker1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" >
+    </ListView>
 
 </LinearLayout>
