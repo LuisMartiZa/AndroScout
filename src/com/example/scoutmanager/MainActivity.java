@@ -9,13 +9,18 @@ import java.util.ArrayList;
 
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.entities.Menu_items;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
+import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 //import android.widget.Toast;
 
@@ -49,6 +54,17 @@ public class MainActivity extends SlidingActivity {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view,
 					int position, long arg) {
+				switch (position) {
+			    case 0:
+			        getSlidingMenu().toggle(true);
+			        Context context = getApplicationContext();
+			        CharSequence text = "Ha pulsado control de asistencia";
+			        int duration = Toast.LENGTH_SHORT;
+
+			        Toast toast = Toast.makeText(context, text, duration);
+			        toast.show();
+			        break;
+			   }
 
 			}
 		});
@@ -56,24 +72,16 @@ public class MainActivity extends SlidingActivity {
 		getSlidingMenu().setBehindOffset(100);
 		getSlidingMenu().setSlidingEnabled(true);
         getSlidingMenu().setShadowDrawable(R.drawable.shadow);
+        getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
 		setSlidingActionBarEnabled(false);
+		
+		ActionBar actionbar;
+		
+		actionbar= getActionBar();
+		
+		actionbar.setTitle("MENU");
 
-
-        
-        /*SlidingMenu menu = getSlidingMenu();
-
-        menu.setMode(SlidingMenu.LEFT);
-        menu.setShadowDrawable(R.drawable.shadow);
-        menu.setBehindWidth(100);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        setSlidingActionBarEnabled(true);*/
-        /*try {
-			dataContext = new ApplicationDataContext(this);
-			//populateDataBase();
-		} catch (Exception e) {
-			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-		}*/
     }
 
     @Override
