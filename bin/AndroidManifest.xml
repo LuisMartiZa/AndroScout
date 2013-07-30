@@ -23,7 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.scoutmanager.activities.ControlAsistencia"></activity>
         <activity android:name="com.example.scoutmanager.activities.LateralMenu"></activity>
+        
     </application>
 
 </manifest>
