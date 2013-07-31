@@ -26,6 +26,8 @@
         <activity android:name="com.example.scoutmanager.activities.ControlAsistencia"></activity>
         <activity android:name="com.example.scoutmanager.activities.LateralMenu"></activity>
         <activity android:name="com.example.scoutmanager.activities.LeyYPromesa"></activity>
+        <activity android:name="com.example.scoutmanager.activities.Promesa"></activity>
+        
         
         
     </application>

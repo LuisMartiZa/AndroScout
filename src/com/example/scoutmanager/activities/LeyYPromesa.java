@@ -24,12 +24,12 @@ public class LeyYPromesa extends SlidingActivity {
 		ley = (ImageButton) findViewById(R.id.imageButtonLey);
 		promesa = (ImageButton) findViewById(R.id.imageButtonPromesa);
 		
-		ley.setOnClickListener(new View.OnClickListener() {
+		promesa.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent myIntent = new Intent(getBaseContext(), ControlAsistencia.class);
+				Intent myIntent = new Intent(getBaseContext(), Promesa.class);
 		        startActivity(myIntent);
 			}
 		});

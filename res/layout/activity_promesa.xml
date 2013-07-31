@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="La Promesa scout es un compromiso personal que se asume libre y voluntariamente al comenzar a participar del movimiento scout. Se trata de un compromiso único en el que quien hace la promesa se compromete con los valores y principios del escultismo. Originalmente fue diseñada por Robert Baden-Powell."/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="22dp"
+        android:text="La promesa"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:text="________________"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="30dp"
+        android:text="1. El Scout cifra su honor en ser digno de confianza.
+2. El Scout es leal.
+3. El Scout es útil y servicial.
+4. El Scout es amigo de todos y hermano de los demás scouts.
+5. El Scout es cortés y caballeroso.
+6. El Scout ve en la naturaleza la obra de dios y protege a los animales y plantas.
+7. El Scout es obediente y disciplinado y no hace nada a medias.
+8. El Scout es animoso ante peligros y dificultades.
+9. El Scout es trabajador, económico y respeta el bien ajeno.
+10. El Scout es limpio y sano, puro en sus pensamientos, palabras y acciones."
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
