@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".activities.LeyYPromesa" >
+
+    <TextView
+        android:id="@+id/textLey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="119dp"
+        android:text="Ley Scout"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageButton
+        android:id="@+id/imageButtonLey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="103dp"
+        android:layout_toLeftOf="@+id/textLey"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPromesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButtonLey"
+        android:layout_below="@+id/imageButtonLey"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textPromesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textLey"
+        android:layout_alignTop="@+id/imageButtonPromesa"
+        android:layout_marginTop="16dp"
+        android:text="Promesa Scout"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

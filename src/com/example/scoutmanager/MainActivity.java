@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.example.scoutmanager.activities.ControlAsistencia;
 import com.example.scoutmanager.activities.LateralMenu;
+import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -89,7 +90,6 @@ public class MainActivity extends SlidingActivity {
 		        
 				switch (position) {
 			    case 0:
-			        getSlidingMenu().toggle(true);
 			        text = "Ha pulsado control de asistencia";
 
 			        toast = Toast.makeText(context, text, duration);
@@ -97,6 +97,9 @@ public class MainActivity extends SlidingActivity {
 			        
 			        Intent myIntent = new Intent(view.getContext(), ControlAsistencia.class);
 			        startActivity(myIntent);
+			        
+			        //getSlidingMenu().toggle(true);
+
 			        
 			        break;
 			        
@@ -127,6 +130,9 @@ public class MainActivity extends SlidingActivity {
 			    case 4:
 			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado ley y promesa";
+			        
+			        Intent myIntent1 = new Intent(view.getContext(), LeyYPromesa.class);
+			        startActivity(myIntent1);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();

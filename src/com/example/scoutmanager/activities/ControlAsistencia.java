@@ -1,6 +1,7 @@
 package com.example.scoutmanager.activities;
 
 import com.example.scoutmanager.R;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,15 +10,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class ControlAsistencia extends Activity {
+public class ControlAsistencia extends SlidingActivity {
 
 	private ListView listView;	
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		this.setContentView(R.layout.activity_asistencia);
+        setBehindContentView(R.layout.activity_menu);
+
 
 		this.listView = (ListView) findViewById(R.id.listAsistencia);
 		
