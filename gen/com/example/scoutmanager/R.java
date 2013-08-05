@@ -137,35 +137,42 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shadow=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f040013;
+        public static final int action_settings=0x7f040019;
         public static final int button1=0x7f040005;
         public static final int button2=0x7f040007;
         public static final int fullscreen=0x7f040003;
-        public static final int imageButtonLey=0x7f04000a;
-        public static final int imageButtonPromesa=0x7f04000b;
-        public static final int imageView1=0x7f04000d;
+        public static final int imageButtonLey=0x7f040013;
+        public static final int imageButtonPromesa=0x7f040014;
+        public static final int imageView1=0x7f040016;
         public static final int left=0x7f040000;
         public static final int listAsistencia=0x7f040008;
-        public static final int listView=0x7f040010;
+        public static final int listView=0x7f040017;
         public static final int margin=0x7f040002;
         public static final int right=0x7f040001;
         public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f040012;
-        public static final int textLey=0x7f040009;
-        public static final int textPromesa=0x7f04000c;
+        public static final int slidingmenumain=0x7f040018;
+        public static final int textLey=0x7f040012;
+        public static final int textPromesa=0x7f040015;
         public static final int textView1=0x7f040006;
+        public static final int textView10=0x7f040009;
         public static final int textView2=0x7f04000e;
-        public static final int textView3=0x7f04000f;
-        public static final int textView4=0x7f040011;
+        public static final int textView3=0x7f04000d;
+        public static final int textView4=0x7f04000c;
+        public static final int textView5=0x7f04000b;
+        public static final int textView6=0x7f04000f;
+        public static final int textView7=0x7f040011;
+        public static final int textView8=0x7f040010;
+        public static final int textView9=0x7f04000a;
     }
     public static final class layout {
         public static final int activity_asistencia=0x7f030000;
-        public static final int activity_leypromesa=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_menu=0x7f030003;
-        public static final int activity_promesa=0x7f030004;
-        public static final int menu_row=0x7f030005;
-        public static final int slidingmenumain=0x7f030006;
+        public static final int activity_ley=0x7f030001;
+        public static final int activity_leypromesa=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_menu=0x7f030004;
+        public static final int activity_promesa=0x7f030005;
+        public static final int menu_row=0x7f030006;
+        public static final int slidingmenumain=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f080000;
