@@ -24,15 +24,14 @@ public class ApplicationDataContext extends ObjectContext {
 	/**************************************************/
 	/*      		OBJECTSETS DEFINITION 			  */
 	/**************************************************/
-	public ObjectSet<Educando>   EducandosSet;
-	public ObjectSet<Seccion> 	SeccionsSet;
-	public ObjectSet<Etapa>    EtapasSet;
+	public ObjectSet<Educando> EducandosSet;
+	public ObjectSet<Seccion> SeccionsSet;
+	public ObjectSet<Etapa> EtapasSet;
 	
 	/**************************************************/
 	/*      		CONSTRUCTORS 		 			  */
 	/**************************************************/
 	public ApplicationDataContext(Context pContext) {
-		//Set a custom DataBase path and version.
 		super(pContext);
 		
 		//Initialize the ObjectContext
@@ -67,7 +66,7 @@ public class ApplicationDataContext extends ObjectContext {
 	
 	private void initializeObjectSets() throws AdaFrameworkException {
 		
-		EducandosSet = new ObjectSet<Educando>(Educando.class, this);
+		//EducandosSet = new ObjectSet<Educando>(Educando.class, this);
 		EtapasSet = new ObjectSet<Etapa>(Etapa.class, this);
 		SeccionsSet = new ObjectSet<Seccion>(Seccion.class, this);
 		

@@ -8,9 +8,10 @@ package com.example.scoutmanager;
 import java.util.ArrayList;
 
 import com.example.scoutmanager.activities.ControlAsistencia;
-import com.example.scoutmanager.activities.LateralMenu;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
+import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.context.ApplicationDataContext;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
@@ -31,11 +32,13 @@ public class MainActivity extends SlidingActivity {
 	
 	private ListView listView;
 
-	//private ApplicationDataContext dataContext;
-
     @Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+		DataBase.initialize(this);
+
+        
         setContentView(R.layout.activity_main);
         setBehindContentView(R.layout.activity_menu);
 	
@@ -153,19 +156,7 @@ public class MainActivity extends SlidingActivity {
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
 package com.mobandme.ada.examples.advanced.activities;
 
 import android.os.Bundle;
@@ -180,7 +171,7 @@ import com.mobandme.ada.examples.advanced.model.DataBase;
 import com.mobandme.ada.examples.advanced.model.entities.Address;
 import com.mobandme.ada.examples.advanced.model.entities.Company;
 import com.mobandme.ada.examples.advanced.model.entities.Directive;
-import com.mobandme.ada.examples.advanced.model.entities.Worker;
+import com.mobandme.ada.examples.advanced.model.entities.Worker;*/
 
 /**
  * Application Main Activity.
@@ -188,6 +179,7 @@ import com.mobandme.ada.examples.advanced.model.entities.Worker;
  * @category Activity
  * @version  2.3
  */
+/*
 
 public class MainActivity extends Activity {
 
@@ -320,3 +312,4 @@ public class MainActivity extends Activity {
 		//DataBase.Context.DirectivesSet.save(directive);
 	}
 }
+*/
