@@ -44,6 +44,8 @@ public class MainActivity extends SlidingActivity {
 	
 		getSlidingMenu().setBehindOffset(100);
 		getSlidingMenu().setSlidingEnabled(true);
+        getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
+
         getSlidingMenu().setShadowDrawable(R.drawable.shadow);
         getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		setSlidingActionBarEnabled(false);
@@ -101,7 +103,7 @@ public class MainActivity extends SlidingActivity {
 			        Intent myIntent = new Intent(view.getContext(), ControlAsistencia.class);
 			        startActivity(myIntent);
 			        
-			        //getSlidingMenu().toggle(true);
+			        getSlidingMenu().toggle(true);
 
 			        
 			        break;
