@@ -5,8 +5,8 @@ import android.content.Context;
 import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
-
 import com.example.scoutmanager.model.entities.Educando;
+import com.example.scoutmanager.model.entities.Insignias;
 import com.example.scoutmanager.model.entities.Seccion;
 import com.example.scoutmanager.model.entities.Etapa;
 
@@ -27,6 +27,7 @@ public class ApplicationDataContext extends ObjectContext {
 	public ObjectSet<Educando> EducandosSet;
 	public ObjectSet<Seccion> SeccionsSet;
 	public ObjectSet<Etapa> EtapasSet;
+	public ObjectSet<Insignias> InsigniasSet;
 	
 	/**************************************************/
 	/*      		CONSTRUCTORS 		 			  */
@@ -66,9 +67,10 @@ public class ApplicationDataContext extends ObjectContext {
 	
 	private void initializeObjectSets() throws AdaFrameworkException {
 		
-		//EducandosSet = new ObjectSet<Educando>(Educando.class, this);
+		EducandosSet = new ObjectSet<Educando>(Educando.class, this);
 		EtapasSet = new ObjectSet<Etapa>(Etapa.class, this);
 		SeccionsSet = new ObjectSet<Seccion>(Seccion.class, this);
+		InsigniasSet = new ObjectSet<Insignias>(Insignias.class, this);
 		
 		EducandosSet.fill(DEFAULT_SORT);
 		EtapasSet.fill(DEFAULT_SORT);

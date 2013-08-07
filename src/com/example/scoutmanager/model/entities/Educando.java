@@ -8,7 +8,8 @@ import java.util.List;
 import android.widget.ImageView;
 
 import com.mobandme.ada.Entity;
-import com.mobandme.ada.annotations.*;
+import com.mobandme.ada.annotations.Table;
+import com.mobandme.ada.annotations.TableField;
 
 @Table(name = "tEducandos")
 public class Educando extends Entity {
@@ -19,7 +20,7 @@ public class Educando extends Entity {
 	@TableField(name= "apellidoEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	private String Apellidos = "";
 	
-	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY, required= true, maxLength= 100)
+	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY, required= true)
 	private Date F_Nacimiento = new Date();
 	
     private ImageView fotografiaEducando;
@@ -110,7 +111,7 @@ public class Educando extends Entity {
     
     public List<Tutor> getTutorEducando(String nombreTutor)
     {
-    	return this.tutores;
+    	return tutores;
     }
     
     public void addTutorEducando(Tutor tutor)
@@ -120,7 +121,7 @@ public class Educando extends Entity {
     
     public List<Comunicaciones> getComunicacionesEducando()
     {
-    	return this.comunicaciones;
+    	return comunicaciones;
     }
     
     public void addComunicacionEducando(Comunicaciones com)
@@ -128,13 +129,13 @@ public class Educando extends Entity {
     	this.comunicaciones.add(com);
     }
     
-    public List<Insignias> getInsigniasEducando()
+   /* public List<Insignias> getInsigniasEducando()
     {
-    	return this.insignias;
+    	return insignias;
     }
     
-    public void addInsigniaEducando(Insignias insignias)
+    public void addInsigniaEducando(Insignias insignia)
     {
-    	this.insignias.add(insignias);
-    }
+    	this.insignias.add(insignia);
+    }*/
 }

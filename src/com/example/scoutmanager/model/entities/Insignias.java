@@ -16,10 +16,6 @@ public class Insignias extends Entity {
 	@TableField(name= "tipoInsignia", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	private String Tipo = "";
 	
-	@TableField(name= "educandosInsignias", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private List<Educando> educandosInsignia = new ArrayList<Educando>();
-	
-	
 	/*
      * Methods of Insignias class.
      */
@@ -57,14 +53,5 @@ public class Insignias extends Entity {
     {
     	this.Tipo=tipo;
     }
-    
-    public List<Educando> getEducandosInsignia()
-    {
-    	return this.educandosInsignia;
-    }
-    
-    public void addEducandoInsignia(Educando educando)
-    {
-    	this.educandosInsignia.add(educando);
-    }
+
 }
