@@ -26,9 +26,7 @@ public class Usuario extends Entity {
 	
 	@TableField(name = "psswordUsuario", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 10, encripted= true)
 	private String Pssword = "";
-	
-    private ImageView fotografiaUsuario;
-    
+	    
     @TableField(name= "seccionUsuario", datatype= Entity.DATATYPE_ENTITY_LINK)
     private Seccion seccion;
     

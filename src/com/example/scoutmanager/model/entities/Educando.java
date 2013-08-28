@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.widget.ImageView;
-
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
@@ -23,7 +21,8 @@ public class Educando extends Entity {
 	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY, required= true)
 	private Date F_Nacimiento = new Date();
 	
-    private ImageView fotografiaEducando;
+	@TableField(name= "fotografiaEducando", datatype= Entity.DATATYPE_TEXT)
+    private String fotografia;
     
     @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     private Seccion seccion;
@@ -89,6 +88,16 @@ public class Educando extends Entity {
     	this.F_Nacimiento=f_nac;
     }
     
+    public void setFotografia(String foto)
+    {
+    	this.fotografia=foto;
+    }
+    
+    public String getFotografia()
+    {
+    	return fotografia;
+    }
+    
     public Etapa getEtapaEducando()
     {
     	return etapa;
@@ -129,7 +138,7 @@ public class Educando extends Entity {
     	this.comunicaciones.add(com);
     }
     
-   /* public List<Insignias> getInsigniasEducando()
+    public List<Insignias> getInsigniasEducando()
     {
     	return insignias;
     }
@@ -137,5 +146,5 @@ public class Educando extends Entity {
     public void addInsigniaEducando(Insignias insignia)
     {
     	this.insignias.add(insignia);
-    }*/
+    }
 }

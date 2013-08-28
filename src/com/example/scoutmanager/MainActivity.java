@@ -1,17 +1,11 @@
 package com.example.scoutmanager;
 
-//import java.util.Calendar;
-//import java.util.Date;
-
-//import com.example.scoutmanager.model.datacontexts.ApplicationDataContext;
-//import com.example.scoutmanager.model.entities.Educando;
 import java.util.ArrayList;
 
 import com.example.scoutmanager.activities.ControlAsistencia;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
-import com.example.scoutmanager.model.context.ApplicationDataContext;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
@@ -25,8 +19,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
-//import android.widget.Toast;
 
 public class MainActivity extends SlidingActivity {
 	
@@ -77,8 +69,8 @@ public class MainActivity extends SlidingActivity {
 		items.add(new Menu_items(R.drawable.ic_launcher, "Actividades"));
 		items.add(new Menu_items(R.drawable.ic_launcher, "Ley y Promesa"));
 		items.add(new Menu_items(R.drawable.ic_launcher, "Educandos"));
+		
 		// Sets the data behind this ListView
-		//this.listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		this.listView.setAdapter(new LateralMenuAdapter(this, items));
 
 		// Register a callback to be invoked when an item in this AdapterView
@@ -104,7 +96,6 @@ public class MainActivity extends SlidingActivity {
 			        startActivity(myIntent);
 			        
 			        getSlidingMenu().toggle(true);
-
 			        
 			        break;
 			        
@@ -159,30 +150,6 @@ public class MainActivity extends SlidingActivity {
 }
 
 /*
-package com.mobandme.ada.examples.advanced.activities;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-import android.app.Activity;
-
-import com.mobandme.ada.exceptions.AdaFrameworkException;
-import com.mobandme.ada.examples.advanced.R;
-import com.mobandme.ada.examples.advanced.helpers.ExceptionsHelper;
-import com.mobandme.ada.examples.advanced.model.DataBase;
-import com.mobandme.ada.examples.advanced.model.entities.Address;
-import com.mobandme.ada.examples.advanced.model.entities.Company;
-import com.mobandme.ada.examples.advanced.model.entities.Directive;
-import com.mobandme.ada.examples.advanced.model.entities.Worker;*/
-
-/**
- * Application Main Activity.
- * @author   Txus Ballesteros (@DesAndrOId)
- * @category Activity
- * @version  2.3
- */
-/*
-
 public class MainActivity extends Activity {
 
 	@Override

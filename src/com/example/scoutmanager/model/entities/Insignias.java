@@ -1,8 +1,5 @@
 package com.example.scoutmanager.model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
