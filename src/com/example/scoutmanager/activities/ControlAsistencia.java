@@ -3,7 +3,6 @@ package com.example.scoutmanager.activities;
 import com.example.scoutmanager.R;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;

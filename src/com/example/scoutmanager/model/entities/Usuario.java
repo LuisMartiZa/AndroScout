@@ -2,8 +2,6 @@ package com.example.scoutmanager.model.entities;
 
 import java.util.Date;
 
-import android.widget.ImageView;
-
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
