@@ -1,6 +1,7 @@
 package com.example.scoutmanager.fragments;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
@@ -18,7 +19,7 @@ import android.widget.Toast;
 
 public class EducandosListFragment extends Fragment {
 	
-	private ListView employeesListView;
+	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter; 
     
     private OnItemClickListener itemClickLitener = new OnItemClickListener() {
@@ -38,7 +39,7 @@ public class EducandosListFragment extends Fragment {
     
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.employee_list_fragment_layout, container);
+		return inflater.inflate(R.layout.educandos_list_fragment, container);
 	}
 	
 	@Override
@@ -54,19 +55,16 @@ public class EducandosListFragment extends Fragment {
 	
 	
 	private void initializeFragment(View pView) throws AdaFrameworkException {
-		
-		ApplicationDataContext.DataBase = new DataContext(getActivity());
-		
-		
-    	this.employeesListView = (ListView)pView.findViewById(R.id.EmployeesListView);
+				
+    	this.educandosListView = (ListView)pView.findViewById(R.id.EducandosListView);
     	
-    	if (this.employeesListView != null) {
-    		this.employeesListView.setOnItemClickListener(itemClickLitener);
-    		this.employeesListViewAdapter = new ArrayAdapter<Employee>(getActivity(), android.R.layout.simple_list_item_1);
+    	if (this.educandosListView != null) {
+    		this.educandosListView.setOnItemClickListener(itemClickLitener);
+    		this.educandosListViewAdapter = new ArrayAdapter<Educando>(getActivity(), android.R.layout.simple_list_item_1);
     		
-    		ApplicationDataContext.DataBase.EmployeesSet.fill();
-    		ApplicationDataContext.DataBase.EmployeesSet.setAdapter(this.employeesListViewAdapter);
-    		this.employeesListView.setAdapter(this.employeesListViewAdapter);
+    		DataBase.Context.EducandosSet.fill();
+    		DataBase.Context.EducandosSet.setAdapter(this.educandosListViewAdapter);
+    		this.educandosListView.setAdapter(this.educandosListViewAdapter);
     	}
     }
     
