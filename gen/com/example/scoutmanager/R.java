@@ -140,11 +140,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shadow=0x7f020002;
     }
     public static final class id {
-        public static final int EducandosListFragment=0x7f040018;
-        public static final int EducandosListView=0x7f040019;
-        public static final int action_settings=0x7f04001b;
+        public static final int EducandosDetailFragment=0x7f040018;
+        public static final int EducandosListFragment=0x7f04001e;
+        public static final int EducandosListView=0x7f04001f;
+        public static final int action_settings=0x7f040021;
         public static final int button1=0x7f040005;
         public static final int button2=0x7f040007;
+        public static final int employeeActive=0x7f04001d;
+        public static final int employeeBirthday=0x7f04001c;
+        public static final int employeeEmail=0x7f04001b;
         public static final int fullscreen=0x7f040003;
         public static final int imageButtonLey=0x7f040013;
         public static final int imageButtonPromesa=0x7f040014;
@@ -153,9 +157,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int listAsistencia=0x7f040008;
         public static final int listView=0x7f040017;
         public static final int margin=0x7f040002;
+        public static final int nameEducando=0x7f040019;
         public static final int right=0x7f040001;
         public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f04001a;
+        public static final int slidingmenumain=0x7f040020;
+        public static final int surnameEducando=0x7f04001a;
         public static final int textLey=0x7f040012;
         public static final int textPromesa=0x7f040015;
         public static final int textView1=0x7f040006;
@@ -179,10 +185,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_main=0x7f030003;
         public static final int activity_menu=0x7f030004;
         public static final int activity_promesa=0x7f030005;
-        public static final int educandos_list_activity=0x7f030006;
-        public static final int educandos_list_fragment=0x7f030007;
-        public static final int menu_row=0x7f030008;
-        public static final int slidingmenumain=0x7f030009;
+        public static final int educandos_detail_activity=0x7f030006;
+        public static final int educandos_detail_fragment=0x7f030007;
+        public static final int educandos_list_activity=0x7f030008;
+        public static final int educandos_list_fragment=0x7f030009;
+        public static final int menu_row=0x7f03000a;
+        public static final int slidingmenumain=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f090000;

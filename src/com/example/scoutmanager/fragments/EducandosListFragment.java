@@ -1,6 +1,7 @@
 package com.example.scoutmanager.fragments;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.activities.EducandosDetailActivity;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
@@ -27,7 +28,7 @@ public class EducandosListFragment extends Fragment {
 		public void onItemClick(AdapterView<?> pParent, View pView, int pPosition, long id) {
 			try {
 	        	
-				Intent deatailIntent = new Intent(getActivity(), employeeDetailActivity.class);
+				Intent deatailIntent = new Intent(getActivity(), EducandosDetailActivity.class);
 				deatailIntent.putExtra("educandoID", pPosition);
 				startActivityForResult(deatailIntent, 1);
 	        	
@@ -71,7 +72,7 @@ public class EducandosListFragment extends Fragment {
     public void executeAddNewCommand(View pView) {
     	try {
     		
-    		Intent deatailIntent = new Intent(getActivity(), employeeDetailActivity.class);
+    		Intent deatailIntent = new Intent(getActivity(), EducandosDetailActivity.class);
     		startActivityForResult(deatailIntent, 1);
     		
     	} catch (Exception e) {

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:stretchColumns="1"
+    android:padding="5dip">
+
+    <TableRow android:layout_width="match_parent">
+        <TextView android:text="labelName"
+            android:layout_marginLeft="5dip" />
+        
+        <EditText android:id="@+id/nameEducando" 
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+    </TableRow>
+    
+    <TableRow android:layout_width="match_parent">
+        <TextView android:text="labelSurname"
+            android:layout_marginLeft="5dip" />
+        
+        <EditText android:id="@+id/surnameEducando" 
+            android:layout_width="match_parent"
+            android:inputType="text"/>
+    </TableRow>
+    
+    <TableRow android:layout_width="match_parent">
+        <TextView android:text="labelEmail"
+            android:layout_marginLeft="5dip" />
+        
+        <EditText android:id="@+id/employeeEmail" 
+            android:layout_width="match_parent"
+            android:inputType="textEmailAddress"/>
+    </TableRow>
+    
+    <TableRow android:layout_width="match_parent">
+        <TextView android:text="labelBirthday"
+            android:layout_marginLeft="5dip" />
+        
+        <EditText android:id="@+id/employeeBirthday" 
+            android:layout_width="match_parent"
+            android:ems="10"
+            android:inputType="date"/>
+    </TableRow>
+    
+    <TableRow android:layout_width="match_parent">
+        <TextView android:text="labelActive"
+            android:layout_marginLeft="5dip" />
+        
+        <CheckBox android:id="@+id/employeeActive"/>
+    </TableRow>
+    
+    <TableRow android:layout_width="match_parent" android:gravity="right">
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="buttonDelete"
+            android:onClick="executeDeleteCommand" />
+        
+		<Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="buttonSave"
+            android:onClick="executeSaveCommand"/>
+    </TableRow>
+     
+</TableLayout>
