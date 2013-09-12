@@ -23,7 +23,7 @@ public class EducandosListFragment extends Fragment {
 	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter; 
     
-    private OnItemClickListener itemClickLitener = new OnItemClickListener() {
+    private OnItemClickListener itemClickListener = new OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> pParent, View pView, int pPosition, long id) {
 			try {
@@ -60,12 +60,13 @@ public class EducandosListFragment extends Fragment {
     	this.educandosListView = (ListView)pView.findViewById(R.id.EducandosListView);
     	
     	if (this.educandosListView != null) {
-    		this.educandosListView.setOnItemClickListener(itemClickLitener);
+    		this.educandosListView.setOnItemClickListener(itemClickListener);
     		this.educandosListViewAdapter = new ArrayAdapter<Educando>(getActivity(), android.R.layout.simple_list_item_1);
-    		
-    		DataBase.Context.EducandosSet.fill();
-    		DataBase.Context.EducandosSet.setAdapter(this.educandosListViewAdapter);
     		this.educandosListView.setAdapter(this.educandosListViewAdapter);
+    		
+    		DataBase.Context.EducandosSet.setAdapter(this.educandosListViewAdapter);
+    		DataBase.Context.EducandosSet.fill();
+
     	}
     }
     

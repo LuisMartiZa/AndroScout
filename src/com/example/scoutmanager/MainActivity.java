@@ -3,6 +3,7 @@ package com.example.scoutmanager;
 import java.util.ArrayList;
 
 import com.example.scoutmanager.activities.ControlAsistencia;
+import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
@@ -92,8 +93,8 @@ public class MainActivity extends SlidingActivity {
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();
 			        
-			        Intent myIntent = new Intent(view.getContext(), ControlAsistencia.class);
-			        startActivity(myIntent);
+			        Intent controlAsistencia = new Intent(view.getContext(), ControlAsistencia.class);
+			        startActivity(controlAsistencia);
 			        
 			        getSlidingMenu().toggle(true);
 			        
@@ -127,8 +128,8 @@ public class MainActivity extends SlidingActivity {
 			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado ley y promesa";
 			        
-			        Intent myIntent1 = new Intent(view.getContext(), LeyYPromesa.class);
-			        startActivity(myIntent1);
+			        Intent leypromesa = new Intent(view.getContext(), LeyYPromesa.class);
+			        startActivity(leypromesa);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();
@@ -137,6 +138,9 @@ public class MainActivity extends SlidingActivity {
 			    case 5:
 			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado educandos";
+			        
+			        Intent educandos = new Intent(view.getContext(), EducandosActivity.class);
+			        startActivity(educandos);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();

@@ -26,7 +26,6 @@ public class EducandosDetailActivity extends FragmentActivity {
 	
 	public void executeDeleteCommand(View pView) {
 		try {
-			
 			Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.EducandosDetailFragment);
 	    	if (fragment != null) {
 	    		((EducandosDetailFragment)fragment).executeDeleteCommand(pView);

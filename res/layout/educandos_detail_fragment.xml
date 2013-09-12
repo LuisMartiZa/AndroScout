@@ -6,7 +6,7 @@
     android:padding="5dip">
 
     <TableRow android:layout_width="match_parent">
-        <TextView android:text="labelName"
+        <TextView android:text="Nombre"
             android:layout_marginLeft="5dip" />
         
         <EditText android:id="@+id/nameEducando" 
@@ -15,7 +15,7 @@
     </TableRow>
     
     <TableRow android:layout_width="match_parent">
-        <TextView android:text="labelSurname"
+        <TextView android:text="Apellido"
             android:layout_marginLeft="5dip" />
         
         <EditText android:id="@+id/surnameEducando" 
@@ -24,7 +24,7 @@
     </TableRow>
     
     <TableRow android:layout_width="match_parent">
-        <TextView android:text="labelEmail"
+        <TextView android:text="Email"
             android:layout_marginLeft="5dip" />
         
         <EditText android:id="@+id/employeeEmail" 
@@ -33,7 +33,7 @@
     </TableRow>
     
     <TableRow android:layout_width="match_parent">
-        <TextView android:text="labelBirthday"
+        <TextView android:text="Cumpleaños"
             android:layout_marginLeft="5dip" />
         
         <EditText android:id="@+id/employeeBirthday" 
@@ -43,7 +43,7 @@
     </TableRow>
     
     <TableRow android:layout_width="match_parent">
-        <TextView android:text="labelActive"
+        <TextView android:text="Activo"
             android:layout_marginLeft="5dip" />
         
         <CheckBox android:id="@+id/employeeActive"/>
@@ -52,12 +52,12 @@
     <TableRow android:layout_width="match_parent" android:gravity="right">
         <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="buttonDelete"
+            android:text="Eliminar"
             android:onClick="executeDeleteCommand" />
         
 		<Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="buttonSave"
+            android:text="Guardar"
             android:onClick="executeSaveCommand"/>
     </TableRow>
      

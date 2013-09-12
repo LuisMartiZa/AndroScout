@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class EducandosDetailFragment extends Fragment {
 	
 	private View fragmentView;
-	private Educando employee = new Educando();
+	private Educando educando = new Educando();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,16 +40,16 @@ public class EducandosDetailFragment extends Fragment {
 	private void initializeFragment(View pView) throws AdaFrameworkException {
 		Bundle intentExtras = getActivity().getIntent().getExtras();
 		if (intentExtras != null) {
-			executeShowCommand(intentExtras.getInt("employeeID"));
+			executeShowCommand(intentExtras.getInt("educandoID"));
 		}
 	}
 	
 	public void executeShowCommand(int pIndex) {
 		try {
 
-			employee = DataBase.Context.EducandosSet.get(pIndex);
-			employee.setStatus(Entity.STATUS_UPDATED);
-			employee.bind(fragmentView);
+			educando = DataBase.Context.EducandosSet.get(pIndex);
+			educando.setStatus(Entity.STATUS_UPDATED);
+			educando.bind(fragmentView);
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -59,9 +59,9 @@ public class EducandosDetailFragment extends Fragment {
  	public void executeDeleteCommand(View pView) {
 		try {
 			
-			if (employee.getID() != null) {
+			if (educando.getID() != null) {
 			
-				employee.setStatus(Entity.STATUS_DELETED);
+				educando.setStatus(Entity.STATUS_DELETED);
 				DataBase.Context.EducandosSet.save();
 				
 				getActivity().setResult(Activity.RESULT_OK);
@@ -76,11 +76,11 @@ public class EducandosDetailFragment extends Fragment {
 	public void executeSaveCommand(View pView) {
 		try {
 			
-			employee.bind(fragmentView, DataBinder.BINDING_UI_TO_ENTITY);
-			if (employee.validate(getActivity())) {
+			educando.bind(fragmentView, DataBinder.BINDING_UI_TO_ENTITY);
+			if (educando.validate(getActivity())) {
 				
-				if (employee.getID() == null) {
-					DataBase.Context.EducandosSet.add(employee);
+				if (educando.getID() == null) {
+					DataBase.Context.EducandosSet.add(educando);
 				}
 				DataBase.Context.EducandosSet.save();
 				
@@ -88,7 +88,7 @@ public class EducandosDetailFragment extends Fragment {
 				getActivity().finish();
 				
 			} else {
-				Toast.makeText(getActivity(), employee.getValidationResultString("-"), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), educando.getValidationResultString("-"), Toast.LENGTH_SHORT).show();
 			}
 			
 		} catch (Exception e) {

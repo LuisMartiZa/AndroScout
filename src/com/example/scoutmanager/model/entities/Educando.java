@@ -9,38 +9,35 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Databinding;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
-import com.mobandme.ada.DataBinding;
 
 @Table(name = "tEducandos")
 public class Educando extends Entity {
 	
 	@TableField(name= "nombreEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	//@Databinding(ViewId= R.id.nameEducando)
-	private String Nombre = "";
+	@Databinding(ViewId= R.id.nameEducando)
+	public String Nombre = "";
 	
 	@TableField(name= "apellidoEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
-	private String Apellidos = "";
+	@Databinding(ViewId= R.id.surnameEducando)
+	public String Apellidos = "";
 	
-	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY, required= true)
-	private Date F_Nacimiento = new Date();
+	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY)
+	public Date F_Nacimiento = new Date();
 	
-	@TableField(name= "fotografiaEducando", datatype= Entity.DATATYPE_TEXT)
-    private String fotografia;
-    
     @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private Seccion seccion;
+    public Seccion seccion;
     
     @TableField(name= "etapaEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private Etapa etapa;
+    public Etapa etapa;
     
     @TableField(name= "tutorEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private List<Tutor> tutores= new ArrayList<Tutor>();
+    public List<Tutor> tutores= new ArrayList<Tutor>();
     
     @TableField(name= "comunicacionEducando", datatype= Entity.DATATYPE_ENTITY)
-    private List<Comunicaciones> comunicaciones = new ArrayList<Comunicaciones>();
+    public List<Comunicaciones> comunicaciones = new ArrayList<Comunicaciones>();
     
     @TableField(name= "insigniasEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private List<Insignias> insignias = new ArrayList<Insignias>();
+    public List<Insignias> insignias = new ArrayList<Insignias>();
     
     /*
      * Methods of Educando class.
@@ -57,7 +54,7 @@ public class Educando extends Entity {
     	
     	this.Nombre=nombre;
     	this.Apellidos=apellidos;
-    	this.F_Nacimiento=f_nac;
+    	//this.F_Nacimiento=f_nac;
     }
     
     //GETTERS AND SETTERS
@@ -89,16 +86,6 @@ public class Educando extends Entity {
     public void setFechaNacimiento(Date f_nac)
     {
     	this.F_Nacimiento=f_nac;
-    }
-    
-    public void setFotografia(String foto)
-    {
-    	this.fotografia=foto;
-    }
-    
-    public String getFotografia()
-    {
-    	return fotografia;
     }
     
     public Etapa getEtapaEducando()
