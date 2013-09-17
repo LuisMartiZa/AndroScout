@@ -2,6 +2,7 @@ package com.example.scoutmanager.fragments;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.activities.EducandosDetailActivity;
+import com.example.scoutmanager.adapters.EducandosListAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
@@ -61,7 +62,7 @@ public class EducandosListFragment extends Fragment {
     	
     	if (this.educandosListView != null) {
     		this.educandosListView.setOnItemClickListener(itemClickListener);
-    		this.educandosListViewAdapter = new ArrayAdapter<Educando>(getActivity(), android.R.layout.simple_list_item_1);
+    		this.educandosListViewAdapter= new EducandosListAdapter(getActivity(), R.layout.educandos_row);
     		this.educandosListView.setAdapter(this.educandosListViewAdapter);
     		
     		DataBase.Context.EducandosSet.setAdapter(this.educandosListViewAdapter);

@@ -143,7 +143,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int EducandosDetailFragment=0x7f040018;
         public static final int EducandosListFragment=0x7f04001e;
         public static final int EducandosListView=0x7f04001f;
-        public static final int action_settings=0x7f040021;
+        public static final int action_settings=0x7f040023;
         public static final int button1=0x7f040005;
         public static final int button2=0x7f040007;
         public static final int employeeActive=0x7f04001d;
@@ -158,10 +158,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int listView=0x7f040017;
         public static final int margin=0x7f040002;
         public static final int nameEducando=0x7f040019;
+        public static final int nameEducandoList=0x7f040020;
         public static final int right=0x7f040001;
         public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f040020;
+        public static final int slidingmenumain=0x7f040022;
         public static final int surnameEducando=0x7f04001a;
+        public static final int surnameEducandoList=0x7f040021;
         public static final int textLey=0x7f040012;
         public static final int textPromesa=0x7f040015;
         public static final int textView1=0x7f040006;
@@ -189,8 +191,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int educandos_detail_fragment=0x7f030007;
         public static final int educandos_list_activity=0x7f030008;
         public static final int educandos_list_fragment=0x7f030009;
-        public static final int menu_row=0x7f03000a;
-        public static final int slidingmenumain=0x7f03000b;
+        public static final int educandos_row=0x7f03000a;
+        public static final int menu_row=0x7f03000b;
+        public static final int slidingmenumain=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f090000;
