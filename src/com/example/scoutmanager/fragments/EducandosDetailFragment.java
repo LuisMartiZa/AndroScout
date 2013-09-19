@@ -1,5 +1,8 @@
 package com.example.scoutmanager.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
@@ -13,11 +16,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class EducandosDetailFragment extends Fragment {
 	
 	private View fragmentView;
+	private Spinner etapas;
 	private Educando educando = new Educando();
 	
 	@Override
@@ -41,6 +47,15 @@ public class EducandosDetailFragment extends Fragment {
 		Bundle intentExtras = getActivity().getIntent().getExtras();
 		if (intentExtras != null) {
 			executeShowCommand(intentExtras.getInt("educandoID"));
+			List<String> SpinnerArray =  new ArrayList<String>();
+		    SpinnerArray.add("Integraci—n");
+		    SpinnerArray.add("Participaci—n");
+		    SpinnerArray.add("Animaci—n");
+
+		    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, SpinnerArray);
+		    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    etapas = (Spinner) getView().findViewById(R.id.spinnerEtapa);
+		    etapas.setAdapter(adapter);		    
 		}
 	}
 	

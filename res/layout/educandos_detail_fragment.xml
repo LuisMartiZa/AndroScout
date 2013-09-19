@@ -2,63 +2,92 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:stretchColumns="1"
-    android:padding="5dip">
+    android:padding="5dip"
+    android:stretchColumns="1" >
 
-    <TableRow android:layout_width="match_parent">
-        <TextView android:text="Nombre"
-            android:layout_marginLeft="5dip" />
-        
-        <EditText android:id="@+id/nameEducando" 
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            android:layout_marginLeft="5dip"
+            android:text="Nombre" />
+
+        <EditText
+            android:id="@+id/nameEducando"
             android:layout_width="match_parent"
-            android:inputType="text"/>
+            android:inputType="text" />
     </TableRow>
-    
-    <TableRow android:layout_width="match_parent">
-        <TextView android:text="Apellido"
-            android:layout_marginLeft="5dip" />
-        
-        <EditText android:id="@+id/surnameEducando" 
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            android:layout_marginLeft="5dip"
+            android:text="Apellido" />
+
+        <EditText
+            android:id="@+id/surnameEducando"
             android:layout_width="match_parent"
-            android:inputType="text"/>
+            android:inputType="text" />
     </TableRow>
-    
-    <TableRow android:layout_width="match_parent">
-        <TextView android:text="Email"
-            android:layout_marginLeft="5dip" />
-        
-        <EditText android:id="@+id/employeeEmail" 
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            android:layout_marginLeft="5dip"
+            android:text="Email" />
+
+        <EditText
+            android:id="@+id/employeeEmail"
             android:layout_width="match_parent"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
     </TableRow>
-    
-    <TableRow android:layout_width="match_parent">
-        <TextView android:text="Cumpleaños"
-            android:layout_marginLeft="5dip" />
-        
-        <EditText android:id="@+id/employeeBirthday" 
+
+    <TableRow android:layout_width="match_parent" >
+
+        <TextView
+            android:layout_marginLeft="5dip"
+            android:text="Cumpleaños" />
+
+        <EditText
+            android:id="@+id/employeeBirthday"
             android:layout_width="match_parent"
             android:ems="10"
-            android:inputType="date"/>
+            android:inputType="date" />
     </TableRow>
-    
-    <TableRow android:layout_width="match_parent">
-        <TextView android:text="Activo"
-            android:layout_marginLeft="5dip" />
-        
-        <CheckBox android:id="@+id/employeeActive"/>
-    </TableRow>
-    
-    <TableRow android:layout_width="match_parent" android:gravity="right">
-        <Button android:layout_width="wrap_content"
+
+    <TableRow
+        android:id="@+id/TableRow"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="right" >
+
+        <TextView
+            android:id="@+id/TextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Eliminar"
-            android:onClick="executeDeleteCommand" />
-        
-		<Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:onClick="executeSaveCommand"/>
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
+            android:text="Etapa" />
+
+        <Spinner android:id="@+id/spinnerEtapa" />
+
     </TableRow>
-     
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:gravity="right" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="executeDeleteCommand"
+            android:text="Eliminar" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="executeSaveCommand"
+            android:text="Guardar" />
+    </TableRow>
+
 </TableLayout>

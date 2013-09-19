@@ -8,8 +8,10 @@ import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Menu_items;
+import com.example.scoutmanager.model.entities.Seccion;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
+import com.mobandme.ada.Entity;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -57,6 +59,31 @@ public class MainActivity extends SlidingActivity {
         getMenuInflater().inflate(R.menu.main, menu);
 		return false;
         
+    }
+    
+    public void fillObjectSets()
+    {
+    	Seccion castores = new Seccion();
+    	castores.setNombre("Castores");
+    	
+    	Seccion manada = new Seccion();
+    	manada.setNombre("Manada");
+    	
+    	Seccion tropa = new Seccion();
+    	tropa.setNombre("Tropa");
+    	
+    	Seccion unidad = new Seccion();
+    	unidad.setNombre("Unidad");
+
+    	
+    	Seccion clan = new Seccion();
+    	clan.setNombre("Clan");
+    	
+    	DataBase.Context.SeccionsSet.add(castores);
+    	DataBase.Context.SeccionsSet.add(manada);
+    	DataBase.Context.SeccionsSet.add(tropa);
+    	DataBase.Context.SeccionsSet.add(unidad);
+    	DataBase.Context.SeccionsSet.add(clan);
     }
     
     public void setLateralMenu()
@@ -153,52 +180,8 @@ public class MainActivity extends SlidingActivity {
     
 }
 
-/*
-public class MainActivity extends Activity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		initializeActivity();
-	}
-	
-	private void initializeActivity() {
-		try {
-		
-			setContentView(R.layout.activity_main);
-			
-			DataBase.initialize(this);
-			
-		} catch (Exception e) {
-			ExceptionsHelper.manage(e);
-		}
-	}
-	
-	public void executeCommand(View pView) {
-		try {
-			
-			if (pView != null) {
-				switch (pView.getId()) {
-					case R.id.Command_NewCompany:
-						createNewCompany();
-						break;
-					case R.id.Command_NewWorker:
-						createNewWorker();
-						break;
-					case R.id.Command_NewDirective:
-						createNewDirective();
-						break;
-				}
-			}
-			
-			Toast.makeText(this, getString(R.string.message_save_ok), Toast.LENGTH_SHORT).show();
-			
-		} catch (Exception e) {
-			ExceptionsHelper.manage(this, e);
-		}
-	}
-	
-	private Address createNewAddress(String pStreet) {
+/*		private Address createNewAddress(String pStreet) {
 		Address address = new Address();
 		address.Street = pStreet;
 		address.Number = 25;
