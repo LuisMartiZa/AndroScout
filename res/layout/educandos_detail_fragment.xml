@@ -66,10 +66,27 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dip"
+            android:text="Seccion" />
+
+        <Spinner android:id="@+id/spinnerSeccion" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/TableRow"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:gravity="right" >
+
+        <TextView
+            android:id="@+id/TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dip"
             android:text="Etapa" />
 
         <Spinner android:id="@+id/spinnerEtapa" />
-
     </TableRow>
 
     <TableRow

@@ -141,11 +141,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class id {
         public static final int EducandosDetailFragment=0x7f040018;
-        public static final int EducandosListFragment=0x7f040020;
-        public static final int EducandosListView=0x7f040021;
+        public static final int EducandosListFragment=0x7f040021;
+        public static final int EducandosListView=0x7f040022;
         public static final int TableRow=0x7f04001d;
         public static final int TextView=0x7f04001e;
-        public static final int action_settings=0x7f040025;
+        public static final int action_settings=0x7f040026;
         public static final int button1=0x7f040005;
         public static final int button2=0x7f040007;
         public static final int employeeBirthday=0x7f04001c;
@@ -159,13 +159,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int listView=0x7f040017;
         public static final int margin=0x7f040002;
         public static final int nameEducando=0x7f040019;
-        public static final int nameEducandoList=0x7f040022;
+        public static final int nameEducandoList=0x7f040023;
         public static final int right=0x7f040001;
         public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f040024;
-        public static final int spinnerEtapa=0x7f04001f;
+        public static final int slidingmenumain=0x7f040025;
+        public static final int spinnerEtapa=0x7f040020;
+        public static final int spinnerSeccion=0x7f04001f;
         public static final int surnameEducando=0x7f04001a;
-        public static final int surnameEducandoList=0x7f040023;
+        public static final int surnameEducandoList=0x7f040024;
         public static final int textLey=0x7f040012;
         public static final int textPromesa=0x7f040015;
         public static final int textView1=0x7f040006;

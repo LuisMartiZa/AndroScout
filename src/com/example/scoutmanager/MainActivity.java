@@ -7,11 +7,12 @@ import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.example.scoutmanager.model.entities.Seccion;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-import com.mobandme.ada.Entity;
+import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -32,7 +33,11 @@ public class MainActivity extends SlidingActivity {
         super.onCreate(savedInstanceState);
         
 		DataBase.initialize(this);
-
+		try {
+			fillObjectSets();
+		} catch (AdaFrameworkException e) {
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
         
         setContentView(R.layout.activity_main);
         setBehindContentView(R.layout.activity_menu);
@@ -61,29 +66,70 @@ public class MainActivity extends SlidingActivity {
         
     }
     
-    public void fillObjectSets()
-    {
-    	Seccion castores = new Seccion();
-    	castores.setNombre("Castores");
+    public void fillObjectSets() throws AdaFrameworkException
+    {	
+    	//Fill Etapas object set
+    	Etapa castorsinpaletas = new Etapa("Castor sin paletas");
+    	Etapa castorconpaletas = new Etapa("Castor con paletas");
+    	Etapa castorkeeo = new Etapa("Castor Keeo");
     	
-    	Seccion manada = new Seccion();
-    	manada.setNombre("Manada");
+    	Etapa huellaakela = new Etapa("Huella de Akela");
+    	Etapa huellabaloo = new Etapa("Huella de Baloo");
+    	Etapa huellabagheera = new Etapa("Huella de Bagheera");
     	
-    	Seccion tropa = new Seccion();
-    	tropa.setNombre("Tropa");
+    	Etapa integracion = new Etapa("Integraci—n");
+    	Etapa participacion = new Etapa("Participaci—n");
+    	Etapa animacion = new Etapa("Animaci—n");
     	
-    	Seccion unidad = new Seccion();
-    	unidad.setNombre("Unidad");
+    	DataBase.Context.EtapasSet.add(castorsinpaletas);
+    	DataBase.Context.EtapasSet.add(castorconpaletas);
+    	DataBase.Context.EtapasSet.add(castorkeeo);
+    	DataBase.Context.EtapasSet.add(huellaakela);
+    	DataBase.Context.EtapasSet.add(huellabaloo);
+    	DataBase.Context.EtapasSet.add(huellabagheera);
+    	DataBase.Context.EtapasSet.add(integracion);
+    	DataBase.Context.EtapasSet.add(participacion);
+    	DataBase.Context.EtapasSet.add(animacion);
+    	
+		DataBase.Context.EtapasSet.save();
 
     	
-    	Seccion clan = new Seccion();
-    	clan.setNombre("Clan");
+    	//Fill Seccion object set
+    	Seccion castores = new Seccion("Castores");
+    	castores.addEtapaSeccion(castorconpaletas);
+    	castores.addEtapaSeccion(castorsinpaletas);
+    	castores.addEtapaSeccion(castorkeeo);
+    	
+    	Seccion manada = new Seccion("Manada");
+    	manada.addEtapaSeccion(huellaakela);
+    	manada.addEtapaSeccion(huellabaloo);
+    	manada.addEtapaSeccion(huellabagheera);
+    	
+    	Seccion tropa = new Seccion("Tropa");
+    	tropa.addEtapaSeccion(integracion);
+    	tropa.addEtapaSeccion(participacion);
+    	tropa.addEtapaSeccion(animacion);
+    	
+    	Seccion unidad = new Seccion("Unidad");
+    	unidad.addEtapaSeccion(integracion);
+    	unidad.addEtapaSeccion(participacion);
+    	unidad.addEtapaSeccion(animacion);
+    	
+    	Seccion clan = new Seccion("Clan");
+    	clan.addEtapaSeccion(integracion);
+    	clan.addEtapaSeccion(participacion);
+    	clan.addEtapaSeccion(animacion);
     	
     	DataBase.Context.SeccionsSet.add(castores);
     	DataBase.Context.SeccionsSet.add(manada);
     	DataBase.Context.SeccionsSet.add(tropa);
     	DataBase.Context.SeccionsSet.add(unidad);
     	DataBase.Context.SeccionsSet.add(clan);
+    	
+		DataBase.Context.SeccionsSet.save();
+
+
+    	
     }
     
     public void setLateralMenu()
