@@ -11,10 +11,10 @@ import com.mobandme.ada.annotations.TableField;
 public class Seccion extends Entity {
 	
 	@TableField(name= "nombreSeccion", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	private String Nombre = "";
+	public String Nombre = "";
 	
 	@TableField(name= "etapasSeccion", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private List<Etapa> etapasSeccion = new ArrayList<Etapa>();
+    public List<Etapa> etapasSeccion = new ArrayList<Etapa>();
 
 	 /*
      * Methods of Usuario class.

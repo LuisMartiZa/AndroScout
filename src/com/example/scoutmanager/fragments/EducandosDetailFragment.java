@@ -6,6 +6,8 @@ import java.util.List;
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
+import com.example.scoutmanager.model.entities.Etapa;
+import com.example.scoutmanager.model.entities.Seccion;
 import com.mobandme.ada.DataBinder;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
@@ -13,6 +15,7 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +31,7 @@ public class EducandosDetailFragment extends Fragment {
 	private Spinner etapas;
 	private Spinner seccion;
 	private ArrayAdapter<String> etapasAdapter;
+	private ArrayAdapter<String> seccionesAdapter;
 	private Educando educando = new Educando();
 	
 	private OnItemSelectedListener itemSelectedListener = new OnItemSelectedListener() {
@@ -38,22 +42,16 @@ public class EducandosDetailFragment extends Fragment {
 				
 			    switch (pPosition) {
 		        case 0:
-		        	etapasArray.add("");
-		            break;
-		        case 1:
-		        	etapasArray.add("");
 		        	etapasArray.add("Castor sin paletas");
 				    etapasArray.add("Castor con paletas");
 				    etapasArray.add("Castor Keeo");
 		            break;
-		        case 2:
-		        	etapasArray.add("");
+		        case 1:
 		        	etapasArray.add("Huella de Akela");
 				    etapasArray.add("Huella de Baloo");
 				    etapasArray.add("Huella de Bagheera");
 		            break;
 		        default:
-		        	etapasArray.add("");
 		        	etapasArray.add("Integraci—n");
 				    etapasArray.add("Participaci—n");
 				    etapasArray.add("Animaci—n");
@@ -97,10 +95,10 @@ public class EducandosDetailFragment extends Fragment {
 	private void initializeFragment(View pView) throws AdaFrameworkException {
 		Bundle intentExtras = getActivity().getIntent().getExtras();
 		if (intentExtras != null) {
-			executeShowCommand(intentExtras.getInt("educandoID"));
 			initializeSpinners();
-					    
+			executeShowCommand(intentExtras.getInt("educandoID"));			    
 		}
+		initializeSpinners();
 	}
 	
 	public void executeShowCommand(int pIndex) {
@@ -109,6 +107,25 @@ public class EducandosDetailFragment extends Fragment {
 			educando = DataBase.Context.EducandosSet.get(pIndex);
 			educando.setStatus(Entity.STATUS_UPDATED);
 			educando.bind(fragmentView);
+			
+			Log.w("SCOUTMANAGER", "Nombre Educando: "+educando.getNombre());
+    		Log.w("SCOUTMANAGER", "Apellido Educando: "+educando.getApellidos());
+    		Log.w("SCOUTMANAGER", "Seccion Educando: "+educando.getSeccionEducando().getNombre());
+    		Log.w("SCOUTMANAGER", "Etapa Educando: "+educando.getEtapaEducando().getNombre());
+					
+			int seccionPosition = this.seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
+			
+			Log.w("SCOUTMANAGER", "POSITION: "+seccionesAdapter.getItem(seccionPosition));
+			
+			this.seccion.setAdapter(this.seccionesAdapter);
+
+			//set the default according to value
+			this.seccion.setSelection(seccionPosition,true);
+			
+			/*int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
+
+			//set the default according to value
+			etapas.setSelection(etapaPosition,true);*/
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -136,6 +153,36 @@ public class EducandosDetailFragment extends Fragment {
 		try {
 			
 			educando.bind(fragmentView, DataBinder.BINDING_UI_TO_ENTITY);
+
+			int nseccion = DataBase.Context.SeccionsSet.size();
+			Seccion seccionAux;
+			
+			for(int n=0; n< nseccion; n++){
+				seccionAux= DataBase.Context.SeccionsSet.get(n);
+				
+				if(seccionAux.getNombre() == seccion.getSelectedItem())
+				{
+					educando.setSeccionEducando(seccionAux);
+					break;
+
+				}
+					
+			}
+			
+			int netapa = DataBase.Context.EtapasSet.size();
+			Etapa etapaAux;
+			
+			for(int n=0; n< netapa; n++){
+				etapaAux= DataBase.Context.EtapasSet.get(n);
+				
+				if(etapaAux.getNombre() == etapas.getSelectedItem())
+				{
+					educando.setEtapaEducando(etapaAux);
+					break;
+
+				}
+				
+			}
 			if (educando.validate(getActivity())) {
 				
 				if (educando.getID() == null) {
@@ -158,18 +205,17 @@ public class EducandosDetailFragment extends Fragment {
 	public void initializeSpinners()
 	{
 		List<String> seccionesArray =  new ArrayList<String>();
-		seccionesArray.add("");
 	    seccionesArray.add("Castores");
 	    seccionesArray.add("Manada");
 	    seccionesArray.add("Tropa");
 	    seccionesArray.add("Unidad");
 	    seccionesArray.add("Clan");
 
-	    ArrayAdapter<String> seccionesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, seccionesArray);
-	    seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    seccion = (Spinner) getView().findViewById(R.id.spinnerSeccion);
-	    seccion.setAdapter(seccionesAdapter);
-	    seccion.setOnItemSelectedListener(itemSelectedListener);
+	    this.seccionesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, seccionesArray);
+	    this.seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    this.seccion = (Spinner) getView().findViewById(R.id.spinnerSeccion);
+	    this.seccion.setAdapter(seccionesAdapter);
+	    this.seccion.setOnItemSelectedListener(itemSelectedListener);
 	}
 
 }

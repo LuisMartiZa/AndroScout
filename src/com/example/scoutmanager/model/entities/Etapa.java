@@ -8,7 +8,7 @@ import com.mobandme.ada.annotations.TableField;
 public class Etapa extends Entity {
 	
 	@TableField(name= "nombreEtapa", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	private String Nombre = "";
+	public String Nombre = "";
 	
 	
 	/*

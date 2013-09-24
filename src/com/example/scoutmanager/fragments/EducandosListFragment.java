@@ -10,6 +10,7 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,13 @@ public class EducandosListFragment extends Fragment {
     		
     		DataBase.Context.EducandosSet.setAdapter(this.educandosListViewAdapter);
     		DataBase.Context.EducandosSet.fill();
-
+    		
+    		Educando educando= DataBase.Context.EducandosSet.get(0);
+    		
+    		Log.w("SCOUTMANAGER", "Nombre Educando: "+educando.getNombre());
+    		Log.w("SCOUTMANAGER", "Apellido Educando: "+educando.getApellidos());
+    		Log.w("SCOUTMANAGER", "Seccion Educando: "+educando.getSeccionEducando().getNombre());
+    		Log.w("SCOUTMANAGER", "Etapa Educando: "+educando.getEtapaEducando().getNombre());
     	}
     }
     
