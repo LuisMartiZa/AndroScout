@@ -21,7 +21,7 @@
 
         <TextView
             android:layout_marginLeft="5dip"
-            android:text="Apellido" />
+            android:text="Apellidos" />
 
         <EditText
             android:id="@+id/surnameEducando"
@@ -33,10 +33,10 @@
 
         <TextView
             android:layout_marginLeft="5dip"
-            android:text="Email" />
+            android:text="Dirección" />
 
         <EditText
-            android:id="@+id/employeeEmail"
+            android:id="@+id/dirEducando"
             android:layout_width="match_parent"
             android:inputType="textEmailAddress" />
     </TableRow>
@@ -87,6 +87,42 @@
             android:text="Etapa" />
 
         <Spinner android:id="@+id/spinnerEtapa" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dp"
+            android:text="Padres" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/TableRow01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dp"
+            android:text="Comunicaciones" />
+
     </TableRow>
 
     <TableRow

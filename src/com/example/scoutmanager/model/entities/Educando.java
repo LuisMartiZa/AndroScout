@@ -21,6 +21,10 @@ public class Educando extends Entity {
 	@Databinding(ViewId= R.id.surnameEducando)
 	public String Apellidos = "";
 	
+	@TableField(name= "direccionEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
+	@Databinding(ViewId= R.id.dirEducando)
+	public String Direccion = "";
+	
 	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY)
 	public Date F_Nacimiento = new Date();
 	
@@ -76,6 +80,16 @@ public class Educando extends Entity {
     public void setApellidos(String apellidos)
     {
     	this.Apellidos=apellidos;
+    }
+    
+    public String getDireccion()
+    {
+    	return Direccion;
+    }
+    
+    public void setDireccion(String direccion)
+    {
+    	this.Direccion=direccion;
     }
     
     public Date getFechaNacimiento()

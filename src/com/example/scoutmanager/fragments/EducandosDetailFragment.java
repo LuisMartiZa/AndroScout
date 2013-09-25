@@ -15,7 +15,6 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,8 +96,10 @@ public class EducandosDetailFragment extends Fragment {
 		if (intentExtras != null) {
 			initializeSpinners();
 			executeShowCommand(intentExtras.getInt("educandoID"));			    
+		}else{
+		
+			initializeSpinners();
 		}
-		initializeSpinners();
 	}
 	
 	public void executeShowCommand(int pIndex) {
@@ -107,25 +108,16 @@ public class EducandosDetailFragment extends Fragment {
 			educando = DataBase.Context.EducandosSet.get(pIndex);
 			educando.setStatus(Entity.STATUS_UPDATED);
 			educando.bind(fragmentView);
-			
-			Log.w("SCOUTMANAGER", "Nombre Educando: "+educando.getNombre());
-    		Log.w("SCOUTMANAGER", "Apellido Educando: "+educando.getApellidos());
-    		Log.w("SCOUTMANAGER", "Seccion Educando: "+educando.getSeccionEducando().getNombre());
-    		Log.w("SCOUTMANAGER", "Etapa Educando: "+educando.getEtapaEducando().getNombre());
-					
+
 			int seccionPosition = this.seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
 			
-			Log.w("SCOUTMANAGER", "POSITION: "+seccionesAdapter.getItem(seccionPosition));
-			
-			this.seccion.setAdapter(this.seccionesAdapter);
-
 			//set the default according to value
 			this.seccion.setSelection(seccionPosition,true);
-			
-			/*int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
+						
+			int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
 
 			//set the default according to value
-			etapas.setSelection(etapaPosition,true);*/
+			this.etapas.setSelection(etapaPosition,true);
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
