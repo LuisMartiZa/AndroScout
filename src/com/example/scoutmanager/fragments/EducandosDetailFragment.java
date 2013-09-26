@@ -15,6 +15,7 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,6 +119,8 @@ public class EducandosDetailFragment extends Fragment {
 
 			//set the default according to value
 			this.etapas.setSelection(etapaPosition,true);
+			
+			Log.w("PRUEBA EN EL MOVIL", (String) this.etapas.getSelectedItem());
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();

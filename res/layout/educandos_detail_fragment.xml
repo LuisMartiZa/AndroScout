@@ -48,7 +48,7 @@
             android:text="Cumpleaños" />
 
         <EditText
-            android:id="@+id/employeeBirthday"
+            android:id="@+id/educandoBirthday"
             android:layout_width="match_parent"
             android:ems="10"
             android:inputType="date" />
@@ -94,7 +94,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp" >
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/list_selector_background" 
+        android:clickable="true" >
 
         <TextView
             android:id="@+id/textView1"
@@ -112,7 +114,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp" >
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/list_selector_background" 
+        android:clickable="true" >
 
         <TextView
             android:id="@+id/TextView01"

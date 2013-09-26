@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.parsers.DateParser;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Databinding;
 import com.mobandme.ada.annotations.Table;
@@ -25,7 +26,9 @@ public class Educando extends Entity {
 	@Databinding(ViewId= R.id.dirEducando)
 	public String Direccion = "";
 	
-	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY)
+	@SuppressWarnings("deprecation")
+	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE)
+	@Databinding(ViewId = R.id.educandoBirthday, parser = DateParser.class)
 	public Date F_Nacimiento = new Date();
 	
     @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
@@ -40,8 +43,8 @@ public class Educando extends Entity {
     @TableField(name= "comunicacionEducando", datatype= Entity.DATATYPE_ENTITY)
     public List<Comunicaciones> comunicaciones = new ArrayList<Comunicaciones>();
     
-    @TableField(name= "insigniasEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Insignias> insignias = new ArrayList<Insignias>();
+    /*@TableField(name= "insigniasEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
+    public List<Insignias> insignias = new ArrayList<Insignias>();*/
     
     /*
      * Methods of Educando class.
@@ -142,7 +145,7 @@ public class Educando extends Entity {
     	this.comunicaciones.add(com);
     }
     
-    public List<Insignias> getInsigniasEducando()
+   /* public List<Insignias> getInsigniasEducando()
     {
     	return insignias;
     }
@@ -150,5 +153,5 @@ public class Educando extends Entity {
     public void addInsigniaEducando(Insignias insignia)
     {
     	this.insignias.add(insignia);
-    }
+    }*/
 }
