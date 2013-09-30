@@ -5,14 +5,14 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.42" >
+        android:layout_marginLeft="5dp" >
 
         <TextView
             android:id="@+id/nameEducandoList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="false"
+            android:layout_centerVertical="true"
             android:layout_marginTop="16dp"
             android:text="Nombre" />
 
@@ -20,8 +20,7 @@
             android:id="@+id/surnameEducandoList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/nameEducandoList"
-            android:layout_alignBottom="@+id/nameEducandoList"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/nameEducandoList"
             android:text="Apellido" />

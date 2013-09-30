@@ -137,9 +137,7 @@ public class MainActivity extends SlidingActivity {
     	this.listView = (ListView) findViewById(R.id.listView);
 
 		ArrayList<Menu_items> items = new ArrayList<Menu_items>();
-		items.add(new Menu_items(R.drawable.ic_launcher, "Control Asistencia"));
 		items.add(new Menu_items(R.drawable.ic_launcher, "Eventos"));
-		items.add(new Menu_items(R.drawable.ic_launcher, "Insignias"));
 		items.add(new Menu_items(R.drawable.ic_launcher, "Actividades"));
 		items.add(new Menu_items(R.drawable.ic_launcher, "Ley y Promesa"));
 		items.add(new Menu_items(R.drawable.ic_launcher, "Educandos"));
@@ -161,35 +159,14 @@ public class MainActivity extends SlidingActivity {
 		        
 				switch (position) {
 			    case 0:
-			        text = "Ha pulsado control de asistencia";
-
-			        toast = Toast.makeText(context, text, duration);
-			        toast.show();
-			        
-			        Intent controlAsistencia = new Intent(view.getContext(), ControlAsistencia.class);
-			        startActivity(controlAsistencia);
-			        
 			        getSlidingMenu().toggle(true);
-			        
-			        break;
-			        
-			    case 1:
-			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado eventos";
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();
 			        break;
 			        
-			    case 2:
-			    	getSlidingMenu().toggle(true);
-			        text = "Ha pulsado insignias";
-
-			        toast = Toast.makeText(context, text, duration);
-			        toast.show();
-			        break;
-			        
-			    case 3:
+			    case 1:
 			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado actividades";
 
@@ -197,7 +174,7 @@ public class MainActivity extends SlidingActivity {
 			        toast.show();
 			        break;
 			        
-			    case 4:
+			    case 2:
 			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado ley y promesa";
 			        
@@ -208,7 +185,7 @@ public class MainActivity extends SlidingActivity {
 			        toast.show();
 			        break;
 			        
-			    case 5:
+			    case 3:
 			    	getSlidingMenu().toggle(true);
 			        text = "Ha pulsado educandos";
 			        
@@ -225,93 +202,3 @@ public class MainActivity extends SlidingActivity {
     }
     
 }
-
-
-/*		private Address createNewAddress(String pStreet) {
-		Address address = new Address();
-		address.Street = pStreet;
-		address.Number = 25;
-		address.Floor = 7;
-		address.Door = "A";
-		address.City = "Bilbao";
-		address.Province = "Bizkaia";
-		//Find the Country into DataBase if it does not exist, create.
-		address.Country = DataBase.Context.CountriesSet.getByName("España", true);
-		
-		return address;
-	}
-	
-	private void createNewCompany() throws AdaFrameworkException {
-		Company company = new Company();
-		company.Name    = "Mob&Me";
-		company.Address = createNewAddress("C/ Mob&Me Street");
-		
-		//METHOD 1
-		//This method save all instances with changes contained into the ObjectSet.
-		DataBase.Context.CompaniesSet.add(company);
-		DataBase.Context.CompaniesSet.save();
-		
-		//METHOD 2
-		//This is an alternative method to save only one entity.
-		//DataBase.Context.CompaniesSet.save(company);
-	}
-	
-	private void createNewWorker() throws AdaFrameworkException {
-		Worker worker = new Worker();
-		worker.Name = "Txus";
-		worker.Surname = "Ballesteros";
-		worker.UserName = "user1234";
-		worker.Password = "pass1234";
-		worker.SalaryRate = 45.5f;
-		worker.Active = true;
-		//If the CompaniesSet is empty, create a new Company.
-		if (DataBase.Context.CompaniesSet.size() == 0) {
-			createNewCompany();
-		}
-		//Get the first company from CompaniesSet. 
-		worker.Company = DataBase.Context.CompaniesSet.get(0);
-		worker.Address.add(createNewAddress("C/ Worker Address 1"));
-		worker.Address.add(createNewAddress("C/ Worker Address 2"));
-		
-		//METHOD 1
-		//This method save all instances with changes contained into the ObjectSet.
-		DataBase.Context.WorkersSet.add(worker);
-		DataBase.Context.WorkersSet.save();
-		
-		//METHOD 2
-		//This is an alternative method to save only one entity.
-		//DataBase.Context.WorkersSet.save(worker);
-	}
-	
-	private void createNewDirective() throws AdaFrameworkException {
-		Directive directive = new Directive();
-		directive.Name = "Eric";
-		directive.Surname = "Schmidt";
-		directive.UserName = "user4321";
-		directive.Password = "pass4321";
-		directive.Active = true;
-		//If the CompaniesSet is empty, create a new Company.
-		if (DataBase.Context.CompaniesSet.size() == 0) {
-			createNewCompany();
-		}
-		//Get the first company from CompaniesSet. 
-		directive.Company = DataBase.Context.CompaniesSet.get(0);
-		directive.Address.add(createNewAddress("C/ Directive Address 1"));
-		directive.Address.add(createNewAddress("C/ Directive Address 2"));
-		//If the WorkersSet is empty, create a new Worker.
-		if (DataBase.Context.WorkersSet.size() == 0) {
-			createNewWorker();
-		}
-		directive.Workers.add(DataBase.Context.WorkersSet.get(0));
-		
-		//METHOD 1
-		//This method save all instances with changes contained into the ObjectSet.
-		DataBase.Context.DirectivesSet.add(directive);
-		DataBase.Context.DirectivesSet.save();
-		
-		//METHOD 2
-		//This is an alternative method to save only one entity.
-		//DataBase.Context.DirectivesSet.save(directive);
-	}
-}
-*/

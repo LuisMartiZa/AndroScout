@@ -46,11 +46,11 @@ public class DateParser extends DataParser {
 			if (pOriginalValue != null) {
 				if (pDirection == DataBinder.BINDING_UI_TO_ENTITY) {
 					if (pOriginalValue instanceof String) {
-						returnedValue = new SimpleDateFormat("yyyy-MM-dd").parse((String)pOriginalValue);
+						returnedValue = new SimpleDateFormat("dd-MM-yyyy").parse((String)pOriginalValue);
 					}
 				} else {
 					if (pOriginalValue instanceof Date) {
-						returnedValue = new SimpleDateFormat("yyyy-MM-dd").format(pOriginalValue);
+						returnedValue = new SimpleDateFormat("dd-MM-yyyy").format(pOriginalValue);
 					}
 				}
 			}
