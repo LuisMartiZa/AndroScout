@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="119dp"
-        android:text="Ley Scout"
+        android:text="@string/Ley"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
@@ -40,7 +40,7 @@
         android:layout_alignLeft="@+id/textLey"
         android:layout_alignTop="@+id/imageButtonPromesa"
         android:layout_marginTop="16dp"
-        android:text="Promesa Scout"
+        android:text="@string/Promesa"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

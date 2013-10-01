@@ -2,7 +2,6 @@ package com.example.scoutmanager;
 
 import java.util.ArrayList;
 
-import com.example.scoutmanager.activities.ControlAsistencia;
 import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;

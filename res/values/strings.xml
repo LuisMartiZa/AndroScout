@@ -4,6 +4,20 @@
     <string name="app_name">Scout Manager</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="titutlo">Titulo</string>
+    <string name="Articulo1">1. El scout cifra su honor en ser digno de confianza.</string>
+    <string name="Articulo2">2. El scout es leal.</string>
+    <string name="Articulo3">3. El scout es útil y servicial.</string>
+    <string name="Articulo4">4. El scout es amigo de todos y hermano de otros scouts.</string>
+    <string name="Articulo5">5. El scout es cortés y educado.</string>
+    <string name="Articulo6">6. El scout ama y protege la naturaleza.</string>
+    <string name="Articulo7">7. El scout es responsable y no deja nada a medias.</string>
+    <string name="Articulo8">8. El scout es animoso ante peligros y dificultades.</string>
+    <string name="Articulo9">9. El scout es trabajador, austero y respeta el bien ajeno.</string>
+    <string name="Articulo10">10. El scout es limpio y sano, puro en pensamientos, palabras y acciones.</string>
+    <string name="BIENVENIDO">BIENVENIDO</string>
+    <string name="A">A</string>
+    <string name="SCOUT">SCOUT MANAGER</string>
+    <string name="Ley">Ley Scout</string>
+    <string name="Promesa">Promesa Scout</string>
 
 </resources>
