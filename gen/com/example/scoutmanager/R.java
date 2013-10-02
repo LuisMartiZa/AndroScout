@@ -147,7 +147,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int TableRow=0x7f040025;
         public static final int TableRow01=0x7f04002c;
         public static final int aceptButton=0x7f04002f;
-        public static final int action_settings=0x7f040036;
+        public static final int action_settings=0x7f040037;
         public static final int articulo1=0x7f040005;
         public static final int articulo10=0x7f040006;
         public static final int articulo2=0x7f04000b;
@@ -176,8 +176,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main3=0x7f040016;
         public static final int margin=0x7f040002;
         public static final int nameEducando=0x7f04001e;
-        public static final int nameEducandoList=0x7f040032;
+        public static final int nameEducandoList=0x7f040033;
         public static final int nameText=0x7f04001d;
+        public static final int newButton=0x7f040032;
         public static final int padresText=0x7f04002b;
         public static final int promesa1=0x7f040018;
         public static final int promesa2=0x7f04001a;
@@ -186,16 +187,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f040001;
         public static final int sectionText=0x7f040026;
         public static final int selected_view=0x7f040004;
-        public static final int slidingmenumain=0x7f040035;
+        public static final int slidingmenumain=0x7f040036;
         public static final int spinnerEtapa=0x7f040029;
         public static final int spinnerSeccion=0x7f040027;
         public static final int surnameEducando=0x7f040020;
-        public static final int surnameEducandoList=0x7f040033;
+        public static final int surnameEducandoList=0x7f040034;
         public static final int surnameText=0x7f04001f;
         public static final int tableRow1=0x7f04002a;
         public static final int textLey=0x7f04000f;
         public static final int textPromesa=0x7f040012;
-        public static final int textView1=0x7f040034;
+        public static final int textView1=0x7f040035;
     }
     public static final class integer {
         public static final int num_cols=0x7f060000;

@@ -13,6 +13,7 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,7 +63,28 @@ public class EducandosDetailFragment extends Fragment {
 				    break;
 			    }
 			    
-			    etapasAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, etapasArray);
+			    etapasAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, etapasArray){
+
+			         public View getView(int position, View convertView, ViewGroup parent) {
+			                 View v = super.getView(position, convertView, parent);
+
+			                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+			                 ((TextView) v).setTypeface(externalFont);
+
+			                 return v;
+			         }
+
+
+			         public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
+			                  View v =super.getDropDownView(position, convertView, parent);
+
+			                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+			                 ((TextView) v).setTypeface(externalFont);
+			                 v.setBackgroundColor(Color.GREEN);
+
+			                 return v;
+			         }
+			 };
 			    etapasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			    etapas = (Spinner) getView().findViewById(R.id.spinnerEtapa);
 			    etapas.setAdapter(etapasAdapter);
@@ -80,27 +104,6 @@ public class EducandosDetailFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
-		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-                "fonts/Roboto-Light.ttf");
-        
-        TextView name = (TextView) getView().findViewById(R.id.nameText);
-        TextView surname = (TextView) getView().findViewById(R.id.surnameText);
-        TextView dir = (TextView) getView().findViewById(R.id.dirText);
-        TextView birthday = (TextView) getView().findViewById(R.id.birthdayText);
-        TextView seccion = (TextView) getView().findViewById(R.id.sectionText);
-        TextView etapa = (TextView) getView().findViewById(R.id.etapaText);
-        TextView padres = (TextView) getView().findViewById(R.id.padresText);
-        TextView comunicaciones = (TextView) getView().findViewById(R.id.comunicacionesText);
-
-        name.setTypeface(tf);
-        surname.setTypeface(tf);
-        dir.setTypeface(tf);
-        birthday.setTypeface(tf);
-        seccion.setTypeface(tf);
-        etapa.setTypeface(tf);
-        padres.setTypeface(tf);
-        comunicaciones.setTypeface(tf);
-		
 		return inflater.inflate(R.layout.educandos_detail_fragment, container, true);
 	}
 	
@@ -110,6 +113,46 @@ public class EducandosDetailFragment extends Fragment {
 			
 			fragmentView = pView;
 			initializeFragment(pView);
+			Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+	                "fonts/Roboto-Light.ttf");
+	        //TEXTVIEW
+	        TextView name = (TextView) getView().findViewById(R.id.nameText);
+	        TextView surname = (TextView) getView().findViewById(R.id.surnameText);
+	        TextView dir = (TextView) getView().findViewById(R.id.dirText);
+	        TextView birthday = (TextView) getView().findViewById(R.id.birthdayText);
+	        TextView seccion = (TextView) getView().findViewById(R.id.sectionText);
+	        TextView etapa = (TextView) getView().findViewById(R.id.etapaText);
+	        TextView padres = (TextView) getView().findViewById(R.id.padresText);
+	        TextView comunicaciones = (TextView) getView().findViewById(R.id.comunicacionesText);
+
+	        name.setTypeface(tf);
+	        surname.setTypeface(tf);
+	        dir.setTypeface(tf);
+	        birthday.setTypeface(tf);
+	        seccion.setTypeface(tf);
+	        etapa.setTypeface(tf);
+	        padres.setTypeface(tf);
+	        comunicaciones.setTypeface(tf);
+	        
+	        //EDITTEXT
+	        EditText nameField = (EditText) getView().findViewById(R.id.nameEducando);
+	        EditText surnameField = (EditText) getView().findViewById(R.id.surnameEducando);
+	        EditText dirField = (EditText) getView().findViewById(R.id.dirEducando);
+	        EditText birthdayField = (EditText) getView().findViewById(R.id.educandoBirthday);
+	        
+	        nameField.setTypeface(tf);
+	        surnameField.setTypeface(tf);
+	        dirField.setTypeface(tf);
+	        birthdayField.setTypeface(tf);
+	        
+	        
+	        //BUTTONSTEXT
+	        Button aceptButton = (Button) getView().findViewById(R.id.aceptButton);
+	        Button deleteButton = (Button) getView().findViewById(R.id.deleteButton);
+	        
+	        aceptButton.setTypeface(tf);
+	        deleteButton.setTypeface(tf);
+
 			
 			
 			
@@ -232,7 +275,28 @@ public class EducandosDetailFragment extends Fragment {
 	    seccionesArray.add("Unidad");
 	    seccionesArray.add("Clan");
 
-	    this.seccionesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, seccionesArray);
+	    this.seccionesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, seccionesArray){
+
+	         public View getView(int position, View convertView, ViewGroup parent) {
+	                 View v = super.getView(position, convertView, parent);
+
+	                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+	                 ((TextView) v).setTypeface(externalFont);
+
+	                 return v;
+	         }
+
+
+	         public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
+	                  View v =super.getDropDownView(position, convertView, parent);
+
+	                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+	                 ((TextView) v).setTypeface(externalFont);
+	                 v.setBackgroundColor(Color.GREEN);
+
+	                 return v;
+	         }
+	 };
 	    this.seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    this.seccion = (Spinner) getView().findViewById(R.id.spinnerSeccion);
 	    this.seccion.setAdapter(seccionesAdapter);
