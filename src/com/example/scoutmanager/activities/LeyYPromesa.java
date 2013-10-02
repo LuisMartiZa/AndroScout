@@ -4,9 +4,11 @@ import com.example.scoutmanager.R;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class LeyYPromesa extends SlidingActivity {
 
@@ -19,6 +21,16 @@ public class LeyYPromesa extends SlidingActivity {
 
 		this.setContentView(R.layout.activity_leypromesa);
         setBehindContentView(R.layout.activity_menu);
+        
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/Roboto-Light.ttf");
+        
+        TextView leyText = (TextView) findViewById(R.id.textLey);
+        TextView promesaText = (TextView) findViewById(R.id.textPromesa);
+
+        leyText.setTypeface(tf);
+        promesaText.setTypeface(tf);
+
 
 
 		ley = (ImageButton) findViewById(R.id.imageButtonLey);

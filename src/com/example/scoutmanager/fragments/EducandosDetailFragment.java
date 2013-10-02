@@ -13,6 +13,7 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class EducandosDetailFragment extends Fragment {
@@ -77,6 +79,28 @@ public class EducandosDetailFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
+		Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/Roboto-Light.ttf");
+        
+        TextView name = (TextView) getView().findViewById(R.id.nameText);
+        TextView surname = (TextView) getView().findViewById(R.id.surnameText);
+        TextView dir = (TextView) getView().findViewById(R.id.dirText);
+        TextView birthday = (TextView) getView().findViewById(R.id.birthdayText);
+        TextView seccion = (TextView) getView().findViewById(R.id.sectionText);
+        TextView etapa = (TextView) getView().findViewById(R.id.etapaText);
+        TextView padres = (TextView) getView().findViewById(R.id.padresText);
+        TextView comunicaciones = (TextView) getView().findViewById(R.id.comunicacionesText);
+
+        name.setTypeface(tf);
+        surname.setTypeface(tf);
+        dir.setTypeface(tf);
+        birthday.setTypeface(tf);
+        seccion.setTypeface(tf);
+        etapa.setTypeface(tf);
+        padres.setTypeface(tf);
+        comunicaciones.setTypeface(tf);
+		
 		return inflater.inflate(R.layout.educandos_detail_fragment, container, true);
 	}
 	
@@ -86,6 +110,8 @@ public class EducandosDetailFragment extends Fragment {
 			
 			fragmentView = pView;
 			initializeFragment(pView);
+			
+			
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();

@@ -5,7 +5,7 @@
     tools:context=".activities.Ley" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/articulo1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,83 +13,83 @@
         android:text="@string/Articulo1" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/articulo10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView9"
+        android:layout_below="@+id/articulo9"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo10" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/articulo5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/articulo4"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo5" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/articulo4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/articulo3"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo4" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/articulo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/articulo2"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo3" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/articulo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/articulo6"
+        android:layout_below="@+id/articulo1"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo2" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/articulo9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView8"
+        android:layout_below="@+id/articulo8"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo9" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/articulo8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView7"
+        android:layout_below="@+id/articulo7"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo8" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/articulo6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView5"
+        android:layout_below="@+id/articulo5"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo6" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/articulo7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView6"
+        android:layout_below="@+id/articulo6"
         android:layout_marginTop="16dp"
         android:text="@string/Articulo7" />
 

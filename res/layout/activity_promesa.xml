@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/promesa1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -11,33 +11,33 @@
         android:text="La Promesa scout es un compromiso personal que se asume libre y voluntariamente al comenzar a participar del movimiento scout. Se trata de un compromiso único en el que quien hace la promesa se compromete con los valores y principios del escultismo. Originalmente fue diseñada por Robert Baden-Powell." />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/promesa4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/promesa2"
         android:layout_marginTop="30dp"
         android:text="Yo _______ prometo por mi honor y con la ayuda de Dios/mis creencias hacer todo en cuanto de mi dependa, ayudar al prójimo en toda cirscunstancia y cumplir fielmente la ley scout."
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/promesa2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/promesa1"
         android:layout_marginLeft="97dp"
         android:layout_marginTop="25dp"
         android:text="La promesa"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/promesa3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
-        android:layout_alignLeft="@+id/textView2"
+        android:layout_above="@+id/promesa4"
+        android:layout_alignLeft="@+id/promesa2"
         android:text="________________"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

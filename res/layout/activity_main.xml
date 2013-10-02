@@ -19,7 +19,7 @@
         android:src="@drawable/flor" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/main1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView1"
@@ -29,20 +29,20 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/main2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/main1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="@string/A"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/main3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/main2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:text="@string/SCOUT"

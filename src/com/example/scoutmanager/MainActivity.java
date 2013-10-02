@@ -16,11 +16,13 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends SlidingActivity {
@@ -54,6 +56,17 @@ public class MainActivity extends SlidingActivity {
 		actionbar.setTitle("MENU");
 		
 		this.setLateralMenu();
+		
+		Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/Roboto-Light.ttf");
+        
+        TextView main1 = (TextView) findViewById(R.id.main1);
+        TextView main2 = (TextView) findViewById(R.id.main2);
+        TextView main3 = (TextView) findViewById(R.id.main3);
+
+        main1.setTypeface(tf);
+        main2.setTypeface(tf);
+        main3.setTypeface(tf);
 
     }
 
