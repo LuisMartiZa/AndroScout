@@ -80,7 +80,6 @@ public class EducandosDetailFragment extends Fragment {
 
 			                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
 			                 ((TextView) v).setTypeface(externalFont);
-			                 v.setBackgroundColor(Color.GREEN);
 
 			                 return v;
 			         }
@@ -292,7 +291,6 @@ public class EducandosDetailFragment extends Fragment {
 
 	                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
 	                 ((TextView) v).setTypeface(externalFont);
-	                 v.setBackgroundColor(Color.GREEN);
 
 	                 return v;
 	         }

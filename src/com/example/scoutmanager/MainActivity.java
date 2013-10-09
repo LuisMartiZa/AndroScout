@@ -149,10 +149,10 @@ public class MainActivity extends SlidingActivity {
     	this.listView = (ListView) findViewById(R.id.listView);
 
 		ArrayList<Menu_items> items = new ArrayList<Menu_items>();
-		items.add(new Menu_items(R.drawable.ic_launcher, "Eventos"));
-		items.add(new Menu_items(R.drawable.ic_launcher, "Actividades"));
-		items.add(new Menu_items(R.drawable.ic_launcher, "Ley y Promesa"));
-		items.add(new Menu_items(R.drawable.ic_launcher, "Educandos"));
+		items.add(new Menu_items(R.drawable.events, "Eventos"));
+		items.add(new Menu_items(R.drawable.actividades, "Actividades"));
+		items.add(new Menu_items(R.drawable.estrella, "Ley y Promesa"));
+		items.add(new Menu_items(R.drawable.educandos, "Educandos"));
 		
 		// Sets the data behind this ListView
 		this.listView.setAdapter(new LateralMenuAdapter(this, items));
