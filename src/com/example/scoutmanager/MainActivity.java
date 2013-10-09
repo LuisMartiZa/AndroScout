@@ -14,6 +14,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -25,9 +26,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends SlidingActivity {
+public class MainActivity extends Activity {
 	
 	private ListView listView;
+	
+	private SlidingMenu menu;
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,20 @@ public class MainActivity extends SlidingActivity {
 		}
         
         setContentView(R.layout.activity_main);
-        setBehindContentView(R.layout.activity_menu);
+        
+        menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.LEFT);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setShadowWidthRes(R.dimen.shadow_width);
+        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.activity_menu);
+        menu.setBehindOffset(200);
+
+        
+        /*setBehindContentView(R.layout.activity_menu);
 	
 		getSlidingMenu().setBehindOffset(100);
 		getSlidingMenu().setSlidingEnabled(true);
@@ -49,8 +65,9 @@ public class MainActivity extends SlidingActivity {
 
         getSlidingMenu().setShadowDrawable(R.drawable.shadow);
         getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		setSlidingActionBarEnabled(false);
-		
+        
+        getSlidingMenu().set*/
+ 		
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("MENU");
@@ -171,7 +188,7 @@ public class MainActivity extends SlidingActivity {
 		        
 				switch (position) {
 			    case 0:
-			        getSlidingMenu().toggle(true);
+			        menu.toggle(true);
 			        text = "Ha pulsado eventos";
 
 			        toast = Toast.makeText(context, text, duration);
@@ -179,7 +196,7 @@ public class MainActivity extends SlidingActivity {
 			        break;
 			        
 			    case 1:
-			    	getSlidingMenu().toggle(true);
+			    	menu.toggle(true);
 			        text = "Ha pulsado actividades";
 
 			        toast = Toast.makeText(context, text, duration);
@@ -187,7 +204,7 @@ public class MainActivity extends SlidingActivity {
 			        break;
 			        
 			    case 2:
-			    	getSlidingMenu().toggle(true);
+			    	menu.toggle(true);
 			        text = "Ha pulsado ley y promesa";
 			        
 			        Intent leypromesa = new Intent(view.getContext(), LeyYPromesa.class);
@@ -198,7 +215,7 @@ public class MainActivity extends SlidingActivity {
 			        break;
 			        
 			    case 3:
-			    	getSlidingMenu().toggle(true);
+			    	menu.toggle(true);
 			        text = "Ha pulsado educandos";
 			        
 			        Intent educandos = new Intent(view.getContext(), EducandosActivity.class);
