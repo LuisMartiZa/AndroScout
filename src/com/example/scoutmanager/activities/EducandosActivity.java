@@ -6,7 +6,9 @@ import com.example.scoutmanager.fragments.EducandosListFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 public class EducandosActivity extends FragmentActivity {
@@ -23,13 +25,33 @@ public class EducandosActivity extends FragmentActivity {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
     }
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.educando_list_action, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
     
-    public void executeAddNewCommand(View pView) {
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.new_educando:
+	            executeAddNewCommand();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+    public void executeAddNewCommand() {
     	try {
 	    	
     		Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.EducandosListFragment);
 	    	if (fragment != null) {
-	    		((EducandosListFragment)fragment).executeAddNewCommand(pView);
+	    		((EducandosListFragment)fragment).executeAddNewCommand();
 	    	}
 	    	
     	} catch (Exception e) {

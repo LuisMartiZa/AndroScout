@@ -10,7 +10,6 @@ import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.example.scoutmanager.model.entities.Seccion;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
@@ -156,9 +155,11 @@ public class MainActivity extends Activity {
     	DataBase.Context.SeccionsSet.add(clan);
     	
 		DataBase.Context.SeccionsSet.save();
-
-
     	
+    }
+    
+    public SlidingMenu getSlidingMenu(){
+    	 return this.menu;
     }
     
     public void setLateralMenu()

@@ -13,7 +13,6 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,7 +23,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -144,16 +142,6 @@ public class EducandosDetailFragment extends Fragment {
 	        dirField.setTypeface(tf);
 	        birthdayField.setTypeface(tf);
 	        
-	        
-	        //BUTTONSTEXT
-	        Button aceptButton = (Button) getView().findViewById(R.id.aceptButton);
-	        Button deleteButton = (Button) getView().findViewById(R.id.deleteButton);
-	        
-	        aceptButton.setTypeface(tf);
-	        deleteButton.setTypeface(tf);
-
-			
-			
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -195,7 +183,7 @@ public class EducandosDetailFragment extends Fragment {
 		}
 	}
 	
- 	public void executeDeleteCommand(View pView) {
+ 	public void executeDeleteCommand() {
 		try {
 			
 			if (educando.getID() != null) {
@@ -212,7 +200,7 @@ public class EducandosDetailFragment extends Fragment {
 		}
 	}
 	
-	public void executeSaveCommand(View pView) {
+	public void executeSaveCommand() {
 		try {
 			
 			educando.bind(fragmentView, DataBinder.BINDING_UI_TO_ENTITY);

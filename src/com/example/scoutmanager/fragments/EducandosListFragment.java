@@ -8,7 +8,6 @@ import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -49,11 +47,6 @@ public class EducandosListFragment extends Fragment {
 	@Override
 	public void onViewCreated(View pView, Bundle pSavedInstanceState) {
 		try {
-			Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
-	                "fonts/Roboto-Light.ttf");
-			Button newButton = (Button) getView().findViewById(R.id.newButton);
-	        newButton.setTypeface(tf);
-	        
 			initializeFragment(pView);
 			
 		} catch (Exception e) {
@@ -76,7 +69,7 @@ public class EducandosListFragment extends Fragment {
     	}
     }
     
-    public void executeAddNewCommand(View pView) {
+    public void executeAddNewCommand() {
     	try {
     		
     		Intent deatailIntent = new Intent(getActivity(), EducandosDetailActivity.class);
