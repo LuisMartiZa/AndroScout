@@ -176,8 +176,6 @@ public class EducandosDetailFragment extends Fragment {
 			//set the default according to value
 			this.etapas.setSelection(etapaPosition,true);
 			
-			Log.w("PRUEBA EN EL MOVIL", (String) this.etapas.getSelectedItem());
-			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
 		}

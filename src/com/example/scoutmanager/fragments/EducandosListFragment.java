@@ -72,8 +72,8 @@ public class EducandosListFragment extends Fragment {
     public void executeAddNewCommand() {
     	try {
     		
-    		Intent deatailIntent = new Intent(getActivity(), EducandosDetailActivity.class);
-    		startActivityForResult(deatailIntent, 1);
+    		Intent detailIntent = new Intent(getActivity(), EducandosDetailActivity.class);
+    		startActivityForResult(detailIntent, 1);
     		
     	} catch (Exception e) {
  			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();

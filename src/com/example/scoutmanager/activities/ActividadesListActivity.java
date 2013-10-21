@@ -1,0 +1,64 @@
+package com.example.scoutmanager.activities;
+
+import com.example.scoutmanager.R;
+import com.example.scoutmanager.adapters.EducandosListAdapter;
+import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Educando;
+import com.mobandme.ada.exceptions.AdaFrameworkException;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class ActividadesListActivity extends Activity {
+	
+	private ListView actividadesListView;
+    private ArrayAdapter<Educando> actividadesListViewAdapter; 
+    
+    private OnItemClickListener itemClickListener = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> pParent, View pView, int pPosition, long id) {
+			try {
+	        	
+				Intent detailIntent = new Intent(pView.getContext(), ActividadesDetailActivity.class);
+				detailIntent.putExtra("actividadID", pPosition);
+				
+				startActivity(detailIntent);
+			
+				
+	        } catch (Exception e) {
+				Toast.makeText(pView.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+			}
+		}
+    };
+	
+	public void onViewCreated(View pView, Bundle pSavedInstanceState) {
+		try {
+			initializeActivity(pView);
+			
+		} catch (Exception e) {
+			Toast.makeText(pView.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	
+	private void initializeActivity(View pView) throws AdaFrameworkException {
+				
+    	this.actividadesListView = (ListView)pView.findViewById(R.id.ActividadesListView);
+    	
+    	if (this.actividadesListView != null) {
+    		this.actividadesListView.setOnItemClickListener(itemClickListener);
+    		this.actividadesListViewAdapter= new EducandosListAdapter(pView.getContext(), R.layout.educandos_row);
+    		this.actividadesListView.setAdapter(this.actividadesListViewAdapter);
+    		
+    		//DataBase.Context.ActividadesSet.setAdapter(this.actividadesListViewAdapter);
+    		DataBase.Context.ActividadesSet.fill();
+    	}
+    }
+}

@@ -54,19 +54,7 @@ public class MainActivity extends Activity {
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.activity_menu);
         menu.setBehindOffset(200);
-
         
-        /*setBehindContentView(R.layout.activity_menu);
-	
-		getSlidingMenu().setBehindOffset(100);
-		getSlidingMenu().setSlidingEnabled(true);
-        getSlidingMenu().setShadowWidthRes(R.dimen.shadow_width);
-
-        getSlidingMenu().setShadowDrawable(R.drawable.shadow);
-        getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        
-        getSlidingMenu().set*/
- 		
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("MENU");
