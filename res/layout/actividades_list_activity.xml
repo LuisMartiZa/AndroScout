@@ -2,12 +2,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <fragment
-        android:id="@+id/fragment1"
-        android:name="com.example.scoutmanager.fragments.ActividadesListFragment"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/ActividadesListView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true" >
+    </ListView>
 
 </RelativeLayout>

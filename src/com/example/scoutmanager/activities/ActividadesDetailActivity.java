@@ -16,53 +16,63 @@ import android.widget.Toast;
 
 public class ActividadesDetailActivity extends Activity {
 	
-	private View activityView;
 	private Actividades actividad = new Actividades();
 	
 	public void onCreate(View pView, Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		this.setContentView(R.layout.actividades_detail_activity);
+		
 		try {
-			
-			activityView = pView;
-			initializeActivity(pView);
-			Typeface tf = Typeface.createFromAsset(this.getAssets(),
-	                "fonts/Roboto-Light.ttf");
-	        //TEXTVIEW
-	        TextView name = (TextView) this.findViewById(R.id.nameText);
-	        TextView surname = (TextView) this.findViewById(R.id.surnameText);
-	       
-
-	        name.setTypeface(tf);
-	        surname.setTypeface(tf);
-	        
-	        //EDITTEXT
-	        EditText nameField = (EditText) this.findViewById(R.id.nameEducando);
-	        EditText surnameField = (EditText) this.findViewById(R.id.surnameEducando);
-	       
-	        nameField.setTypeface(tf);
-	        surnameField.setTypeface(tf);
-	      
-			
-		} catch (Exception e) {
+			initializeActivity();
+		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
+		
+		initializeTypeface();
+		
 	}
 	
-	private void initializeActivity(View pView) throws AdaFrameworkException {
+	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
 		if (intentExtras != null)
 			executeShowCommand(intentExtras.getInt("actividadID"));
 	}
 	
-	public void executeShowCommand(int pIndex) {
+	private void executeShowCommand(int pIndex) {
 		try {
 
 			actividad = DataBase.Context.ActividadesSet.get(pIndex);
 			actividad.setStatus(Entity.STATUS_UPDATED);
-			actividad.bind(activityView);
+			actividad.bind(this);
 			
 		} catch (Exception e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
+	}
+	
+	private void initializeTypeface(){
+		Typeface tf = Typeface.createFromAsset(this.getAssets(),
+                "fonts/Roboto-Light.ttf");
+        //TEXTVIEW
+        TextView name = (TextView) this.findViewById(R.id.nameActividadText);
+        TextView participantes = (TextView) this.findViewById(R.id.participantesText);
+        TextView descripcion = (TextView) this.findViewById(R.id.descripText);
+        TextView descripcionField = (TextView) this.findViewById(R.id.descripActividad);
+
+        name.setTypeface(tf);
+        participantes.setTypeface(tf);
+        descripcion.setTypeface(tf);
+        descripcionField.setTypeface(tf);
+
+
+        
+        //EDITTEXT
+        EditText nameField = (EditText) this.findViewById(R.id.nameEducando);
+        EditText participantesField = (EditText) this.findViewById(R.id.participantesActividad);
+    
+        nameField.setTypeface(tf);
+        participantesField.setTypeface(tf);
 	}
 
 }

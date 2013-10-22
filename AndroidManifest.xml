@@ -31,6 +31,8 @@
         <activity android:name="com.example.scoutmanager.activities.Ley"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosDetailActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.ActividadesListActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.ActividadesDetailActivity"></activity>
         
         
         

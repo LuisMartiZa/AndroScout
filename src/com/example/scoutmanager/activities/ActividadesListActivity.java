@@ -38,23 +38,27 @@ public class ActividadesListActivity extends Activity {
 		}
     };
 	
-	public void onViewCreated(View pView, Bundle pSavedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
+		
+		super.onCreate(savedInstanceState);
+		this.setContentView(R.layout.actividades_list_activity);
+		
 		try {
-			initializeActivity(pView);
+			initializeActivity();
 			
 		} catch (Exception e) {
-			Toast.makeText(pView.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
 	}
 	
 	
-	private void initializeActivity(View pView) throws AdaFrameworkException {
+	private void initializeActivity() throws AdaFrameworkException {
 				
-    	this.actividadesListView = (ListView)pView.findViewById(R.id.ActividadesListView);
+    	this.actividadesListView = (ListView) this.findViewById(R.id.ActividadesListView);
     	
     	if (this.actividadesListView != null) {
     		this.actividadesListView.setOnItemClickListener(itemClickListener);
-    		this.actividadesListViewAdapter= new EducandosListAdapter(pView.getContext(), R.layout.educandos_row);
+    		this.actividadesListViewAdapter= new EducandosListAdapter(this, R.layout.educandos_row);
     		this.actividadesListView.setAdapter(this.actividadesListViewAdapter);
     		
     		//DataBase.Context.ActividadesSet.setAdapter(this.actividadesListViewAdapter);

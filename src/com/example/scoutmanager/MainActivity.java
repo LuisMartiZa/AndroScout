@@ -2,6 +2,7 @@ package com.example.scoutmanager;
 
 import java.util.ArrayList;
 
+import com.example.scoutmanager.activities.ActividadesListActivity;
 import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
@@ -187,6 +188,9 @@ public class MainActivity extends Activity {
 			    case 1:
 			    	menu.toggle(true);
 			        text = "Ha pulsado actividades";
+			        
+			        Intent actividades = new Intent(view.getContext(), ActividadesListActivity.class);
+			        startActivity(actividades);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();
