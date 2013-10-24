@@ -1,12 +1,18 @@
 package com.example.scoutmanager;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.example.scoutmanager.activities.ActividadesListActivity;
 import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Actividades;
 import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.example.scoutmanager.model.entities.Seccion;
@@ -31,7 +37,7 @@ public class MainActivity extends Activity {
 	private ListView listView;
 	
 	private SlidingMenu menu;
-
+	
     @Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +67,8 @@ public class MainActivity extends Activity {
 		actionbar.setTitle("MENU");
 		
 		this.setLateralMenu();
+		this.populateActividades();
+		
 		
 		Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/Roboto-Light.ttf");
@@ -149,6 +157,63 @@ public class MainActivity extends Activity {
     
     public SlidingMenu getSlidingMenu(){
     	 return this.menu;
+    }
+    
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+
+            InputStream is = getAssets().open("actividades.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
+    }
+    
+    public void populateActividades(){
+		try{
+			String data = null;
+			
+			data = this.loadJSONFromAsset();
+			
+			if (data != null && !data.trim().equals("")) {
+								
+				JSONObject actividades = new JSONObject(data);
+
+				JSONArray juegos = new JSONArray(actividades.getJSONArray("Juegos").toString());
+				
+				for(int i = 0; i < juegos.length(); i++){
+				   JSONObject juego = juegos.getJSONObject(i);
+				
+				   String nombre = juego.getString("Nombre");
+				   int participantes = juego.getInt("Participantes");
+				   String descripcion = juego.getString("Descripcion");
+				   
+				   Actividades aux = new Actividades(nombre, participantes, descripcion);
+				   DataBase.Context.ActividadesSet.add(aux);
+				}
+				DataBase.Context.ActividadesSet.save();
+			}
+			
+		}catch(Exception e)
+		{
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
+    	
     }
     
     public void setLateralMenu()

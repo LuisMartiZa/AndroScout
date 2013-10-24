@@ -1,14 +1,17 @@
 package com.example.scoutmanager.activities;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.adapters.ActividadesListAdapter;
 import com.example.scoutmanager.adapters.EducandosListAdapter;
 import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Actividades;
 import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class ActividadesListActivity extends Activity {
 	
 	private ListView actividadesListView;
-    private ArrayAdapter<Educando> actividadesListViewAdapter; 
+    private ArrayAdapter<Actividades> actividadesListViewAdapter; 
     
     private OnItemClickListener itemClickListener = new OnItemClickListener() {
 		@Override
@@ -58,11 +61,14 @@ public class ActividadesListActivity extends Activity {
     	
     	if (this.actividadesListView != null) {
     		this.actividadesListView.setOnItemClickListener(itemClickListener);
-    		this.actividadesListViewAdapter= new EducandosListAdapter(this, R.layout.educandos_row);
+    		this.actividadesListViewAdapter= new ActividadesListAdapter(this, R.layout.actividades_row);
     		this.actividadesListView.setAdapter(this.actividadesListViewAdapter);
     		
-    		//DataBase.Context.ActividadesSet.setAdapter(this.actividadesListViewAdapter);
+    		DataBase.Context.ActividadesSet.setAdapter(this.actividadesListViewAdapter);
     		DataBase.Context.ActividadesSet.fill();
+    		Actividades actividad = DataBase.Context.ActividadesSet.get(0);
+    		
+    		Log.w("TAG", "NOMBRE ACTIVIDAD" + actividad.getNombre());
     	}
     }
 }

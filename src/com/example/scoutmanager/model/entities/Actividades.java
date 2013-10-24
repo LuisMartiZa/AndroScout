@@ -7,12 +7,14 @@ import com.mobandme.ada.annotations.TableField;
 @Table(name = "tActividades")
 public class Actividades extends Entity {
 	
-	@TableField(name= "tipoActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	private String Tipo = "";
+	@TableField(name= "nombreActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	public String Nombre = "";
+	
+	@TableField(name= "participantesActividad", datatype= Entity.DATATYPE_INTEGER, required= true)
+	public int Participantes;
 	
 	@TableField(name= "descripcionActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	private String Descripcion = "";
-	
+	public String Descripcion = "";
 	
 
 	/*
@@ -24,23 +26,34 @@ public class Actividades extends Entity {
    	super();
    }
    
-   public Actividades(String tipo, String descripcion)
+   public Actividades(String nombre, int participantes, String descripcion)
    {
    	super();
    	
-   	this.Tipo=tipo;
+   	this.Nombre=nombre;
+   	this.Participantes=participantes;
    	this.Descripcion=descripcion;
    }
    
    //GETTERS AND SETTERS
-   public String getTipo()
+   public String getNombre()
    {
-   	return Tipo;
+   	return Nombre;
    }
    
-   public void setTipo(String tipo)
+   public void setNombre(String nombre)
    {
-   	this.Tipo=tipo;
+   	this.Nombre=nombre;
+   }
+   
+   public int getParticipantes()
+   {
+   	return Participantes;
+   }
+   
+   public void setParticipantes(int participantes)
+   {
+   	this.Participantes=participantes;
    }
    
    public String getDescripcion()
