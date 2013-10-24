@@ -9,7 +9,6 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ public class ActividadesDetailActivity extends Activity {
 	
 	private Actividades actividad = new Actividades();
 	
-	public void onCreate(View pView, Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		this.setContentView(R.layout.actividades_detail_activity);
@@ -68,7 +67,7 @@ public class ActividadesDetailActivity extends Activity {
 
         
         //EDITTEXT
-        EditText nameField = (EditText) this.findViewById(R.id.nameEducando);
+        EditText nameField = (EditText) this.findViewById(R.id.nameActividad);
         EditText participantesField = (EditText) this.findViewById(R.id.participantesActividad);
     
         nameField.setTypeface(tf);

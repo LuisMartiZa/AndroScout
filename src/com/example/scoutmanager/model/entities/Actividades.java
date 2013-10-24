@@ -1,6 +1,8 @@
 package com.example.scoutmanager.model.entities;
 
+import com.example.scoutmanager.R;
 import com.mobandme.ada.Entity;
+import com.mobandme.ada.annotations.Databinding;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
 
@@ -8,12 +10,15 @@ import com.mobandme.ada.annotations.TableField;
 public class Actividades extends Entity {
 	
 	@TableField(name= "nombreActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	@Databinding(ViewId= R.id.nameActividad)
 	public String Nombre = "";
 	
 	@TableField(name= "participantesActividad", datatype= Entity.DATATYPE_INTEGER, required= true)
+	@Databinding(ViewId= R.id.participantesActividad)
 	public int Participantes;
 	
 	@TableField(name= "descripcionActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	@Databinding(ViewId= R.id.descripActividad)
 	public String Descripcion = "";
 	
 

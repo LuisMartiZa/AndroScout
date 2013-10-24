@@ -2,10 +2,8 @@ package com.example.scoutmanager.activities;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.ActividadesListAdapter;
-import com.example.scoutmanager.adapters.EducandosListAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
-import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
