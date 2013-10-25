@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,7 +45,9 @@ public class MainActivity extends Activity {
         
 		DataBase.initialize(this);
 		try {
-			fillObjectSets();
+			DataBase.Context.SeccionsSet.fill();
+			if (DataBase.Context.SeccionsSet.size() == 0)
+				fillObjectSets();
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
@@ -67,7 +70,14 @@ public class MainActivity extends Activity {
 		actionbar.setTitle("MENU");
 		
 		this.setLateralMenu();
-		this.populateActividades();
+		try {
+			DataBase.Context.ActividadesSet.fill();
+			if (DataBase.Context.ActividadesSet.size() == 0)
+				this.populateActividades();
+		} catch (AdaFrameworkException e) {
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
+		
 		
 		
 		Typeface tf = Typeface.createFromAsset(getAssets(),
@@ -200,7 +210,7 @@ public class MainActivity extends Activity {
 				   JSONObject juego = juegos.getJSONObject(i);
 				
 				   String nombre = juego.getString("Nombre");
-				   int participantes = juego.getInt("Participantes");
+				   String participantes = juego.getString("Participantes");
 				   String descripcion = juego.getString("Descripcion");
 				   
 				   Actividades aux = new Actividades(nombre, participantes, descripcion);
@@ -212,6 +222,7 @@ public class MainActivity extends Activity {
 		}catch(Exception e)
 		{
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+			Log.w("TAG", "NOMBRE ACTIVIDAD" + e.toString());
 		}
     	
     }

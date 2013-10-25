@@ -1,19 +1,26 @@
 {
   "Juegos": [
     {
-      "Nombre": "5162310 Reparación cubierta Principal - Según Inspección",
-      "Participantes": "5",
-      "Descripcion": "Reparación cubierta Principal - Según Inspección"
+      "Nombre": "Beso - Placaje",
+      "Participantes": "Diez o más",
+      "Descripcion": "Hacemos dos equipos (pueden ser mixtos o chicos y chicas por separado) y nos colocamos haciendo un círculo. Uno quedará en medio para comenzar la partida.
+En uno de los grupos se asignarán letras a sus miembros (a, b, c, d, e, f, g... tantos como miembros) y en el otro números (1, 2, 3, 4, 5, 6, 7... tantos como miembros). La persona del medio dirá una letra y un número en ALTO (que los dos grupos lo oigan bien).
+Si dice primero la letra y luego el número, la persona que tiene letra irá a darle un beso en la mejilla al miembro del número (podrá placar a esta persona para ello); y el miembro que tiene el número, tendrá que besar en la mejilla a la persona sentada en medio antes de que la letra le bese a el/ella. Si dice primero el número y luego la letra, ocurrrirá al reves; el número irá a besar a la letra y la letra a por el del medio.
+El miebro de los equipos que no logre su objetivo, pasará a ocupar el puesto del medio y será el/ella quien diga en alto la letra y número. El del medio no podrá moverse de su sitio.
+Poco a poco se irán eliminando miebros de los grupos. El grupo que pierda todos los miembros, pierde."
     },
     {
-      "Nombre": "5162240 Cambiar plancha casco sector tunel + canaletas enfriamiento",
-      "Participantes": "5",
-      "Descripcion": "Cambiar plancha casco sector tunel + canaletas enfriamiento"
+      "Nombre": "La cebolla",
+      "Participantes": "Nueve o más",
+      "Descripcion": "Se hacen dos grupos iguales en numero,Un grupo será la cebolla primero y después el otro grupo.
+El grupo que sea cebolla tienen que agarrarse fuertemente los miembros del grupo y hacer una espiral creando varias capas (como una cebolla). El grupo contrario tendrá que separar cada miembro hasta separar todos en el menor tiempo posible.
+Una vez que se haya separado a alguien, no se puede volver a juntar.
+El grupo que menos tarde en separar al otro grupo completamente gana."
     },
     {
-      "Nombre": "5162210 Nuevo Doble fondo",
-      "Participantes": "5",
-      "Descripcion": "Nuevo Doble fondo"
+      "Nombre": "Lucha Scout",
+      "Participantes": "Dos o más - Siempre por parejas",
+      "Descripcion": "Normalmente es una competición entre dos Scouts. Los participantes se atan una pañoleta a la pierna entre la rodilla y el tobillo. Estos deben conseguir la pañoleta del contrario sin perder la suya y a la vez sin salir de un recinto delimitado. El juego requiere una gran habilidad y atención por parte de los participantes."
     }
   ]
 }

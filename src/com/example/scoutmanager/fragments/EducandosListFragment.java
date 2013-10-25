@@ -7,6 +7,7 @@ import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -48,6 +49,9 @@ public class EducandosListFragment extends Fragment {
 	public void onViewCreated(View pView, Bundle pSavedInstanceState) {
 		try {
 			initializeFragment(pView);
+			ActionBar actionbar;
+			actionbar= getActivity().getActionBar();
+			actionbar.setTitle("EDUCANDOS");
 			
 		} catch (Exception e) {
 			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();

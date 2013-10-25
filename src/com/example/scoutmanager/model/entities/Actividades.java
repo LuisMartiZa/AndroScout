@@ -13,11 +13,11 @@ public class Actividades extends Entity {
 	@Databinding(ViewId= R.id.nameActividad)
 	public String Nombre = "";
 	
-	@TableField(name= "participantesActividad", datatype= Entity.DATATYPE_INTEGER, required= true)
+	@TableField(name= "participantesActividad", datatype= Entity.DATATYPE_TEXT, required= true)
 	@Databinding(ViewId= R.id.participantesActividad)
-	public int Participantes;
+	public String Participantes;
 	
-	@TableField(name= "descripcionActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	@TableField(name= "descripcionActividad", datatype= Entity.DATATYPE_TEXT, required= true)
 	@Databinding(ViewId= R.id.descripActividad)
 	public String Descripcion = "";
 	
@@ -31,7 +31,7 @@ public class Actividades extends Entity {
    	super();
    }
    
-   public Actividades(String nombre, int participantes, String descripcion)
+   public Actividades(String nombre, String participantes, String descripcion)
    {
    	super();
    	
@@ -51,12 +51,12 @@ public class Actividades extends Entity {
    	this.Nombre=nombre;
    }
    
-   public int getParticipantes()
+   public String getParticipantes()
    {
    	return Participantes;
    }
    
-   public void setParticipantes(int participantes)
+   public void setParticipantes(String participantes)
    {
    	this.Participantes=participantes;
    }

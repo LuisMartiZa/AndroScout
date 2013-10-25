@@ -1,8 +1,9 @@
 package com.example.scoutmanager.activities;
 
 import com.example.scoutmanager.R;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,17 +11,19 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class LeyYPromesa extends SlidingActivity {
+public class LeyYPromesa extends Activity {
 
 	private ImageButton ley;
 	private ImageButton promesa;
 	
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		this.setContentView(R.layout.activity_leypromesa);
-        setBehindContentView(R.layout.activity_menu);
+		
+		ActionBar actionbar;
+		actionbar= getActionBar();
+		actionbar.setTitle("LEY Y PROMESA");
         
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/Roboto-Light.ttf");
@@ -40,7 +43,6 @@ public class LeyYPromesa extends SlidingActivity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent myIntent = new Intent(getBaseContext(), Promesa.class);
 		        startActivity(myIntent);
 			}
@@ -50,7 +52,6 @@ public class LeyYPromesa extends SlidingActivity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent myIntent = new Intent(getBaseContext(), Ley.class);
 		        startActivity(myIntent);
 			}

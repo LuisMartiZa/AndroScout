@@ -6,10 +6,10 @@ import com.example.scoutmanager.model.entities.Actividades;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +36,10 @@ public class ActividadesDetailActivity extends Activity {
 		Bundle intentExtras = this.getIntent().getExtras();
 		if (intentExtras != null)
 			executeShowCommand(intentExtras.getInt("actividadID"));
+		
+		ActionBar actionbar;
+		actionbar= getActionBar();
+		actionbar.setTitle("ACTIVIDADES");
 	}
 	
 	private void executeShowCommand(int pIndex) {
@@ -53,25 +57,23 @@ public class ActividadesDetailActivity extends Activity {
 	private void initializeTypeface(){
 		Typeface tf = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
+		Typeface tfb = Typeface.createFromAsset(this.getAssets(),
+                "fonts/Roboto-Bold.ttf");
         //TEXTVIEW
         TextView name = (TextView) this.findViewById(R.id.nameActividadText);
         TextView participantes = (TextView) this.findViewById(R.id.participantesText);
         TextView descripcion = (TextView) this.findViewById(R.id.descripText);
         TextView descripcionField = (TextView) this.findViewById(R.id.descripActividad);
+        TextView nameActividad = (TextView) this.findViewById(R.id.nameActividad);
+        TextView participantesActividad = (TextView) this.findViewById(R.id.participantesActividad);
 
-        name.setTypeface(tf);
-        participantes.setTypeface(tf);
-        descripcion.setTypeface(tf);
+        name.setTypeface(tfb);
+        participantes.setTypeface(tfb);
+        descripcion.setTypeface(tfb);
         descripcionField.setTypeface(tf);
+        nameActividad.setTypeface(tf);
+        participantesActividad.setTypeface(tf);
 
-
-        
-        //EDITTEXT
-        EditText nameField = (EditText) this.findViewById(R.id.nameActividad);
-        EditText participantesField = (EditText) this.findViewById(R.id.participantesActividad);
-    
-        nameField.setTypeface(tf);
-        participantesField.setTypeface(tf);
 	}
 
 }

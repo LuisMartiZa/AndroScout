@@ -12,6 +12,7 @@ import com.mobandme.ada.DataBinder;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -109,6 +110,11 @@ public class EducandosDetailFragment extends Fragment {
 			
 			fragmentView = pView;
 			initializeFragment(pView);
+			
+			ActionBar actionbar;
+			actionbar= getActivity().getActionBar();
+			actionbar.setTitle("EDUCANDO");
+			
 			Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),
 	                "fonts/Roboto-Light.ttf");
 	        //TEXTVIEW

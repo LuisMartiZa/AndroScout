@@ -6,10 +6,10 @@ import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -64,9 +64,10 @@ public class ActividadesListActivity extends Activity {
     		
     		DataBase.Context.ActividadesSet.setAdapter(this.actividadesListViewAdapter);
     		DataBase.Context.ActividadesSet.fill();
-    		Actividades actividad = DataBase.Context.ActividadesSet.get(0);
     		
-    		Log.w("TAG", "NOMBRE ACTIVIDAD" + actividad.getNombre());
+    		ActionBar actionbar;
+    		actionbar= getActionBar();
+    		actionbar.setTitle("ACTIVIDADES");
     	}
     }
 }

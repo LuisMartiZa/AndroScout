@@ -1,20 +1,23 @@
 package com.example.scoutmanager.activities;
 
 import com.example.scoutmanager.R;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
-public class Ley extends SlidingActivity {
+public class Ley extends Activity {
 
 	
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		this.setContentView(R.layout.activity_ley);
-        setBehindContentView(R.layout.activity_menu);
+		
+		ActionBar actionbar;
+		actionbar= getActionBar();
+		actionbar.setTitle("LEY SCOUT");
         
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/Roboto-Light.ttf");
