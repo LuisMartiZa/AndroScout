@@ -33,6 +33,8 @@
         <activity android:name="com.example.scoutmanager.activities.EducandosDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.ActividadesListActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.ActividadesDetailActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.EventosListActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.EventosDetailActivity"></activity>
         
         
         

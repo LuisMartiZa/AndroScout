@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import com.example.scoutmanager.activities.ActividadesListActivity;
 import com.example.scoutmanager.activities.EducandosActivity;
+import com.example.scoutmanager.activities.EventosListActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
@@ -256,6 +257,9 @@ public class MainActivity extends Activity {
 			    case 0:
 			        menu.toggle(true);
 			        text = "Ha pulsado eventos";
+			        
+			        Intent eventos = new Intent(view.getContext(), EventosListActivity.class);
+			        startActivity(eventos);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();
