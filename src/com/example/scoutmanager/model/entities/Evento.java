@@ -1,9 +1,13 @@
 package com.example.scoutmanager.model.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.example.scoutmanager.R;
+import com.example.scoutmanager.parsers.DateParser;
 import com.mobandme.ada.Entity;
+import com.mobandme.ada.annotations.Databinding;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
 
@@ -11,13 +15,16 @@ import com.mobandme.ada.annotations.TableField;
 public class Evento extends Entity {
 	
 	@TableField(name= "nombreEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	@Databinding(ViewId = R.id.nameEventoField)
 	private String Nombre = "";
 	
 	@TableField(name= "lugarEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	@Databinding(ViewId = R.id.lugarEventoField)
 	private String Lugar = "";
 	
-	@TableField(name= "tipoEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	private String Tipo = "";
+	@TableField(name= "fechaEvento", datatype= Entity.DATATYPE_DATE_BINARY)
+	@Databinding(ViewId = R.id.fechaEventoField, parser = DateParser.class)
+	public Date F_Evento = new Date();
 	
 	@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
     private List<Educando> educandosEvento = new ArrayList<Educando>();
@@ -30,13 +37,13 @@ public class Evento extends Entity {
     	super();
     }
     
-    public Evento(String nombre, String lugar, String tipo)
+    public Evento(String nombre, String lugar, String tipo, Date fecha)
     {
     	super();
     	
     	this.Nombre=nombre;
     	this.Lugar=lugar;
-    	this.Tipo=tipo;
+    	this.F_Evento=fecha;
     }
     
     //GETTERS AND SETTERS
@@ -60,14 +67,14 @@ public class Evento extends Entity {
     	this.Lugar=lugar;
     }
     
-    public String getTipo()
+    public Date getFechaEvento()
     {
-    	return Tipo;
+    	return F_Evento;
     }
     
-    public void setTipo(String tipo)
+    public void setFechaEvento(Date f_evento)
     {
-    	this.Tipo=tipo;
+    	this.F_Evento=f_evento;
     }
 	
     public List<Educando> getEducandosEvento()

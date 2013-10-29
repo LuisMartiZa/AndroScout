@@ -26,8 +26,7 @@ public class Educando extends Entity {
 	@Databinding(ViewId= R.id.dirEducando)
 	public String Direccion = "";
 	
-	@SuppressWarnings("deprecation")
-	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE)
+	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY)
 	@Databinding(ViewId = R.id.educandoBirthday, parser = DateParser.class)
 	public Date F_Nacimiento = new Date();
 	
@@ -43,8 +42,6 @@ public class Educando extends Entity {
     @TableField(name= "comunicacionEducando", datatype= Entity.DATATYPE_ENTITY)
     public List<Comunicaciones> comunicaciones = new ArrayList<Comunicaciones>();
     
-    /*@TableField(name= "insigniasEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Insignias> insignias = new ArrayList<Insignias>();*/
     
     /*
      * Methods of Educando class.

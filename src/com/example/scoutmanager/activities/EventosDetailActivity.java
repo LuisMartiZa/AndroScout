@@ -11,13 +11,15 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EventosDetailActivity extends Activity {
 	
-	//private Actividades actividad = new Actividades();
 	private Evento ev = new Evento();
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -113,25 +115,51 @@ public class EventosDetailActivity extends Activity {
 		}
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.evento_detail_action, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+    
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.accept_evento:
+	            executeSaveCommand();
+	            return true;
+	            
+	        case R.id.discard_evento:
+	            executeDeleteCommand();
+	            return true;
+	            
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 	private void initializeTypeface(){
-		/*Typeface tf = Typeface.createFromAsset(this.getAssets(),
+		Typeface tf = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
 		Typeface tfb = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Bold.ttf");
         //TEXTVIEW
-        TextView name = (TextView) this.findViewById(R.id.nameActividadText);
-        TextView participantes = (TextView) this.findViewById(R.id.participantesText);
-        TextView descripcion = (TextView) this.findViewById(R.id.descripText);
-        TextView descripcionField = (TextView) this.findViewById(R.id.descripActividad);
-        TextView nameActividad = (TextView) this.findViewById(R.id.nameActividad);
-        TextView participantesActividad = (TextView) this.findViewById(R.id.participantesActividad);
+        TextView name = (TextView) this.findViewById(R.id.nameEvento);
+        TextView lugar = (TextView) this.findViewById(R.id.lugarEvento);
+        TextView fecha = (TextView) this.findViewById(R.id.fechaEvento);
+        
+        EditText nameField = (EditText) this.findViewById(R.id.nameEventoField);
+        EditText lugarField = (EditText) this.findViewById(R.id.lugarEventoField);
+        EditText fechaField = (EditText) this.findViewById(R.id.fechaEventoField);
 
         name.setTypeface(tfb);
-        participantes.setTypeface(tfb);
-        descripcion.setTypeface(tfb);
-        descripcionField.setTypeface(tf);
-        nameActividad.setTypeface(tf);
-        participantesActividad.setTypeface(tf);*/
+        lugar.setTypeface(tfb);
+        fecha.setTypeface(tfb);
+        nameField.setTypeface(tf);
+        lugarField.setTypeface(tf);
+        fechaField.setTypeface(tf);
 
 	}
 

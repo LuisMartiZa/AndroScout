@@ -3,7 +3,7 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/nameEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,93 +13,79 @@
         android:text="Nombre:" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/lugarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/nameEvento"
+        android:layout_below="@+id/nameEvento"
         android:layout_marginTop="25dp"
         android:text="Lugar:" />
 
     <TextView
-        android:id="@+id/TextView01"
+        android:id="@+id/fechaEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/lugarEvento"
+        android:layout_below="@+id/lugarEvento"
         android:layout_marginTop="30dp"
         android:text="Fecha:" />
 
-    <TextView
-        android:id="@+id/TextView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView01"
-        android:layout_below="@+id/TextView01"
-        android:layout_marginTop="30dp"
-        android:text="Tipo" />
-
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/nameEventoField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/nameEvento"
+        android:layout_alignBottom="@+id/nameEvento"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/nameEvento"
         android:ems="10" >
-        
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/lugarEventoField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_alignLeft="@+id/editText1"
-        android:ems="10" />
+        android:layout_alignBaseline="@+id/lugarEvento"
+        android:layout_alignBottom="@+id/lugarEvento"
+        android:layout_alignLeft="@+id/nameEventoField"
+        android:ems="10" >
+
+    </EditText>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/fechaEventoField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/TextView02"
-        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignBaseline="@+id/fechaEvento"
+        android:layout_alignBottom="@+id/fechaEvento"
+        android:layout_alignLeft="@+id/lugarEventoField"
         android:ems="10" />
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignTop="@+id/TextView02" />
-
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_below="@+id/spinner1"
-        android:src="@drawable/ic_action_new" />
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/educandosEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageButton1"
+        android:layout_below="@+id/fechaEventoField"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="40dp"
         android:text="Educandos" />
 
+    <ImageButton
+        android:id="@+id/addEducandoEventoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/fechaEventoField"
+        android:layout_below="@+id/fechaEventoField"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_action_new" />
+
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/listEducandosView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageButton1" >
-
+        android:layout_below="@+id/addEducandoEventoButton"
+        android:layout_marginTop="16dp" >
     </ListView>
 
 </RelativeLayout>
