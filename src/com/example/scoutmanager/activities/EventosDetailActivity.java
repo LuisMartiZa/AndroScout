@@ -9,18 +9,26 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class EventosDetailActivity extends Activity {
 	
 	private Evento ev = new Evento();
+	
+	private ImageButton addEducando;
+	
+	private String[] EDUCANDOS = null;
+
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,6 +53,25 @@ public class EventosDetailActivity extends Activity {
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("EVENTOS");
+		
+		addEducando = (ImageButton) findViewById(R.id.addEducandoEventoButton);
+		
+		addEducando.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(EventosDetailActivity.this, EducandosListSelectable.class);
+				
+				// Create a bundle object
+		        Bundle b = new Bundle();
+		        b.putStringArray("selectedEducandos", EDUCANDOS);
+		 
+		        // Add the bundle to the intent.
+		        //intent.putExtras(b);
+		        finish();
+		        startActivity(intent);
+			}
+		});
 	}
 	
 	private void executeShowCommand(int pIndex) {
