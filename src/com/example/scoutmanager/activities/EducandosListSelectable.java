@@ -8,12 +8,15 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class EducandosListSelectable extends Activity {
 	
 	private String[] educandos;
+	private String[] educandosSelected;
 	private ListView educandosListView;
 	private ArrayAdapter<String> adapter;
     
@@ -31,14 +34,15 @@ public class EducandosListSelectable extends Activity {
 			try {
 				fillListView();
 			} catch (AdaFrameworkException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 			}
 
      }
     
     public void fillListView() throws AdaFrameworkException
     {
+    	
+    	
 		DataBase.Context.EducandosSet.fill();
 
 		int neducando = DataBase.Context.EducandosSet.size();
@@ -57,5 +61,26 @@ public class EducandosListSelectable extends Activity {
         this.educandosListView.setItemsCanFocus(false);
         this.educandosListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		this.educandosListView.setAdapter(adapter);
+		
+		Bundle intentExtras = this.getIntent().getExtras();
+		if (intentExtras != null)
+			educandosSelected = intentExtras.getStringArray("selectedEducandos");
+		
+		
+		for(int i=0; i < educandosListView.getCount(); i++)
+		{
+			for(int j=0; j < educandosSelected.length; j++){
+				
+				Log.w("LOCURA",(String) educandosListView.getItemAtPosition(i));
+				Log.w("LOCURA2",educandosSelected[j]);
+
+				if(educandosSelected[j].equals((String)educandosListView.getItemAtPosition(i)))
+				{
+					educandosListView.setItemChecked(i, true);
+				}
+					
+			}
+		}
+		
     }
 }

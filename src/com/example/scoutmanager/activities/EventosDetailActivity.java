@@ -27,7 +27,7 @@ public class EventosDetailActivity extends Activity {
 	
 	private ImageButton addEducando;
 	
-	private String[] EDUCANDOS = null;
+	private String[] EDUCANDOS={"Juanito"};
 
 	
 	public void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class EventosDetailActivity extends Activity {
 		        b.putStringArray("selectedEducandos", EDUCANDOS);
 		 
 		        // Add the bundle to the intent.
-		        //intent.putExtras(b);
+		        intent.putExtras(b);
 		        finish();
 		        startActivity(intent);
 			}
