@@ -80,7 +80,7 @@
         android:src="@drawable/ic_action_new" />
 
     <ListView
-        android:id="@+id/listEducandosView"
+        android:id="@+id/listEducandosEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

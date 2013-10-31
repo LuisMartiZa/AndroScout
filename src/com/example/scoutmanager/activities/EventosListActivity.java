@@ -78,7 +78,7 @@ public class EventosListActivity extends Activity {
 	 public void executeAddNewCommand() {
     	try {
     		Intent detailIntent = new Intent(this, EventosDetailActivity.class);
-    		startActivityForResult(detailIntent, 1);
+    		startActivity(detailIntent);
     		
     	} catch (Exception e) {
  			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();

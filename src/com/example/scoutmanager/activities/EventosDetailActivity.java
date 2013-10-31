@@ -1,5 +1,7 @@
 package com.example.scoutmanager.activities;
 
+import java.util.ArrayList;
+
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Evento;
@@ -16,8 +18,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +31,23 @@ public class EventosDetailActivity extends Activity {
 	
 	private ImageButton addEducando;
 	
-	private String[] EDUCANDOS={"Juanito"};
+	private ArrayList<String> EDUCANDOS;
 
+	private ListView educandosListView;
+	
+	private ArrayAdapter<String> adapter;
+    
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		this.setContentView(R.layout.eventos_detail_activity);
+		
+		this.educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
+		
+		EDUCANDOS = new ArrayList<String>();
+		EDUCANDOS.add("Juanito");
+
 		
 		try {
 			initializeActivity();
@@ -47,9 +61,17 @@ public class EventosDetailActivity extends Activity {
 	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
-		if (intentExtras != null)
-			executeShowCommand(intentExtras.getInt("eventoID"));
 		
+		if (intentExtras != null){
+			if(intentExtras.getInt("eventoID") != 100000)
+				executeShowCommand(intentExtras.getInt("eventoID"));
+			
+			if(intentExtras.getStringArrayList("educandosSelected") != null){
+				EDUCANDOS = intentExtras.getStringArrayList("educandosSelected");
+				fillListView();
+			}
+		}
+				
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("EVENTOS");
@@ -64,7 +86,7 @@ public class EventosDetailActivity extends Activity {
 				
 				// Create a bundle object
 		        Bundle b = new Bundle();
-		        b.putStringArray("selectedEducandos", EDUCANDOS);
+		        b.putStringArrayList("selectedEducandos", EDUCANDOS);
 		 
 		        // Add the bundle to the intent.
 		        intent.putExtras(b);
@@ -80,6 +102,8 @@ public class EventosDetailActivity extends Activity {
 			ev = DataBase.Context.EventosSet.get(pIndex);
 			ev.setStatus(Entity.STATUS_UPDATED);
 			ev.bind(this);
+			EDUCANDOS=(ArrayList<String>) ev.getEducandosEvento();
+			fillListView();
 			
 		} catch (Exception e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -108,20 +132,7 @@ public class EventosDetailActivity extends Activity {
 			
 			ev.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
 			
-			/*int netapa = DataBase.Context.EtapasSet.size();
-			Etapa etapaAux;
-			
-			for(int n=0; n< netapa; n++){
-				etapaAux= DataBase.Context.EtapasSet.get(n);
-				
-				if(etapaAux.getNombre() == etapas.getSelectedItem())
-				{
-					educando.setEtapaEducando(etapaAux);
-					break;
-
-				}
-				
-			}*/
+			//ev.setEducandoEvento(EDUCANDOS);
 			
 			if (ev.validate(this)) {
 				
@@ -130,7 +141,6 @@ public class EventosDetailActivity extends Activity {
 				}
 				DataBase.Context.EventosSet.save();
 				
-				this.setResult(Activity.RESULT_OK);
 				this.finish();
 				
 			} else {
@@ -165,6 +175,12 @@ public class EventosDetailActivity extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private void fillListView(){
+		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, EDUCANDOS);
+		
+		this.educandosListView.setAdapter(adapter);
 	}
 	
 	private void initializeTypeface(){

@@ -191,7 +191,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int imageButtonPromesa=0x7f04001a;
         public static final int imageView1=0x7f04001c;
         public static final int left=0x7f040000;
-        public static final int listEducandosView=0x7f040045;
+        public static final int listEducandosEvent=0x7f040045;
         public static final int listView=0x7f040020;
         public static final int lugarEvento=0x7f04003e;
         public static final int lugarEventoField=0x7f040041;
