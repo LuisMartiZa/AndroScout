@@ -1,6 +1,7 @@
 package com.example.scoutmanager.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
@@ -11,7 +12,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +24,7 @@ public class EducandosListSelectable extends Activity {
 	
 	private ArrayList<String> educandos;
 	private ArrayList<String> educandosSelected;
+	private List<Integer> educandosSelectedID;
 	private ListView educandosListView;
 	private ArrayAdapter<String> adapter;
     
@@ -60,7 +61,7 @@ public class EducandosListSelectable extends Activity {
 		for(int n=0; n< neducando; n++){
 			educando= DataBase.Context.EducandosSet.get(n);
 			
-			educandos.add(educando.getNombre());
+			educandos.add(educando.getNombre()+" "+educando.getApellidos());
 		}
 		
 		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, educandos);
@@ -92,6 +93,8 @@ public class EducandosListSelectable extends Activity {
     	SparseBooleanArray a= educandosListView.getCheckedItemPositions();
     	
 		educandosSelected = new ArrayList<String>();
+		
+		educandosSelectedID = new ArrayList<Integer>();
     	
     	StringBuffer sb = new StringBuffer("");
     	for (int i=0; i < a.size(); i++){
@@ -105,6 +108,7 @@ public class EducandosListSelectable extends Activity {
                 
                 String s = (String)educandosListView.getAdapter().getItem(idx);
                 educandosSelected.add(s);
+                educandosSelectedID.add(idx);
                 sb.append(s);
                 
             }
@@ -116,16 +120,60 @@ public class EducandosListSelectable extends Activity {
     	
     	getItemsSelected();
     	
+    	Bundle intentExtras = this.getIntent().getExtras();
+    	
     	Intent intent = new Intent(this, EventosDetailActivity.class);
 		
 		// Create a bundle object
-        Bundle b = new Bundle();
-        b.putStringArrayList("educandosSelected", educandosSelected);
+        Bundle educandosEvento = new Bundle();
+        Bundle nameEvento = new Bundle();
+        Bundle lugarEvento = new Bundle();
+        Bundle fechaEvento = new Bundle();
+        Bundle idEvento = new Bundle();
+        Bundle editado = new Bundle();
+        Bundle educandosID = new Bundle();
+        Bundle newEvent = new Bundle();
         
-        Log.w("POGGGGQUE","Value " + educandosSelected);
- 
+        if(!intentExtras.getBoolean("newEvent"))
+        {
+        	educandosEvento.putStringArrayList("educandosSelected", educandosSelected);
+        	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
+            idEvento.putInt("eventoID", intentExtras.getInt("eventoID"));
+            editado.putBoolean("edited", true);
+            newEvent.putBoolean("newEvent", false);
+            
+            //Add the bundle to the intent.
+            intent.putExtras(educandosEvento);
+            intent.putExtras(educandosID);
+            intent.putExtras(idEvento);
+            intent.putExtras(editado);
+            intent.putExtras(newEvent);
+
+            
+        }else{
+        	
+        	educandosEvento.putStringArrayList("educandosSelected", educandosSelected);
+        	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
+        	nameEvento.putString("nombre", intentExtras.getString("nombre"));
+            lugarEvento.putString("lugar", intentExtras.getString("lugar"));
+            fechaEvento.putString("fecha", intentExtras.getString("fecha"));
+            editado.putBoolean("edited", true);
+            newEvent.putBoolean("newEvent", true);
+
+            
+            //Add the bundle to the intent.
+            intent.putExtras(educandosEvento);
+            intent.putExtras(educandosID);
+            intent.putExtras(nameEvento);
+            intent.putExtras(lugarEvento);
+            intent.putExtras(fechaEvento);
+            intent.putExtras(editado);
+            intent.putExtras(newEvent);
+
+
+        }
+        
         // Add the bundle to the intent.
-        intent.putExtras(b);
         finish();
         startActivity(intent);
     }

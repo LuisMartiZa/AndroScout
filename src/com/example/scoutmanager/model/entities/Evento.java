@@ -27,7 +27,7 @@ public class Evento extends Entity {
 	public Date F_Evento = new Date();
 	
 	@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private List<String> educandosEvento = new ArrayList<String>();
+    private List<Educando> educandosEvento = new ArrayList<Educando>();
 	 /*
      * Methods of Usuario class.
      */
@@ -77,13 +77,13 @@ public class Evento extends Entity {
     	this.F_Evento=f_evento;
     }
 	
-    public List<String> getEducandosEvento()
+    public List<Educando> getEducandosEvento()
     {
     	return this.educandosEvento;
     }
     
-    public void setEducandoEvento(ArrayList<String> educando)
+    public void addEducandoEvento(Educando educando)
     {
-    	this.educandosEvento=educando;
+    	this.educandosEvento.add(educando);
     }
 }

@@ -32,6 +32,9 @@ public class EventosListActivity extends Activity {
 	        	
 				Intent detailIntent = new Intent(pView.getContext(), EventosDetailActivity.class);
 				detailIntent.putExtra("eventoID", pPosition);
+				detailIntent.putExtra("new", false);
+				detailIntent.putExtra("edited", false);
+
 				
 				startActivity(detailIntent);
 			
@@ -78,6 +81,9 @@ public class EventosListActivity extends Activity {
 	 public void executeAddNewCommand() {
     	try {
     		Intent detailIntent = new Intent(this, EventosDetailActivity.class);
+    		detailIntent.putExtra("newEvent", true);
+			detailIntent.putExtra("edited", false);
+    		
     		startActivity(detailIntent);
     		
     	} catch (Exception e) {
