@@ -152,16 +152,21 @@ public class EventosDetailActivity extends Activity {
 			
 			ev.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
 			
-			ArrayList<Integer> educandosID = intentExtras.getIntegerArrayList("educandosID");
-									
-			DataBase.Context.EducandosSet.fill();
-
-			Educando educando;
-								
-			for(int n=0; n< educandosID.size(); n++){
-				educando= DataBase.Context.EducandosSet.get(educandosID.get(n));
+			if(intentExtras.getBoolean("edited")){
+				if(!intentExtras.getBoolean("newEvent"))
+					ev.resetEducandosEvento();
 				
-				ev.addEducandoEvento(educando);
+				ArrayList<Integer> educandosID = intentExtras.getIntegerArrayList("educandosID");
+										
+				DataBase.Context.EducandosSet.fill();
+	
+				Educando educando;
+									
+				for(int n=0; n< educandosID.size(); n++){
+					educando= DataBase.Context.EducandosSet.get(educandosID.get(n));
+					
+					ev.addEducandoEvento(educando);
+				}
 			}
 						
 			if (ev.validate(this)) {

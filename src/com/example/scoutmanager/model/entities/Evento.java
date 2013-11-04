@@ -86,4 +86,9 @@ public class Evento extends Entity {
     {
     	this.educandosEvento.add(educando);
     }
+    
+    public void resetEducandosEvento()
+    {
+    	this.educandosEvento = new ArrayList<Educando>();
+    }
 }
