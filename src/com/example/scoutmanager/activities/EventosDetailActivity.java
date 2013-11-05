@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.adapters.EducandosEventosListAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Evento;
@@ -20,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -36,8 +36,6 @@ public class EventosDetailActivity extends Activity {
 	private ArrayList<String> educandos;
 
 	private ListView educandosListView;
-
-	private ArrayAdapter<String> adapter;
 	
 	public EditText nameField;
 
@@ -213,9 +211,8 @@ public class EventosDetailActivity extends Activity {
 	}
 	
 	private void fillListView(){
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, educandos);
 		
-		this.educandosListView.setAdapter(adapter);
+		this.educandosListView.setAdapter(new EducandosEventosListAdapter(this, educandos));
 	}
 	
 	private View.OnClickListener onClick =  new View.OnClickListener() {

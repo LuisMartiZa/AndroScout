@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -223,7 +222,6 @@ public class MainActivity extends Activity {
 		}catch(Exception e)
 		{
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-			Log.w("TAG", "NOMBRE ACTIVIDAD" + e.toString());
 		}
     	
     }

@@ -16,18 +16,18 @@ public class Evento extends Entity {
 	
 	@TableField(name= "nombreEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId = R.id.nameEventoField)
-	private String Nombre = "";
+	public String Nombre = "";
 	
 	@TableField(name= "lugarEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId = R.id.lugarEventoField)
-	private String Lugar = "";
+	public String Lugar = "";
 	
 	@TableField(name= "fechaEvento", datatype= Entity.DATATYPE_DATE_BINARY)
 	@Databinding(ViewId = R.id.fechaEventoField, parser = DateParser.class)
 	public Date F_Evento = new Date();
 	
 	@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
-    private List<Educando> educandosEvento = new ArrayList<Educando>();
+    public List<Educando> educandosEvento = new ArrayList<Educando>();
 	 /*
      * Methods of Usuario class.
      */
