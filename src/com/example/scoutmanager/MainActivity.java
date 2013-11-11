@@ -127,7 +127,6 @@ public class MainActivity extends Activity {
     	DataBase.Context.EtapasSet.add(animacion);
     	
 		DataBase.Context.EtapasSet.save();
-
     	
     	//Fill Seccion object set
     	Seccion castores = new Seccion("Castores");

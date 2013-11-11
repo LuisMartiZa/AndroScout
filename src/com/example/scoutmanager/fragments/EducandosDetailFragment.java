@@ -14,17 +14,21 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,11 +89,25 @@ public class EducandosDetailFragment extends Fragment {
 	        dirField.setTypeface(tf);
 	        birthdayField.setTypeface(tf);
 	        
+	        ImageView imgFavorite = (ImageView) pView.findViewById(R.id.imageEducando);
+	        imgFavorite.setClickable(true);
+	        imgFavorite.setOnClickListener(new OnClickListener() {
+	                    @Override
+	                    public void onClick(View v) {
+	                        dispatchTakePictureIntent(1);
+	                    }
+	                });
+	        
 			
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
 		}
+	}
+	
+	private void dispatchTakePictureIntent(int actionCode) {
+	    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	    startActivityForResult(takePictureIntent, actionCode);
 	}
 	
 	private void initializeFragment(View pView) throws AdaFrameworkException {
