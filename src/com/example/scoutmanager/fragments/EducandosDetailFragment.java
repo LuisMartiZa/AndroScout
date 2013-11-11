@@ -110,11 +110,6 @@ public class EducandosDetailFragment extends Fragment {
 			educando.setStatus(Entity.STATUS_UPDATED);
 			educando.bind(fragmentView);
 			
-			Log.v("SECCIONNAME", "Mensaje "+educando.seccion.Nombre);
-			Log.v("ETAPANAME", "Mensaje "+educando.etapa.Nombre);
-
-
-
 			int seccionPosition = this.seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
 			
 			//set the default according to value
@@ -171,19 +166,12 @@ public class EducandosDetailFragment extends Fragment {
 			int netapa = DataBase.Context.EtapasSet.size();
 			Etapa etapaAux;
 			
-			Log.v("NETAPA", "Mensaje " +netapa);
-
-			
 			for(int n=0; n< netapa; n++){
 				etapaAux= DataBase.Context.EtapasSet.get(n);
-				
-				Log.v("ETAPA", "Mensaje "+etapaAux.getNombre());
-
 				
 				if(etapaAux.getNombre().equals(etapas.getSelectedItem()))
 				{
 					educando.setEtapaEducando(etapaAux);
-					Log.v("ETAPAEDUCANDO", "Mensaje "+educando.getEtapaEducando());
 				}
 				
 			}
