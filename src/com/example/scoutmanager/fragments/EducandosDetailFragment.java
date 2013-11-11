@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,67 +37,6 @@ public class EducandosDetailFragment extends Fragment {
 	private ArrayAdapter<String> etapasAdapter;
 	private ArrayAdapter<String> seccionesAdapter;
 	private Educando educando = new Educando();
-	
-	private OnItemSelectedListener itemSelectedListener = new OnItemSelectedListener() {
-		@Override
-		public void onItemSelected(AdapterView<?> pParent, View pView, int pPosition, long id) {
-			try {
-				List<String> etapasArray =  new ArrayList<String>();
-				
-			    switch (pPosition) {
-		        case 0:
-		        	etapasArray.add("Castor sin paletas");
-				    etapasArray.add("Castor con paletas");
-				    etapasArray.add("Castor Keeo");
-		            break;
-		        case 1:
-		        	etapasArray.add("Huella de Akela");
-				    etapasArray.add("Huella de Baloo");
-				    etapasArray.add("Huella de Bagheera");
-		            break;
-		        default:
-		        	etapasArray.add("Integraci—n");
-				    etapasArray.add("Participaci—n");
-				    etapasArray.add("Animaci—n");
-				    break;
-			    }
-			    
-			    etapasAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, etapasArray){
-
-			         public View getView(int position, View convertView, ViewGroup parent) {
-			                 View v = super.getView(position, convertView, parent);
-
-			                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
-			                 ((TextView) v).setTypeface(externalFont);
-
-			                 return v;
-			         }
-
-
-			         public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
-			                  View v =super.getDropDownView(position, convertView, parent);
-
-			                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
-			                 ((TextView) v).setTypeface(externalFont);
-
-			                 return v;
-			         }
-			 };
-			    etapasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			    etapas = (Spinner) getView().findViewById(R.id.spinnerEtapa);
-			    etapas.setAdapter(etapasAdapter);
-	        	
-	        } catch (Exception e) {
-				Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-			}
-		}
-
-		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-    };
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -125,7 +65,6 @@ public class EducandosDetailFragment extends Fragment {
 	        TextView seccion = (TextView) getView().findViewById(R.id.sectionText);
 	        TextView etapa = (TextView) getView().findViewById(R.id.etapaText);
 	        TextView padres = (TextView) getView().findViewById(R.id.padresText);
-	        TextView comunicaciones = (TextView) getView().findViewById(R.id.comunicacionesText);
 
 	        name.setTypeface(tf);
 	        surname.setTypeface(tf);
@@ -134,7 +73,6 @@ public class EducandosDetailFragment extends Fragment {
 	        seccion.setTypeface(tf);
 	        etapa.setTypeface(tf);
 	        padres.setTypeface(tf);
-	        comunicaciones.setTypeface(tf);
 	        
 	        //EDITTEXT
 	        EditText nameField = (EditText) getView().findViewById(R.id.nameEducando);
@@ -149,7 +87,8 @@ public class EducandosDetailFragment extends Fragment {
 	        
 			
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("ONVIEWCREATED", "Mensaje "+e);
+
 		}
 	}
 	
@@ -170,19 +109,25 @@ public class EducandosDetailFragment extends Fragment {
 			educando = DataBase.Context.EducandosSet.get(pIndex);
 			educando.setStatus(Entity.STATUS_UPDATED);
 			educando.bind(fragmentView);
+			
+			Log.v("SECCIONNAME", "Mensaje "+educando.seccion.Nombre);
+			Log.v("ETAPANAME", "Mensaje "+educando.etapa.Nombre);
+
+
 
 			int seccionPosition = this.seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
 			
 			//set the default according to value
 			this.seccion.setSelection(seccionPosition,true);
 						
-			int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
+			int etapaPosition = this.etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
 
 			//set the default according to value
 			this.etapas.setSelection(etapaPosition,true);
 			
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("EXECUTESHOWCOMMAND", "Mensaje "+e);
+
 		}
 	}
 	
@@ -199,7 +144,8 @@ public class EducandosDetailFragment extends Fragment {
 			}
 			
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("DELETECOMMAND", "Mensaje "+e);
+
 		}
 	}
 	
@@ -213,11 +159,10 @@ public class EducandosDetailFragment extends Fragment {
 			
 			for(int n=0; n< nseccion; n++){
 				seccionAux= DataBase.Context.SeccionsSet.get(n);
-				
-				if(seccionAux.getNombre() == seccion.getSelectedItem())
+
+				if(seccionAux.getNombre().equals(seccion.getSelectedItem()))
 				{
 					educando.setSeccionEducando(seccionAux);
-					break;
 
 				}
 					
@@ -226,14 +171,19 @@ public class EducandosDetailFragment extends Fragment {
 			int netapa = DataBase.Context.EtapasSet.size();
 			Etapa etapaAux;
 			
+			Log.v("NETAPA", "Mensaje " +netapa);
+
+			
 			for(int n=0; n< netapa; n++){
 				etapaAux= DataBase.Context.EtapasSet.get(n);
 				
-				if(etapaAux.getNombre() == etapas.getSelectedItem())
+				Log.v("ETAPA", "Mensaje "+etapaAux.getNombre());
+
+				
+				if(etapaAux.getNombre().equals(etapas.getSelectedItem()))
 				{
 					educando.setEtapaEducando(etapaAux);
-					break;
-
+					Log.v("ETAPAEDUCANDO", "Mensaje "+educando.getEtapaEducando());
 				}
 				
 			}
@@ -252,7 +202,8 @@ public class EducandosDetailFragment extends Fragment {
 			}
 			
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("SAVECOMMAND", "Mensaje "+e);
+
 		}
 	}
 	
@@ -289,7 +240,66 @@ public class EducandosDetailFragment extends Fragment {
 	    this.seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    this.seccion = (Spinner) getView().findViewById(R.id.spinnerSeccion);
 	    this.seccion.setAdapter(seccionesAdapter);
-	    this.seccion.setOnItemSelectedListener(itemSelectedListener);
+	    this.seccion.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> pParent, View pView, int pPosition, long id) {
+				try {
+					List<String> etapasArray =  new ArrayList<String>();
+					
+				    switch (pPosition) {
+			        case 0:
+			        	etapasArray.add("Castor sin paletas");
+					    etapasArray.add("Castor con paletas");
+					    etapasArray.add("Castor Keeo");
+			            break;
+			        case 1:
+			        	etapasArray.add("Huella de Akela");
+					    etapasArray.add("Huella de Baloo");
+					    etapasArray.add("Huella de Bagheera");
+			            break;
+			        default:
+			        	etapasArray.add("Integraci—n");
+					    etapasArray.add("Participaci—n");
+					    etapasArray.add("Animaci—n");
+					    break;
+				    }
+				    
+				    etapasAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, etapasArray){
+
+				         public View getView(int position, View convertView, ViewGroup parent) {
+				                 View v = super.getView(position, convertView, parent);
+
+				                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+				                 ((TextView) v).setTypeface(externalFont);
+
+				                 return v;
+				         }
+
+
+				         public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
+				                  View v =super.getDropDownView(position, convertView, parent);
+
+				                 Typeface externalFont=Typeface.createFromAsset(getActivity().getAssets(), "fonts/Roboto-Light.ttf");
+				                 ((TextView) v).setTypeface(externalFont);
+
+				                 return v;
+				         }
+				 };
+				    etapasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				    etapas = (Spinner) getView().findViewById(R.id.spinnerEtapa);
+				    etapas.setAdapter(etapasAdapter);
+		        	
+		        } catch (Exception e) {
+					Log.v("ONITEMSELECTED", "Mensaje "+e);
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+	    });
 	}
 
 }

@@ -67,6 +67,8 @@ public class EducandosListFragment extends Fragment {
     		this.educandosListView.setOnItemClickListener(itemClickListener);
     		this.educandosListViewAdapter= new EducandosListAdapter(getActivity(), R.layout.educandos_row);
     		this.educandosListView.setAdapter(this.educandosListViewAdapter);
+    		this.educandosListView.setFooterDividersEnabled(true);
+    		this.educandosListView.setHeaderDividersEnabled(true);
     		
     		DataBase.Context.EducandosSet.setAdapter(this.educandosListViewAdapter);
     		DataBase.Context.EducandosSet.fill();

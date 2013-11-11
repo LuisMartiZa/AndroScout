@@ -74,11 +74,5 @@ public class ApplicationDataContext extends ObjectContext {
 		SeccionsSet = new ObjectSet<Seccion>(Seccion.class, this);
 		ActividadesSet = new ObjectSet<Actividades>(Actividades.class, this);
 		EventosSet = new ObjectSet<Evento>(Evento.class, this);
-
-		
-		EducandosSet.fill(DEFAULT_SORT);
-		EtapasSet.fill(DEFAULT_SORT);
-		SeccionsSet.fill(DEFAULT_SORT);
-		ActividadesSet.fill(DEFAULT_SORT);
 	}
 }

@@ -16,6 +16,7 @@
             android:id="@+id/nameEducando"
             android:layout_width="match_parent"
             android:inputType="text" />
+
     </TableRow>
 
     <TableRow android:layout_width="match_parent" >
@@ -29,6 +30,7 @@
             android:id="@+id/surnameEducando"
             android:layout_width="match_parent"
             android:inputType="text" />
+
     </TableRow>
 
     <TableRow android:layout_width="match_parent" >
@@ -41,7 +43,8 @@
         <EditText
             android:id="@+id/dirEducando"
             android:layout_width="match_parent"
-            android:inputType="textEmailAddress" />
+            android:inputType="text" />
+
     </TableRow>
 
     <TableRow android:layout_width="match_parent" >
@@ -56,6 +59,50 @@
             android:layout_width="match_parent"
             android:ems="10"
             android:inputType="date" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/emailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="E-mail" />
+
+        <EditText
+            android:id="@+id/educandoEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10" >
+        </EditText>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/TableRow02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/telefonoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Teléfono casa" />
+
+        <EditText
+            android:id="@+id/telefonoEducando"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" >
+        </EditText>
     </TableRow>
 
     <TableRow
@@ -121,15 +168,6 @@
         android:layout_marginTop="5dp"
         android:background="@android:drawable/list_selector_background" 
         android:clickable="true" >
-
-        <TextView
-            android:id="@+id/comunicacionesText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="5dip"
-            android:layout_marginTop="5dp"
-            android:text="Comunicaciones" />
 
     </TableRow>
 

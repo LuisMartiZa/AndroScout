@@ -30,17 +30,22 @@ public class Educando extends Entity {
 	@Databinding(ViewId = R.id.educandoBirthday, parser = DateParser.class)
 	public Date F_Nacimiento = new Date();
 	
+	@TableField(name= "emailEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
+	@Databinding(ViewId= R.id.educandoEmail)
+	public String Email = "";
+	
+	@TableField(name= "telefonoEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
+	@Databinding(ViewId= R.id.telefonoEducando)
+	public String Telefono = "";
+	
     @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public Seccion seccion;
+    public Seccion seccion = new Seccion();
     
     @TableField(name= "etapaEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public Etapa etapa;
+    public Etapa etapa = new Etapa();
     
     @TableField(name= "tutorEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     public List<Tutor> tutores= new ArrayList<Tutor>();
-    
-    @TableField(name= "comunicacionEducando", datatype= Entity.DATATYPE_ENTITY)
-    public List<Comunicaciones> comunicaciones = new ArrayList<Comunicaciones>();
     
     
     /*
@@ -132,23 +137,24 @@ public class Educando extends Entity {
     	this.tutores.add(tutor);
     }
     
-    public List<Comunicaciones> getComunicacionesEducando()
+    public String getEmail()
     {
-    	return comunicaciones;
+    	return Email;
     }
     
-    public void addComunicacionEducando(Comunicaciones com)
+    public void setEmail(String email)
     {
-    	this.comunicaciones.add(com);
+    	this.Email=email;
     }
     
-   /* public List<Insignias> getInsigniasEducando()
+    public String getTelefono()
     {
-    	return insignias;
+    	return Telefono;
     }
     
-    public void addInsigniaEducando(Insignias insignia)
+    public void setTelefono(String telefono)
     {
-    	this.insignias.add(insignia);
-    }*/
+    	this.Telefono=telefono;
+    }
+    
 }
