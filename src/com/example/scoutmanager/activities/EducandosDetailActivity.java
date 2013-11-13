@@ -1,6 +1,11 @@
 package com.example.scoutmanager.activities;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.example.scoutmanager.R;
@@ -14,8 +19,12 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +50,15 @@ public class EducandosDetailActivity extends Activity {
 	private Educando educando = new Educando();
 	
 	private ImageView mImageView;
+	private static final int CAMERA_PIC_REQUEST = 1337;  
+	public final static String APP_PATH_SD_CARD = "/scoutmanager";
+	private String mCurrentPhotoPath;
+	private static final String CAMERA_DIR = "/dcim/";
+
+
+	private static final String JPEG_FILE_PREFIX = "IMG_";
+	private static final String JPEG_FILE_SUFFIX = ".jpg";
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,11 +77,28 @@ public class EducandosDetailActivity extends Activity {
 	        mImageView = (ImageView) findViewById(R.id.educandoImagenAdd);
 	        mImageView.setClickable(true);
 	        mImageView.setOnClickListener(new OnClickListener() {
-	                    @Override
-	                    public void onClick(View v) {
-	                        //dispatchTakePictureIntent(1);
-	                    }
-	                });
+                @Override
+                public void onClick(View v) {
+                	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                  
+                    File f = null;
+        			
+        			try {
+        				f = setUpPhotoFile();
+        				mCurrentPhotoPath = f.getAbsolutePath();
+        				Log.v("PATH", "photoPath " + mCurrentPhotoPath);
+        				Log.v("PATHURI", "photoPathURI " + Uri.fromFile(f));
+        				Log.v("ALBUMNAME", "Album name" + getAlbumName());
+        				cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+        			} catch (IOException e) {
+        				e.printStackTrace();
+        				f = null;
+        				mCurrentPhotoPath = null;
+        			}
+                    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+
+                }
+	         });
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
@@ -328,4 +363,75 @@ public class EducandosDetailActivity extends Activity {
 			}
 	    });
 	}
+	
+	 @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		 
+          if (requestCode == CAMERA_PIC_REQUEST) {
+        	  if (data != null){ 
+	              Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+	              mImageView.setImageBitmap(thumbnail);
+        	  }         
+          }
+        
+    }
+	 
+	 /* Photo album for this application */
+		private String getAlbumName() {
+			return "ScoutManager";
+		}
+
+		
+		private File getAlbumDir() {
+			File storageDir = null;
+
+			if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+				
+				storageDir = new File (
+						Environment.getExternalStorageDirectory()
+						+ CAMERA_DIR
+						+ getAlbumName()
+				);
+
+				if (storageDir != null) {
+					if (! storageDir.mkdirs()) {
+						if (! storageDir.exists()){
+							Log.d("CameraSample", "failed to create directory");
+							return null;
+						}
+					}
+				}
+				
+			} else {
+				Log.v(getString(R.string.app_name), "External storage is not mounted READ/WRITE.");
+			}
+			
+			return storageDir;
+		}
+		
+		private File createImageFile() throws IOException {
+			// Create an image file name
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+			File albumF = getAlbumDir();
+			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+			return imageF;
+		}
+
+		private File setUpPhotoFile() throws IOException {
+			
+			File f = createImageFile();
+			mCurrentPhotoPath = f.getAbsolutePath();
+			
+			return f;
+		}
+		
+		private void galleryAddPic() {
+		    Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
+			File f = new File(mCurrentPhotoPath);
+		    Uri contentUri = Uri.fromFile(f);
+		    mediaScanIntent.setData(contentUri);
+		    this.sendBroadcast(mediaScanIntent);
+	}
+	 
 }
