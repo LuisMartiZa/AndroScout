@@ -80,25 +80,11 @@ public class EducandosDetailActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                 	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                  
-                    File f = null;
-        			
-        			try {
-        				f = setUpPhotoFile();
-        				mCurrentPhotoPath = f.getAbsolutePath();
-        				Log.v("PATH", "photoPath " + mCurrentPhotoPath);
-        				Log.v("PATHURI", "photoPathURI " + Uri.fromFile(f));
-        				Log.v("ALBUMNAME", "Album name" + getAlbumName());
-        				cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-        			} catch (IOException e) {
-        				e.printStackTrace();
-        				f = null;
-        				mCurrentPhotoPath = null;
-        			}
                     startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
 
                 }
 	         });
+	        
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
@@ -370,10 +356,17 @@ public class EducandosDetailActivity extends Activity {
           if (requestCode == CAMERA_PIC_REQUEST) {
         	  if (data != null){ 
 	              Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+	              try {
+					SaveImage(thumbnail);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	              mImageView.setImageBitmap(thumbnail);
         	  }         
           }
-        
+          galleryAddPic();
     }
 	 
 	 /* Photo album for this application */
@@ -392,6 +385,8 @@ public class EducandosDetailActivity extends Activity {
 						+ CAMERA_DIR
 						+ getAlbumName()
 				);
+				
+				Log.v("STORAGEDIR", "Storage dir " + storageDir);
 
 				if (storageDir != null) {
 					if (! storageDir.mkdirs()) {
@@ -414,17 +409,10 @@ public class EducandosDetailActivity extends Activity {
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 			String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
 			File albumF = getAlbumDir();
-			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);			
 			return imageF;
 		}
 
-		private File setUpPhotoFile() throws IOException {
-			
-			File f = createImageFile();
-			mCurrentPhotoPath = f.getAbsolutePath();
-			
-			return f;
-		}
 		
 		private void galleryAddPic() {
 		    Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
@@ -432,6 +420,25 @@ public class EducandosDetailActivity extends Activity {
 		    Uri contentUri = Uri.fromFile(f);
 		    mediaScanIntent.setData(contentUri);
 		    this.sendBroadcast(mediaScanIntent);
-	}
+		}
+		
+		private void SaveImage(Bitmap finalBitmap) throws IOException {
+
+		    File file =createImageFile();
+		    mCurrentPhotoPath= file.getAbsolutePath();
+		    if (file.exists ()) file.delete (); 
+		    try {
+		           FileOutputStream out = new FileOutputStream(file);
+		           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+		           out.flush();
+		           out.close();
+
+		    } catch (Exception e) {
+		           e.printStackTrace();
+
+		    }
+		    
+
+		}
 	 
 }
