@@ -1,6 +1,8 @@
 package com.example.scoutmanager.activities;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -21,6 +23,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,7 +55,7 @@ public class EducandosDetailActivity extends Activity {
 	private ImageView mImageView;
 	private static final int CAMERA_PIC_REQUEST = 1337;  
 	public final static String APP_PATH_SD_CARD = "/scoutmanager";
-	private String mCurrentPhotoPath;
+	private String mCurrentPhotoPath = "";
 	private static final String CAMERA_DIR = "/dcim/";
 
 
@@ -72,10 +75,10 @@ public class EducandosDetailActivity extends Activity {
 			
 			ActionBar actionbar;
 			actionbar= this.getActionBar();
-			actionbar.setTitle("EDUCANDO");
+			actionbar.setTitle("EDUCANDO");	 
 			
-	        mImageView = (ImageView) findViewById(R.id.educandoImagenAdd);
-	        mImageView.setClickable(true);
+			mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
+			mImageView.setClickable(true);
 	        mImageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -84,7 +87,7 @@ public class EducandosDetailActivity extends Activity {
 
                 }
 	         });
-	        
+			
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
@@ -160,12 +163,14 @@ public class EducandosDetailActivity extends Activity {
 		}else{
 		
 			initializeSpinners();
+
 		}
 	}
 	
 	public void executeShowCommand(int pIndex) {
 		try {
 
+			DataBase.Context.EducandosSet.fill();
 			educando = DataBase.Context.EducandosSet.get(pIndex);
 			educando.setStatus(Entity.STATUS_UPDATED);
 			educando.bind(this);
@@ -180,9 +185,44 @@ public class EducandosDetailActivity extends Activity {
 			//set the default according to value
 			this.etapas.setSelection(etapaPosition,true);
 			
+			Log.v("PHOTO", educando.imagen);
+			
+			if(educando.getImagen() != null){
+				mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
+		        mImageView.setClickable(true);
+		        mImageView.setOnClickListener(new OnClickListener() {
+	                @Override
+	                public void onClick(View v) {
+	                	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+	                    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+
+	                }
+		         });
+				
+				File image = new  File(educando.getImagen()); 
+			    if(image.exists()){
+					Log.v("FILE", "EXISTE");
+					Bitmap bmp = BitmapFactory.decodeFile(image.getAbsolutePath());
+					Log.v("FILE", "BMP " + bmp);
+
+					mImageView.setImageBitmap(bmp);
+
+			    }		
+			}else{
+				mImageView= (ImageView) findViewById(R.id.imageEducando);
+				mImageView.setClickable(true);
+		        mImageView.setOnClickListener(new OnClickListener() {
+	                @Override
+	                public void onClick(View v) {
+	                	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+	                    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+
+	                }
+		         });
+			}
+			
 		} catch (Exception e) {
 			Log.v("EXECUTESHOWCOMMAND", "Mensaje "+e);
-
 		}
 	}
 	
@@ -208,12 +248,13 @@ public class EducandosDetailActivity extends Activity {
 		try {
 			
 			educando.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
-
+			
+			DataBase.Context.SeccionsSet.fill();
 			int nseccion = DataBase.Context.SeccionsSet.size();
 			Seccion seccionAux;
 			
 			for(int n=0; n< nseccion; n++){
-				seccionAux= DataBase.Context.SeccionsSet.get(n);
+				seccionAux= DataBase.Context.SeccionsSet.get(n);				
 
 				if(seccionAux.getNombre().equals(seccion.getSelectedItem()))
 				{
@@ -222,10 +263,10 @@ public class EducandosDetailActivity extends Activity {
 				}
 					
 			}
-			
+			DataBase.Context.EtapasSet.fill();
 			int netapa = DataBase.Context.EtapasSet.size();
 			Etapa etapaAux;
-			
+
 			for(int n=0; n< netapa; n++){
 				etapaAux= DataBase.Context.EtapasSet.get(n);
 				
@@ -233,8 +274,10 @@ public class EducandosDetailActivity extends Activity {
 				{
 					educando.setEtapaEducando(etapaAux);
 				}
-				
 			}
+			
+			educando.setImagen(mCurrentPhotoPath);
+						
 			if (educando.validate(this)) {
 				
 				if (educando.getID() == null) {
@@ -386,8 +429,6 @@ public class EducandosDetailActivity extends Activity {
 						+ getAlbumName()
 				);
 				
-				Log.v("STORAGEDIR", "Storage dir " + storageDir);
-
 				if (storageDir != null) {
 					if (! storageDir.mkdirs()) {
 						if (! storageDir.exists()){

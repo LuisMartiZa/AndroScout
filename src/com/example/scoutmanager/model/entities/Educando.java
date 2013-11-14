@@ -47,6 +47,9 @@ public class Educando extends Entity {
     @TableField(name= "tutorEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     public List<Tutor> tutores= new ArrayList<Tutor>();
     
+    @TableField(name= "imagenEducando", datatype= Entity.DATATYPE_TEXT)
+	public String imagen = "";
+    
     
     /*
      * Methods of Educando class.
@@ -155,6 +158,16 @@ public class Educando extends Entity {
     public void setTelefono(String telefono)
     {
     	this.Telefono=telefono;
+    }
+    
+    public void setImagen(String imagen)
+    {
+    	this.imagen=imagen;
+    }
+    
+    public String getImagen()
+    {
+    	return imagen;
     }
     
 }
