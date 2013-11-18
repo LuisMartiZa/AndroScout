@@ -18,4 +18,21 @@
         android:layout_marginTop="23dp"
         android:src="@drawable/florlis" />
 
+    <TextView
+        android:id="@+id/textViewMainAsistencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="22dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textVievMainEventoCercano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewMainAsistencia"
+        android:layout_below="@+id/textViewMainAsistencia"
+        android:layout_marginTop="14dp"
+        android:text="TextView" />
+
 </RelativeLayout>
