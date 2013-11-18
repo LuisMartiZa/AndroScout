@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         
 		DataBase.initialize(this);
+		
 		try {
 			DataBase.Context.SeccionsSet.fill();
 			if (DataBase.Context.SeccionsSet.size() == 0)
@@ -80,7 +81,7 @@ public class MainActivity extends Activity {
 		
 		
 		
-		Typeface tf = Typeface.createFromAsset(getAssets(),
+		/*Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/Roboto-Light.ttf");
         
         TextView main1 = (TextView) findViewById(R.id.main1);
@@ -89,7 +90,7 @@ public class MainActivity extends Activity {
 
         main1.setTypeface(tf);
         main2.setTypeface(tf);
-        main3.setTypeface(tf);
+        main3.setTypeface(tf);*/
 
     }
 

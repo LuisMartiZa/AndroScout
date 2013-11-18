@@ -1,8 +1,6 @@
 package com.example.scoutmanager.activities;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -161,9 +159,7 @@ public class EducandosDetailActivity extends Activity {
 			initializeSpinners();
 			executeShowCommand(intentExtras.getInt("educandoID"));			    
 		}else{
-		
 			initializeSpinners();
-
 		}
 	}
 	
@@ -184,9 +180,7 @@ public class EducandosDetailActivity extends Activity {
 
 			//set the default according to value
 			this.etapas.setSelection(etapaPosition,true);
-			
-			Log.v("PHOTO", educando.imagen);
-			
+						
 			if(educando.getImagen() != null){
 				mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
 		        mImageView.setClickable(true);
@@ -200,14 +194,12 @@ public class EducandosDetailActivity extends Activity {
 		         });
 				
 				File image = new  File(educando.getImagen()); 
+				
 			    if(image.exists()){
-					Log.v("FILE", "EXISTE");
 					Bitmap bmp = BitmapFactory.decodeFile(image.getAbsolutePath());
-					Log.v("FILE", "BMP " + bmp);
-
 					mImageView.setImageBitmap(bmp);
-
-			    }		
+			    }
+			    
 			}else{
 				mImageView= (ImageView) findViewById(R.id.imageEducando);
 				mImageView.setClickable(true);
@@ -396,20 +388,19 @@ public class EducandosDetailActivity extends Activity {
 	 @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		 
-          if (requestCode == CAMERA_PIC_REQUEST) {
-        	  if (data != null){ 
-	              Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+          if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
+        	  if (data.getAction() != null){ 
+        		  Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+	              mImageView.setImageBitmap(thumbnail);
 	              try {
 					SaveImage(thumbnail);
+		            galleryAddPic();
 
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+	              } catch (IOException e) {
 					e.printStackTrace();
-				}
-	              mImageView.setImageBitmap(thumbnail);
+	              }
         	  }         
           }
-          galleryAddPic();
     }
 	 
 	 /* Photo album for this application */
@@ -432,7 +423,7 @@ public class EducandosDetailActivity extends Activity {
 				if (storageDir != null) {
 					if (! storageDir.mkdirs()) {
 						if (! storageDir.exists()){
-							Log.d("CameraSample", "failed to create directory");
+							Log.d("ScoutManager", "failed to create directory");
 							return null;
 						}
 					}
