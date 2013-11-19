@@ -172,15 +172,10 @@ public class EducandosDetailActivity extends Activity {
 			educando.setStatus(Entity.STATUS_UPDATED);
 			educando.bind(this);
 			
-			int seccionPosition = this.seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
+			int seccionPosition = seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
 			
 			//set the default according to value
-			this.seccion.setSelection(seccionPosition,true);
-						
-			int etapaPosition = this.etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
-
-			//set the default according to value
-			this.etapas.setSelection(etapaPosition,true);
+			seccion.setSelection(seccionPosition,true);
 						
 			if(educando.getImagen() != null){
 				mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
@@ -216,6 +211,11 @@ public class EducandosDetailActivity extends Activity {
 	                }
 		         });
 			}
+			
+			int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
+
+			//set the default according to value
+			etapas.setSelection(etapaPosition,true);
 			
 		} catch (Exception e) {
 			Log.v("EXECUTESHOWCOMMAND", "Mensaje "+e);
@@ -271,8 +271,8 @@ public class EducandosDetailActivity extends Activity {
 					educando.setEtapaEducando(etapaAux);
 				}
 			}
-			
-			educando.setImagen(mCurrentPhotoPath);
+			if(!mCurrentPhotoPath.contentEquals(""))
+				educando.setImagen(mCurrentPhotoPath);
 						
 			if (educando.validate(this)) {
 				
@@ -303,7 +303,7 @@ public class EducandosDetailActivity extends Activity {
 	    seccionesArray.add("Unidad");
 	    seccionesArray.add("Clan");
 
-	    this.seccionesAdapter = new ArrayAdapter<String>(EducandosDetailActivity.this, android.R.layout.simple_spinner_item, seccionesArray){
+	    seccionesAdapter = new ArrayAdapter<String>(EducandosDetailActivity.this, android.R.layout.simple_spinner_item, seccionesArray){
 
 	         public View getView(int position, View convertView, ViewGroup parent) {
 	                 View v = super.getView(position, convertView, parent);
@@ -324,10 +324,10 @@ public class EducandosDetailActivity extends Activity {
 	                 return v;
 	         }
 	 };
-	    this.seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    this.seccion = (Spinner) this.findViewById(R.id.spinnerSeccion);
-	    this.seccion.setAdapter(seccionesAdapter);
-	    this.seccion.setOnItemSelectedListener(new OnItemSelectedListener() {
+	    seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    seccion = (Spinner) findViewById(R.id.spinnerSeccion);
+	    seccion.setAdapter(seccionesAdapter);
+	    seccion.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> pParent, View pView, int pPosition, long id) {
 				try {
