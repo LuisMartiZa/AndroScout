@@ -8,7 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.example.scoutmanager.activities.ActividadesListActivity;
-import com.example.scoutmanager.activities.EducandosActivity;
+//import com.example.scoutmanager.activities.EducandosActivity;
+import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
@@ -24,13 +25,13 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
+//import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+//import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -231,6 +232,7 @@ public class MainActivity extends Activity {
     	this.listView = (ListView) findViewById(R.id.listView);
 
 		ArrayList<Menu_items> items = new ArrayList<Menu_items>();
+		items.add(new Menu_items(R.drawable.asistencia, "Asistencia"));
 		items.add(new Menu_items(R.drawable.events, "Eventos"));
 		items.add(new Menu_items(R.drawable.actividades, "Actividades"));
 		items.add(new Menu_items(R.drawable.estrella, "Ley y Promesa"));
@@ -252,7 +254,18 @@ public class MainActivity extends Activity {
 		        Toast toast;
 		        
 				switch (position) {
-			    case 0:
+				case 0:
+			        menu.toggle(true);
+			        text = "Ha pulsado asistencia";
+			        
+			        Intent asistencia = new Intent(view.getContext(), EventosListActivity.class);
+			        startActivity(asistencia);
+
+			        toast = Toast.makeText(context, text, duration);
+			        toast.show();
+			        break;
+			        
+			    case 1:
 			        menu.toggle(true);
 			        text = "Ha pulsado eventos";
 			        
@@ -263,7 +276,7 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 1:
+			    case 2:
 			    	menu.toggle(true);
 			        text = "Ha pulsado actividades";
 			        
@@ -274,7 +287,7 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 2:
+			    case 3:
 			    	menu.toggle(true);
 			        text = "Ha pulsado ley y promesa";
 			        
@@ -285,11 +298,11 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 3:
+			    case 4:
 			    	menu.toggle(true);
 			        text = "Ha pulsado educandos";
 			        
-			        Intent educandos = new Intent(view.getContext(), EducandosActivity.class);
+			        Intent educandos = new Intent(view.getContext(), EducandosGridActivity.class);
 			        startActivity(educandos);
 
 			        toast = Toast.makeText(context, text, duration);
