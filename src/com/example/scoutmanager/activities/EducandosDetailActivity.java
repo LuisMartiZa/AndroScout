@@ -51,6 +51,7 @@ public class EducandosDetailActivity extends Activity {
 	private Educando educando = new Educando();
 	
 	private ImageView mImageView;
+	private ImageView AddImage;
 	private static final int CAMERA_PIC_REQUEST = 1337;  
 	public final static String APP_PATH_SD_CARD = "/scoutmanager";
 	private String mCurrentPhotoPath = "";
@@ -199,6 +200,9 @@ public class EducandosDetailActivity extends Activity {
 					Bitmap bmp = BitmapFactory.decodeFile(image.getAbsolutePath());
 					mImageView.setImageBitmap(bmp);
 			    }
+			    
+			    AddImage= (ImageView) findViewById(R.id.imageEducando);
+			    AddImage.setVisibility(View.INVISIBLE);
 			    
 			}else{
 				mImageView= (ImageView) findViewById(R.id.imageEducando);
