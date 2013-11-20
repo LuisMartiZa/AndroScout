@@ -228,8 +228,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int surnameEducando=0x7f040022;
         public static final int surnameEducandoList=0x7f04003a;
         public static final int surnameText=0x7f040021;
-        public static final int tableRow1=0x7f040033;
         public static final int tableRow2=0x7f040027;
+        public static final int tableRowPadres=0x7f040033;
         public static final int telefonoEducando=0x7f04002c;
         public static final int telefonoText=0x7f04002b;
         public static final int textLey=0x7f04000e;

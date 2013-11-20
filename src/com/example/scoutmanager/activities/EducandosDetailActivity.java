@@ -177,8 +177,24 @@ public class EducandosDetailActivity extends Activity {
 	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
-		if (intentExtras != null)
+		if (intentExtras != null){
 			executeShowCommand(intentExtras.getInt("educandoID"));
+		}else{
+			seccion.setOnItemSelectedListener(new OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> pParent, View pView, int pPosition, long id) {
+					initializeEtapas(pPosition);
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+		    });
+			
+		}
+			
 	}
 	
 	public void executeShowCommand(int pIndex) {
