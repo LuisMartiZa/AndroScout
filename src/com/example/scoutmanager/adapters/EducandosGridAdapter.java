@@ -16,11 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-/**
- * 
- * @author javatechig {@link http://javatechig.com}
- * 
- */
+
 public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 	private Context context;
 	private int layoutResourceId;

@@ -48,6 +48,8 @@ public class EducandosDetailActivity extends Activity {
 	private Spinner seccion;
 	private ArrayAdapter<String> etapasAdapter;
 	private ArrayAdapter<String> seccionesAdapter;
+	private List<String> etapasArray =  new ArrayList<String>();
+	List<String> seccionesArray =  new ArrayList<String>();
 	private Educando educando = new Educando();
 	
 	private ImageView mImageView;
@@ -69,7 +71,9 @@ public class EducandosDetailActivity extends Activity {
 		
     	setContentView(R.layout.educandos_detail_activity);
     	
-    	try {	
+    	try {
+    		initializeSecciones();
+			initializeEtapas(0);
 			initializeActivity();
 			
 			ActionBar actionbar;
@@ -95,6 +99,23 @@ public class EducandosDetailActivity extends Activity {
     	initializeTypeface();
 		
 	}
+	
+	 @Override
+	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
+          if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
+        	  if (data.getAction() != null){ 
+        		  Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+	              mImageView.setImageBitmap(thumbnail);
+	              try {
+					SaveImage(thumbnail);
+		            galleryAddPic();
+
+	              } catch (IOException e) {
+					e.printStackTrace();
+	              }
+        	  }         
+          }
+	 }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,12 +177,8 @@ public class EducandosDetailActivity extends Activity {
 	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
-		if (intentExtras != null) {
-			initializeSpinners();
-			executeShowCommand(intentExtras.getInt("educandoID"));			    
-		}else{
-			initializeSpinners();
-		}
+		if (intentExtras != null)
+			executeShowCommand(intentExtras.getInt("educandoID"));
 	}
 	
 	public void executeShowCommand(int pIndex) {
@@ -175,7 +192,11 @@ public class EducandosDetailActivity extends Activity {
 			int seccionPosition = seccionesAdapter.getPosition(educando.getSeccionEducando().getNombre());
 			
 			//set the default according to value
-			seccion.setSelection(seccionPosition,true);
+			seccion.setSelection(seccionPosition,false);
+			
+			initializeEtapas(seccionPosition);
+			
+			Log.v("ARRAYADAPTER", "seccionAdapter " + seccionesAdapter.getItem(seccionPosition));
 						
 			if(educando.getImagen() != null){
 				mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
@@ -213,9 +234,25 @@ public class EducandosDetailActivity extends Activity {
 			}
 			
 			int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
+			
+
+			Log.v("ARRAYADAPTER", "etapasAdapter " + etapasAdapter.getItem(etapaPosition));
 
 			//set the default according to value
 			etapas.setSelection(etapaPosition,true);
+			
+			seccion.setOnItemSelectedListener(new OnItemSelectedListener() {
+				@Override
+				public void onItemSelected(AdapterView<?> pParent, View pView, int pPosition, long id) {
+					initializeEtapas(pPosition);
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+		    });
 			
 		} catch (Exception e) {
 			Log.v("EXECUTESHOWCOMMAND", "Mensaje "+e);
@@ -294,15 +331,14 @@ public class EducandosDetailActivity extends Activity {
 		}
 	}
 	
-	public void initializeSpinners()
+	public void initializeSecciones()
 	{
-		List<String> seccionesArray =  new ArrayList<String>();
-	    seccionesArray.add("Castores");
-	    seccionesArray.add("Manada");
-	    seccionesArray.add("Tropa");
-	    seccionesArray.add("Unidad");
-	    seccionesArray.add("Clan");
-
+		seccionesArray.add("Castores");
+		seccionesArray.add("Manada");
+		seccionesArray.add("Tropa");
+		seccionesArray.add("Unidad");
+		seccionesArray.add("Clan");
+	    
 	    seccionesAdapter = new ArrayAdapter<String>(EducandosDetailActivity.this, android.R.layout.simple_spinner_item, seccionesArray){
 
 	         public View getView(int position, View convertView, ViewGroup parent) {
@@ -323,89 +359,60 @@ public class EducandosDetailActivity extends Activity {
 
 	                 return v;
 	         }
-	 };
+	    };
+	    
 	    seccionesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    seccion = (Spinner) findViewById(R.id.spinnerSeccion);
 	    seccion.setAdapter(seccionesAdapter);
-	    seccion.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> pParent, View pView, int pPosition, long id) {
-				try {
-					List<String> etapasArray =  new ArrayList<String>();
-					
-				    switch (pPosition) {
-			        case 0:
-			        	etapasArray.add("Castor sin paletas");
-					    etapasArray.add("Castor con paletas");
-					    etapasArray.add("Castor Keeo");
-			            break;
-			        case 1:
-			        	etapasArray.add("Huella de Akela");
-					    etapasArray.add("Huella de Baloo");
-					    etapasArray.add("Huella de Bagheera");
-			            break;
-			        default:
-			        	etapasArray.add("Integraci—n");
-					    etapasArray.add("Participaci—n");
-					    etapasArray.add("Animaci—n");
-					    break;
-				    }
-				    
-				    etapasAdapter = new ArrayAdapter<String>(EducandosDetailActivity.this, android.R.layout.simple_spinner_item, etapasArray){
-
-				         public View getView(int position, View convertView, ViewGroup parent) {
-				                 View v = super.getView(position, convertView, parent);
-
-				                 Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
-				                 ((TextView) v).setTypeface(externalFont);
-
-				                 return v;
-				         }
-
-
-				         public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
-				                  View v =super.getDropDownView(position, convertView, parent);
-
-				                 Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
-				                 ((TextView) v).setTypeface(externalFont);
-
-				                 return v;
-				         }
-				 };
-				    etapasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-				    etapas = (Spinner) findViewById(R.id.spinnerEtapa);
-				    etapas.setAdapter(etapasAdapter);
-		        	
-		        } catch (Exception e) {
-					Log.v("ONITEMSELECTED", "Mensaje "+e);
-				}
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-	    });
 	}
 	
-	 @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		 
-          if (requestCode == CAMERA_PIC_REQUEST && resultCode == RESULT_OK) {
-        	  if (data.getAction() != null){ 
-        		  Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-	              mImageView.setImageBitmap(thumbnail);
-	              try {
-					SaveImage(thumbnail);
-		            galleryAddPic();
+	public void initializeEtapas(int pPosition)
+	{
+		etapasArray.clear();
+		 switch (pPosition) {
+	        case 0:
+	        	etapasArray.add("Castor sin paletas");
+			    etapasArray.add("Castor con paletas");
+			    etapasArray.add("Castor Keeo");
+	            break;
+	        case 1:
+	        	etapasArray.add("Huella de Akela");
+			    etapasArray.add("Huella de Baloo");
+			    etapasArray.add("Huella de Bagheera");
+	            break;
+	        default:
+	        	etapasArray.add("Integraci—n");
+			    etapasArray.add("Participaci—n");
+			    etapasArray.add("Animaci—n");
+			    break;
+		 }
+		    
+	    etapasAdapter = new ArrayAdapter<String>(EducandosDetailActivity.this, android.R.layout.simple_spinner_item, etapasArray){
 
-	              } catch (IOException e) {
-					e.printStackTrace();
-	              }
-        	  }         
-          }
-    }
+	         public View getView(int position, View convertView, ViewGroup parent) {
+	                 View v = super.getView(position, convertView, parent);
+
+	                 Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
+	                 ((TextView) v).setTypeface(externalFont);
+
+	                 return v;
+	         }
+
+
+	         public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
+	                  View v =super.getDropDownView(position, convertView, parent);
+
+	                 Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
+	                 ((TextView) v).setTypeface(externalFont);
+
+	                 return v;
+	         }
+	    };
+	    
+	    etapasAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    etapas = (Spinner) findViewById(R.id.spinnerEtapa);
+	    etapas.setAdapter(etapasAdapter);
+	}
 	 
 	 /* Photo album for this application */
 		private String getAlbumName() {
@@ -476,5 +483,4 @@ public class EducandosDetailActivity extends Activity {
 		    
 
 		}
-	 
 }
