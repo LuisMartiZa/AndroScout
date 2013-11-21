@@ -10,6 +10,7 @@ import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Evento;
 import com.example.scoutmanager.model.entities.Seccion;
 import com.example.scoutmanager.model.entities.Etapa;
+import com.example.scoutmanager.model.entities.Tutor;
 
 /**
  * Application Data Context.
@@ -30,6 +31,7 @@ public class ApplicationDataContext extends ObjectContext {
 	public ObjectSet<Etapa> EtapasSet;
 	public ObjectSet<Actividades> ActividadesSet;
 	public ObjectSet<Evento> EventosSet;
+	public ObjectSet<Tutor> TutoresSet;
 	
 	/**************************************************/
 	/*      		CONSTRUCTORS 		 			  */
@@ -74,5 +76,7 @@ public class ApplicationDataContext extends ObjectContext {
 		SeccionsSet = new ObjectSet<Seccion>(Seccion.class, this);
 		ActividadesSet = new ObjectSet<Actividades>(Actividades.class, this);
 		EventosSet = new ObjectSet<Evento>(Evento.class, this);
+		TutoresSet = new ObjectSet<Tutor>(Tutor.class, this);
+
 	}
 }

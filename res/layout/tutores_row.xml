@@ -8,7 +8,7 @@
         android:layout_marginLeft="5dp" >
 
         <TextView
-            android:id="@+id/nameEducandoList"
+            android:id="@+id/nameTutorList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="false"
@@ -17,12 +17,12 @@
             android:text="Nombre" />
 
         <TextView
-            android:id="@+id/surnameEducandoList"
+            android:id="@+id/surnameTutorList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/nameEducandoList"
+            android:layout_toRightOf="@+id/nameTutorList"
             android:text="Apellido" />
 
     </RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <TableRow android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_marginLeft="5dip"
+                android:text="Nombre" />
+
+            <EditText
+                android:id="@+id/nombreTutor"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:inputType="text" />
+
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/surnameText"
+                android:layout_marginLeft="5dip"
+                android:text="Apellidos" />
+
+            <EditText
+                android:id="@+id/apellidosTutor"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/movText"
+                android:layout_marginLeft="5dip"
+                android:text="Móvil" />
+
+            <EditText
+                android:id="@+id/telefonoTutor"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:inputType="text" />
+
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

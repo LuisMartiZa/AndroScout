@@ -39,6 +39,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,11 +59,10 @@ public class EducandosDetailActivity extends Activity {
 	public final static String APP_PATH_SD_CARD = "/scoutmanager";
 	private String mCurrentPhotoPath = "";
 	private static final String CAMERA_DIR = "/dcim/";
-
-
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
 
+	private TableRow padresRow;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +90,16 @@ public class EducandosDetailActivity extends Activity {
 
                 }
 	         });
+	        
+	        padresRow= (TableRow) findViewById(R.id.tableRowPadres);
+	        padresRow.setOnClickListener(new OnClickListener() {
+	            public void onClick(View v) {
+	            	Intent deatailIntent = new Intent(EducandosDetailActivity.this, TutoresListActivity.class);
+					deatailIntent.putExtra("educandoID", educando.getID());
+					Log.v("EducandoID", "ID " + educando.getID());
+					startActivityForResult(deatailIntent, 1);
+	            }
+	        });
 			
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
@@ -211,9 +221,7 @@ public class EducandosDetailActivity extends Activity {
 			seccion.setSelection(seccionPosition,false);
 			
 			initializeEtapas(seccionPosition);
-			
-			Log.v("ARRAYADAPTER", "seccionAdapter " + seccionesAdapter.getItem(seccionPosition));
-						
+									
 			if(educando.getImagen() != null){
 				mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
 		        mImageView.setClickable(true);
@@ -251,9 +259,6 @@ public class EducandosDetailActivity extends Activity {
 			
 			int etapaPosition = etapasAdapter.getPosition(educando.getEtapaEducando().getNombre());
 			
-
-			Log.v("ARRAYADAPTER", "etapasAdapter " + etapasAdapter.getItem(etapaPosition));
-
 			//set the default according to value
 			etapas.setSelection(etapaPosition,true);
 			

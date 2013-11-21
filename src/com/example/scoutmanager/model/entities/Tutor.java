@@ -1,5 +1,6 @@
 package com.example.scoutmanager.model.entities;
 
+import com.example.scoutmanager.R;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.*;
 
@@ -7,10 +8,16 @@ import com.mobandme.ada.annotations.*;
 public class Tutor extends Entity {
 	
 	@TableField(name= "nombreTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	private String Nombre = "";
+	@Databinding(ViewId= R.id.nombreTutor)
+	public String Nombre = "";
 	
 	@TableField(name= "apellidoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
-	private String Apellidos = "";
+	@Databinding(ViewId= R.id.apellidosTutor)
+	public String Apellidos = "";
+	
+	@TableField(name= "telefonoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
+	@Databinding(ViewId= R.id.telefonoTutor)
+	public String Telefono = "";
 
 	
 	 /*
@@ -49,6 +56,16 @@ public class Tutor extends Entity {
     public void setApellidos(String apellidos)
     {
     	this.Apellidos=apellidos;
+    }
+    
+    public String getTelefono()
+    {
+    	return Telefono;
+    }
+    
+    public void setTelefono(String telefono)
+    {
+    	this.Telefono=telefono;
     }
 
 }

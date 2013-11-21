@@ -130,7 +130,7 @@ public class Educando extends Entity {
     	this.seccion=seccion;
     }
     
-    public List<Tutor> getTutorEducando(String nombreTutor)
+    public List<Tutor> getTutorEducando()
     {
     	return tutores;
     }

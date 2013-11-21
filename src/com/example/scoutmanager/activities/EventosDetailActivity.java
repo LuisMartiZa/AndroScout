@@ -32,15 +32,11 @@ public class EventosDetailActivity extends Activity {
 	private Evento ev = new Evento();
 	
 	private ImageButton addEducando;
-	
 	private ArrayList<String> educandos;
-
 	private ListView educandosListView;
 	
 	public EditText nameField;
-
     public EditText lugarField;
-    
     public EditText fechaField;
     
 	Bundle intentExtras;
@@ -53,13 +49,9 @@ public class EventosDetailActivity extends Activity {
 		this.educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
 		
 		educandos = new ArrayList<String>();
-		
 		nameField = (EditText) this.findViewById(R.id.nameEventoField);
-
 		lugarField = (EditText) this.findViewById(R.id.lugarEventoField);
-	    
 	    fechaField = (EditText) this.findViewById(R.id.fechaEventoField);
-	    
 		intentExtras = this.getIntent().getExtras();
 		
 		try {
