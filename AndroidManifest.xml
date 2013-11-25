@@ -35,6 +35,7 @@
         <activity android:name="com.example.scoutmanager.activities.Promesa"></activity>
         <activity android:name="com.example.scoutmanager.activities.Ley"></activity>
         <activity android:name="com.example.scoutmanager.activities.TutoresListActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.TutoresDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.ActividadesListActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.ActividadesDetailActivity"></activity>

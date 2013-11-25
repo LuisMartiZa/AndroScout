@@ -163,8 +163,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int TableRow=0x7f04002d;
         public static final int TableRow02=0x7f04002a;
         public static final int TableRoww=0x7f040030;
-        public static final int accept=0x7f04004f;
-        public static final int action_settings=0x7f040052;
+        public static final int TextView01=0x7f04004c;
+        public static final int accept=0x7f040051;
+        public static final int action_settings=0x7f040054;
         public static final int addEducandoEventoButton=0x7f040040;
         public static final int apellidosTutor=0x7f040049;
         public static final int birthdayText=0x7f040025;
@@ -172,7 +173,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int descripText=0x7f040009;
         public static final int dirEducando=0x7f040024;
         public static final int dirText=0x7f040023;
-        public static final int discard=0x7f040050;
+        public static final int discard=0x7f040052;
         public static final int educandoBirthday=0x7f040026;
         public static final int educandoEmail=0x7f040029;
         public static final int educandoEvento=0x7f040036;
@@ -181,6 +182,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int educandosEvento=0x7f04003f;
         public static final int educandosSelectableList=0x7f040038;
         public static final int emailText=0x7f040028;
+        public static final int emailTutor=0x7f04004d;
         public static final int etapaText=0x7f040031;
         public static final int fechaEvento=0x7f04003b;
         public static final int fechaEventoField=0x7f04003e;
@@ -206,8 +208,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int nameEventoField=0x7f04003c;
         public static final int nameEventoList=0x7f040043;
         public static final int nameText=0x7f04001f;
-        public static final int nameTutorList=0x7f04004d;
-        public static final int newAction=0x7f040051;
+        public static final int nameTutorList=0x7f04004f;
+        public static final int newAction=0x7f040053;
         public static final int nombreTutor=0x7f040048;
         public static final int padresText=0x7f040034;
         public static final int pagerLey=0x7f040046;
@@ -226,7 +228,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int spinnerSeccion=0x7f04002f;
         public static final int surnameEducando=0x7f040022;
         public static final int surnameText=0x7f040021;
-        public static final int surnameTutorList=0x7f04004e;
+        public static final int surnameTutorList=0x7f040050;
         public static final int tableRow2=0x7f040027;
         public static final int tableRowPadres=0x7f040033;
         public static final int telefonoEducando=0x7f04002c;
@@ -240,7 +242,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textView3=0x7f04001a;
         public static final int textView4=0x7f04001d;
         public static final int textViewMainAsistencia=0x7f040013;
-        public static final int tutoresListView=0x7f04004c;
+        public static final int tutoresListView=0x7f04004e;
     }
     public static final class integer {
         public static final int num_cols=0x7f070000;

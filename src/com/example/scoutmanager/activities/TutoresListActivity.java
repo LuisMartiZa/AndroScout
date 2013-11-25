@@ -121,8 +121,8 @@ public class TutoresListActivity extends Activity {
     public void executeAddNewCommand() {
     	try {
     		
-    		/*Intent detailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
-    		startActivityForResult(detailIntent, 1);*/
+    		Intent detailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
+    		startActivityForResult(detailIntent, 1);
     		
     	} catch (Exception e) {
  			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();

@@ -20,7 +20,7 @@ public class Tutor extends Entity {
 	public String Telefono = "";
 	
 	@TableField(name= "emailTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
-	@Databinding(ViewId= R.id.telefonoTutor)
+	@Databinding(ViewId= R.id.emailTutor)
 	public String Email = "";
 
 	

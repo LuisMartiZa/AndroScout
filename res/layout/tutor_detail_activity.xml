@@ -58,6 +58,21 @@
                 android:inputType="text" />
 
         </TableRow>
+
+        <TableRow android:layout_width="match_parent" >
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_marginLeft="5dip"
+                android:text="E-Mail" />
+
+            <EditText
+                android:id="@+id/emailTutor"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:inputType="text" />
+        </TableRow>
+
     </TableLayout>
 
 </RelativeLayout>
