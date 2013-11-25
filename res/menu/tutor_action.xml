@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/accept_educando"
+    <item android:id="@+id/accept"
           android:icon="@drawable/ic_action_accept"
-          android:title="accept_educando"
+          android:title="accept"
           android:showAsAction="ifRoom"/>
     
-    <item android:id="@+id/discard_educando"
-          android:icon="@drawable/ic_action_discard"
-          android:title="discard_educando"
+    <item android:id="@+id/newAction"
+          android:icon="@drawable/ic_action_new"
+          android:title="new"
           android:showAsAction="ifRoom"/>
 </menu>

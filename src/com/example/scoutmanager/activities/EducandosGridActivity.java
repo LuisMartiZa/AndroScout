@@ -98,7 +98,7 @@ public class EducandosGridActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.educando_list_action, menu);
+	    inflater.inflate(R.menu.list_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -106,7 +106,7 @@ public class EducandosGridActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.new_educando:
+	        case R.id.newAction:
 	            executeAddNewCommand();;
 	            return true;
 	            
@@ -150,7 +150,7 @@ public class EducandosGridActivity extends Activity {
 	{
 		DataBase.Context.EducandosSet.fill();
 		 
-        builder.setMessage("Seguro que desea eliminar al educando: " + DataBase.Context.EducandosSet.get(position).getNombre()+ "?")
+        builder.setMessage("Seguro que desea eliminar al educando " + DataBase.Context.EducandosSet.get(position).getNombre()+ "?")
         .setTitle("Educandos")
         .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
                public void onClick(DialogInterface dialog, int id) {

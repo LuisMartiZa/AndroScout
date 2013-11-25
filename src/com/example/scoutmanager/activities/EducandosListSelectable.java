@@ -182,7 +182,7 @@ public class EducandosListSelectable extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.educando_detail_action, menu);
+	    inflater.inflate(R.menu.list_selectable_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -190,7 +190,7 @@ public class EducandosListSelectable extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.accept_educando:
+	        case R.id.accept:
 	            executeSaveSelected();
 	            return true;
 	            

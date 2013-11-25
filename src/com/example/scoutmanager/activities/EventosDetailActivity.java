@@ -181,7 +181,7 @@ public class EventosDetailActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.evento_detail_action, menu);
+	    inflater.inflate(R.menu.detail_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -189,11 +189,11 @@ public class EventosDetailActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.accept_evento:
+	        case R.id.accept:
 	            executeSaveCommand();
 	            return true;
 	            
-	        case R.id.discard_evento:
+	        case R.id.discard:
 	            executeDeleteCommand();
 	            return true;
 	            

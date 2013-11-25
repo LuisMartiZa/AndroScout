@@ -1,5 +1,6 @@
 package com.example.scoutmanager.activities;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.scoutmanager.R;
@@ -12,7 +13,10 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,6 +34,14 @@ public class TutoresListActivity extends Activity {
 	private ListView tutoresListView;
     private ArrayAdapter<Tutor> tutoresListViewAdapter;
 	private ArrayList<Tutor> arrayListTutores= new ArrayList<Tutor>();
+	private AlertDialog.Builder builder;
+	
+	private static final int NEW_REQUEST = 188;
+	private static final int SELECT_REQUEST = 189;  
+
+	Bundle intentExtras;
+	
+	ArrayList<Integer> tutoresID= new ArrayList<Integer>();
 
     
     private OnItemClickListener itemClickListener = new OnItemClickListener() {
@@ -52,6 +64,8 @@ public class TutoresListActivity extends Activity {
 		
 		super.onCreate(savedInstanceState);
     	setContentView(R.layout.tutores_list_activity);
+    	
+    	builder = new AlertDialog.Builder(this);
 
         try {
         	Bundle intentExtras = this.getIntent().getExtras();
@@ -61,6 +75,7 @@ public class TutoresListActivity extends Activity {
         		fillArrayListTutores(intentExtras.getLong("educandoID"));
         	
         	initializeListView();
+        	initializePopUp();
 			ActionBar actionbar;
 			actionbar= getActionBar();
 			actionbar.setTitle("TUTORES");
@@ -69,6 +84,28 @@ public class TutoresListActivity extends Activity {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
 	}
+	
+	 @Override
+	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
+          if (requestCode == NEW_REQUEST) {
+        	try {
+				DataBase.Context.TutoresSet.fill();
+	      		Tutor tutor= DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1);
+	      		
+	      		arrayListTutores.add(tutor);
+	      		
+	      		initializeListView();
+			} catch (AdaFrameworkException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+          }
+          if (requestCode == SELECT_REQUEST) {
+        	  //TODO: Recuperar el intent y coger cada id y meterlo en el arraylisttutores.
+        	  tutoresID = intentExtras.getIntegerArrayList("tutoresID");
+        	  
+          }
+	 }
 	
 	private void initializeListView() throws AdaFrameworkException {
 				
@@ -96,7 +133,7 @@ public class TutoresListActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.educando_list_action, menu);
+	    inflater.inflate(R.menu.tutor_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -104,8 +141,12 @@ public class TutoresListActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.new_educando:
-	            executeAddNewCommand();;
+	        case R.id.newAction:
+	        	builder.show();
+	        	return true;
+	            
+	        case R.id.accept:
+	            //TODO: Mandar los id's de los padres y así guardarlos en el educando.
 	            return true;
 	            
 	        default:
@@ -122,6 +163,27 @@ public class TutoresListActivity extends Activity {
 		
 		arrayListTutores= new ArrayList<Tutor>();
 		arrayListTutores= (ArrayList<Tutor>) educando.getTutorEducando();
+	}
+	
+	private void initializePopUp()
+	{
+        builder.setMessage("¿Qué desea hacer?")
+        .setTitle("Tutores")
+        .setPositiveButton("Crear nuevo/a Tutor/a", new DialogInterface.OnClickListener()  {
+               public void onClick(DialogInterface dialog, int id) {
+                    Log.i("Dialogos", "Confirmacion Aceptada.");
+                    Toast.makeText(TutoresListActivity.this, "CREAR NUEVO", Toast.LENGTH_SHORT).show();
+                    executeAddNewCommand();
+                    dialog.cancel();
+                   }
+               })
+        .setNegativeButton("Seleccionar tutores ya creados", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+                        Log.i("Dialogos", "Confirmacion Cancelada.");
+                        Toast.makeText(TutoresListActivity.this, "SELECCIONAR YA CREADOS", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+                   }
+               });
 	}
 
 }

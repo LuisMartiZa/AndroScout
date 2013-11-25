@@ -163,9 +163,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int TableRow=0x7f04002d;
         public static final int TableRow02=0x7f04002a;
         public static final int TableRoww=0x7f040030;
-        public static final int accept_educando=0x7f04004f;
-        public static final int accept_evento=0x7f040052;
-        public static final int action_settings=0x7f040055;
+        public static final int accept=0x7f04004f;
+        public static final int action_settings=0x7f040052;
         public static final int addEducandoEventoButton=0x7f040040;
         public static final int apellidosTutor=0x7f040049;
         public static final int birthdayText=0x7f040025;
@@ -173,8 +172,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int descripText=0x7f040009;
         public static final int dirEducando=0x7f040024;
         public static final int dirText=0x7f040023;
-        public static final int discard_educando=0x7f040050;
-        public static final int discard_evento=0x7f040053;
+        public static final int discard=0x7f040050;
         public static final int educandoBirthday=0x7f040026;
         public static final int educandoEmail=0x7f040029;
         public static final int educandoEvento=0x7f040036;
@@ -209,8 +207,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int nameEventoList=0x7f040043;
         public static final int nameText=0x7f04001f;
         public static final int nameTutorList=0x7f04004d;
-        public static final int new_educando=0x7f040051;
-        public static final int new_evento=0x7f040054;
+        public static final int newAction=0x7f040051;
         public static final int nombreTutor=0x7f040048;
         public static final int padresText=0x7f040034;
         public static final int pagerLey=0x7f040046;
@@ -282,11 +279,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int tutores_row=0x7f03001e;
     }
     public static final class menu {
-        public static final int educando_detail_action=0x7f0a0000;
-        public static final int educando_list_action=0x7f0a0001;
-        public static final int evento_detail_action=0x7f0a0002;
-        public static final int evento_list_action=0x7f0a0003;
-        public static final int main=0x7f0a0004;
+        public static final int detail_action=0x7f0a0000;
+        public static final int list_action=0x7f0a0001;
+        public static final int list_selectable_action=0x7f0a0002;
+        public static final int main=0x7f0a0003;
+        public static final int tutor_action=0x7f0a0004;
     }
     public static final class string {
         public static final int A=0x7f08000e;

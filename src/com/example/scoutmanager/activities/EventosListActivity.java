@@ -62,7 +62,7 @@ public class EventosListActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.evento_list_action, menu);
+	    inflater.inflate(R.menu.list_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -70,7 +70,7 @@ public class EventosListActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.new_evento:
+	        case R.id.newAction:
 	            executeAddNewCommand();
 	            return true;
 	        default:

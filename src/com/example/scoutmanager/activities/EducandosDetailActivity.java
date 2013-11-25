@@ -141,7 +141,7 @@ public class EducandosDetailActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.educando_detail_action, menu);
+	    inflater.inflate(R.menu.detail_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -149,11 +149,11 @@ public class EducandosDetailActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.accept_educando:
+	        case R.id.accept:
 	            executeSaveCommand(false);
 	            return true;
 	            
-	        case R.id.discard_educando:
+	        case R.id.discard:
 	            executeDeleteCommand();
 	            return true;
 	            
