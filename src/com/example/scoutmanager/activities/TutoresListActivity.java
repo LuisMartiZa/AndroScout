@@ -37,9 +37,9 @@ public class TutoresListActivity extends Activity {
 		public void onItemClick(AdapterView<?> pParent, View pView, int pPosition, long id) {
 			try {
 	        	
-				Intent deatailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
+				/*Intent deatailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
 				deatailIntent.putExtra("tutorID", pPosition);
-				startActivityForResult(deatailIntent, 1);
+				startActivityForResult(deatailIntent, 1);*/
 	        	
 	        } catch (Exception e) {
 				Toast.makeText(TutoresListActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -84,8 +84,8 @@ public class TutoresListActivity extends Activity {
     public void executeAddNewCommand() {
     	try {
     		
-    		Intent detailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
-    		startActivityForResult(detailIntent, 1);
+    		/*Intent detailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
+    		startActivityForResult(detailIntent, 1);*/
     		
     	} catch (Exception e) {
  			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();

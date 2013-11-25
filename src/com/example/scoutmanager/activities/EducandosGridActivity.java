@@ -6,18 +6,23 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.EducandosGridAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
+import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -26,11 +31,15 @@ public class EducandosGridActivity extends Activity {
 	private GridView gridView;
 	private EducandosGridAdapter customGridAdapter;
 	private ArrayList<Educando> arrayListEducando;
+	private AlertDialog.Builder builder;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.educandos_grid_activity);
+		
+    	builder = new AlertDialog.Builder(this);
 		
 		ActionBar actionbar;
 		actionbar= getActionBar();
@@ -54,6 +63,23 @@ public class EducandosGridActivity extends Activity {
 			}
 
 		});
+		
+		gridView.setOnItemLongClickListener(new OnItemLongClickListener() { 
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				try {
+					initializePopUp(position);
+					builder.show();
+				} catch (AdaFrameworkException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return true;
+			}
+	    });
 
 	}
 	
@@ -99,6 +125,46 @@ public class EducandosGridActivity extends Activity {
 			
 			arrayListEducando.add(aux);
 		}
+	}
+	
+	public void executeDeleteCommand(int position) {
+		try {
+			
+				DataBase.Context.EducandosSet.fill();
+				Educando educando = DataBase.Context.EducandosSet.get(position);
+				
+				educando.setStatus(Entity.STATUS_DELETED);
+				DataBase.Context.EducandosSet.save();
+				
+				Intent refresh = new Intent(this, EducandosGridActivity.class);
+		        startActivity(refresh);
+		        this.finish();
+		        
+		} catch (Exception e) {
+			Log.v("DELETECOMMAND", "Mensaje "+e);
+
+		}
+	}
+	
+	private void initializePopUp(final int position) throws AdaFrameworkException
+	{
+		DataBase.Context.EducandosSet.fill();
+		 
+        builder.setMessage("Seguro que desea eliminar al educando: " + DataBase.Context.EducandosSet.get(position).getNombre()+ "?")
+        .setTitle("Educandos")
+        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
+               public void onClick(DialogInterface dialog, int id) {
+                    Log.i("Dialogos", "Confirmacion Aceptada.");
+                    executeDeleteCommand(position);
+                    dialog.cancel();
+                   }
+               })
+        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+                        Log.i("Dialogos", "Confirmacion Cancelada.");
+                        dialog.cancel();
+                   }
+               });
 	}
 	
 	@Override

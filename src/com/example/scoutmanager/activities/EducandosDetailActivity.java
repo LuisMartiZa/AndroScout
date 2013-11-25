@@ -19,6 +19,8 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -62,6 +64,7 @@ public class EducandosDetailActivity extends Activity {
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
 
+	private AlertDialog.Builder builder;
 	private TableRow padresRow;
 	
 	@Override
@@ -71,10 +74,13 @@ public class EducandosDetailActivity extends Activity {
 		
     	setContentView(R.layout.educandos_detail_activity);
     	
+    	builder = new AlertDialog.Builder(this);
+    	
     	try {
     		initializeSecciones();
 			initializeEtapas(0);
 			initializeActivity();
+			initializePopUp();
 			
 			ActionBar actionbar;
 			actionbar= this.getActionBar();
@@ -94,10 +100,14 @@ public class EducandosDetailActivity extends Activity {
 	        padresRow= (TableRow) findViewById(R.id.tableRowPadres);
 	        padresRow.setOnClickListener(new OnClickListener() {
 	            public void onClick(View v) {
-	            	Intent deatailIntent = new Intent(EducandosDetailActivity.this, TutoresListActivity.class);
-					deatailIntent.putExtra("educandoID", educando.getID());
-					Log.v("EducandoID", "ID " + educando.getID());
-					startActivityForResult(deatailIntent, 1);
+	            	if(educando.getID() == null){
+		                builder.show();
+	            	}else{
+		            	Intent deatailIntent = new Intent(EducandosDetailActivity.this, TutoresListActivity.class);
+						deatailIntent.putExtra("educandoID", educando.getID());
+						Log.v("EducandoID", "ID " + educando.getID());
+						startActivityForResult(deatailIntent, 1);
+	            	}
 	            }
 	        });
 			
@@ -140,7 +150,7 @@ public class EducandosDetailActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.accept_educando:
-	            executeSaveCommand();
+	            executeSaveCommand(false);
 	            return true;
 	            
 	        case R.id.discard_educando:
@@ -150,6 +160,40 @@ public class EducandosDetailActivity extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private void initializePopUp()
+	{
+        builder.setMessage("Para acceder a Padres debe estar creado el educando ÀDesea guardar dicho educando?")
+        .setTitle("Educandos")
+        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
+               public void onClick(DialogInterface dialog, int id) {
+                    Log.i("Dialogos", "Confirmacion Aceptada.");
+                    executeSaveCommand(true);
+                  
+                    try {
+						DataBase.Context.EducandosSet.fill();
+						educando = DataBase.Context.EducandosSet.get(DataBase.Context.EducandosSet.size()-1);
+						
+						Intent deatailIntent = new Intent(EducandosDetailActivity.this, TutoresListActivity.class);
+						deatailIntent.putExtra("educandoID", educando.getID());
+						Log.v("EducandoID", "ID " + educando.getID());
+						startActivityForResult(deatailIntent, 1);
+						
+					} catch (AdaFrameworkException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                    
+                        dialog.cancel();
+                   }
+               })
+        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+               public void onClick(DialogInterface dialog, int id) {
+                        Log.i("Dialogos", "Confirmacion Cancelada.");
+                        dialog.cancel();
+                   }
+               });
 	}
 	
 	
@@ -298,7 +342,7 @@ public class EducandosDetailActivity extends Activity {
 		}
 	}
 	
-	public void executeSaveCommand() {
+	public void executeSaveCommand(boolean parents) {
 		try {
 			
 			educando.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
@@ -340,7 +384,8 @@ public class EducandosDetailActivity extends Activity {
 				DataBase.Context.EducandosSet.save();
 				
 				setResult(Activity.RESULT_OK);
-				finish();
+				if(!parents)
+					finish();
 				
 			} else {
 				Toast.makeText(this, educando.getValidationResultString("-"), Toast.LENGTH_SHORT).show();

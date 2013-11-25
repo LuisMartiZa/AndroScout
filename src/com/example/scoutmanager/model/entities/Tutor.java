@@ -18,6 +18,10 @@ public class Tutor extends Entity {
 	@TableField(name= "telefonoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.telefonoTutor)
 	public String Telefono = "";
+	
+	@TableField(name= "emailTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
+	@Databinding(ViewId= R.id.telefonoTutor)
+	public String Email = "";
 
 	
 	 /*
@@ -66,6 +70,16 @@ public class Tutor extends Entity {
     public void setTelefono(String telefono)
     {
     	this.Telefono=telefono;
+    }
+    
+    public String getEmail()
+    {
+    	return Email;
+    }
+    
+    public void setEmail(String email)
+    {
+    	this.Email=email;
     }
 
 }

@@ -38,6 +38,9 @@ public class Educando extends Entity {
 	@Databinding(ViewId= R.id.telefonoEducando)
 	public String Telefono = "";
 	
+    @TableField(name= "imagenEducando", datatype= Entity.DATATYPE_TEXT)
+	public String imagen = "";
+	
     @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     public Seccion seccion = new Seccion();
     
@@ -46,9 +49,6 @@ public class Educando extends Entity {
     
     @TableField(name= "tutorEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     public List<Tutor> tutores= new ArrayList<Tutor>();
-    
-    @TableField(name= "imagenEducando", datatype= Entity.DATATYPE_TEXT)
-	public String imagen = "";
     
     
     /*
