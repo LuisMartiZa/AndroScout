@@ -12,6 +12,7 @@ import com.example.scoutmanager.activities.ActividadesListActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
 import com.example.scoutmanager.activities.LeyYPromesa;
+import com.example.scoutmanager.activities.TutoresListActivity;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
@@ -237,6 +238,8 @@ public class MainActivity extends Activity {
 		items.add(new Menu_items(R.drawable.actividades, "Actividades"));
 		items.add(new Menu_items(R.drawable.estrella, "Ley y Promesa"));
 		items.add(new Menu_items(R.drawable.educandos, "Educandos"));
+		items.add(new Menu_items(R.drawable.educandos, "Padres/Tutores"));
+
 		
 		// Sets the data behind this ListView
 		this.listView.setAdapter(new LateralMenuAdapter(this, items));
@@ -304,6 +307,17 @@ public class MainActivity extends Activity {
 			        
 			        Intent educandos = new Intent(view.getContext(), EducandosGridActivity.class);
 			        startActivity(educandos);
+
+			        toast = Toast.makeText(context, text, duration);
+			        toast.show();
+			        break;
+			        
+			    case 5:
+			    	menu.toggle(true);
+			        text = "Ha pulsado educandos";
+			        
+			        Intent tutores = new Intent(view.getContext(), TutoresListActivity.class);
+			        startActivity(tutores);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();

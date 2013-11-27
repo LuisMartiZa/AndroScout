@@ -107,7 +107,7 @@ public class EducandosGridActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.newAction:
-	            executeAddNewCommand();;
+	            executeAddNewCommand();
 	            return true;
 	            
 	        default:

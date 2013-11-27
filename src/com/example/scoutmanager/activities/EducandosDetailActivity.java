@@ -19,8 +19,6 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,7 +39,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,9 +60,6 @@ public class EducandosDetailActivity extends Activity {
 	private static final String CAMERA_DIR = "/dcim/";
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
-
-	private AlertDialog.Builder builder;
-	private TableRow padresRow;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,14 +67,11 @@ public class EducandosDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
     	setContentView(R.layout.educandos_detail_activity);
-    	
-    	builder = new AlertDialog.Builder(this);
-    	
+    	    	
     	try {
     		initializeSecciones();
 			initializeEtapas(0);
 			initializeActivity();
-			initializePopUp();
 			
 			ActionBar actionbar;
 			actionbar= this.getActionBar();
@@ -96,20 +87,7 @@ public class EducandosDetailActivity extends Activity {
 
                 }
 	         });
-	        
-	        padresRow= (TableRow) findViewById(R.id.tableRowPadres);
-	        padresRow.setOnClickListener(new OnClickListener() {
-	            public void onClick(View v) {
-	            	if(educando.getID() == null){
-		                builder.show();
-	            	}else{
-		            	Intent deatailIntent = new Intent(EducandosDetailActivity.this, TutoresListActivity.class);
-						deatailIntent.putExtra("educandoID", educando.getID());
-						Log.v("EducandoID", "ID " + educando.getID());
-						startActivityForResult(deatailIntent, 1);
-	            	}
-	            }
-	        });
+
 			
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
@@ -162,41 +140,6 @@ public class EducandosDetailActivity extends Activity {
 	    }
 	}
 	
-	private void initializePopUp()
-	{
-        builder.setMessage("Para acceder a Padres debe estar creado el educando ÀDesea guardar dicho educando?")
-        .setTitle("Educandos")
-        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
-               public void onClick(DialogInterface dialog, int id) {
-                    Log.i("Dialogos", "Confirmacion Aceptada.");
-                    executeSaveCommand(true);
-                  
-                    try {
-						DataBase.Context.EducandosSet.fill();
-						educando = DataBase.Context.EducandosSet.get(DataBase.Context.EducandosSet.size()-1);
-						
-						Intent deatailIntent = new Intent(EducandosDetailActivity.this, TutoresListActivity.class);
-						deatailIntent.putExtra("educandoID", educando.getID());
-						Log.v("EducandoID", "ID " + educando.getID());
-						startActivityForResult(deatailIntent, 1);
-						
-					} catch (AdaFrameworkException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                    
-                        dialog.cancel();
-                   }
-               })
-        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-               public void onClick(DialogInterface dialog, int id) {
-                        Log.i("Dialogos", "Confirmacion Cancelada.");
-                        dialog.cancel();
-                   }
-               });
-	}
-	
-	
 	private void initializeTypeface(){
 		Typeface tf = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
@@ -207,7 +150,6 @@ public class EducandosDetailActivity extends Activity {
         TextView birthday = (TextView) this.findViewById(R.id.birthdayText);
         TextView seccion = (TextView) this.findViewById(R.id.sectionText);
         TextView etapa = (TextView) this.findViewById(R.id.etapaText);
-        TextView padres = (TextView) this.findViewById(R.id.padresText);
 
         name.setTypeface(tf);
         surname.setTypeface(tf);
@@ -215,7 +157,6 @@ public class EducandosDetailActivity extends Activity {
         birthday.setTypeface(tf);
         seccion.setTypeface(tf);
         etapa.setTypeface(tf);
-        padres.setTypeface(tf);
         
         //EDITTEXT
         EditText nameField = (EditText) this.findViewById(R.id.nameEducando);

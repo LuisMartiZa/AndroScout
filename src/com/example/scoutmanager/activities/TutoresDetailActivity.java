@@ -9,18 +9,26 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class TutoresDetailActivity extends Activity {
 	
+	private ActionBar actionbar;
 	private Tutor tutor = new Tutor();
+	private ListView educandosListView;
+
+	private static final int SELECT_REQUEST= 188;  
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,13 +36,22 @@ public class TutoresDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);		
     	setContentView(R.layout.tutor_detail_activity);
     	
+		educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
+		educandosListView.setOnClickListener(onClick);
+
     	try {
     		
 			initializeActivity();
 			
-			ActionBar actionbar;
 			actionbar= this.getActionBar();
-			actionbar.setTitle("TUTOR/A");	 
+			actionbar.setTitle("TUTOR/A");
+			Bundle intentExtras = this.getIntent().getExtras();
+			if (intentExtras != null)
+				actionbar.setSubtitle("Editar tutor");
+			else
+				actionbar.setSubtitle("Nuevo tutor");
+
+
 
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
@@ -44,6 +61,19 @@ public class TutoresDetailActivity extends Activity {
     	//initializeTypeface();
 		
 	}
+	
+	 @Override
+	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
+          if (requestCode == SELECT_REQUEST && resultCode == RESULT_OK) {
+        	  /*//TODO: Recuperar el intent y coger cada id y meterlo en el arraylisttutores.
+        	  tutoresID = intentExtras.getIntegerArrayList("tutoresID");
+        	  
+        	  for(int i=0; i< tutoresID.size(); ++i){
+        		  
+        	  }*/
+        	  
+          }
+	 }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,6 +137,7 @@ public class TutoresDetailActivity extends Activity {
 		if (intentExtras != null)
 			executeShowCommand(intentExtras.getLong("tutorID"));
 		
+		
 			
 	}
 	
@@ -125,12 +156,12 @@ public class TutoresDetailActivity extends Activity {
 	
  	public void executeDeleteCommand() {
 		try {
-			
 			if (tutor.getID() != null) {
 			
 				tutor.setStatus(Entity.STATUS_DELETED);
-				DataBase.Context.TutoresSet.save();
-				
+								
+				DataBase.Context.TutoresSet.save(tutor);
+
 				setResult(Activity.RESULT_OK);
 				finish();
 			}
@@ -166,4 +197,20 @@ public class TutoresDetailActivity extends Activity {
 
 		}
 	}
+	
+	private void executeShowListSelectable() {
+	try {
+			Intent detailIntent = new Intent(this, EducandosListSelectable.class);
+			startActivityForResult(detailIntent, SELECT_REQUEST);
+		} catch (Exception e) {
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+private View.OnClickListener onClick =  new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			executeShowListSelectable();
+		}
+	};
 }

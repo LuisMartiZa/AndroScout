@@ -1,8 +1,6 @@
 package com.example.scoutmanager.model.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.parsers.DateParser;
@@ -45,11 +43,7 @@ public class Educando extends Entity {
     public Seccion seccion = new Seccion();
     
     @TableField(name= "etapaEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public Etapa etapa = new Etapa();
-    
-    @TableField(name= "tutorEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Tutor> tutores= new ArrayList<Tutor>();
-    
+    public Etapa etapa = new Etapa();    
     
     /*
      * Methods of Educando class.
@@ -128,16 +122,6 @@ public class Educando extends Entity {
     public void setSeccionEducando(Seccion seccion)
     {
     	this.seccion=seccion;
-    }
-    
-    public List<Tutor> getTutorEducando()
-    {
-    	return tutores;
-    }
-    
-    public void addTutorEducando(Tutor tutor)
-    {
-    	this.tutores.add(tutor);
     }
     
     public String getEmail()
