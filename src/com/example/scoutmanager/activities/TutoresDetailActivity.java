@@ -23,10 +23,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
+//import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
+//import android.widget.TextView;
 import android.widget.Toast;
 
 public class TutoresDetailActivity extends Activity {
@@ -212,13 +212,20 @@ public class TutoresDetailActivity extends Activity {
 			
 			tutor.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
 			tutor.resetHijosTutor();
-			tutor.hijos=arrayListEducandos;
+			
+			Educando educando= new Educando();
+			
+			for(int n=0; n< arrayListEducandos.size(); n++){
+				educando= arrayListEducandos.get(n);
+				
+				tutor.addHijoTutor(educando);
+			}
 			if (tutor.validate(this)) {
 				
 				if (tutor.getID() == null) {
 					DataBase.Context.TutoresSet.add(tutor);
 				}
-				DataBase.Context.TutoresSet.save();
+				DataBase.Context.TutoresSet.save(tutor);
 				
 				setResult(Activity.RESULT_OK);
 				if(!assing)
