@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.entities.Educando;
-import com.example.scoutmanager.model.entities.Tutor;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,13 +15,13 @@ import android.widget.TextView;
 import android.view.LayoutInflater;
 
 
-public class TutoresListAdapter extends ArrayAdapter<Tutor> {
+public class EducandosListAdapter extends ArrayAdapter<Educando> {
 	 
     private int resource;
 	private Context context;
-	private ArrayList<Tutor> data = new ArrayList<Tutor>();
+	private ArrayList<Educando> data = new ArrayList<Educando>();
  
-    public TutoresListAdapter(Context context, int resource, ArrayList<Tutor> data) {
+    public EducandosListAdapter(Context context, int resource, ArrayList<Educando> data) {
         super(context, resource, data);
         
         this.resource = resource;
@@ -40,15 +39,15 @@ public class TutoresListAdapter extends ArrayAdapter<Tutor> {
         Typeface tf = Typeface.createFromAsset(getContext().getAssets(),
                 "fonts/Roboto-Light.ttf");
         
-        Tutor tutor =  data.get(position);
+        Educando educando =  data.get(position);
         TextView name= (TextView) itemView.findViewById(R.id.tipoTutorList);
         name.setTypeface(tf);
-        name.setText(tutor.getTipo() + " de ");
+        name.setText(educando.getNombre());
         name.setTextSize(20);
         
         TextView surname= (TextView) itemView.findViewById(R.id.hijosTutorList);
         surname.setTypeface(tf);
-        surname.setText(tutor.getNombre());//tutor.getHijos().get(0).getNombre());
+        surname.setText(educando.getApellidos());
         surname.setTextSize(20);
         
         return itemView;

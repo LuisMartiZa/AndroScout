@@ -89,4 +89,9 @@ public class Tutor extends Entity {
     {
     	this.hijos.add(educando);
     }
+    
+    public void resetHijosTutor()
+    {
+    	this.hijos = new ArrayList<Educando>();
+    }
 }

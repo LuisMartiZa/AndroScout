@@ -12,7 +12,9 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -91,9 +93,7 @@ public class EducandosListSelectable extends Activity {
     private void getItemsSelected(){
     
     	SparseBooleanArray a= educandosListView.getCheckedItemPositions();
-    	
-		educandosSelected = new ArrayList<String>();
-		
+    			
 		educandosSelectedID = new ArrayList<Integer>();
     	
     	StringBuffer sb = new StringBuffer("");
@@ -105,9 +105,7 @@ public class EducandosListSelectable extends Activity {
                 if (sb.length() > 0)
                     sb.append(", ");
      
-                
                 String s = (String)educandosListView.getAdapter().getItem(idx);
-                educandosSelected.add(s);
                 educandosSelectedID.add(idx);
                 sb.append(s);
                 
@@ -122,60 +120,22 @@ public class EducandosListSelectable extends Activity {
     	
     	Bundle intentExtras = this.getIntent().getExtras();
     	
-    	Intent intent = new Intent(this, EventosDetailActivity.class);
-		
-		// Create a bundle object
-        Bundle educandosEvento = new Bundle();
-        Bundle nameEvento = new Bundle();
-        Bundle lugarEvento = new Bundle();
-        Bundle fechaEvento = new Bundle();
-        Bundle idEvento = new Bundle();
-        Bundle editado = new Bundle();
-        Bundle educandosID = new Bundle();
-        Bundle newEvent = new Bundle();
-        
-        if(!intentExtras.getBoolean("newEvent"))
-        {
-        	educandosEvento.putStringArrayList("educandosSelected", educandosSelected);
-        	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
-            idEvento.putInt("eventoID", intentExtras.getInt("eventoID"));
-            editado.putBoolean("edited", true);
-            newEvent.putBoolean("newEvent", false);
-            
-            //Add the bundle to the intent.
-            intent.putExtras(educandosEvento);
-            intent.putExtras(educandosID);
-            intent.putExtras(idEvento);
-            intent.putExtras(editado);
-            intent.putExtras(newEvent);
-
-            
-        }else{
+    	if(intentExtras.getBoolean("tutoresView")){
+        	Intent intent = new Intent(this, TutoresDetailActivity.class);
         	
-        	educandosEvento.putStringArrayList("educandosSelected", educandosSelected);
-        	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
-        	nameEvento.putString("nombre", intentExtras.getString("nombre"));
-            lugarEvento.putString("lugar", intentExtras.getString("lugar"));
-            fechaEvento.putString("fecha", intentExtras.getString("fecha"));
-            editado.putBoolean("edited", true);
-            newEvent.putBoolean("newEvent", true);
-
-            
-            //Add the bundle to the intent.
-            intent.putExtras(educandosEvento);
-            intent.putExtras(educandosID);
-            intent.putExtras(nameEvento);
-            intent.putExtras(lugarEvento);
-            intent.putExtras(fechaEvento);
-            intent.putExtras(editado);
-            intent.putExtras(newEvent);
-
-
-        }
-        
-        // Add the bundle to the intent.
-        finish();
-        startActivity(intent);
+        	 Bundle educandosID = new Bundle();
+        	 
+        	 Log.v("LISTEDUCANDOS", "ID's " + educandosSelectedID);
+         	
+         	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
+             intent.putExtras(educandosID);
+             
+             // Add the bundle to the intent.
+             setResult(RESULT_OK,intent);
+             finish();
+    	}
+		
+       
     }
     
     @Override
@@ -198,6 +158,14 @@ public class EducandosListSelectable extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+    
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     
     
 }
