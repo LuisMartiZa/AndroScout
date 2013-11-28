@@ -34,7 +34,6 @@ import android.widget.Toast;
 public class EventosDetailActivity extends Activity {
 	
 	private Evento ev = new Evento();
-	
 	private ActionBar actionbar;
 	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter;
@@ -83,7 +82,6 @@ public class EventosDetailActivity extends Activity {
 			try {
 				DataBase.Context.EducandosSet.fill();
 			} catch (AdaFrameworkException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 					  
@@ -100,7 +98,6 @@ public class EventosDetailActivity extends Activity {
 			try {
 				initializeListView();
 			} catch (AdaFrameworkException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

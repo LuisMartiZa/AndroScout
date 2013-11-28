@@ -1,8 +1,5 @@
 package com.example.scoutmanager.model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.scoutmanager.R;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.*;
@@ -13,6 +10,10 @@ public class Tutor extends Entity {
 	@TableField(name= "nombreTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId= R.id.nombreTutor)
 	public String Nombre = "";
+	
+	@TableField(name= "apellidosTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
+	@Databinding(ViewId= R.id.apellidosTutor)
+	public String Apellidos = "";
 	
 	@TableField(name= "telefonoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.telefonoTutor)
@@ -25,11 +26,7 @@ public class Tutor extends Entity {
 	@TableField(name= "tipoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.tipoTutor)
 	public String Tipo = "";
-	
-	/*@TableField(name= "hijosTutor", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Educando> hijos= new ArrayList<Educando>();*/
 
-	
 	 /*
      * Methods of Usuario class.
      */
@@ -48,6 +45,16 @@ public class Tutor extends Entity {
     public void setNombre(String nombre)
     {
     	this.Nombre=nombre;
+    }
+    
+    public String getApellidos()
+    {
+    	return Apellidos;
+    }
+    
+    public void setApellidos(String apellidos)
+    {
+    	this.Apellidos=apellidos;
     }
     
     public String getTelefono()
@@ -79,19 +86,4 @@ public class Tutor extends Entity {
     {
     	this.Tipo=tipo;
     }
-    
-    /*public List<Educando> getHijos()
-    {
-    	return hijos;
-    }
-    
-    public void addHijoTutor(Educando educando)
-    {
-    	this.hijos.add(educando);
-    }
-    
-    public void resetHijosTutor()
-    {
-    	this.hijos = new ArrayList<Educando>();
-    }*/
 }

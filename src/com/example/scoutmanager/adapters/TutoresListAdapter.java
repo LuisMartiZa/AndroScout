@@ -1,13 +1,18 @@
 package com.example.scoutmanager.adapters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Tutor;
+import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -40,16 +45,18 @@ public class TutoresListAdapter extends ArrayAdapter<Tutor> {
                 "fonts/Roboto-Light.ttf");
         
         Tutor tutor =  data.get(position);
-        TextView name= (TextView) itemView.findViewById(R.id.tipoTutorList);
+        
+    	TextView name= (TextView) itemView.findViewById(R.id.tipoTutorList);
         name.setTypeface(tf);
-        name.setText(tutor.getNombre() + " " + tutor.getTipo() + " de");
         name.setTextSize(20);
         
         TextView surname= (TextView) itemView.findViewById(R.id.hijosTutorList);
         surname.setTypeface(tf);
-        //surname.setText(tutor.getHijos().get(0).getNombre());
         surname.setTextSize(20);
         
+        name.setText(tutor.getNombre() );
+        surname.setText(tutor.getApellidos());
+
         return itemView;
     }
 }

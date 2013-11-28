@@ -1,8 +1,6 @@
 package com.example.scoutmanager.model.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.parsers.DateParser;
@@ -26,8 +24,6 @@ public class Evento extends Entity {
 	@Databinding(ViewId = R.id.fechaEventoField, parser = DateParser.class)
 	public Date F_Evento = new Date();
 	
-	/*@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Educando> educandosEvento = new ArrayList<Educando>();*/
 	 /*
      * Methods of Usuario class.
      */
@@ -76,19 +72,5 @@ public class Evento extends Entity {
     {
     	this.F_Evento=f_evento;
     }
-	
-    /*public List<Educando> getEducandosEvento()
-    {
-    	return this.educandosEvento;
-    }
-    
-    public void addEducandoEvento(Educando educando)
-    {
-    	this.educandosEvento.add(educando);
-    }
-    
-    public void resetEducandosEvento()
-    {
-    	this.educandosEvento = new ArrayList<Educando>();
-    }*/
+
 }

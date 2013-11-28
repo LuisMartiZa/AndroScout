@@ -1,6 +1,7 @@
 package com.example.scoutmanager.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.EducandosListAdapter;
@@ -211,15 +212,7 @@ public class TutoresDetailActivity extends Activity {
 		try {
 			
 			tutor.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
-			//tutor.resetHijosTutor();
-			
-			Educando educando= new Educando();
-			
-			for(int n=0; n< arrayListEducandos.size(); n++){
-				educando= arrayListEducandos.get(n);
-				
-				//tutor.addHijoTutor(educando);
-			}
+		
 			if (tutor.validate(this)) {
 				
 				if (tutor.getID() == null) {
@@ -228,6 +221,52 @@ public class TutoresDetailActivity extends Activity {
 				DataBase.Context.TutoresSet.save(tutor);
 				
 				setResult(Activity.RESULT_OK);
+				
+				Educando educando= new Educando();
+				DataBase.Context.TutoresSet.fill();
+				
+				if(arrayListEducandos.size()>0){
+					
+					for(int n=0; n< arrayListEducandos.size(); n++){
+						educando= arrayListEducandos.get(n);
+						
+						educando.setStatus(Entity.STATUS_UPDATED);
+						if(tutor.getStatus() == Entity.STATUS_UPDATED){
+							educando.addTutor(DataBase.Context.TutoresSet.getElementByID(tutor.getID()));
+
+						}else{
+							educando.addTutor(DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1));
+
+						}
+						
+						DataBase.Context.EducandosSet.save(educando);
+						
+					}
+				}else{
+					DataBase.Context.EducandosSet.fill();
+					
+					String wherePattern = "tTutor_ID = ?";
+					
+					List<Educando> educandosList= new ArrayList<Educando>();
+					
+					if(tutor.getStatus() == Entity.STATUS_UPDATED){
+				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.getElementByID(tutor.getID()).toString() }, "tTutor_ID ASC", null, null, null, null);
+
+					}else{
+				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+
+					}
+
+					for(int i=0; i<educandosList.size();++i){
+						Educando aux = educandosList.get(i);
+						aux.setStatus(Entity.STATUS_UPDATED);
+						aux.resetTutores();
+						
+						DataBase.Context.EducandosSet.save(aux);
+
+					}
+				}
+				
 				if(!assing)
 					finish();
 				
@@ -247,9 +286,13 @@ public class TutoresDetailActivity extends Activity {
 
 			Bundle hijosTutor = new Bundle();    
 		    hijosTutor.putStringArrayList("selectedEducandos", educandosSelected);
+		    
+			Bundle tutoresView = new Bundle();    
+			tutoresView.putBoolean("tutoresView", true);
 			
 			Intent detailIntent = new Intent(this, EducandosListSelectable.class);
 		    detailIntent.putExtras(hijosTutor);
+		    detailIntent.putExtras(tutoresView);
 		    
 			startActivityForResult(detailIntent, SELECT_REQUEST);
 		} catch (Exception e) {
@@ -298,12 +341,16 @@ public class TutoresDetailActivity extends Activity {
     }
 	
 	private void fillArrayListEducandos() throws AdaFrameworkException{
+		DataBase.Context.EducandosSet.fill();
 		arrayListEducandos= new ArrayList<Educando>();
 		
-		//for(int i=0; i<tutor.getHijos().size();++i){
-			//Educando educando = tutor.getHijos().get(i);
-			//arrayListEducandos.add(educando);
-		//}
+		String wherePattern = "tTutor_ID = ?";
+        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { tutor.getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+
+		for(int i=0; i<educandosList.size();++i){
+			Educando educando = educandosList.get(i);
+			arrayListEducandos.add(educando);
+		}
 	}
 	
 	private void getSelectedEducandos(){
