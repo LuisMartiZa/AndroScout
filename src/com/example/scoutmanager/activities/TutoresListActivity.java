@@ -66,29 +66,6 @@ public class TutoresListActivity extends Activity {
 	
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
-          /*if (requestCode == NEW_REQUEST && resultCode == RESULT_OK) {
-        	try {
-				DataBase.Context.TutoresSet.fill();
-	      		Tutor tutor= DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1);
-	      		
-	      		arrayListTutores.add(tutor);
-	      		
-	      		initializeListView();
-			} catch (AdaFrameworkException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-          }
-          if (requestCode == SELECT_REQUEST && resultCode == RESULT_OK) {
-        	  //TODO: Recuperar el intent y coger cada id y meterlo en el arraylisttutores.
-        	  tutoresID = intentExtras.getIntegerArrayList("tutoresID");
-        	  
-        	  for(int i=0; i< tutoresID.size(); ++i){
-        		  
-        	  }
-        	  
-          }*/
-          
           if(resultCode == RESULT_OK){
         	  Intent refresh = new Intent(this, TutoresListActivity.class);
               startActivity(refresh);
@@ -150,8 +127,6 @@ public class TutoresListActivity extends Activity {
 			
 			arrayListTutores.add(aux);
 		}
-		
-
 	}
 
 }

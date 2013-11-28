@@ -1,10 +1,9 @@
 package com.example.scoutmanager.activities;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.scoutmanager.R;
-import com.example.scoutmanager.adapters.EducandosEventosListAdapter;
+import com.example.scoutmanager.adapters.EducandosListAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Evento;
@@ -14,13 +13,17 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -31,31 +34,40 @@ public class EventosDetailActivity extends Activity {
 	
 	private Evento ev = new Evento();
 	
-	private ImageButton addEducando;
-	private ArrayList<String> educandos;
+	private ActionBar actionbar;
 	private ListView educandosListView;
+    private ArrayAdapter<Educando> educandosListViewAdapter;
+	private ArrayList<Educando> arrayListEducandos= new ArrayList<Educando>();
+	private ArrayList<String> educandosSelected;
+	private ImageButton addEducando;
 	
-	public EditText nameField;
-    public EditText lugarField;
-    public EditText fechaField;
-    
-	Bundle intentExtras;
+	private AlertDialog.Builder builder;
+
+	private static final int SELECT_REQUEST= 188;  
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		this.setContentView(R.layout.eventos_detail_activity);
+		setContentView(R.layout.eventos_detail_activity);
 		
-		this.educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
-		
-		educandos = new ArrayList<String>();
-		nameField = (EditText) this.findViewById(R.id.nameEventoField);
-		lugarField = (EditText) this.findViewById(R.id.lugarEventoField);
-	    fechaField = (EditText) this.findViewById(R.id.fechaEventoField);
-		intentExtras = this.getIntent().getExtras();
+		educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
+			
+		addEducando= (ImageButton)findViewById(R.id.addEducandoEventoButton);
+		addEducando.setOnClickListener(onClick);
 		
 		try {
+    		initializePopUp();
 			initializeActivity();
+			
+			actionbar= this.getActionBar();
+			actionbar.setTitle("EVENTOS");
+			
+			Bundle intentExtras = this.getIntent().getExtras();
+			if (intentExtras != null)
+				actionbar.setSubtitle("Editar evento");
+			else
+				actionbar.setSubtitle("Nuevo evento");
+			
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
@@ -64,116 +76,114 @@ public class EventosDetailActivity extends Activity {
 		
 	}
 	
-	private void initializeActivity() throws AdaFrameworkException {
-		if (!intentExtras.getBoolean("newEvent")){
-			executeShowCommand(intentExtras.getInt("eventoID"));
-		}else{
-			if(intentExtras.getBoolean("edited")){
-				populateNewEvent();
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
+		if (requestCode == SELECT_REQUEST && resultCode == RESULT_OK) {
+			try {
+				DataBase.Context.EducandosSet.fill();
+			} catch (AdaFrameworkException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					  
+			Bundle intentExtras = data.getExtras();
+					  
+			arrayListEducandos=  new ArrayList<Educando>();
+							  
+			ArrayList<Integer> educandosID = intentExtras.getIntegerArrayList("educandosID");
+					  
+			for(int i=0; i< educandosID.size(); i++){
+				arrayListEducandos.add(DataBase.Context.EducandosSet.get(educandosID.get(i)));
+			}
+			
+			try {
+				initializeListView();
+			} catch (AdaFrameworkException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-				
-		ActionBar actionbar;
-		actionbar= getActionBar();
-		actionbar.setTitle("EVENTOS");
-		
-		addEducando = (ImageButton) findViewById(R.id.addEducandoEventoButton);
-		addEducando.setOnClickListener(onClick);
 	}
 	
-	private void executeShowCommand(int pIndex) {
+	private void initializeActivity() throws AdaFrameworkException {
+		Bundle intentExtras = this.getIntent().getExtras();
+		if (intentExtras != null){
+			executeShowCommand(intentExtras.getLong("eventoID"));
+		}else{
+			initializeListView();
+		}
+	}
+	
+	
+	public void executeShowCommand(Long pIndex) {
 		try {
-			ev = DataBase.Context.EventosSet.get(pIndex);
+
+			DataBase.Context.TutoresSet.fill();
+			ev = DataBase.Context.EventosSet.getElementByID(pIndex);
 			ev.setStatus(Entity.STATUS_UPDATED);
 			ev.bind(this);
 			
-			if(intentExtras.getBoolean("edited")){
-				educandos=intentExtras.getStringArrayList("educandosSelected");
-			}
-			else{
-				
-				List<Educando> educandosEvento = new ArrayList<Educando>();
-				educandosEvento = ev.getEducandosEvento();
-
-				Educando educando;
-									
-				for(int n=0; n< educandosEvento.size(); n++){
-					educando= educandosEvento.get(n);
-					
-					educandos.add(educando.getNombre()+" "+educando.getApellidos());
-				}
-			}
-			fillListView();
+			fillArrayListEducandos();
+			initializeListView();
 			
 		} catch (Exception e) {
-			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("EXECUTESHOWCOMMAND", "Mensaje "+e);
 		}
-	}
-	
-	private void populateNewEvent(){
-		
-		nameField.setText(intentExtras.getString("nombre"));
-        lugarField.setText(intentExtras.getString("lugar"));
-        fechaField.setText(intentExtras.getString("fecha"));
-        educandos = intentExtras.getStringArrayList("educandosSelected");
-        
-		fillListView();
 	}
 	
  	public void executeDeleteCommand() {
 		try {
-			
 			if (ev.getID() != null) {
 			
 				ev.setStatus(Entity.STATUS_DELETED);
-				DataBase.Context.EventosSet.save();
-				
-				this.setResult(Activity.RESULT_OK);
-				this.finish();
+								
+				DataBase.Context.EventosSet.save(ev);
+
+				setResult(Activity.RESULT_OK);
+				finish();
 			}
 			
 		} catch (Exception e) {
-			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("DELETECOMMAND", "Mensaje "+e);
+
 		}
 	}
 	
-	public void executeSaveCommand() {
+	
+	public void executeSaveCommand(boolean assing) {
 		try {
 			
 			ev.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
 			
-			if(intentExtras.getBoolean("edited")){
-				if(!intentExtras.getBoolean("newEvent"))
-					ev.resetEducandosEvento();
+			
+			ev.resetEducandosEvento();
+			
+			Educando educando= new Educando();
+			
+			for(int n=0; n< arrayListEducandos.size(); n++){
+				educando= arrayListEducandos.get(n);
 				
-				ArrayList<Integer> educandosID = intentExtras.getIntegerArrayList("educandosID");
-										
-				DataBase.Context.EducandosSet.fill();
-	
-				Educando educando;
-									
-				for(int n=0; n< educandosID.size(); n++){
-					educando= DataBase.Context.EducandosSet.get(educandosID.get(n));
-					
-					ev.addEducandoEvento(educando);
-				}
+				ev.addEducandoEvento(educando);;
 			}
-						
+			
 			if (ev.validate(this)) {
 				
 				if (ev.getID() == null) {
 					DataBase.Context.EventosSet.add(ev);
 				}
-				DataBase.Context.EventosSet.save();
+				DataBase.Context.EventosSet.save(ev);
 				
-				this.finish();
+				setResult(Activity.RESULT_OK);
+				
+				if(!assing)
+					finish();
 				
 			} else {
 				Toast.makeText(this, ev.getValidationResultString("-"), Toast.LENGTH_SHORT).show();
 			}
-			
 		} catch (Exception e) {
-			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+			Log.v("SAVECOMMAND", "Mensaje "+e);
+
 		}
 	}
 	
@@ -190,7 +200,7 @@ public class EventosDetailActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.accept:
-	            executeSaveCommand();
+	            executeSaveCommand(false);
 	            return true;
 	            
 	        case R.id.discard:
@@ -202,57 +212,82 @@ public class EventosDetailActivity extends Activity {
 	    }
 	}
 	
-	private void fillListView(){
-		
-		this.educandosListView.setAdapter(new EducandosEventosListAdapter(this, educandos));
+	private void executeShowListSelectable() {
+		try {
+				getSelectedEducandos();
+
+				Bundle educandosEvento = new Bundle();    
+			    educandosEvento.putStringArrayList("selectedEducandos", educandosSelected);
+				
+				Intent detailIntent = new Intent(this, EducandosListSelectable.class);
+			    detailIntent.putExtras(educandosEvento);
+			    
+				startActivityForResult(detailIntent, SELECT_REQUEST);
+			} catch (Exception e) {
+				Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+			}
 	}
 	
 	private View.OnClickListener onClick =  new View.OnClickListener() {
 		
 		public void onClick(View v) {
-			Intent intent = new Intent(EventosDetailActivity.this, EducandosListSelectable.class);
-			
-			// Create a bundle object
-	        Bundle educandosEvento = new Bundle();
-	        Bundle nameEvento = new Bundle();
-	        Bundle lugarEvento = new Bundle();
-	        Bundle fechaEvento = new Bundle();
-	        Bundle idEvento = new Bundle();
-	        Bundle newEvent = new Bundle();
-	        
-	        if(!intentExtras.getBoolean("newEvent"))
-	        {
-		        educandosEvento.putStringArrayList("selectedEducandos", educandos);
-	            idEvento.putInt("eventoID", intentExtras.getInt("eventoID"));
-	            newEvent.putBoolean("newEvent", false);
-	            
-	            //Add the bundle to the intent.
-	            intent.putExtras(educandosEvento);
-	            intent.putExtras(idEvento);
-	            intent.putExtras(newEvent);
-	            
-	        }else{
-	        	
-	        	educandosEvento.putStringArrayList("selectedEducandos", educandos);
-	        	nameEvento.putString("nombre", nameField.getText().toString());
-		        lugarEvento.putString("lugar", lugarField.getText().toString());
-		        fechaEvento.putString("fecha", fechaField.getText().toString());
-	            newEvent.putBoolean("newEvent", true);
+			if(ev.getID() == null){
+				builder.show();
+			}else{
+				executeShowListSelectable();
 
-	            //Add the bundle to the intent.
-	            intent.putExtras(educandosEvento);
-	            intent.putExtras(nameEvento);
-	            intent.putExtras(lugarEvento);
-	            intent.putExtras(fechaEvento);
-	            intent.putExtras(newEvent);
-
-	        }
-	        
-	        // Add the bundle to the intent.
-	        finish();
-	        startActivity(intent);
+			}
 		}
 	};
+	
+	private void initializePopUp(){
+		 builder = new AlertDialog.Builder(this);
+	
+	     builder.setMessage("Para asignar Educandos, el evento debe estar creado ÀQuŽ desea hacer?")
+	     .setTitle("CREAR TUTOR")
+	     .setPositiveButton("Crear", new DialogInterface.OnClickListener()  {
+	            public void onClick(DialogInterface dialog, int id) {
+	            	executeSaveCommand(true);
+					executeShowListSelectable();
+	            	dialog.cancel();
+	                }
+	            })
+	     .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int id) {
+	                     Log.i("Dialogos", "Confirmacion Cancelada.");
+	                     dialog.cancel();
+	                }
+	            });
+	}
+	
+	private void initializeListView() throws AdaFrameworkException {
+		    	
+    	if (educandosListView != null) {
+    		educandosListViewAdapter= new EducandosListAdapter(EventosDetailActivity.this, R.layout.tutores_row, arrayListEducandos);
+    		educandosListView.setAdapter(this.educandosListViewAdapter);
+    	}
+    }
+		
+	private void fillArrayListEducandos() throws AdaFrameworkException{
+		arrayListEducandos= new ArrayList<Educando>();
+		
+		for(int i=0; i<ev.getEducandosEvento().size();++i){
+			Educando educando = ev.getEducandosEvento().get(i);
+			arrayListEducandos.add(educando);
+		}
+	}
+	
+	private void getSelectedEducandos(){
+		Educando educando;
+		
+		educandosSelected= new ArrayList<String>();
+		
+		for(int n=0; n< arrayListEducandos.size(); n++){
+			educando= arrayListEducandos.get(n);
+			
+			educandosSelected.add(educando.getNombre()+" "+educando.getApellidos());
+		}
+	}
 	
 	private void initializeTypeface(){
 		Typeface tf = Typeface.createFromAsset(this.getAssets(),
@@ -264,9 +299,9 @@ public class EventosDetailActivity extends Activity {
         TextView lugar = (TextView) this.findViewById(R.id.lugarEvento);
         TextView fecha = (TextView) this.findViewById(R.id.fechaEvento);
         
-        nameField = (EditText) this.findViewById(R.id.nameEventoField);
-        lugarField = (EditText) this.findViewById(R.id.lugarEventoField);
-        fechaField = (EditText) this.findViewById(R.id.fechaEventoField);
+        EditText nameField = (EditText) this.findViewById(R.id.nameEventoField);
+        EditText lugarField = (EditText) this.findViewById(R.id.lugarEventoField);
+        EditText fechaField = (EditText) this.findViewById(R.id.fechaEventoField);
 
         name.setTypeface(tfb);
         lugar.setTypeface(tfb);

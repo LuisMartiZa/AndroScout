@@ -1,5 +1,7 @@
 package com.example.scoutmanager.activities;
 
+import java.util.ArrayList;
+
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.EventosListAdapter;
 import com.example.scoutmanager.model.DataBase;
@@ -24,20 +26,17 @@ public class EventosListActivity extends Activity {
 	
 	private ListView eventosListView;
     private ArrayAdapter<Evento> eventosListViewAdapter; 
+	private ArrayList<Evento> arrayListEventos= new ArrayList<Evento>();
+
     
     private OnItemClickListener itemClickListener = new OnItemClickListener() {
 		@Override
 		public void onItemClick(AdapterView<?> pParent, View pView, int pPosition, long id) {
 			try {
-	        	
-				Intent detailIntent = new Intent(pView.getContext(), EventosDetailActivity.class);
-				detailIntent.putExtra("eventoID", pPosition);
-				detailIntent.putExtra("new", false);
-				detailIntent.putExtra("edited", false);
-
+				Intent detailIntent = new Intent(EventosListActivity.this, EventosDetailActivity.class);
+				detailIntent.putExtra("eventoID", arrayListEventos.get(pPosition).getID());
 				
-				startActivity(detailIntent);
-			
+				startActivityForResult(detailIntent,1);
 				
 	        } catch (Exception e) {
 				Toast.makeText(pView.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -48,12 +47,19 @@ public class EventosListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		this.setContentView(R.layout.eventos_list_activity);
+		setContentView(R.layout.eventos_list_activity);
 		
-		try {
-			initializeActivity();
-			
-		} catch (Exception e) {
+		arrayListEventos = new ArrayList<Evento>();
+
+        try {
+        	fillArrayListEventos();
+        	initializeListView();
+        	//initializePopUp();
+			ActionBar actionbar;
+			actionbar= getActionBar();
+			actionbar.setTitle("EVENTOS");
+        	
+        } catch (Exception e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -78,34 +84,47 @@ public class EventosListActivity extends Activity {
 	    }
 	}
 	
+	@Override
+	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
+         if(resultCode == RESULT_OK){
+       	  	Intent refresh = new Intent(this, EventosListActivity.class);
+            startActivity(refresh);
+            this.finish();
+         }
+	 }
+	
+	private void initializeListView() throws AdaFrameworkException {
+				
+	   	this.eventosListView = (ListView) findViewById(R.id.EventosListView);
+	   	
+	   	if (eventosListView != null) {
+	   		eventosListView.setOnItemClickListener(itemClickListener);
+	   		eventosListViewAdapter= new EventosListAdapter(EventosListActivity.this, R.layout.eventos_row, arrayListEventos);
+	   		eventosListView.setAdapter(eventosListViewAdapter);
+	   	}
+	}
+	
+	private void fillArrayListEventos() throws AdaFrameworkException{
+		
+		DataBase.Context.EventosSet.fill();
+		int nEventos= DataBase.Context.EventosSet.size();
+		
+		arrayListEventos= new ArrayList<Evento>();
+		
+		for(int i=0; i<nEventos;++i){
+			Evento evento= DataBase.Context.EventosSet.get(i);
+			
+			arrayListEventos.add(evento);
+		}
+	}
+	
 	 public void executeAddNewCommand() {
     	try {
     		Intent detailIntent = new Intent(this, EventosDetailActivity.class);
-    		detailIntent.putExtra("newEvent", true);
-			detailIntent.putExtra("edited", false);
-    		
-    		startActivity(detailIntent);
+    		startActivityForResult(detailIntent,1);    		
     		
     	} catch (Exception e) {
  			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
  		}
-    }
-	
-	private void initializeActivity() throws AdaFrameworkException {
-				
-    	this.eventosListView = (ListView) this.findViewById(R.id.EventosListView);
-    	
-    	if (this.eventosListView != null) {
-    		this.eventosListView.setOnItemClickListener(itemClickListener);
-    		this.eventosListViewAdapter= new EventosListAdapter(this, R.layout.eventos_row);
-    		this.eventosListView.setAdapter(this.eventosListViewAdapter);
-    		
-    		DataBase.Context.EventosSet.setAdapter(this.eventosListViewAdapter);
-    		DataBase.Context.EventosSet.fill();
-    		
-    		ActionBar actionbar;
-    		actionbar= getActionBar();
-    		actionbar.setTitle("EVENTOS");
-    	}
     }
 }

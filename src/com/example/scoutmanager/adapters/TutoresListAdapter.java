@@ -3,7 +3,6 @@ package com.example.scoutmanager.adapters;
 import java.util.ArrayList;
 
 import com.example.scoutmanager.R;
-import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Tutor;
 
 import android.app.Activity;

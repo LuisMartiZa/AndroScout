@@ -12,9 +12,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseBooleanArray;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,12 +39,11 @@ public class EducandosListSelectable extends Activity {
 		
 		this.educandosListView =(ListView)findViewById(R.id.educandosSelectableList);
 		
-			try {
-				fillListView();
-			} catch (AdaFrameworkException e) {
-				Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-			}
-
+		try {
+			fillListView();
+		} catch (AdaFrameworkException e) {
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
      }
     
     public void fillListView() throws AdaFrameworkException
@@ -108,34 +105,23 @@ public class EducandosListSelectable extends Activity {
                 String s = (String)educandosListView.getAdapter().getItem(idx);
                 educandosSelectedID.add(idx);
                 sb.append(s);
-                
             }
         }
-	
     }
     
     public void executeSaveSelected(){
     	
     	getItemsSelected();
     	
-    	Bundle intentExtras = this.getIntent().getExtras();
+    	Intent intent = new Intent();
     	
-    	if(intentExtras.getBoolean("tutoresView")){
-        	Intent intent = new Intent(this, TutoresDetailActivity.class);
-        	
-        	 Bundle educandosID = new Bundle();
-        	 
-        	 Log.v("LISTEDUCANDOS", "ID's " + educandosSelectedID);
-         	
-         	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
-             intent.putExtras(educandosID);
-             
-             // Add the bundle to the intent.
-             setResult(RESULT_OK,intent);
-             finish();
-    	}
-		
-       
+    	Bundle educandosID = new Bundle();
+     	educandosID.putIntegerArrayList("educandosID", (ArrayList<Integer>) educandosSelectedID);
+        intent.putExtras(educandosID);
+         
+        // Add the bundle to the intent.
+        setResult(RESULT_OK,intent);
+        finish();       
     }
     
     @Override
@@ -158,14 +144,5 @@ public class EducandosListSelectable extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-    
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-    
     
 }

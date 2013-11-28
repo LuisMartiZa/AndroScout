@@ -247,13 +247,9 @@ public class TutoresDetailActivity extends Activity {
 
 			Bundle hijosTutor = new Bundle();    
 		    hijosTutor.putStringArrayList("selectedEducandos", educandosSelected);
-		    
-			Bundle tutoresView = new Bundle();    
-			tutoresView.putBoolean("tutoresView", true);
 			
 			Intent detailIntent = new Intent(this, EducandosListSelectable.class);
 		    detailIntent.putExtras(hijosTutor);
-		    detailIntent.putExtras(tutoresView);
 		    
 			startActivityForResult(detailIntent, SELECT_REQUEST);
 		} catch (Exception e) {
