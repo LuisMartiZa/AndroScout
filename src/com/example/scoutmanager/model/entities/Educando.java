@@ -1,6 +1,8 @@
 package com.example.scoutmanager.model.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.parsers.DateParser;
@@ -11,6 +13,10 @@ import com.mobandme.ada.annotations.TableField;
 
 @Table(name = "tEducandos")
 public class Educando extends Entity {
+	
+	public static final String DEFAULT_SORT = "Content ASC";
+    public static final String TABLE_EDUCANDOS_JOIN_TUTORES = "tEducandos INNER JOIN LINK_tEducandos_tutoresEducando_tTutor ON tEducandos.ID = LINK_tEducandos_tutoresEducando_tTutor.tEducandos_ID";
+    public static final String TABLE_EDUCANDOS_JOIN_EVENTOS = "tEducandos INNER JOIN LINK_tEducandos_eventosEducando_tEvento ON tEducandos.ID = LINK_tEducandos_eventosEducando_tEvento.tEducandos_ID";
 	
 	@TableField(name= "nombreEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId= R.id.nameEducando)
@@ -37,13 +43,19 @@ public class Educando extends Entity {
 	public String Telefono = "";
 	
     @TableField(name= "imagenEducando", datatype= Entity.DATATYPE_TEXT)
-	public String imagen = "";
+	public String Imagen = "";
 	
     @TableField(name= "seccionEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public Seccion seccion = new Seccion();
+    public Seccion Seccion = new Seccion();
     
     @TableField(name= "etapaEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public Etapa etapa = new Etapa();    
+    public Etapa Etapa = new Etapa();
+    
+    @TableField(name= "tutoresEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
+    public List<Tutor> Tutores= new ArrayList<Tutor>();
+    
+    @TableField(name= "eventosEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
+    public List<Evento> Eventos= new ArrayList<Evento>();
     
     /*
      * Methods of Educando class.
@@ -106,22 +118,22 @@ public class Educando extends Entity {
     
     public Etapa getEtapaEducando()
     {
-    	return etapa;
+    	return Etapa;
     }
     
     public void setEtapaEducando(Etapa etapa)
     {
-    	this.etapa=etapa;
+    	this.Etapa=etapa;
     }
     
     public Seccion getSeccionEducando()
     {
-    	return seccion;
+    	return Seccion;
     }
     
     public void setSeccionEducando(Seccion seccion)
     {
-    	this.seccion=seccion;
+    	this.Seccion=seccion;
     }
     
     public String getEmail()
@@ -146,12 +158,42 @@ public class Educando extends Entity {
     
     public void setImagen(String imagen)
     {
-    	this.imagen=imagen;
+    	this.Imagen=imagen;
     }
     
     public String getImagen()
     {
-    	return imagen;
+    	return Imagen;
+    }
+    
+    public List<Tutor> getTutores()
+    {
+    	return Tutores;
+    }
+    
+    public void addTutor(Tutor tutor)
+    {
+    	this.Tutores.add(tutor);
+    }
+    
+    public void resetTutores()
+    {
+    	this.Tutores = new ArrayList<Tutor>();
+    }
+    
+    public List<Evento> getEventos()
+    {
+    	return Eventos;
+    }
+    
+    public void addEvento(Evento evento)
+    {
+    	this.Eventos.add(evento);
+    }
+    
+    public void resetEventos()
+    {
+    	this.Eventos = new ArrayList<Evento>();
     }
     
 }

@@ -26,8 +26,8 @@ public class Evento extends Entity {
 	@Databinding(ViewId = R.id.fechaEventoField, parser = DateParser.class)
 	public Date F_Evento = new Date();
 	
-	@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Educando> educandosEvento = new ArrayList<Educando>();
+	/*@TableField(name= "educandosEvento", datatype= Entity.DATATYPE_ENTITY_LINK)
+    public List<Educando> educandosEvento = new ArrayList<Educando>();*/
 	 /*
      * Methods of Usuario class.
      */
@@ -77,7 +77,7 @@ public class Evento extends Entity {
     	this.F_Evento=f_evento;
     }
 	
-    public List<Educando> getEducandosEvento()
+    /*public List<Educando> getEducandosEvento()
     {
     	return this.educandosEvento;
     }
@@ -90,5 +90,5 @@ public class Evento extends Entity {
     public void resetEducandosEvento()
     {
     	this.educandosEvento = new ArrayList<Educando>();
-    }
+    }*/
 }

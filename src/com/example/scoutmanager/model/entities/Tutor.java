@@ -26,8 +26,8 @@ public class Tutor extends Entity {
 	@Databinding(ViewId= R.id.tipoTutor)
 	public String Tipo = "";
 	
-	@TableField(name= "hijosTutor", datatype= Entity.DATATYPE_ENTITY_LINK)
-    public List<Educando> hijos= new ArrayList<Educando>();
+	/*@TableField(name= "hijosTutor", datatype= Entity.DATATYPE_ENTITY_LINK)
+    public List<Educando> hijos= new ArrayList<Educando>();*/
 
 	
 	 /*
@@ -80,7 +80,7 @@ public class Tutor extends Entity {
     	this.Tipo=tipo;
     }
     
-    public List<Educando> getHijos()
+    /*public List<Educando> getHijos()
     {
     	return hijos;
     }
@@ -93,5 +93,5 @@ public class Tutor extends Entity {
     public void resetHijosTutor()
     {
     	this.hijos = new ArrayList<Educando>();
-    }
+    }*/
 }

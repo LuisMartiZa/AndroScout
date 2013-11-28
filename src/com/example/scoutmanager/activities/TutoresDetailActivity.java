@@ -211,14 +211,14 @@ public class TutoresDetailActivity extends Activity {
 		try {
 			
 			tutor.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
-			tutor.resetHijosTutor();
+			//tutor.resetHijosTutor();
 			
 			Educando educando= new Educando();
 			
 			for(int n=0; n< arrayListEducandos.size(); n++){
 				educando= arrayListEducandos.get(n);
 				
-				tutor.addHijoTutor(educando);
+				//tutor.addHijoTutor(educando);
 			}
 			if (tutor.validate(this)) {
 				
@@ -300,10 +300,10 @@ public class TutoresDetailActivity extends Activity {
 	private void fillArrayListEducandos() throws AdaFrameworkException{
 		arrayListEducandos= new ArrayList<Educando>();
 		
-		for(int i=0; i<tutor.getHijos().size();++i){
-			Educando educando = tutor.getHijos().get(i);
-			arrayListEducandos.add(educando);
-		}
+		//for(int i=0; i<tutor.getHijos().size();++i){
+			//Educando educando = tutor.getHijos().get(i);
+			//arrayListEducandos.add(educando);
+		//}
 	}
 	
 	private void getSelectedEducandos(){

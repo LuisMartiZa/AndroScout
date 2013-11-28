@@ -47,7 +47,7 @@ public class TutoresListAdapter extends ArrayAdapter<Tutor> {
         
         TextView surname= (TextView) itemView.findViewById(R.id.hijosTutorList);
         surname.setTypeface(tf);
-        surname.setText(tutor.getHijos().get(0).getNombre());
+        //surname.setText(tutor.getHijos().get(0).getNombre());
         surname.setTextSize(20);
         
         return itemView;

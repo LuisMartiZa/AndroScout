@@ -1,6 +1,7 @@
 package com.example.scoutmanager.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.EducandosListAdapter;
@@ -155,17 +156,6 @@ public class EventosDetailActivity extends Activity {
 			
 			ev.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
 			
-			
-			ev.resetEducandosEvento();
-			
-			Educando educando= new Educando();
-			
-			for(int n=0; n< arrayListEducandos.size(); n++){
-				educando= arrayListEducandos.get(n);
-				
-				ev.addEducandoEvento(educando);;
-			}
-			
 			if (ev.validate(this)) {
 				
 				if (ev.getID() == null) {
@@ -174,6 +164,35 @@ public class EventosDetailActivity extends Activity {
 				DataBase.Context.EventosSet.save(ev);
 				
 				setResult(Activity.RESULT_OK);
+				
+				Educando educando= new Educando();
+				DataBase.Context.EventosSet.fill();
+				
+				if(arrayListEducandos.size()>0){
+					for(int n=0; n< arrayListEducandos.size(); n++){
+						educando= arrayListEducandos.get(n);
+						
+						educando.setStatus(Entity.STATUS_UPDATED);
+						educando.addEvento(DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1));
+						
+						DataBase.Context.EducandosSet.save(educando);
+						
+					}
+				}else{
+					DataBase.Context.EducandosSet.fill();
+					
+					String wherePattern = "tEvento_ID = ?";
+			        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1).getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+
+					for(int i=0; i<educandosList.size();++i){
+						Educando aux = educandosList.get(i);
+						aux.setStatus(Entity.STATUS_UPDATED);
+						aux.resetEventos();
+						
+						DataBase.Context.EducandosSet.save(aux);
+
+					}
+				}
 				
 				if(!assing)
 					finish();
@@ -269,10 +288,15 @@ public class EventosDetailActivity extends Activity {
     }
 		
 	private void fillArrayListEducandos() throws AdaFrameworkException{
+		
+		DataBase.Context.EducandosSet.fill();
 		arrayListEducandos= new ArrayList<Educando>();
 		
-		for(int i=0; i<ev.getEducandosEvento().size();++i){
-			Educando educando = ev.getEducandosEvento().get(i);
+		String wherePattern = "tEvento_ID = ?";
+        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { ev.getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+
+		for(int i=0; i<educandosList.size();++i){
+			Educando educando = educandosList.get(i);
 			arrayListEducandos.add(educando);
 		}
 	}
