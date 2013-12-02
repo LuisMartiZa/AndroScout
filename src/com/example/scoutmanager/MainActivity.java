@@ -11,7 +11,8 @@ import com.example.scoutmanager.activities.ActividadesListActivity;
 //import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
-import com.example.scoutmanager.activities.LeyYPromesa;
+import com.example.scoutmanager.activities.Ley;
+import com.example.scoutmanager.activities.ActividadesActivity;
 import com.example.scoutmanager.activities.TutoresListActivity;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
@@ -230,8 +231,9 @@ public class MainActivity extends Activity {
 				   String nombre = juego.getString("Nombre");
 				   String participantes = juego.getString("Participantes");
 				   String descripcion = juego.getString("Descripcion");
+				   String tipo = juego.getString("Tipo");
 				   
-				   Actividades aux = new Actividades(nombre, participantes, descripcion);
+				   Actividades aux = new Actividades(nombre, participantes, descripcion,tipo);
 				   DataBase.Context.ActividadesSet.add(aux);
 				}
 				DataBase.Context.ActividadesSet.save();
@@ -252,7 +254,7 @@ public class MainActivity extends Activity {
 		items.add(new Menu_items(R.drawable.asistencia, "Asistencia"));
 		items.add(new Menu_items(R.drawable.events, "Eventos"));
 		items.add(new Menu_items(R.drawable.actividades, "Actividades"));
-		items.add(new Menu_items(R.drawable.estrella, "Ley y Promesa"));
+		items.add(new Menu_items(R.drawable.estrella, "Ley Scout"));
 		items.add(new Menu_items(R.drawable.educandos, "Educandos"));
 		items.add(new Menu_items(R.drawable.educandos, "Padres/Tutores"));
 
@@ -299,7 +301,7 @@ public class MainActivity extends Activity {
 			    	menu.toggle(true);
 			        text = "Ha pulsado actividades";
 			        
-			        Intent actividades = new Intent(view.getContext(), ActividadesListActivity.class);
+			        Intent actividades = new Intent(view.getContext(), ActividadesActivity.class);
 			        startActivity(actividades);
 
 			        toast = Toast.makeText(context, text, duration);
@@ -310,7 +312,7 @@ public class MainActivity extends Activity {
 			    	menu.toggle(true);
 			        text = "Ha pulsado ley y promesa";
 			        
-			        Intent leypromesa = new Intent(view.getContext(), LeyYPromesa.class);
+			        Intent leypromesa = new Intent(view.getContext(), Ley.class);
 			        startActivity(leypromesa);
 
 			        toast = Toast.makeText(context, text, duration);

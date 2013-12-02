@@ -31,8 +31,6 @@
         </activity>
         <activity android:name="com.example.scoutmanager.activities.ControlAsistencia"></activity>
         <activity android:name="com.example.scoutmanager.activities.LateralMenu"></activity>
-        <activity android:name="com.example.scoutmanager.activities.LeyYPromesa"></activity>
-        <activity android:name="com.example.scoutmanager.activities.Promesa"></activity>
         <activity android:name="com.example.scoutmanager.activities.Ley"></activity>
         <activity android:name="com.example.scoutmanager.activities.TutoresListActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.TutoresDetailActivity"></activity>
@@ -40,6 +38,7 @@
         <activity android:name="com.example.scoutmanager.activities.EducandosDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.ActividadesListActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.ActividadesDetailActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.ActividadesActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EventosListActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EventosDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosListSelectable"></activity>

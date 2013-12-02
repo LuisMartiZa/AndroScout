@@ -21,6 +21,9 @@ public class Actividades extends Entity {
 	@Databinding(ViewId= R.id.descripActividad)
 	public String Descripcion = "";
 	
+	@TableField(name= "tipoActividad", datatype= Entity.DATATYPE_TEXT, required= true)
+	public String Tipo = "";
+	
 
 	/*
     * Methods of Actividades class.
@@ -31,13 +34,14 @@ public class Actividades extends Entity {
    	super();
    }
    
-   public Actividades(String nombre, String participantes, String descripcion)
+   public Actividades(String nombre, String participantes, String descripcion, String tipo)
    {
    	super();
    	
    	this.Nombre=nombre;
    	this.Participantes=participantes;
    	this.Descripcion=descripcion;
+   	this.Tipo=tipo;
    }
    
    //GETTERS AND SETTERS

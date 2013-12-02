@@ -12,7 +12,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -154,16 +153,11 @@ public class TutoresListActivity extends Activity implements SearchView.OnQueryT
     }
 
     public boolean onQueryTextChange(String newText) {
-        //mStatusView.setText("Query = " + newText);
-    	Log.v("SEARCH", "Searcheable " + newText);
         tutoresListViewAdapter.getFilter().filter(newText);
-
         return false;
     }
 
     public boolean onQueryTextSubmit(String query) {
-        //mStatusView.setText("Query = " + query + " : submitted");
-    	Log.v("SEARCH", "Searcheable submit" + query);
 
         return false;
     }

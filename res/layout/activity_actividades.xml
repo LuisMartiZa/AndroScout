@@ -5,42 +5,42 @@
     tools:context=".activities.LeyYPromesa" >
 
     <TextView
-        android:id="@+id/textLey"
+        android:id="@+id/textDanzas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="119dp"
-        android:text="@string/Ley"
+        android:text="Danzas"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
-        android:id="@+id/imageButtonLey"
+        android:id="@+id/imageButtonDanzas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginRight="20dp"
         android:layout_marginTop="103dp"
-        android:layout_toLeftOf="@+id/textLey"
-        android:src="@drawable/ic_launcher" />
+        android:layout_toLeftOf="@+id/textDanzas"
+        android:src="@drawable/danza1" />
 
     <ImageButton
-        android:id="@+id/imageButtonPromesa"
+        android:id="@+id/imageButtonJuegos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonLey"
-        android:layout_below="@+id/imageButtonLey"
+        android:layout_alignLeft="@+id/imageButtonDanzas"
+        android:layout_below="@+id/imageButtonDanzas"
         android:layout_marginTop="88dp"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/juegos" />
 
     <TextView
-        android:id="@+id/textPromesa"
+        android:id="@+id/textJuegos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textLey"
-        android:layout_alignTop="@+id/imageButtonPromesa"
+        android:layout_alignLeft="@+id/textDanzas"
+        android:layout_alignTop="@+id/imageButtonJuegos"
         android:layout_marginTop="16dp"
-        android:text="@string/Promesa"
+        android:text="Juegos"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

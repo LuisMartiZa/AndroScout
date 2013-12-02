@@ -35,17 +35,17 @@ public class ActividadesDetailActivity extends Activity {
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
 		if (intentExtras != null)
-			executeShowCommand(intentExtras.getInt("actividadID"));
+			executeShowCommand(intentExtras.getLong("actividadesID"));
 		
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("ACTIVIDADES");
 	}
 	
-	private void executeShowCommand(int pIndex) {
+	private void executeShowCommand(Long pIndex) {
 		try {
 
-			actividad = DataBase.Context.ActividadesSet.get(pIndex);
+			actividad = DataBase.Context.ActividadesSet.getElementByID(pIndex);
 			actividad.setStatus(Entity.STATUS_UPDATED);
 			actividad.bind(this);
 			
