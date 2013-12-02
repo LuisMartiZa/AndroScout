@@ -116,7 +116,7 @@ public class EventosDetailActivity extends Activity {
 	public void executeShowCommand(Long pIndex) {
 		try {
 
-			DataBase.Context.TutoresSet.fill();
+			DataBase.Context.EventosSet.fill();
 			ev = DataBase.Context.EventosSet.getElementByID(pIndex);
 			ev.setStatus(Entity.STATUS_UPDATED);
 			ev.bind(this);
@@ -166,11 +166,18 @@ public class EventosDetailActivity extends Activity {
 				DataBase.Context.EventosSet.fill();
 				
 				if(arrayListEducandos.size()>0){
+					
 					for(int n=0; n< arrayListEducandos.size(); n++){
 						educando= arrayListEducandos.get(n);
 						
 						educando.setStatus(Entity.STATUS_UPDATED);
-						educando.addEvento(DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1));
+						if(ev.getStatus() == Entity.STATUS_UPDATED){
+							educando.addEvento(DataBase.Context.EventosSet.getElementByID(ev.getID()));
+
+						}else{
+							educando.addEvento(DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1));
+
+						}
 						
 						DataBase.Context.EducandosSet.save(educando);
 						
@@ -178,8 +185,17 @@ public class EventosDetailActivity extends Activity {
 				}else{
 					DataBase.Context.EducandosSet.fill();
 					
-					String wherePattern = "tEvento_ID = ?";
-			        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1).getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+					String wherePattern = "tev_ID = ?";
+					
+					List<Educando> educandosList= new ArrayList<Educando>();
+					
+					if(ev.getStatus() == Entity.STATUS_UPDATED){
+				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.getElementByID(ev.getID()).toString() }, "tev_ID ASC", null, null, null, null);
+
+					}else{
+				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1).getID().toString() }, "tev_ID ASC", null, null, null, null);
+
+					}
 
 					for(int i=0; i<educandosList.size();++i){
 						Educando aux = educandosList.get(i);
@@ -260,7 +276,7 @@ public class EventosDetailActivity extends Activity {
 		 builder = new AlertDialog.Builder(this);
 	
 	     builder.setMessage("Para asignar Educandos, el evento debe estar creado ÀQuŽ desea hacer?")
-	     .setTitle("CREAR TUTOR")
+	     .setTitle("CREAR ev")
 	     .setPositiveButton("Crear", new DialogInterface.OnClickListener()  {
 	            public void onClick(DialogInterface dialog, int id) {
 	            	executeSaveCommand(true);

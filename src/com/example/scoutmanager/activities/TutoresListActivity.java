@@ -12,17 +12,22 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
-public class TutoresListActivity extends Activity {
+public class TutoresListActivity extends Activity implements SearchView.OnQueryTextListener {
+
+    private SearchView mSearchView;
 	
 	private ListView tutoresListView;
     private ArrayAdapter<Tutor> tutoresListViewAdapter;
@@ -47,6 +52,8 @@ public class TutoresListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) { 
 		
 		super.onCreate(savedInstanceState);
+    	getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+
     	setContentView(R.layout.tutores_list_activity);
     	
     	arrayListTutores= new ArrayList<Tutor>();
@@ -99,7 +106,12 @@ public class TutoresListActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.list_action, menu);
+	    
+	    inflater.inflate(R.menu.searchview_in_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        mSearchView = (SearchView) searchItem.getActionView();
+        setupSearchView(searchItem);
+	    
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -128,5 +140,40 @@ public class TutoresListActivity extends Activity {
 			arrayListTutores.add(aux);
 		}
 	}
+	
+	private void setupSearchView(MenuItem searchItem) {
+
+        if (isAlwaysExpanded()) {
+            mSearchView.setIconifiedByDefault(false);
+        } else {
+            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
+                    | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        }
+
+        mSearchView.setOnQueryTextListener(this);
+    }
+
+    public boolean onQueryTextChange(String newText) {
+        //mStatusView.setText("Query = " + newText);
+    	Log.v("SEARCH", "Searcheable " + newText);
+        tutoresListViewAdapter.getFilter().filter(newText);
+
+        return false;
+    }
+
+    public boolean onQueryTextSubmit(String query) {
+        //mStatusView.setText("Query = " + query + " : submitted");
+    	Log.v("SEARCH", "Searcheable submit" + query);
+
+        return false;
+    }
+
+    public boolean onClose() {
+        return false;
+    }
+
+    protected boolean isAlwaysExpanded() {
+        return false;
+    }
 
 }

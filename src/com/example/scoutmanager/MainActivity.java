@@ -26,9 +26,12 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 //import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -71,6 +74,8 @@ public class MainActivity extends Activity {
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("MENU");
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+		actionbar.setHomeButtonEnabled(true);
 		
 		this.setLateralMenu();
 		try {
@@ -103,6 +108,17 @@ public class MainActivity extends Activity {
 		return false;
         
     }
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	        	menu.toggle();
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
     
     public void fillObjectSets() throws AdaFrameworkException
     {	
