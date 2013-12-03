@@ -22,7 +22,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -66,7 +68,7 @@ public class EducandosDetailActivity extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		
-    	setContentView(R.layout.educandos_detail_activity);
+    	setContentView(R.layout.educandos_detail_activity1);
     	    	
     	try {
     		initializeSecciones();
@@ -93,8 +95,8 @@ public class EducandosDetailActivity extends Activity {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
 		}
-    	
-    	initializeTypeface();
+    	/*
+    	initializeTypeface();*/
 		
 	}
 	
@@ -152,6 +154,7 @@ public class EducandosDetailActivity extends Activity {
         TextView etapa = (TextView) this.findViewById(R.id.etapaText);
 
         name.setTypeface(tf);
+        name.setTextColor((Color.parseColor("#5d2f89")));
         surname.setTypeface(tf);
         dir.setTypeface(tf);
         birthday.setTypeface(tf);

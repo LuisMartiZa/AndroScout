@@ -10,17 +10,25 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+//import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ActividadesDetailActivity extends Activity {
 	
 	private Actividades actividad = new Actividades();
+	//private WebView mWebView;
+
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		this.setContentView(R.layout.actividades_detail_activity);
+		
+		/*mWebView = (WebView) findViewById(R.id.webViewActividades);
+        
+        // Activo JavaScript
+        mWebView.getSettings().setJavaScriptEnabled(true);*/
 		
 		try {
 			initializeActivity();
@@ -35,7 +43,7 @@ public class ActividadesDetailActivity extends Activity {
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
 		if (intentExtras != null)
-			executeShowCommand(intentExtras.getLong("actividadesID"));
+			executeShowCommand(intentExtras.getLong("actividadID"));
 		
 		ActionBar actionbar;
 		actionbar= getActionBar();

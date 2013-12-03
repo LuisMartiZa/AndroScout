@@ -7,8 +7,6 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.ActividadesListAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
-import com.example.scoutmanager.model.entities.Educando;
-import com.example.scoutmanager.model.entities.Tutor;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;

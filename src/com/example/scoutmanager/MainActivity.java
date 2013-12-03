@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.example.scoutmanager.activities.ActividadesListActivity;
-//import com.example.scoutmanager.activities.EducandosActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
 import com.example.scoutmanager.activities.Ley;
@@ -251,7 +249,7 @@ public class MainActivity extends Activity {
     	this.listView = (ListView) findViewById(R.id.listView);
 
 		ArrayList<Menu_items> items = new ArrayList<Menu_items>();
-		items.add(new Menu_items(R.drawable.asistencia, "Asistencia"));
+		//items.add(new Menu_items(R.drawable.asistencia, "Asistencia"));
 		items.add(new Menu_items(R.drawable.events, "Eventos"));
 		items.add(new Menu_items(R.drawable.actividades, "Actividades"));
 		items.add(new Menu_items(R.drawable.estrella, "Ley Scout"));
@@ -275,7 +273,7 @@ public class MainActivity extends Activity {
 		        Toast toast;
 		        
 				switch (position) {
-				case 0:
+				/*case 0:
 			        menu.toggle(true);
 			        text = "Ha pulsado asistencia";
 			        
@@ -285,8 +283,8 @@ public class MainActivity extends Activity {
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();
 			        break;
-			        
-			    case 1:
+			        */
+			    case 0:
 			        menu.toggle(true);
 			        text = "Ha pulsado eventos";
 			        
@@ -297,7 +295,7 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 2:
+			    case 1:
 			    	menu.toggle(true);
 			        text = "Ha pulsado actividades";
 			        
@@ -308,7 +306,7 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 3:
+			    case 2:
 			    	menu.toggle(true);
 			        text = "Ha pulsado ley y promesa";
 			        
@@ -319,7 +317,7 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 4:
+			    case 3:
 			    	menu.toggle(true);
 			        text = "Ha pulsado educandos";
 			        
@@ -330,7 +328,7 @@ public class MainActivity extends Activity {
 			        toast.show();
 			        break;
 			        
-			    case 5:
+			    case 4:
 			    	menu.toggle(true);
 			        text = "Ha pulsado educandos";
 			        
