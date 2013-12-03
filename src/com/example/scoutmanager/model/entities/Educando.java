@@ -34,7 +34,7 @@ public class Educando extends Entity {
 	@Databinding(ViewId = R.id.educandoBirthday, parser = DateParser.class)
 	public Date F_Nacimiento = new Date();
 	
-	@TableField(name= "emailEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
+	@TableField(name= "emailEducando", datatype= Entity.DATATYPE_TEXT, maxLength= 200)
 	@Databinding(ViewId= R.id.educandoEmail)
 	public String Email = "";
 	

@@ -51,7 +51,7 @@
 
                 <View
                     android:id="@+id/view1"
-                    android:layout_width="306dp"
+                    android:layout_width="284dp"
                     android:layout_height="2dip"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"

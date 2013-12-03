@@ -77,7 +77,17 @@ public class EducandosDetailActivity extends Activity {
 			
 			ActionBar actionbar;
 			actionbar= this.getActionBar();
-			actionbar.setTitle("EDUCANDO");	 
+			actionbar.setTitle("EDUCANDO");
+			
+			Bundle intentExtras = this.getIntent().getExtras();
+			if (intentExtras != null)
+				actionbar.setSubtitle("Editar educando");
+			else
+				actionbar.setSubtitle("Nuevo educando");
+			
+
+			actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+			actionbar.setHomeButtonEnabled(true);
 			
 			mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
 			mImageView.setClickable(true);
@@ -95,8 +105,8 @@ public class EducandosDetailActivity extends Activity {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
 		}
-    	/*
-    	initializeTypeface();*/
+    	
+    	initializeTypeface();
 		
 	}
 	
@@ -147,19 +157,45 @@ public class EducandosDetailActivity extends Activity {
                 "fonts/Roboto-Light.ttf");
         //TEXTVIEW
         TextView name = (TextView) this.findViewById(R.id.nameText);
-        TextView surname = (TextView) this.findViewById(R.id.surnameText);
+        TextView surname = (TextView) this.findViewById(R.id.apellidosText);
         TextView dir = (TextView) this.findViewById(R.id.dirText);
         TextView birthday = (TextView) this.findViewById(R.id.birthdayText);
-        TextView seccion = (TextView) this.findViewById(R.id.sectionText);
+        TextView email = (TextView) this.findViewById(R.id.emailText);
+        TextView telefono = (TextView) this.findViewById(R.id.movilText);
+        TextView seccion = (TextView) this.findViewById(R.id.seccionText);
         TextView etapa = (TextView) this.findViewById(R.id.etapaText);
 
         name.setTypeface(tf);
         name.setTextColor((Color.parseColor("#5d2f89")));
+        name.setTextSize(20);
+        
         surname.setTypeface(tf);
+        surname.setTextColor((Color.parseColor("#5d2f89")));
+        surname.setTextSize(20);
+        
         dir.setTypeface(tf);
+        dir.setTextColor((Color.parseColor("#5d2f89")));
+        dir.setTextSize(20);
+        
         birthday.setTypeface(tf);
+        birthday.setTextColor((Color.parseColor("#5d2f89")));
+        birthday.setTextSize(20);
+        
+        email.setTypeface(tf);
+        email.setTextColor((Color.parseColor("#5d2f89")));
+        email.setTextSize(20);
+        
+        telefono.setTypeface(tf);
+        telefono.setTextColor((Color.parseColor("#5d2f89")));
+        telefono.setTextSize(20);
+        
         seccion.setTypeface(tf);
+        seccion.setTextColor((Color.parseColor("#5d2f89")));
+        seccion.setTextSize(20);
+        
         etapa.setTypeface(tf);
+        etapa.setTextColor((Color.parseColor("#5d2f89")));
+        etapa.setTextSize(20);
         
         //EDITTEXT
         EditText nameField = (EditText) this.findViewById(R.id.nameEducando);
