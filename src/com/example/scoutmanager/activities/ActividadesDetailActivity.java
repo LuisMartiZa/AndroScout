@@ -3,32 +3,48 @@ package com.example.scoutmanager.activities;
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
-//import android.webkit.WebView;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ActividadesDetailActivity extends Activity {
-	
-	private Actividades actividad = new Actividades();
-	//private WebView mWebView;
+public class ActividadesDetailActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener  {
 
+	private Actividades actividad = new Actividades();
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		this.setContentView(R.layout.actividades_detail_activity);
 		
-		/*mWebView = (WebView) findViewById(R.id.webViewActividades);
-        
-        // Activo JavaScript
-        mWebView.getSettings().setJavaScriptEnabled(true);*/
+		Bundle intentExtras = this.getIntent().getExtras();
+		if (intentExtras.getString("tipo").equals("danza")){
+			
+			YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view2);
+	        youTubeView.initialize("AIzaSyDnQ2O3kA54DdkgQtPUX6RHUuOgUx_qsrM", this);
+	        
+		}else
+		{
+			YouTubePlayerView youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view2);
+	        youTubeView.setVisibility(View.INVISIBLE);
+	        
+	        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) youTubeView.getLayoutParams();
+	        params.height = 0;
+	        params.width = 0;
+	        youTubeView.setLayoutParams(params);
+	        
+		}
 		
 		try {
 			initializeActivity();
@@ -40,14 +56,28 @@ public class ActividadesDetailActivity extends Activity {
 		
 	}
 	
+	 @Override
+    public void onInitializationFailure(Provider arg0, YouTubeInitializationResult arg1) {
+        Toast.makeText(this, "Error inicializando YouTube View", Toast.LENGTH_LONG).show();        
+    }
+ 
+    @Override
+    public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
+        if (!wasRestored) {
+            player.loadVideo(actividad.getURLVideo());
+          }    
+    }
+
+	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
-		if (intentExtras != null)
-			executeShowCommand(intentExtras.getLong("actividadID"));
 		
 		ActionBar actionbar;
 		actionbar= getActionBar();
-		actionbar.setTitle("ACTIVIDADES");
+		actionbar.setTitle(intentExtras.getString("tipo").toUpperCase());
+		
+		executeShowCommand(intentExtras.getLong("actividadID"));
+
 	}
 	
 	private void executeShowCommand(Long pIndex) {

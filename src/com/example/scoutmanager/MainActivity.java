@@ -230,8 +230,9 @@ public class MainActivity extends Activity {
 				   String participantes = juego.getString("Participantes");
 				   String descripcion = juego.getString("Descripcion");
 				   String tipo = juego.getString("Tipo");
-				   
-				   Actividades aux = new Actividades(nombre, participantes, descripcion,tipo);
+				   String URL = juego.getString("URL");
+
+				   Actividades aux = new Actividades(nombre, participantes, descripcion,tipo,URL);
 				   DataBase.Context.ActividadesSet.add(aux);
 				}
 				DataBase.Context.ActividadesSet.save();

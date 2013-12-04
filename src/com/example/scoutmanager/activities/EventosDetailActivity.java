@@ -185,25 +185,27 @@ public class EventosDetailActivity extends Activity {
 				}else{
 					DataBase.Context.EducandosSet.fill();
 					
-					String wherePattern = "tev_ID = ?";
-					
-					List<Educando> educandosList= new ArrayList<Educando>();
-					
-					if(ev.getStatus() == Entity.STATUS_UPDATED){
-				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.getElementByID(ev.getID()).toString() }, "tev_ID ASC", null, null, null, null);
-
-					}else{
-				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1).getID().toString() }, "tev_ID ASC", null, null, null, null);
-
-					}
-
-					for(int i=0; i<educandosList.size();++i){
-						Educando aux = educandosList.get(i);
-						aux.setStatus(Entity.STATUS_UPDATED);
-						aux.resetEventos();
+					if(DataBase.Context.EducandosSet.size() != 0){
+						String wherePattern = "tev_ID = ?";
 						
-						DataBase.Context.EducandosSet.save(aux);
-
+						List<Educando> educandosList= new ArrayList<Educando>();
+						
+						if(ev.getStatus() == Entity.STATUS_UPDATED){
+					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.getElementByID(ev.getID()).toString() }, "tev_ID ASC", null, null, null, null);
+	
+						}else{
+					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1).getID().toString() }, "tev_ID ASC", null, null, null, null);
+	
+						}
+	
+						for(int i=0; i<educandosList.size();++i){
+							Educando aux = educandosList.get(i);
+							aux.setStatus(Entity.STATUS_UPDATED);
+							aux.resetEventos();
+							
+							DataBase.Context.EducandosSet.save(aux);
+	
+						}
 					}
 				}
 				

@@ -24,6 +24,9 @@ public class Actividades extends Entity {
 	@TableField(name= "tipoActividad", datatype= Entity.DATATYPE_TEXT, required= true)
 	public String Tipo = "";
 	
+	@TableField(name= "urlActividad", datatype= Entity.DATATYPE_TEXT, required= true)
+	public String URL = "";
+	
 
 	/*
     * Methods of Actividades class.
@@ -34,7 +37,7 @@ public class Actividades extends Entity {
    	super();
    }
    
-   public Actividades(String nombre, String participantes, String descripcion, String tipo)
+   public Actividades(String nombre, String participantes, String descripcion, String tipo, String url)
    {
    	super();
    	
@@ -42,6 +45,7 @@ public class Actividades extends Entity {
    	this.Participantes=participantes;
    	this.Descripcion=descripcion;
    	this.Tipo=tipo;
+   	this.URL=url;
    }
    
    //GETTERS AND SETTERS
@@ -73,6 +77,16 @@ public class Actividades extends Entity {
    public void setDescripcion(String descripcion)
    {
    	this.Descripcion=descripcion;
+   }
+   
+   public String getURLVideo()
+   {
+   	return URL;
+   }
+   
+   public void setURLVideo(String url)
+   {
+   	this.URL=url;
    }
 
 

@@ -25,7 +25,7 @@ public class ActividadesListActivity extends Activity {
 	private ListView actividadesListView;
     private ArrayAdapter<Actividades> actividadesListViewAdapter;
 	private ArrayList<Actividades> arrayListActividades= new ArrayList<Actividades>();
-
+	private String tipo="";
     
     private OnItemClickListener itemClickListener = new OnItemClickListener() {
 		@Override
@@ -34,6 +34,7 @@ public class ActividadesListActivity extends Activity {
 	        	
 				Intent detailIntent = new Intent(pView.getContext(), ActividadesDetailActivity.class);
 				detailIntent.putExtra("actividadID", arrayListActividades.get(pPosition).getID());
+				detailIntent.putExtra("tipo", tipo);
 				
 				startActivity(detailIntent);
 			
@@ -54,6 +55,7 @@ public class ActividadesListActivity extends Activity {
 		actionbar.setTitle("ACTIVIDADES");
 		
 		Bundle intentExtras = this.getIntent().getExtras();
+		tipo= intentExtras.getString("tipo");
 
 		try {
 			fillArrayListActividades(intentExtras.getString("tipo"));

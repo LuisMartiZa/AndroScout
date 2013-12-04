@@ -244,29 +244,29 @@ public class TutoresDetailActivity extends Activity {
 					}
 				}else{
 					DataBase.Context.EducandosSet.fill();
-					
-					String wherePattern = "tTutor_ID = ?";
-					
-					List<Educando> educandosList= new ArrayList<Educando>();
-					
-					if(tutor.getStatus() == Entity.STATUS_UPDATED){
-				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.getElementByID(tutor.getID()).toString() }, "tTutor_ID ASC", null, null, null, null);
-
-					}else{
-				        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
-
-					}
-
-					for(int i=0; i<educandosList.size();++i){
-						Educando aux = educandosList.get(i);
-						aux.setStatus(Entity.STATUS_UPDATED);
-						aux.resetTutores();
+					if(DataBase.Context.EducandosSet.size() != 0){
+						String wherePattern = "tTutor_ID = ?";
 						
-						DataBase.Context.EducandosSet.save(aux);
-
+						List<Educando> educandosList= new ArrayList<Educando>();
+						
+						if(tutor.getStatus() == Entity.STATUS_UPDATED){
+					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.getElementByID(tutor.getID()).toString() }, "tTutor_ID ASC", null, null, null, null);
+	
+						}else{
+					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+	
+						}
+	
+						for(int i=0; i<educandosList.size();++i){
+							Educando aux = educandosList.get(i);
+							aux.setStatus(Entity.STATUS_UPDATED);
+							aux.resetTutores();
+							
+							DataBase.Context.EducandosSet.save(aux);
+	
+						}
 					}
 				}
-				
 				if(!assing)
 					finish();
 				

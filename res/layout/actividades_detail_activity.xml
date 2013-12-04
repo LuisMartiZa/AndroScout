@@ -76,6 +76,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="TextView" />
+            
+            <com.google.android.youtube.player.YouTubePlayerView
+                android:id="@+id/youtube_view2"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="10dp" />
 
         </LinearLayout>
     </ScrollView>

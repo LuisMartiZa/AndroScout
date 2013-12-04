@@ -4,6 +4,7 @@
       "Nombre": "Beso - Placaje",
       "Participantes": "Diez o más",
       "Tipo": "juego",
+      "URL":"",
       "Descripcion": "Hacemos dos equipos (pueden ser mixtos o chicos y chicas por separado) y nos colocamos haciendo un círculo. Uno quedará en medio para comenzar la partida.
 En uno de los grupos se asignarán letras a sus miembros (a, b, c, d, e, f, g... tantos como miembros) y en el otro números (1, 2, 3, 4, 5, 6, 7... tantos como miembros). La persona del medio dirá una letra y un número en ALTO (que los dos grupos lo oigan bien).
 Si dice primero la letra y luego el número, la persona que tiene letra irá a darle un beso en la mejilla al miembro del número (podrá placar a esta persona para ello); y el miembro que tiene el número, tendrá que besar en la mejilla a la persona sentada en medio antes de que la letra le bese a el/ella. Si dice primero el número y luego la letra, ocurrrirá al reves; el número irá a besar a la letra y la letra a por el del medio.
@@ -14,6 +15,7 @@ Poco a poco se irán eliminando miebros de los grupos. El grupo que pierda todos
       "Nombre": "La cebolla",
       "Participantes": "Nueve o más",
       "Tipo": "juego",
+      "URL":"",
       "Descripcion": "Se hacen dos grupos iguales en numero,Un grupo será la cebolla primero y después el otro grupo.
 El grupo que sea cebolla tienen que agarrarse fuertemente los miembros del grupo y hacer una espiral creando varias capas (como una cebolla). El grupo contrario tendrá que separar cada miembro hasta separar todos en el menor tiempo posible.
 Una vez que se haya separado a alguien, no se puede volver a juntar.
@@ -23,14 +25,16 @@ El grupo que menos tarde en separar al otro grupo completamente gana."
       "Nombre": "Lucha Scout",
       "Participantes": "Dos o más - Siempre por parejas",
       "Tipo": "juego",
+      "URL":"",
       "Descripcion": "Normalmente es una competición entre dos Scouts. Los participantes se atan una pañoleta a la pierna entre la rodilla y el tobillo. Estos deben conseguir la pañoleta del contrario sin perder la suya y a la vez sin salir de un recinto delimitado. El juego requiere una gran habilidad y atención por parte de los participantes."
     },
     {
       "Nombre": "El tallarín",
       "Participantes": "Todos los que se quieran.",
       "Tipo": "danza",
+      "URL":"BQNCycSvxbE",
       "Descripcion": "
-      Yo tengo 
+Yo tengo 
 un tallarín 
 otro tallarín 
 que se mueve por aquí 
@@ -40,6 +44,105 @@ con un poco de aceite
 con un poco de sal 
 que te lo comes tú 
 y sales a bailar."
+    },
+    {
+      "Nombre": "Era una sandía...",
+      "Participantes": "Todos los que se quieran.",
+      "Tipo": "danza",
+      "URL":"hbUJMxysVTM",
+      "Descripcion": "
+Era una sandía, gorda, gorda, gorda
+Que quería ser la más bella del mundo
+Para el mundo conquistar
+Plas, Plas, aprendió a andar
+
+Era una sandía, gorda, gorda, gorda
+Que quería ser la más bella del mundo
+Para el mundo conquistar
+Muak, muak, aprendió a besar
+Plas, Plas, aprendió a andar
+
+Era una sandía, gorda, gorda, gorda
+Que quería ser la más bella del mundo
+Para el mundo conquistar
+Chas, Chas, aprendió a esquiar
+Muak, muak, aprendió a besar
+Plas, Plas, aprendió a andar
+
+Era una sandía, gorda, gorda, gorda
+Que quería ser la más bella del mundo
+Para el mundo conquistar
+1 2 3, aprendio a contar
+Chas, Chas, aprendió a esquiar
+Muak, muak, aprendió a besar
+Plas, Plas, aprendió a andar
+
+Era una sandía, gorda, gorda, gorda
+Que quería ser la más bella del mundo
+Para el mundo conquistar
+Bla, bla, aprendió a hablar
+1 2 3, aprendio a contar
+Chas, Chas, aprendió a esquiar
+Muak, muak, aprendió a besar
+Plas, Plas, aprendió a andar"
+    },
+    {
+      "Nombre": "Voy en busca de un león",
+      "Participantes": "Todos los que se quieran.",
+      "Tipo": "danza",
+      "URL":"VGOUrvoc2Ps",
+      "Descripcion": "
+¡Job, job, job, job!
+Voy en busca de un león,
+cogere el mas grande,
+no tengo miedo.
+
+¡CUIDADO!
+¡CUIDADO!
+¡AAHHH!
+¡AAHHH!
+
+Un rio,
+no puedo nadarlo,
+no puedo surfearlo,
+¡TENDRE QUE SALTARLO!
+
+¡Job, job, job, job!
+Voy en busca de un león,
+cogere el mas grande,
+no tengo miedo.
+
+¡CUIDADO!
+¡CUIDADO!
+¡AAHHH!
+¡AAHHH!
+
+Un arbol,
+no puedo subirlo,
+no puedo cortarlo,
+¡TENDRE QUE RODEARLO!
+
+¡Job, job, job, job!
+Voy en busca de un león,
+cogere el mas grande,
+no tengo miedo.
+
+¡CUIDADO!
+¡CUIDADO!
+¡AAHHH!
+¡AAHHH!
+
+Un bocadillo de boquerones,
+no puedo cogerlo,
+no puedo comermelo,
+¡TENDRE QUE GUARDARLO!
+
+¡Job, job, job, job!
+Voy en busca de un león,
+cogere el mas grande,
+no tengo miedo.
+
+¡¡¡EL LEÓN!!! ¡¡¡AAAAHHHHHH!!! ¡¡¡CORRED!!!"
     }
   ]
 }
