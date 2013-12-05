@@ -13,6 +13,7 @@ import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Seccion;
+import com.example.scoutmanager.model.entities.Tutor;
 import com.mobandme.ada.DataBinder;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
@@ -310,6 +311,25 @@ public class EducandosDetailActivity extends Activity {
 			if (educando.getID() != null) {
 			
 				educando.setStatus(Entity.STATUS_DELETED);
+				String wherePattern = "tTutor_ID = ?";
+				
+		        Log.v("TUTORESLIS", "Number of tutores " + educando.getTutores().size());
+
+
+				for(int i=0; i<educando.getTutores().size(); i++)
+				{
+			        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { educando.getTutores().get(i).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+			        
+			        Log.v("TUTORESLIS", "Number of tutores " + educandosList.size());
+			        if(educandosList.size() == 1)
+			        {
+			        	Tutor tutor = educando.getTutores().get(i);
+			        	tutor.setStatus(Entity.STATUS_DELETED);
+			        	
+			        	DataBase.Context.TutoresSet.save(tutor);
+			        }
+				}
+				
 				DataBase.Context.EducandosSet.save();
 				
 				setResult(Activity.RESULT_OK);

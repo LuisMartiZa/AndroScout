@@ -18,6 +18,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,8 +38,10 @@ public class TutoresDetailActivity extends Activity {
 	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter;
 	private ArrayList<Educando> arrayListEducandos= new ArrayList<Educando>();
+	private ArrayList<Educando> arrayListEducandosOlder= new ArrayList<Educando>();
 	private ArrayList<String> educandosSelected;
 	private ImageButton addEducando;
+	private String modo= "";
 
 
 	private AlertDialog.Builder popUpAsignar;
@@ -68,6 +71,8 @@ public class TutoresDetailActivity extends Activity {
 			else
 				actionbar.setSubtitle("Nuevo tutor");
 
+			modo=intentExtras.getString("modo");
+			Log.v("MODO",	 modo);
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
@@ -81,6 +86,7 @@ public class TutoresDetailActivity extends Activity {
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
           if (requestCode == SELECT_REQUEST && resultCode == RESULT_OK) {
 
+        	  Log.v("MODO",	 modo);
         	  try {
 				DataBase.Context.EducandosSet.fill();
 			} catch (AdaFrameworkException e) {
@@ -184,7 +190,7 @@ public class TutoresDetailActivity extends Activity {
 	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
-		if (intentExtras != null){
+		if (intentExtras.getString("modo").equals("editar")){
 			executeShowCommand(intentExtras.getLong("tutorID"));
 		}else{
 			initializeListView();
@@ -267,10 +273,27 @@ public class TutoresDetailActivity extends Activity {
 						educando= arrayListEducandos.get(n);
 						
 						educando.setStatus(Entity.STATUS_UPDATED);
-						if(tutor.getStatus() == Entity.STATUS_UPDATED){
-							educando.addTutor(DataBase.Context.TutoresSet.getElementByID(tutor.getID()));
+						Log.v("STATUS", "Status " + tutor.getStatus());
 
+						if(modo.equals("editar")){
+
+							for(int i=0;i<arrayListEducandosOlder.size();i++){
+								Educando older= arrayListEducandosOlder.get(i);
+								if(older.getID() != educando.getID()){
+									older.setStatus(Entity.STATUS_UPDATED);
+									for(int j=0; j<older.getTutores().size(); j++){
+										if(older.getTutores().get(j).getID() == tutor.getID())
+											older.getTutores().remove(j);
+									}
+
+									DataBase.Context.EducandosSet.save(older);
+								}
+							}
+							educando.addTutor(DataBase.Context.TutoresSet.getElementByID(tutor.getID()));
+							
 						}else{
+							Log.v("NUMBER1", "Number of older " + arrayListEducandosOlder.size());
+							Log.v("STATUS", "Status " + tutor.getStatus());
 							educando.addTutor(DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1));
 
 						}
@@ -315,12 +338,8 @@ public class TutoresDetailActivity extends Activity {
 	private View.OnClickListener onClick =  new View.OnClickListener() {
 		
 		public void onClick(View v) {
-			if(tutor.getID() == null){
-				popUpAsignar.show();
-			}else{
-				executeShowListSelectable();
+			executeShowListSelectable();
 
-			}
 		}
 	};
 	
@@ -355,6 +374,7 @@ public class TutoresDetailActivity extends Activity {
 	private void fillArrayListEducandos() throws AdaFrameworkException{
 		DataBase.Context.EducandosSet.fill();
 		arrayListEducandos= new ArrayList<Educando>();
+		arrayListEducandosOlder= new ArrayList<Educando>();
 		
 		String wherePattern = "tTutor_ID = ?";
         List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { tutor.getID().toString() }, "tTutor_ID ASC", null, null, null, null);
@@ -363,6 +383,8 @@ public class TutoresDetailActivity extends Activity {
 			Educando educando = educandosList.get(i);
 			arrayListEducandos.add(educando);
 		}
+		
+		arrayListEducandosOlder=arrayListEducandos;
 	}
 	
 	private void getSelectedEducandos(){

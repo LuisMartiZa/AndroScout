@@ -39,6 +39,7 @@ public class TutoresListActivity extends Activity implements SearchView.OnQueryT
 	        	
 				Intent deatailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
 				deatailIntent.putExtra("tutorID", arrayListTutores.get(pPosition).getID());
+				deatailIntent.putExtra("modo", "editar");
 				startActivityForResult(deatailIntent, 1);
 	        	
 	        } catch (Exception e) {
@@ -94,6 +95,8 @@ public class TutoresListActivity extends Activity implements SearchView.OnQueryT
     	try {
     		
     		Intent detailIntent = new Intent(TutoresListActivity.this, TutoresDetailActivity.class);
+			detailIntent.putExtra("modo", "nuevo");
+
     		startActivityForResult(detailIntent, 1);
     		
     	} catch (Exception e) {
