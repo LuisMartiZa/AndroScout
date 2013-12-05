@@ -41,8 +41,9 @@ public class EventosDetailActivity extends Activity {
 	private ArrayList<String> educandosSelected;
 	private ImageButton addEducando;
 	
-	private AlertDialog.Builder builder;
-
+	private AlertDialog.Builder popUpAsignar;
+	private AlertDialog.Builder popUpGuardar;
+	
 	private static final int SELECT_REQUEST= 188;  
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -134,6 +135,25 @@ public class EventosDetailActivity extends Activity {
 			if (ev.getID() != null) {
 			
 				ev.setStatus(Entity.STATUS_DELETED);
+				
+				String wherePattern = "tEvento_ID = ?";
+				
+				List<Educando> educandosList= new ArrayList<Educando>();
+				
+			    educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { ev.getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+			    
+			    for(int i=0; i<educandosList.size();i++)
+			    {	for(int j=0; j<educandosList.get(i).getEventos().size();j++){
+			    		if(educandosList.get(i).getEventos().get(j).getID() == ev.getID()){
+			    			Educando educando = educandosList.get(i);
+			    			educando.getEventos().remove(j);
+			    			educando.setStatus(Entity.STATUS_UPDATED);
+			    			
+			    			DataBase.Context.EducandosSet.save(educando);
+			    		}
+
+			    	}
+			    }
 								
 				DataBase.Context.EventosSet.save(ev);
 
@@ -182,31 +202,6 @@ public class EventosDetailActivity extends Activity {
 						DataBase.Context.EducandosSet.save(educando);
 						
 					}
-				}else{
-					DataBase.Context.EducandosSet.fill();
-					
-					if(DataBase.Context.EducandosSet.size() != 0){
-						String wherePattern = "tev_ID = ?";
-						
-						List<Educando> educandosList= new ArrayList<Educando>();
-						
-						if(ev.getStatus() == Entity.STATUS_UPDATED){
-					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.getElementByID(ev.getID()).toString() }, "tev_ID ASC", null, null, null, null);
-	
-						}else{
-					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1).getID().toString() }, "tev_ID ASC", null, null, null, null);
-	
-						}
-	
-						for(int i=0; i<educandosList.size();++i){
-							Educando aux = educandosList.get(i);
-							aux.setStatus(Entity.STATUS_UPDATED);
-							aux.resetEventos();
-							
-							DataBase.Context.EducandosSet.save(aux);
-	
-						}
-					}
 				}
 				
 				if(!assing)
@@ -234,8 +229,8 @@ public class EventosDetailActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.accept:
-	            executeSaveCommand(false);
-	            return true;
+	        	saveDialog();
+	        	return true;
 	            
 	        case R.id.discard:
 	            executeDeleteCommand();
@@ -244,6 +239,24 @@ public class EventosDetailActivity extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private void saveDialog(){
+		popUpGuardar = new AlertDialog.Builder(this);
+    	
+   	    popUpGuardar.setMessage("Para crear el evento, debe tener al menos un educando asignado")
+   	    .setTitle("CREAR EVENTO")
+   	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
+   	           public void onClick(DialogInterface dialog, int id) {
+   	            	dialog.cancel();
+   	               }
+   	           });
+   	    if(arrayListEducandos.size() == 0){
+   	    	popUpGuardar.show();
+   	    }else{
+   	        executeSaveCommand(false);
+
+   	    }
 	}
 	
 	private void executeShowListSelectable() {
@@ -266,7 +279,7 @@ public class EventosDetailActivity extends Activity {
 		
 		public void onClick(View v) {
 			if(ev.getID() == null){
-				builder.show();
+				popUpAsignar.show();
 			}else{
 				executeShowListSelectable();
 
@@ -275,9 +288,9 @@ public class EventosDetailActivity extends Activity {
 	};
 	
 	private void initializePopUp(){
-		 builder = new AlertDialog.Builder(this);
+		 popUpAsignar = new AlertDialog.Builder(this);
 	
-	     builder.setMessage("Para asignar Educandos, el evento debe estar creado ÀQuŽ desea hacer?")
+	     popUpAsignar.setMessage("Para asignar Educandos, el evento debe estar creado ÀQuŽ desea hacer?")
 	     .setTitle("CREAR ev")
 	     .setPositiveButton("Crear", new DialogInterface.OnClickListener()  {
 	            public void onClick(DialogInterface dialog, int id) {

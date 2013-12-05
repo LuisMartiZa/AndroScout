@@ -41,7 +41,8 @@ public class TutoresDetailActivity extends Activity {
 	private ImageButton addEducando;
 
 
-	private AlertDialog.Builder builder;
+	private AlertDialog.Builder popUpAsignar;
+	private AlertDialog.Builder popUpGuardar;
 
 	private static final int SELECT_REQUEST= 188;  
 
@@ -89,8 +90,6 @@ public class TutoresDetailActivity extends Activity {
         	  
         	  Bundle intentExtras = data.getExtras();
         	  
-         	 Log.v("LISTEDUCANDOS", "ID's " + intentExtras.getIntegerArrayList("educandosID"));
-
          	 arrayListEducandos=  new ArrayList<Educando>();
 
         	  
@@ -134,9 +133,9 @@ public class TutoresDetailActivity extends Activity {
 	}
 	
 	private void saveDialog(){
-		builder = new AlertDialog.Builder(this);
+		popUpGuardar = new AlertDialog.Builder(this);
     	
-   	    builder.setMessage("Para crear el tutor/a, debe tener al menos un hijo asignado")
+   	    popUpGuardar.setMessage("Para crear el tutor/a, debe tener al menos un hijo asignado")
    	    .setTitle("CREAR TUTOR")
    	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
    	           public void onClick(DialogInterface dialog, int id) {
@@ -144,7 +143,7 @@ public class TutoresDetailActivity extends Activity {
    	               }
    	           });
    	    if(arrayListEducandos.size() == 0){
-   	    	builder.show();
+   	    	popUpGuardar.show();
    	    }else{
    	        executeSaveCommand(false);
 
@@ -317,7 +316,7 @@ public class TutoresDetailActivity extends Activity {
 		
 		public void onClick(View v) {
 			if(tutor.getID() == null){
-				builder.show();
+				popUpAsignar.show();
 			}else{
 				executeShowListSelectable();
 
@@ -326,11 +325,11 @@ public class TutoresDetailActivity extends Activity {
 	};
 	
 	private void initializePopUp(){
-		 builder = new AlertDialog.Builder(this);
+		 popUpAsignar = new AlertDialog.Builder(this);
 	
-	     builder.setMessage("Para asignar Hijos, el tutor debe estar creado ¿Qué desea hacer")
+	     popUpAsignar.setMessage("Para asignar Hijos, el tutor debe estar creado ¿Qué desea hacer?")
 	     .setTitle("CREAR TUTOR")
-	     .setPositiveButton("Aceptar", new DialogInterface.OnClickListener()  {
+	     .setPositiveButton("Crear", new DialogInterface.OnClickListener()  {
 	            public void onClick(DialogInterface dialog, int id) {
 	            	executeSaveCommand(true);
 					executeShowListSelectable();
