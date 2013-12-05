@@ -8,6 +8,7 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.parsers.DateParser;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Databinding;
+import com.mobandme.ada.annotations.RequiredFieldValidation;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
 
@@ -20,14 +21,17 @@ public class Educando extends Entity {
 	
 	@TableField(name= "nombreEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId= R.id.nameEducando)
+	@RequiredFieldValidation(message = "El nombre del educando es requerido")
 	public String Nombre = "";
 	
 	@TableField(name= "apellidoEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.surnameEducando)
+	@RequiredFieldValidation(message = "Los apellidos del educando son requeridos")
 	public String Apellidos = "";
 	
 	@TableField(name= "direccionEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.dirEducando)
+	@RequiredFieldValidation(message = "La dirección del educando es requerida")
 	public String Direccion = "";
 	
 	@TableField(name= "nacimientoEducando", datatype= Entity.DATATYPE_DATE_BINARY)
@@ -40,6 +44,7 @@ public class Educando extends Entity {
 	
 	@TableField(name= "telefonoEducando", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.telefonoEducando)
+	@RequiredFieldValidation(message = "El teléfono del educando es requerido")
 	public String Telefono = "";
 	
     @TableField(name= "imagenEducando", datatype= Entity.DATATYPE_TEXT)

@@ -9,22 +9,27 @@ public class Tutor extends Entity {
 	
 	@TableField(name= "nombreTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId= R.id.nombreTutor)
+	@RequiredFieldValidation(message = "El nombre del tutor/a es requerido")
 	public String Nombre = "";
 	
 	@TableField(name= "apellidosTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId= R.id.apellidosTutor)
+	@RequiredFieldValidation(message = "Los apellidos del tutor/a son requeridos")
 	public String Apellidos = "";
 	
 	@TableField(name= "telefonoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.telefonoTutor)
+	@RequiredFieldValidation(message = "El télefono del tutor/a es requerido")
 	public String Telefono = "";
 	
 	@TableField(name= "emailTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.emailTutor)
+	@RequiredFieldValidation(message = "El e-mail del tutor/a es requerido")
 	public String Email = "";
 	
 	@TableField(name= "tipoTutor", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 200)
 	@Databinding(ViewId= R.id.tipoTutor)
+	@RequiredFieldValidation(message = "El tipo de tutor/a es requerido")
 	public String Tipo = "";
 
 	 /*

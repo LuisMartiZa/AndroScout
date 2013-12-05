@@ -6,6 +6,7 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.parsers.DateParser;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.annotations.Databinding;
+import com.mobandme.ada.annotations.RequiredFieldValidation;
 import com.mobandme.ada.annotations.Table;
 import com.mobandme.ada.annotations.TableField;
 
@@ -14,18 +15,21 @@ public class Evento extends Entity {
 	
 	@TableField(name= "nombreEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId = R.id.nameEventoField)
+	@RequiredFieldValidation(message = "El nombre del evento es requerido")
 	public String Nombre = "";
 	
 	@TableField(name= "lugarEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
 	@Databinding(ViewId = R.id.lugarEventoField)
+	@RequiredFieldValidation(message = "El lugar del evento es requerido")
 	public String Lugar = "";
 	
-	@TableField(name= "fechaEvento", datatype= Entity.DATATYPE_DATE_BINARY)
+	@TableField(name= "fechaEvento", datatype= Entity.DATATYPE_DATE_BINARY, required= true)
 	@Databinding(ViewId = R.id.fechaEventoField, parser = DateParser.class)
+	@RequiredFieldValidation(message = "La fecha del evento es requerida")
 	public Date F_Evento = new Date();
 	
 	 /*
-     * Methods of Usuario class.
+     * Methods of Evento class.
      */
     
     //CONSTRUCTORS

@@ -121,7 +121,7 @@ public class TutoresDetailActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.accept:
-	            executeSaveCommand(false);
+	        	saveDialog();
 	            return true;
 	            
 	        case R.id.discard:
@@ -131,6 +131,24 @@ public class TutoresDetailActivity extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	
+	private void saveDialog(){
+		builder = new AlertDialog.Builder(this);
+    	
+   	    builder.setMessage("Para crear el tutor/a, debe tener al menos un hijo asignado")
+   	    .setTitle("CREAR TUTOR")
+   	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
+   	           public void onClick(DialogInterface dialog, int id) {
+   	            	dialog.cancel();
+   	               }
+   	           });
+   	    if(arrayListEducandos.size() == 0){
+   	    	builder.show();
+   	    }else{
+   	        executeSaveCommand(false);
+
+   	    }
 	}
 	
 	/*private void initializeTypeface(){
@@ -195,6 +213,25 @@ public class TutoresDetailActivity extends Activity {
 			if (tutor.getID() != null) {
 			
 				tutor.setStatus(Entity.STATUS_DELETED);
+				
+				String wherePattern = "tTutor_ID = ?";
+				
+				List<Educando> educandosList= new ArrayList<Educando>();
+				
+			    educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { tutor.getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+			    
+			    for(int i=0; i<educandosList.size();i++)
+			    {	for(int j=0; j<educandosList.get(i).getTutores().size();j++){
+			    		if(educandosList.get(i).getTutores().get(j).getID() == tutor.getID()){
+			    			Educando educando = educandosList.get(i);
+			    			educando.getTutores().remove(j);
+			    			educando.setStatus(Entity.STATUS_UPDATED);
+			    			
+			    			DataBase.Context.EducandosSet.save(educando);
+			    		}
+
+			    	}
+			    }
 								
 				DataBase.Context.TutoresSet.save(tutor);
 
@@ -241,30 +278,6 @@ public class TutoresDetailActivity extends Activity {
 						
 						DataBase.Context.EducandosSet.save(educando);
 						
-					}
-				}else{
-					DataBase.Context.EducandosSet.fill();
-					if(DataBase.Context.EducandosSet.size() != 0){
-						String wherePattern = "tTutor_ID = ?";
-						
-						List<Educando> educandosList= new ArrayList<Educando>();
-						
-						if(tutor.getStatus() == Entity.STATUS_UPDATED){
-					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.getElementByID(tutor.getID()).toString() }, "tTutor_ID ASC", null, null, null, null);
-	
-						}else{
-					        educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
-	
-						}
-	
-						for(int i=0; i<educandosList.size();++i){
-							Educando aux = educandosList.get(i);
-							aux.setStatus(Entity.STATUS_UPDATED);
-							aux.resetTutores();
-							
-							DataBase.Context.EducandosSet.save(aux);
-	
-						}
 					}
 				}
 				if(!assing)
