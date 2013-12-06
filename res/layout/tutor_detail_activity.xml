@@ -1,125 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentBottom="true"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentTop="true" >
+    android:layout_height="match_parent" >
 
-    <TableRow android:layout_width="wrap_content" >
-
-        <TextView
-            android:id="@+id/nameText"
-            android:layout_marginLeft="5dip"
-            android:text="Nombre" />
-
-        <EditText
-            android:id="@+id/nombreTutor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-
-    </TableRow>
-
-    <TableRow android:layout_width="wrap_content" >
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_marginLeft="5dip"
-            android:text="Apellidos" />
-
-        <EditText
-            android:id="@+id/apellidosTutor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" >
-
-            <requestFocus />
-        </EditText>
-    </TableRow>
-
-    <TableRow android:layout_width="match_parent" >
-
-        <TextView
-            android:id="@+id/movText"
-            android:layout_marginLeft="5dip"
-            android:text="Móvil" />
-
-        <EditText
-            android:id="@+id/telefonoTutor"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
-
-    <TableRow android:layout_width="match_parent" >
-
-        <TextView
-            android:id="@+id/emailText"
-            android:layout_marginLeft="5dip"
-            android:text="E-Mail" />
-
-        <EditText
-            android:id="@+id/emailTutor"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
-
-    <TableRow android:layout_width="match_parent" >
-
-        <TextView
-            android:id="@+id/tipoText"
-            android:layout_marginLeft="5dip"
-            android:text="Tipo" />
-
-        <EditText
-            android:id="@+id/tipoTutor"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="text" />
-    </TableRow>
-
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="clip_horizontal" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
 
-        <ImageButton
-            android:id="@+id/addHijosButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_action_new" />
-
-        <ListView
-            android:id="@+id/hijosListView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/hijosText" >
-        </ListView>
+            android:layout_height="426dp" >
 
-        <TextView
-            android:id="@+id/hijosText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/addHijosButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="HIJOS"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:focusable="true" 
+                android:focusableInTouchMode="true"
+                android:orientation="vertical" >
 
-</TableLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/nombreTutorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="21dp"
+                        android:text="NOMBRE" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/nombreTutor"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout1"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/apellidosTutorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="APELLIDOS" />
+
+                <View
+                    android:id="@+id/View01"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/apellidosTutor"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/movilTutorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="MÓVIL" />
+
+                <View
+                    android:id="@+id/View02"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/telefonoTutor"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/emailTutorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="E-MAIL" />
+
+                <View
+                    android:id="@+id/View03"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/emailTutor"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout4"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tipoTutorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="TIPO" />
+
+                <View
+                    android:id="@+id/View04"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/tipoTutor"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout5"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/educandosTutorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="21dp"
+                        android:text="HIJO / EDUCANDO" />
+
+                    <ImageButton
+                        android:id="@+id/addHijosButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@null"
+                        android:src="@android:drawable/ic_menu_add" />
+                    
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/View05"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <ListView
+		            android:id="@+id/hijosListView"
+		            android:layout_width="283dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp" />
+                
+            </LinearLayout>
+            
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

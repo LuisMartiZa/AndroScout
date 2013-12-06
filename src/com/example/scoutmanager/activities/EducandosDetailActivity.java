@@ -69,7 +69,7 @@ public class EducandosDetailActivity extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		
-    	setContentView(R.layout.educandos_detail_activity1);
+    	setContentView(R.layout.educandos_detail_activity);
     	    	
     	try {
     		initializeSecciones();

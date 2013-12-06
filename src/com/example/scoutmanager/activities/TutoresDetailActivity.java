@@ -17,18 +17,20 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract.Contacts.Data;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-//import android.widget.EditText;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-//import android.widget.TextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class TutoresDetailActivity extends Activity {
@@ -43,43 +45,52 @@ public class TutoresDetailActivity extends Activity {
 	private ImageButton addEducando;
 	private String modo= "";
 
-
-	private AlertDialog.Builder popUpAsignar;
 	private AlertDialog.Builder popUpGuardar;
 
 	private static final int SELECT_REQUEST= 188;  
+	
+	private View.OnClickListener onClick =  new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			executeShowListSelectable();
+
+		}
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);		
     	setContentView(R.layout.tutor_detail_activity);
-    	
-		educandosListView =(ListView)findViewById(R.id.hijosListView);
-		addEducando= (ImageButton)findViewById(R.id.addHijosButton);
-		addEducando.setOnClickListener(onClick);
 
     	try {
-    		initializePopUp();
-			initializeActivity();
-			
+    		Bundle intentExtras = this.getIntent().getExtras();
+    		
 			actionbar= this.getActionBar();
 			actionbar.setTitle("TUTOR/A");
-			Bundle intentExtras = this.getIntent().getExtras();
+			
 			if (intentExtras != null)
 				actionbar.setSubtitle("Editar tutor");
 			else
 				actionbar.setSubtitle("Nuevo tutor");
+			
+			actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+			actionbar.setHomeButtonEnabled(true);
 
 			modo=intentExtras.getString("modo");
-			Log.v("MODO",	 modo);
+			
+			educandosListView =(ListView)findViewById(R.id.hijosListView);
+			addEducando= (ImageButton)findViewById(R.id.addHijosButton);
+			addEducando.setOnClickListener(onClick);
+			
+			initializeActivity();
+			
+	    	initializeTypeface();
+
 		} catch (Exception e) {
 			Log.v("ONVIEWCREATED", "Mensaje "+e);
 
-		}
-    	
-    	//initializeTypeface();
-		
+		}	
 	}
 	
 	 @Override
@@ -155,38 +166,6 @@ public class TutoresDetailActivity extends Activity {
 
    	    }
 	}
-	
-	/*private void initializeTypeface(){
-		Typeface tf = Typeface.createFromAsset(this.getAssets(),
-                "fonts/Roboto-Light.ttf");
-        //TEXTVIEW
-        TextView name = (TextView) this.findViewById(R.id.nameText);
-        TextView surname = (TextView) this.findViewById(R.id.surnameText);
-        TextView dir = (TextView) this.findViewById(R.id.dirText);
-        TextView birthday = (TextView) this.findViewById(R.id.birthdayText);
-        TextView seccion = (TextView) this.findViewById(R.id.sectionText);
-        TextView etapa = (TextView) this.findViewById(R.id.etapaText);
-        TextView padres = (TextView) this.findViewById(R.id.padresText);
-
-        name.setTypeface(tf);
-        surname.setTypeface(tf);
-        dir.setTypeface(tf);
-        birthday.setTypeface(tf);
-        seccion.setTypeface(tf);
-        etapa.setTypeface(tf);
-        padres.setTypeface(tf);
-        
-        //EDITTEXT
-        EditText nameField = (EditText) this.findViewById(R.id.nametutor);
-        EditText surnameField = (EditText) this.findViewById(R.id.surnametutor);
-        EditText dirField = (EditText) this.findViewById(R.id.dirtutor);
-        EditText birthdayField = (EditText) this.findViewById(R.id.tutorBirthday);
-        
-        nameField.setTypeface(tf);
-        surnameField.setTypeface(tf);
-        dirField.setTypeface(tf);
-        birthdayField.setTypeface(tf);
-	}*/
 	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
@@ -335,34 +314,6 @@ public class TutoresDetailActivity extends Activity {
 		}
 	}
 	
-	private View.OnClickListener onClick =  new View.OnClickListener() {
-		
-		public void onClick(View v) {
-			executeShowListSelectable();
-
-		}
-	};
-	
-	private void initializePopUp(){
-		 popUpAsignar = new AlertDialog.Builder(this);
-	
-	     popUpAsignar.setMessage("Para asignar Hijos, el tutor debe estar creado ¿Qué desea hacer?")
-	     .setTitle("CREAR TUTOR")
-	     .setPositiveButton("Crear", new DialogInterface.OnClickListener()  {
-	            public void onClick(DialogInterface dialog, int id) {
-	            	executeSaveCommand(true);
-					executeShowListSelectable();
-	            	dialog.cancel();
-	                }
-	            })
-	     .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int id) {
-	                     Log.i("Dialogos", "Confirmacion Cancelada.");
-	                     dialog.cancel();
-	                }
-	            });
-	}
-	
 	private void initializeListView() throws AdaFrameworkException {
 		    	
     	if (educandosListView != null) {
@@ -397,6 +348,56 @@ public class TutoresDetailActivity extends Activity {
 			
 			educandosSelected.add(educando.getNombre()+" "+educando.getApellidos());
 		}
+	}
+	
+	private void initializeTypeface(){
+		Typeface tf = Typeface.createFromAsset(this.getAssets(),
+                "fonts/Roboto-Light.ttf");
+        //TEXTVIEW
+        TextView nombre = (TextView) this.findViewById(R.id.nombreTutorText);
+        TextView apellidos = (TextView) this.findViewById(R.id.apellidosTutorText);
+        TextView movil = (TextView) this.findViewById(R.id.movilTutorText);
+        TextView email = (TextView) this.findViewById(R.id.emailTutorText);
+        TextView tipo = (TextView) this.findViewById(R.id.tipoTutorText);
+        TextView educandosTutor = (TextView) this.findViewById(R.id.educandosTutorText);
+
+        nombre.setTypeface(tf);
+        nombre.setTextColor((Color.parseColor("#5d2f89")));
+        nombre.setTextSize(20);
+        
+        apellidos.setTypeface(tf);
+        apellidos.setTextColor((Color.parseColor("#5d2f89")));
+        apellidos.setTextSize(20);
+        
+        movil.setTypeface(tf);
+        movil.setTextColor((Color.parseColor("#5d2f89")));
+        movil.setTextSize(20);
+        
+        email.setTypeface(tf);
+        email.setTextColor((Color.parseColor("#5d2f89")));
+        email.setTextSize(20);
+        
+        tipo.setTypeface(tf);
+        tipo.setTextColor((Color.parseColor("#5d2f89")));
+        tipo.setTextSize(20);
+        
+        educandosTutor.setTypeface(tf);
+        educandosTutor.setTextColor((Color.parseColor("#5d2f89")));
+        educandosTutor.setTextSize(20);
+        
+        //EDITTEXT
+        EditText nombreField = (EditText) this.findViewById(R.id.nombreTutor);
+        EditText apellidosField = (EditText) this.findViewById(R.id.apellidosTutor);
+        EditText movilField = (EditText) this.findViewById(R.id.telefonoTutor);
+        EditText emailField = (EditText) this.findViewById(R.id.emailTutor);
+        EditText tipoField = (EditText) this.findViewById(R.id.tipoTutor);
+        
+        nombreField.setTypeface(tf);
+        apellidosField.setTypeface(tf);
+        movilField.setTypeface(tf);
+        emailField.setTypeface(tf);
+        tipoField.setTypeface(tf);
+
 	}
 
 }

@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -9,168 +10,328 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/educandoImagenAdd" >
+        android:layout_alignParentTop="true" >
 
-        <TableLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="408dp"
-            android:padding="5dip"
-            android:stretchColumns="1" >
+            android:layout_height="426dp" >
 
-            <TableRow android:layout_width="match_parent" >
+            <ImageView
+                android:id="@+id/educandoImagenAdd"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:id="@+id/imageEducando"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="83dp"
+                android:src="@drawable/ic_action_add_person" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/educandoImagenAdd"
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/nameText"
-                    android:layout_marginLeft="5dip"
-                    android:text="Nombre" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="NOMBRE" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
 
                 <EditText
                     android:id="@+id/nameEducando"
-                    android:layout_width="match_parent"
-                    android:inputType="text" />
-            </TableRow>
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
 
-            <TableRow android:layout_width="match_parent" >
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout1"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/surnameText"
-                    android:layout_marginLeft="5dip"
-                    android:text="Apellidos" />
+                    android:id="@+id/apellidosText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="APELLIDOS" />
+
+                <View
+                    android:id="@+id/View01"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
 
                 <EditText
                     android:id="@+id/surnameEducando"
-                    android:layout_width="match_parent"
-                    android:inputType="text" />
-            </TableRow>
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
 
-            <TableRow android:layout_width="match_parent" >
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/dirText"
-                    android:layout_marginLeft="5dip"
-                    android:text="Dirección" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="DIRECCIÓN" />
+
+                <View
+                    android:id="@+id/View02"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
 
                 <EditText
                     android:id="@+id/dirEducando"
-                    android:layout_width="match_parent"
-                    android:inputType="text" />
-            </TableRow>
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
 
-            <TableRow android:layout_width="match_parent" >
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/birthdayText"
-                    android:layout_marginLeft="5dip"
-                    android:text="Cumpleaños" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="CUMPLEAÑOS" />
+
+                <View
+                    android:id="@+id/View03"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
 
                 <EditText
                     android:id="@+id/educandoBirthday"
-                    android:layout_width="match_parent"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:ems="10"
-                    android:inputType="date" />
-            </TableRow>
+                    android:inputType="date" >
+                </EditText>
+            </LinearLayout>
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout4"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/emailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="E-mail" />
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="E-MAIL" />
+
+                <View
+                    android:id="@+id/View04"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
 
                 <EditText
                     android:id="@+id/educandoEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="283dp"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textEmailAddress" >
-                </EditText>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/TableRow02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/telefonoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="Teléfono casa" />
-
-                <EditText
-                    android:id="@+id/telefonoEducando"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:ems="10"
                     android:inputType="text" >
                 </EditText>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/TableRow"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:gravity="right" >
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout5"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/sectionText"
-                    android:layout_width="match_parent"
+                    android:id="@+id/movilText"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dip"
-                    android:text="Seccion" />
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="MÓVIL" />
 
-                <Spinner android:id="@+id/spinnerSeccion" />
-            </TableRow>
+                <View
+                    android:id="@+id/View05"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
 
-            <TableRow
-                android:id="@+id/TableRoww"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:gravity="right" >
+                <EditText
+                    android:id="@+id/telefonoEducando"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout6"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/seccionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="SECCIÓN" />
+
+                <View
+                    android:id="@+id/View06"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <Spinner
+                    android:id="@+id/spinnerSeccion"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout7"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/etapaText"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dip"
-                    android:text="Etapa" />
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="ETAPA" />
 
-                <Spinner android:id="@+id/spinnerEtapa" />
-            </TableRow>
-        </TableLayout>
+                <View
+                    android:id="@+id/View07"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <Spinner
+                    android:id="@+id/spinnerEtapa"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+            
+        </RelativeLayout>
+
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/educandoImagenAdd"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/imageEducando"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/educandoImagenAdd"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="83dp"
-        android:src="@drawable/ic_action_add_person" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_above="@+id/scrollView1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:src="@android:drawable/gallery_thumb" />
 
 </RelativeLayout>
