@@ -12,6 +12,7 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Etapa;
+import com.example.scoutmanager.model.entities.Evento;
 import com.example.scoutmanager.model.entities.Seccion;
 import com.example.scoutmanager.model.entities.Tutor;
 import com.mobandme.ada.DataBinder;
@@ -153,63 +154,6 @@ public class EducandosDetailActivity extends Activity {
 	    }
 	}
 	
-	private void initializeTypeface(){
-		Typeface tf = Typeface.createFromAsset(this.getAssets(),
-                "fonts/Roboto-Light.ttf");
-        //TEXTVIEW
-        TextView name = (TextView) this.findViewById(R.id.nameText);
-        TextView surname = (TextView) this.findViewById(R.id.apellidosText);
-        TextView dir = (TextView) this.findViewById(R.id.dirText);
-        TextView birthday = (TextView) this.findViewById(R.id.birthdayText);
-        TextView email = (TextView) this.findViewById(R.id.emailText);
-        TextView telefono = (TextView) this.findViewById(R.id.movilText);
-        TextView seccion = (TextView) this.findViewById(R.id.seccionText);
-        TextView etapa = (TextView) this.findViewById(R.id.etapaText);
-
-        name.setTypeface(tf);
-        name.setTextColor((Color.parseColor("#5d2f89")));
-        name.setTextSize(20);
-        
-        surname.setTypeface(tf);
-        surname.setTextColor((Color.parseColor("#5d2f89")));
-        surname.setTextSize(20);
-        
-        dir.setTypeface(tf);
-        dir.setTextColor((Color.parseColor("#5d2f89")));
-        dir.setTextSize(20);
-        
-        birthday.setTypeface(tf);
-        birthday.setTextColor((Color.parseColor("#5d2f89")));
-        birthday.setTextSize(20);
-        
-        email.setTypeface(tf);
-        email.setTextColor((Color.parseColor("#5d2f89")));
-        email.setTextSize(20);
-        
-        telefono.setTypeface(tf);
-        telefono.setTextColor((Color.parseColor("#5d2f89")));
-        telefono.setTextSize(20);
-        
-        seccion.setTypeface(tf);
-        seccion.setTextColor((Color.parseColor("#5d2f89")));
-        seccion.setTextSize(20);
-        
-        etapa.setTypeface(tf);
-        etapa.setTextColor((Color.parseColor("#5d2f89")));
-        etapa.setTextSize(20);
-        
-        //EDITTEXT
-        EditText nameField = (EditText) this.findViewById(R.id.nameEducando);
-        EditText surnameField = (EditText) this.findViewById(R.id.surnameEducando);
-        EditText dirField = (EditText) this.findViewById(R.id.dirEducando);
-        EditText birthdayField = (EditText) this.findViewById(R.id.educandoBirthday);
-        
-        nameField.setTypeface(tf);
-        surnameField.setTypeface(tf);
-        dirField.setTypeface(tf);
-        birthdayField.setTypeface(tf);
-	}
-	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
 		if (intentExtras != null){
@@ -312,21 +256,32 @@ public class EducandosDetailActivity extends Activity {
 			
 				educando.setStatus(Entity.STATUS_DELETED);
 				String wherePattern = "tTutor_ID = ?";
-				
-		        Log.v("TUTORESLIS", "Number of tutores " + educando.getTutores().size());
-
 
 				for(int i=0; i<educando.getTutores().size(); i++)
 				{
 			        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { educando.getTutores().get(i).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
 			        
-			        Log.v("TUTORESLIS", "Number of tutores " + educandosList.size());
 			        if(educandosList.size() == 1)
 			        {
 			        	Tutor tutor = educando.getTutores().get(i);
 			        	tutor.setStatus(Entity.STATUS_DELETED);
 			        	
 			        	DataBase.Context.TutoresSet.save(tutor);
+			        }
+				}
+				
+				wherePattern = "tEvento_ID = ?";
+
+				for(int i=0; i<educando.getEventos().size(); i++)
+				{
+			        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { educando.getEventos().get(i).getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+			        
+			        if(educandosList.size() == 1)
+			        {
+			        	Evento evento = educando.getEventos().get(i);
+			        	evento.setStatus(Entity.STATUS_DELETED);
+			        	
+			        	DataBase.Context.EventosSet.save(evento);
 			        }
 				}
 				
@@ -546,7 +501,62 @@ public class EducandosDetailActivity extends Activity {
 		           e.printStackTrace();
 
 		    }
-		    
+		}
+		
+		private void initializeTypeface(){
+			Typeface tf = Typeface.createFromAsset(this.getAssets(),
+	                "fonts/Roboto-Light.ttf");
+	        //TEXTVIEW
+	        TextView name = (TextView) this.findViewById(R.id.nameText);
+	        TextView surname = (TextView) this.findViewById(R.id.apellidosText);
+	        TextView dir = (TextView) this.findViewById(R.id.dirText);
+	        TextView birthday = (TextView) this.findViewById(R.id.birthdayText);
+	        TextView email = (TextView) this.findViewById(R.id.emailText);
+	        TextView telefono = (TextView) this.findViewById(R.id.movilText);
+	        TextView seccion = (TextView) this.findViewById(R.id.seccionText);
+	        TextView etapa = (TextView) this.findViewById(R.id.etapaText);
 
+	        name.setTypeface(tf);
+	        name.setTextColor((Color.parseColor("#5d2f89")));
+	        name.setTextSize(20);
+	        
+	        surname.setTypeface(tf);
+	        surname.setTextColor((Color.parseColor("#5d2f89")));
+	        surname.setTextSize(20);
+	        
+	        dir.setTypeface(tf);
+	        dir.setTextColor((Color.parseColor("#5d2f89")));
+	        dir.setTextSize(20);
+	        
+	        birthday.setTypeface(tf);
+	        birthday.setTextColor((Color.parseColor("#5d2f89")));
+	        birthday.setTextSize(20);
+	        
+	        email.setTypeface(tf);
+	        email.setTextColor((Color.parseColor("#5d2f89")));
+	        email.setTextSize(20);
+	        
+	        telefono.setTypeface(tf);
+	        telefono.setTextColor((Color.parseColor("#5d2f89")));
+	        telefono.setTextSize(20);
+	        
+	        seccion.setTypeface(tf);
+	        seccion.setTextColor((Color.parseColor("#5d2f89")));
+	        seccion.setTextSize(20);
+	        
+	        etapa.setTypeface(tf);
+	        etapa.setTextColor((Color.parseColor("#5d2f89")));
+	        etapa.setTextSize(20);
+	        
+	        //EDITTEXT
+	        EditText nameField = (EditText) this.findViewById(R.id.nameEducando);
+	        EditText surnameField = (EditText) this.findViewById(R.id.surnameEducando);
+	        EditText dirField = (EditText) this.findViewById(R.id.dirEducando);
+	        EditText birthdayField = (EditText) this.findViewById(R.id.educandoBirthday);
+	        
+	        nameField.setTypeface(tf);
+	        surnameField.setTypeface(tf);
+	        dirField.setTypeface(tf);
+	        birthdayField.setTypeface(tf);
 		}
 }

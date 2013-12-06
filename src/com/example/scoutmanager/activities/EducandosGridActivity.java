@@ -1,11 +1,14 @@
 package com.example.scoutmanager.activities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.EducandosGridAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
+import com.example.scoutmanager.model.entities.Evento;
+import com.example.scoutmanager.model.entities.Tutor;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
@@ -129,16 +132,45 @@ public class EducandosGridActivity extends Activity {
 	
 	public void executeDeleteCommand(int position) {
 		try {
+			DataBase.Context.EducandosSet.fill();
+			Educando educando = DataBase.Context.EducandosSet.get(position);
 			
-				DataBase.Context.EducandosSet.fill();
-				Educando educando = DataBase.Context.EducandosSet.get(position);
-				
-				educando.setStatus(Entity.STATUS_DELETED);
-				DataBase.Context.EducandosSet.save();
-				
-				Intent refresh = new Intent(this, EducandosGridActivity.class);
-		        startActivity(refresh);
-		        this.finish();
+			educando.setStatus(Entity.STATUS_DELETED);
+			String wherePattern = "tTutor_ID = ?";
+
+			for(int i=0; i<educando.getTutores().size(); i++)
+			{
+		        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { educando.getTutores().get(i).getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+		        
+		        if(educandosList.size() == 1)
+		        {
+		        	Tutor tutor = educando.getTutores().get(i);
+		        	tutor.setStatus(Entity.STATUS_DELETED);
+		        	
+		        	DataBase.Context.TutoresSet.save(tutor);
+		        }
+			}
+			
+			wherePattern = "tEvento_ID = ?";
+
+			for(int i=0; i<educando.getEventos().size(); i++)
+			{
+		        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { educando.getEventos().get(i).getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+		        
+		        if(educandosList.size() == 1)
+		        {
+		        	Evento evento = educando.getEventos().get(i);
+		        	evento.setStatus(Entity.STATUS_DELETED);
+		        	
+		        	DataBase.Context.EventosSet.save(evento);
+		        }
+			}
+			
+			DataBase.Context.EducandosSet.save();
+			
+			Intent refresh = new Intent(this, EducandosGridActivity.class);
+	        startActivity(refresh);
+	        this.finish();
 		        
 		} catch (Exception e) {
 			Log.v("DELETECOMMAND", "Mensaje "+e);

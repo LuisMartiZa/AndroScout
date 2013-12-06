@@ -97,17 +97,16 @@ public class TutoresDetailActivity extends Activity {
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {	 
           if (requestCode == SELECT_REQUEST && resultCode == RESULT_OK) {
 
-        	  Log.v("MODO",	 modo);
         	  try {
 				DataBase.Context.EducandosSet.fill();
-			} catch (AdaFrameworkException e) {
+        	  } catch (AdaFrameworkException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+        	  }
         	  
         	  Bundle intentExtras = data.getExtras();
         	  
-         	 arrayListEducandos=  new ArrayList<Educando>();
+         	  arrayListEducandos=  new ArrayList<Educando>();
 
         	  
         	  ArrayList<Integer> educandosID = intentExtras.getIntegerArrayList("educandosID");
@@ -252,7 +251,6 @@ public class TutoresDetailActivity extends Activity {
 						educando= arrayListEducandos.get(n);
 						
 						educando.setStatus(Entity.STATUS_UPDATED);
-						Log.v("STATUS", "Status " + tutor.getStatus());
 
 						if(modo.equals("editar")){
 
@@ -271,8 +269,6 @@ public class TutoresDetailActivity extends Activity {
 							educando.addTutor(DataBase.Context.TutoresSet.getElementByID(tutor.getID()));
 							
 						}else{
-							Log.v("NUMBER1", "Number of older " + arrayListEducandosOlder.size());
-							Log.v("STATUS", "Status " + tutor.getStatus());
 							educando.addTutor(DataBase.Context.TutoresSet.get(DataBase.Context.TutoresSet.size()-1));
 
 						}

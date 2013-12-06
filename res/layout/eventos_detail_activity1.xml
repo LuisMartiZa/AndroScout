@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="426dp" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:focusable="true" 
+                android:focusableInTouchMode="true"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/nombreEventoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="21dp"
+                        android:text="NOMBRE" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/nombreEvento"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout1"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/lugarEventoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="LUGAR" />
+
+                <View
+                    android:id="@+id/View01"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/lugarEvento"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout2"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/fechaEventoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="21dp"
+                    android:text="FECHA" />
+
+                <View
+                    android:id="@+id/View02"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <EditText
+                    android:id="@+id/fechaEvento"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:inputType="text" >
+                </EditText>
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/linearLayout3"
+                android:layout_marginTop="14dp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/educandosEventoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="21dp"
+                        android:text="EDUCANDOS" />
+
+                    <ImageButton
+                        android:id="@+id/addEducandoEventoButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@null"
+                        android:src="@android:drawable/ic_menu_add" />
+                    
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/View05"
+                    android:layout_width="284dp"
+                    android:layout_height="2dip"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:background="#5d2f89" />
+
+                <ListView
+                    android:id="@+id/listEducandosEvent"
+                    android:layout_width="283dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp" />
+                
+            </LinearLayout>
+            
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

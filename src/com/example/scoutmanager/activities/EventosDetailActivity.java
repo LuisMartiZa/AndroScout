@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class EventosDetailActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.eventos_detail_activity);
+		setContentView(R.layout.eventos_detail_activity1);
 		
 		educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
 			
@@ -344,20 +345,33 @@ public class EventosDetailActivity extends Activity {
 	private void initializeTypeface(){
 		Typeface tf = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
-		Typeface tfb = Typeface.createFromAsset(this.getAssets(),
-                "fonts/Roboto-Bold.ttf");
         //TEXTVIEW
-        TextView name = (TextView) this.findViewById(R.id.nameEvento);
-        TextView lugar = (TextView) this.findViewById(R.id.lugarEvento);
-        TextView fecha = (TextView) this.findViewById(R.id.fechaEvento);
-        
-        EditText nameField = (EditText) this.findViewById(R.id.nameEventoField);
-        EditText lugarField = (EditText) this.findViewById(R.id.lugarEventoField);
-        EditText fechaField = (EditText) this.findViewById(R.id.fechaEventoField);
+        TextView nombre = (TextView) this.findViewById(R.id.nombreEventoText);
+        TextView lugar = (TextView) this.findViewById(R.id.lugarEventoText);
+        TextView fecha = (TextView) this.findViewById(R.id.fechaEventoText);
+        TextView educandos = (TextView) this.findViewById(R.id.educandosEventoText);
 
-        name.setTypeface(tfb);
-        lugar.setTypeface(tfb);
-        fecha.setTypeface(tfb);
+        
+        EditText nameField = (EditText) this.findViewById(R.id.nombreEvento);
+        EditText lugarField = (EditText) this.findViewById(R.id.lugarEvento);
+        EditText fechaField = (EditText) this.findViewById(R.id.fechaEvento);
+
+        nombre.setTypeface(tf);
+        nombre.setTextColor((Color.parseColor("#5d2f89")));
+        nombre.setTextSize(20);
+        
+        lugar.setTypeface(tf);
+        lugar.setTextColor((Color.parseColor("#5d2f89")));
+        lugar.setTextSize(20);
+        
+        fecha.setTypeface(tf);
+        fecha.setTextColor((Color.parseColor("#5d2f89")));
+        fecha.setTextSize(20);
+        
+        educandos.setTypeface(tf);
+        educandos.setTextColor((Color.parseColor("#5d2f89")));
+        educandos.setTextSize(20);
+        
         nameField.setTypeface(tf);
         lugarField.setTypeface(tf);
         fechaField.setTypeface(tf);
