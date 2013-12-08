@@ -151,21 +151,6 @@ public class EducandosGridActivity extends Activity {
 		        }
 			}
 			
-			wherePattern = "tEvento_ID = ?";
-
-			for(int i=0; i<educando.getEventos().size(); i++)
-			{
-		        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { educando.getEventos().get(i).getID().toString() }, "tEvento_ID ASC", null, null, null, null);
-		        
-		        if(educandosList.size() == 1)
-		        {
-		        	Evento evento = educando.getEventos().get(i);
-		        	evento.setStatus(Entity.STATUS_DELETED);
-		        	
-		        	DataBase.Context.EventosSet.save(evento);
-		        }
-			}
-			
 			DataBase.Context.EducandosSet.save();
 			
 			Intent refresh = new Intent(this, EducandosGridActivity.class);

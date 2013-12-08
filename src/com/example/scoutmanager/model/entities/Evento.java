@@ -14,17 +14,17 @@ import com.mobandme.ada.annotations.TableField;
 public class Evento extends Entity {
 	
 	@TableField(name= "nombreEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	@Databinding(ViewId = R.id.nameEventoField)
+	@Databinding(ViewId = R.id.nombreEvento)
 	@RequiredFieldValidation(message = "El nombre del evento es requerido")
 	public String Nombre = "";
 	
 	@TableField(name= "lugarEvento", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	@Databinding(ViewId = R.id.lugarEventoField)
+	@Databinding(ViewId = R.id.lugarEvento)
 	@RequiredFieldValidation(message = "El lugar del evento es requerido")
 	public String Lugar = "";
 	
 	@TableField(name= "fechaEvento", datatype= Entity.DATATYPE_DATE_BINARY, required= true)
-	@Databinding(ViewId = R.id.fechaEventoField, parser = DateParser.class)
+	@Databinding(ViewId = R.id.fechaEvento, parser = DateParser.class)
 	@RequiredFieldValidation(message = "La fecha del evento es requerida")
 	public Date F_Evento = new Date();
 	

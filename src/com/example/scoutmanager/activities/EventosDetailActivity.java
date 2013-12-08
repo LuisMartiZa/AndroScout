@@ -19,6 +19,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -39,42 +40,57 @@ public class EventosDetailActivity extends Activity {
 	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter;
 	private ArrayList<Educando> arrayListEducandos= new ArrayList<Educando>();
+	private ArrayList<Educando> arrayListEducandosOlder= new ArrayList<Educando>();
 	private ArrayList<String> educandosSelected;
 	private ImageButton addEducando;
+	private String modo= "";
 	
-	private AlertDialog.Builder popUpAsignar;
 	private AlertDialog.Builder popUpGuardar;
 	
-	private static final int SELECT_REQUEST= 188;  
+	private static final int SELECT_REQUEST= 188;
+	
+	private View.OnClickListener onClick =  new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			executeShowListSelectable();
+		}
+	};
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.eventos_detail_activity1);
 		
-		educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
-			
-		addEducando= (ImageButton)findViewById(R.id.addEducandoEventoButton);
-		addEducando.setOnClickListener(onClick);
+		
 		
 		try {
-    		initializePopUp();
-			initializeActivity();
+			Bundle intentExtras = this.getIntent().getExtras();
 			
 			actionbar= this.getActionBar();
 			actionbar.setTitle("EVENTOS");
 			
-			Bundle intentExtras = this.getIntent().getExtras();
 			if (intentExtras != null)
 				actionbar.setSubtitle("Editar evento");
 			else
 				actionbar.setSubtitle("Nuevo evento");
 			
+			actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+			actionbar.setHomeButtonEnabled(true);
+			
+			educandosListView =(ListView)findViewById(R.id.listEducandosEvent);
+			
+			addEducando= (ImageButton)findViewById(R.id.addEducandoEventoButton);
+			addEducando.setOnClickListener(onClick);
+			
+			initializeActivity();
+			
+			initializeTypeface();
+
+			
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
 		
-		initializeTypeface();
 		
 	}
 	
@@ -105,9 +121,52 @@ public class EventosDetailActivity extends Activity {
 		}
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.detail_action, menu);
+	    return super.onCreateOptionsMenu(menu);
+	}
+    
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle presses on the action bar items
+	    switch (item.getItemId()) {
+	        case R.id.accept:
+	        	saveDialog();
+	        	return true;
+	            
+	        case R.id.discard:
+	            executeDeleteCommand();
+	            return true;
+	            
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	private void saveDialog(){
+		popUpGuardar = new AlertDialog.Builder(this);
+    	
+   	    popUpGuardar.setMessage("Para crear el evento, debe tener al menos un educando asignado")
+   	    .setTitle("CREAR EVENTO")
+   	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
+   	           public void onClick(DialogInterface dialog, int id) {
+   	            	dialog.cancel();
+   	               }
+   	           });
+   	    if(arrayListEducandos.size() == 0){
+   	    	popUpGuardar.show();
+   	    }else{
+   	        executeSaveCommand(false);
+
+   	    }
+	}
+	
 	private void initializeActivity() throws AdaFrameworkException {
 		Bundle intentExtras = this.getIntent().getExtras();
-		if (intentExtras != null){
+		if (intentExtras.getString("modo").equals("editar")){
 			executeShowCommand(intentExtras.getLong("eventoID"));
 		}else{
 			initializeListView();
@@ -192,9 +251,23 @@ public class EventosDetailActivity extends Activity {
 						educando= arrayListEducandos.get(n);
 						
 						educando.setStatus(Entity.STATUS_UPDATED);
-						if(ev.getStatus() == Entity.STATUS_UPDATED){
-							educando.addEvento(DataBase.Context.EventosSet.getElementByID(ev.getID()));
 
+						if(modo.equals("editar")){
+
+							for(int i=0;i<arrayListEducandosOlder.size();i++){
+								Educando older= arrayListEducandosOlder.get(i);
+								if(older.getID() != educando.getID()){
+									older.setStatus(Entity.STATUS_UPDATED);
+									for(int j=0; j<older.getTutores().size(); j++){
+										if(older.getTutores().get(j).getID() == ev.getID())
+											older.getTutores().remove(j);
+									}
+
+									DataBase.Context.EducandosSet.save(older);
+								}
+							}
+							educando.addEvento(DataBase.Context.EventosSet.getElementByID(ev.getID()));
+							
 						}else{
 							educando.addEvento(DataBase.Context.EventosSet.get(DataBase.Context.EventosSet.size()-1));
 
@@ -217,48 +290,7 @@ public class EventosDetailActivity extends Activity {
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-	    // Inflate the menu items for use in the action bar
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.detail_action, menu);
-	    return super.onCreateOptionsMenu(menu);
-	}
-    
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-	        case R.id.accept:
-	        	saveDialog();
-	        	return true;
-	            
-	        case R.id.discard:
-	            executeDeleteCommand();
-	            return true;
-	            
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
-	}
 	
-	private void saveDialog(){
-		popUpGuardar = new AlertDialog.Builder(this);
-    	
-   	    popUpGuardar.setMessage("Para crear el evento, debe tener al menos un educando asignado")
-   	    .setTitle("CREAR EVENTO")
-   	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
-   	           public void onClick(DialogInterface dialog, int id) {
-   	            	dialog.cancel();
-   	               }
-   	           });
-   	    if(arrayListEducandos.size() == 0){
-   	    	popUpGuardar.show();
-   	    }else{
-   	        executeSaveCommand(false);
-
-   	    }
-	}
 	
 	private void executeShowListSelectable() {
 		try {
@@ -274,38 +306,6 @@ public class EventosDetailActivity extends Activity {
 			} catch (Exception e) {
 				Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 			}
-	}
-	
-	private View.OnClickListener onClick =  new View.OnClickListener() {
-		
-		public void onClick(View v) {
-			if(ev.getID() == null){
-				popUpAsignar.show();
-			}else{
-				executeShowListSelectable();
-
-			}
-		}
-	};
-	
-	private void initializePopUp(){
-		 popUpAsignar = new AlertDialog.Builder(this);
-	
-	     popUpAsignar.setMessage("Para asignar Educandos, el evento debe estar creado ÀQuŽ desea hacer?")
-	     .setTitle("CREAR ev")
-	     .setPositiveButton("Crear", new DialogInterface.OnClickListener()  {
-	            public void onClick(DialogInterface dialog, int id) {
-	            	executeSaveCommand(true);
-					executeShowListSelectable();
-	            	dialog.cancel();
-	                }
-	            })
-	     .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int id) {
-	                     Log.i("Dialogos", "Confirmacion Cancelada.");
-	                     dialog.cancel();
-	                }
-	            });
 	}
 	
 	private void initializeListView() throws AdaFrameworkException {
@@ -328,6 +328,9 @@ public class EventosDetailActivity extends Activity {
 			Educando educando = educandosList.get(i);
 			arrayListEducandos.add(educando);
 		}
+		
+		arrayListEducandosOlder=arrayListEducandos;
+
 	}
 	
 	private void getSelectedEducandos(){
