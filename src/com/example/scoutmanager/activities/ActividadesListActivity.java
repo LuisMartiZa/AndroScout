@@ -12,6 +12,8 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -53,6 +55,8 @@ public class ActividadesListActivity extends Activity {
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("ACTIVIDADES");
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+		actionbar.setHomeButtonEnabled(true);
 		
 		Bundle intentExtras = this.getIntent().getExtras();
 		tipo= intentExtras.getString("tipo");

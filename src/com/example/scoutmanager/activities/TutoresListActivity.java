@@ -11,6 +11,8 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,9 +64,12 @@ public class TutoresListActivity extends Activity implements SearchView.OnQueryT
         	fillArrayListTutores();
         	initializeListView();
         	//initializePopUp();
+        	
 			ActionBar actionbar;
 			actionbar= getActionBar();
 			actionbar.setTitle("TUTORES");
+			actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+			actionbar.setHomeButtonEnabled(true);
         	
         } catch (Exception e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();

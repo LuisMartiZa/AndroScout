@@ -12,7 +12,9 @@ import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -75,6 +77,8 @@ public class ActividadesDetailActivity extends YouTubeBaseActivity implements Yo
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle(intentExtras.getString("tipo").toUpperCase());
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+		actionbar.setHomeButtonEnabled(true);
 		
 		executeShowCommand(intentExtras.getLong("actividadID"));
 

@@ -17,6 +17,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +48,7 @@ public class EducandosGridActivity extends Activity {
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("EDUCANDOS");
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
 
 		try {
 			fillArrayListEducando();

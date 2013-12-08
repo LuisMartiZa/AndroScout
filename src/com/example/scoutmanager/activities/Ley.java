@@ -5,6 +5,8 @@ import com.example.scoutmanager.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -22,6 +24,8 @@ public class Ley extends Activity {
 		ActionBar actionbar;
 		actionbar= getActionBar();
 		actionbar.setTitle("LEY SCOUT");
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+		actionbar.setHomeButtonEnabled(true);
 
         MyPagerAdapter adapter = new MyPagerAdapter();
         ViewPager myPager = (ViewPager) findViewById(R.id.pagerLey);

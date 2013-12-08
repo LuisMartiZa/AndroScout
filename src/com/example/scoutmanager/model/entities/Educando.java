@@ -62,6 +62,9 @@ public class Educando extends Entity {
     @TableField(name= "eventosEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
     public List<Evento> Eventos= new ArrayList<Evento>();
     
+    @TableField(name= "asistenciaEducando", datatype= Entity.DATATYPE_ENTITY_LINK)
+    public Asistencia Asistencia= new Asistencia();
+    
     /*
      * Methods of Educando class.
      */
@@ -201,4 +204,13 @@ public class Educando extends Entity {
     	this.Eventos = new ArrayList<Evento>();
     }
     
+    public void addAsistencia(Asistencia asistencia)
+    {
+    	this.Asistencia=asistencia;
+    }
+    
+    public Asistencia getAsistencia()
+    {
+    	return Asistencia;
+    }
 }

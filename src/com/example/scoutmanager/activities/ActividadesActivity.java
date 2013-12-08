@@ -5,7 +5,9 @@ import com.example.scoutmanager.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -23,7 +25,9 @@ public class ActividadesActivity extends Activity {
 		
 		ActionBar actionbar;
 		actionbar= getActionBar();
-		actionbar.setTitle("LEY Y PROMESA");
+		actionbar.setTitle("ACTIVIDADES");
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
+		actionbar.setHomeButtonEnabled(true);
         
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "fonts/Roboto-Light.ttf");
