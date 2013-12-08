@@ -7,7 +7,6 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.adapters.EducandosGridAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
-import com.example.scoutmanager.model.entities.Evento;
 import com.example.scoutmanager.model.entities.Tutor;
 import com.mobandme.ada.Entity;
 import com.mobandme.ada.exceptions.AdaFrameworkException;

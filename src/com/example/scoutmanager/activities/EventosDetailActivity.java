@@ -69,7 +69,7 @@ public class EventosDetailActivity extends Activity {
 			actionbar= this.getActionBar();
 			actionbar.setTitle("EVENTOS");
 			
-			if (intentExtras != null)
+			if (intentExtras.getString("modo").equals("editar"))
 				actionbar.setSubtitle("Editar evento");
 			else
 				actionbar.setSubtitle("Nuevo evento");

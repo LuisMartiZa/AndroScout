@@ -35,7 +35,8 @@ public class EventosListActivity extends Activity {
 			try {
 				Intent detailIntent = new Intent(EventosListActivity.this, EventosDetailActivity.class);
 				detailIntent.putExtra("eventoID", arrayListEventos.get(pPosition).getID());
-				
+				detailIntent.putExtra("modo", "editar");
+
 				startActivityForResult(detailIntent,1);
 				
 	        } catch (Exception e) {
@@ -121,6 +122,8 @@ public class EventosListActivity extends Activity {
 	 public void executeAddNewCommand() {
     	try {
     		Intent detailIntent = new Intent(this, EventosDetailActivity.class);
+			detailIntent.putExtra("modo", "nuevo");
+
     		startActivityForResult(detailIntent,1);    		
     		
     	} catch (Exception e) {

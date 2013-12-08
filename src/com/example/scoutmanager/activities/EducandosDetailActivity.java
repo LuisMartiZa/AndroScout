@@ -12,7 +12,6 @@ import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Etapa;
-import com.example.scoutmanager.model.entities.Evento;
 import com.example.scoutmanager.model.entities.Seccion;
 import com.example.scoutmanager.model.entities.Tutor;
 import com.mobandme.ada.DataBinder;
@@ -191,7 +190,7 @@ public class EducandosDetailActivity extends Activity {
 			
 			initializeEtapas(seccionPosition);
 									
-			if(educando.getImagen() != null){
+			if(!educando.getImagen().equals("")){
 				mImageView= (ImageView) findViewById(R.id.educandoImagenAdd);
 		        mImageView.setClickable(true);
 		        mImageView.setOnClickListener(new OnClickListener() {

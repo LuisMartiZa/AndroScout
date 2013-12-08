@@ -69,7 +69,7 @@ public class TutoresDetailActivity extends Activity {
 			actionbar= this.getActionBar();
 			actionbar.setTitle("TUTOR/A");
 			
-			if (intentExtras != null)
+			if (intentExtras.getString("modo").equals("editar"))
 				actionbar.setSubtitle("Editar tutor");
 			else
 				actionbar.setSubtitle("Nuevo tutor");

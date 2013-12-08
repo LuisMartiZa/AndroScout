@@ -7,12 +7,12 @@ import com.mobandme.ada.annotations.TableField;
 @Table(name = "tAsistencia")
 public class Asistencia extends Entity {
 	
-	@TableField(name= "asistencias", datatype= Entity.DATATYPE_INTEGER, required= true)
+	@TableField(name= "asistenciaRonda", datatype= Entity.DATATYPE_TEXT, required= true)
+	private String Ronda;
+	
+	@TableField(name= "asistenciasEducando", datatype= Entity.DATATYPE_INTEGER, required= true)
 	private int Asistencias;
 	
-	@TableField(name= "asistenciaEducandos", datatype= Entity.DATATYPE_ENTITY)
-    public Educando Educando= new Educando();
-
 	
 	 /*
      * Methods of Usuario class.
@@ -21,6 +21,13 @@ public class Asistencia extends Entity {
     //CONSTRUCTORS
     public Asistencia(){
     	super();
+    }
+    
+    public Asistencia(String ronda, int asistencia)
+    {
+    	super();
+    	this.Ronda= ronda;
+    	this.Asistencias= asistencia;
     }
     
     //GETTERS AND SETTERS
@@ -32,16 +39,6 @@ public class Asistencia extends Entity {
     public void setAsiste(int asistencias)
     {
     	this.Asistencias=asistencias;
-    }
-    
-    public Educando getEducandos()
-    {
-    	return Educando;
-    }
-    
-    public void addEducando(Educando educando)
-    {
-    	this.Educando=educando;
     }
 	
 }

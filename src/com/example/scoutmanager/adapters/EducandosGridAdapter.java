@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 		Educando educando = data.get(position);
 		holder.imageTitle.setText(educando.getNombre());
 		
-		if(educando.getImagen() != null){
+		if(!educando.getImagen().equals("")){
 			File image = new  File(educando.getImagen()); 
 			
 		    if(image.exists()){
@@ -58,8 +59,62 @@ public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 		    }
 		    
 		}else{
-		
-	        holder.image= (ImageView) row.findViewById(R.id.imageEducando);
+					
+	        if(educando.getSeccionEducando().getNombre().equals("Castores"))
+	        {
+	        	if(educando.getEtapaEducando().getNombre().equals("Castor sin paletas")){
+	        		holder.image.setImageResource(R.drawable.integracioncastores);
+	        	}else if (educando.getEtapaEducando().getNombre().equals("Castor con paletas")) {
+	        		holder.image.setImageResource(R.drawable.participacioncastores);
+				}else if (educando.getEtapaEducando().getNombre().equals("Castor Keoo")) {
+	        		holder.image.setImageResource(R.drawable.animacioncastores);
+				}
+	        }
+	        
+	        if(educando.getSeccionEducando().getNombre().equals("Manada"))
+	        {
+	        	if(educando.getEtapaEducando().getNombre().equals("Huella de Akela")){
+	        		holder.image.setImageResource(R.drawable.integracionmanada);
+	        	}else if (educando.getEtapaEducando().getNombre().equals("Huella de Baloo")) {
+	        		holder.image.setImageResource(R.drawable.participacionmanada);
+				}else if (educando.getEtapaEducando().getNombre().equals("Huella de Bagheera")) {
+	        		holder.image.setImageResource(R.drawable.animacionmanada);
+				}
+	        }
+	        
+	        if(educando.getSeccionEducando().getNombre().equals("Tropa"))
+	        {
+	        	if(educando.getEtapaEducando().getNombre().equals("Integraci—n")){
+	        		holder.image.setImageResource(R.drawable.integraciontropa);
+	        	}else if (educando.getEtapaEducando().getNombre().equals("Participaci—n")) {
+	        		holder.image.setImageResource(R.drawable.participaciontropa);
+				}else if (educando.getEtapaEducando().getNombre().equals("Animaci—n")) {
+	        		holder.image.setImageResource(R.drawable.animaciontropa);
+				}
+	        }
+	        
+	        if(educando.getSeccionEducando().getNombre().equals("Unidad"))
+	        {
+	        	if(educando.getEtapaEducando().getNombre().equals("Integraci—n")){
+	        		holder.image.setImageResource(R.drawable.integracionunidad);
+	        	}else if (educando.getEtapaEducando().getNombre().equals("Participaci—n")) {
+	        		holder.image.setImageResource(R.drawable.participacionunidad);
+				}else if (educando.getEtapaEducando().getNombre().equals("Animaci—n")) {
+	        		holder.image.setImageResource(R.drawable.animacionunidad);
+				}
+	        }
+	        
+	        if(educando.getSeccionEducando().getNombre().equals("Clan"))
+	        {
+	        	if(educando.getEtapaEducando().getNombre().equals("Integraci—n")){
+	        		holder.image.setImageResource(R.drawable.integracionclan);
+	        	}else if (educando.getEtapaEducando().getNombre().equals("Participaci—n")) {
+	        		holder.image.setImageResource(R.drawable.participacionclan);
+				}else if (educando.getEtapaEducando().getNombre().equals("Animaci—n")) {
+	        		holder.image.setImageResource(R.drawable.animacionclan);
+				}
+	        }
+	        	
 		}
 		
 		return row;

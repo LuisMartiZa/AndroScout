@@ -141,24 +141,39 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class drawable {
         public static final int actividades=0x7f020000;
-        public static final int asistencia=0x7f020001;
-        public static final int danza1=0x7f020002;
-        public static final int educandos=0x7f020003;
-        public static final int estrella=0x7f020004;
-        public static final int events=0x7f020005;
-        public static final int flor=0x7f020006;
-        public static final int florlis=0x7f020007;
-        public static final int grid_color_selector=0x7f020008;
-        public static final int ic_action_accept=0x7f020009;
-        public static final int ic_action_add_person=0x7f02000a;
-        public static final int ic_action_discard=0x7f02000b;
-        public static final int ic_action_new=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int iconoflordelis=0x7f02000e;
-        public static final int juegos=0x7f02000f;
-        public static final int ley=0x7f020010;
-        public static final int rizo=0x7f020011;
-        public static final int shadow=0x7f020012;
+        public static final int animacioncastores=0x7f020001;
+        public static final int animacionclan=0x7f020002;
+        public static final int animacionmanada=0x7f020003;
+        public static final int animaciontropa=0x7f020004;
+        public static final int animacionunidad=0x7f020005;
+        public static final int asistencia=0x7f020006;
+        public static final int danza1=0x7f020007;
+        public static final int educandos=0x7f020008;
+        public static final int estrella=0x7f020009;
+        public static final int events=0x7f02000a;
+        public static final int flor=0x7f02000b;
+        public static final int florlis=0x7f02000c;
+        public static final int grid_color_selector=0x7f02000d;
+        public static final int ic_action_accept=0x7f02000e;
+        public static final int ic_action_add_person=0x7f02000f;
+        public static final int ic_action_discard=0x7f020010;
+        public static final int ic_action_new=0x7f020011;
+        public static final int ic_launcher=0x7f020012;
+        public static final int iconoflordelis=0x7f020013;
+        public static final int integracioncastores=0x7f020014;
+        public static final int integracionclan=0x7f020015;
+        public static final int integracionmanada=0x7f020016;
+        public static final int integraciontropa=0x7f020017;
+        public static final int integracionunidad=0x7f020018;
+        public static final int juegos=0x7f020019;
+        public static final int ley=0x7f02001a;
+        public static final int participacioncastores=0x7f02001b;
+        public static final int participacionclan=0x7f02001c;
+        public static final int participacionmanada=0x7f02001d;
+        public static final int participaciontropa=0x7f02001e;
+        public static final int participacionunidad=0x7f02001f;
+        public static final int rizo=0x7f020020;
+        public static final int shadow=0x7f020021;
     }
     public static final class id {
         public static final int ActividadesListView=0x7f04000d;
