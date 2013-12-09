@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.example.scoutmanager.activities.AsistenciaDetailActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
 import com.example.scoutmanager.activities.Ley;
@@ -278,7 +279,7 @@ public class MainActivity extends Activity {
 			        menu.toggle(true);
 			        text = "Ha pulsado asistencia";
 			        
-			        Intent asistencia = new Intent(view.getContext(), EventosListActivity.class);
+			        Intent asistencia = new Intent(view.getContext(), AsistenciaDetailActivity.class);
 			        startActivity(asistencia);
 
 			        toast = Toast.makeText(context, text, duration);

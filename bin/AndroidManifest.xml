@@ -42,6 +42,7 @@
         <activity android:name="com.example.scoutmanager.activities.ActividadesActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EventosListActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EventosDetailActivity"></activity>
+        <activity android:name="com.example.scoutmanager.activities.AsistenciaDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosListSelectable"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosGridActivity"></activity>
         
