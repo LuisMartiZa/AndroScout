@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="68dp"
+        android:layout_marginLeft="5dp" >
+
+        <TextView
+            android:id="@+id/nombreEducandoAsistencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="16dp"
+            android:text="Nombre" />
+
+        <TextView
+            android:id="@+id/apellidosEducandoAsistencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/nombreEducandoAsistencia"
+            android:text="Apellido" />
+
+        <TextView
+            android:id="@+id/asistenciaEducando"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/apellidosEducandoAsistencia"
+            android:layout_alignBottom="@+id/apellidosEducandoAsistencia"
+            android:layout_toRightOf="@+id/decrementButton"
+            android:text="TextView" />
+
+        <ImageButton
+            android:id="@+id/decrementButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="84dp"
+            android:layout_toRightOf="@+id/apellidosEducandoAsistencia"
+            android:background="@null"
+            android:src="@drawable/decrement_button" />
+
+        <ImageButton
+            android:id="@+id/incrementButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/decrementButton"
+            android:background="@null"
+            android:src="@drawable/increment_button" />
+
+    </RelativeLayout>
+
+</LinearLayout>

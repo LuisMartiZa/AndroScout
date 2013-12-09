@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Asistencia;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Seccion;
@@ -124,6 +125,8 @@ public class EducandosDetailActivity extends Activity {
 	              } catch (IOException e) {
 					e.printStackTrace();
 	              }
+	              AddImage= (ImageView) findViewById(R.id.imageEducando);
+				  AddImage.setVisibility(View.INVISIBLE);
         	  }         
           }
 	 }
@@ -314,10 +317,16 @@ public class EducandosDetailActivity extends Activity {
 			}
 			if(!mCurrentPhotoPath.contentEquals(""))
 				educando.setImagen(mCurrentPhotoPath);
-						
+									
 			if (educando.validate(this)) {
 				
 				if (educando.getID() == null) {
+					Asistencia asistencia = new Asistencia("Ronda 2013/2014", 0);
+					DataBase.Context.AsistenciaSet.add(asistencia);
+					DataBase.Context.AsistenciaSet.save();
+					
+					educando.setAsistencia(asistencia);
+					
 					DataBase.Context.EducandosSet.add(educando);
 				}
 				DataBase.Context.EducandosSet.save();
@@ -477,7 +486,7 @@ public class EducandosDetailActivity extends Activity {
 		    if (file.exists ()) file.delete (); 
 		    try {
 		           FileOutputStream out = new FileOutputStream(file);
-		           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+		           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
 		           out.flush();
 		           out.close();
 

@@ -204,7 +204,7 @@ public class Educando extends Entity {
     	this.Eventos = new ArrayList<Evento>();
     }
     
-    public void addAsistencia(Asistencia asistencia)
+    public void setAsistencia(Asistencia asistencia)
     {
     	this.Asistencia=asistencia;
     }

@@ -8,10 +8,10 @@ import com.mobandme.ada.annotations.TableField;
 public class Asistencia extends Entity {
 	
 	@TableField(name= "asistenciaRonda", datatype= Entity.DATATYPE_TEXT, required= true)
-	private String Ronda;
+	public String Ronda;
 	
 	@TableField(name= "asistenciasEducando", datatype= Entity.DATATYPE_INTEGER, required= true)
-	private int Asistencias;
+	public int Asistencias;
 	
 	
 	 /*

@@ -10,7 +10,7 @@ import com.mobandme.ada.annotations.TableField;
 public class Actividades extends Entity {
 	
 	@TableField(name= "nombreActividad", datatype= Entity.DATATYPE_TEXT, required= true, maxLength= 100)
-	@Databinding(ViewId= R.id.nameActividad)
+	@Databinding(ViewId= R.id.nombreActividad)
 	public String Nombre = "";
 	
 	@TableField(name= "participantesActividad", datatype= Entity.DATATYPE_TEXT, required= true)
@@ -18,7 +18,7 @@ public class Actividades extends Entity {
 	public String Participantes;
 	
 	@TableField(name= "descripcionActividad", datatype= Entity.DATATYPE_TEXT, required= true)
-	@Databinding(ViewId= R.id.descripActividad)
+	@Databinding(ViewId= R.id.descripcionActividad)
 	public String Descripcion = "";
 	
 	@TableField(name= "tipoActividad", datatype= Entity.DATATYPE_TEXT, required= true)

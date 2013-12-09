@@ -6,6 +6,7 @@ import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
 import com.mobandme.ada.exceptions.AdaFrameworkException;
 import com.example.scoutmanager.model.entities.Actividades;
+import com.example.scoutmanager.model.entities.Asistencia;
 import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Evento;
 import com.example.scoutmanager.model.entities.Seccion;
@@ -32,6 +33,7 @@ public class ApplicationDataContext extends ObjectContext {
 	public ObjectSet<Actividades> ActividadesSet;
 	public ObjectSet<Evento> EventosSet;
 	public ObjectSet<Tutor> TutoresSet;
+	public ObjectSet<Asistencia> AsistenciaSet;
 	
 	/**************************************************/
 	/*      		CONSTRUCTORS 		 			  */
@@ -77,6 +79,8 @@ public class ApplicationDataContext extends ObjectContext {
 		ActividadesSet = new ObjectSet<Actividades>(Actividades.class, this);
 		EventosSet = new ObjectSet<Evento>(Evento.class, this);
 		TutoresSet = new ObjectSet<Tutor>(Tutor.class, this);
+		AsistenciaSet = new ObjectSet<Asistencia>(Asistencia.class, this);
+
 
 	}
 }

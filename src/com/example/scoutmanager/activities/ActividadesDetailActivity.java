@@ -99,22 +99,36 @@ public class ActividadesDetailActivity extends YouTubeBaseActivity implements Yo
 	private void initializeTypeface(){
 		Typeface tf = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
-		Typeface tfb = Typeface.createFromAsset(this.getAssets(),
-                "fonts/Roboto-Bold.ttf");
+		
         //TEXTVIEW
-        TextView name = (TextView) this.findViewById(R.id.nameActividadText);
-        TextView participantes = (TextView) this.findViewById(R.id.participantesText);
-        TextView descripcion = (TextView) this.findViewById(R.id.descripText);
-        TextView descripcionField = (TextView) this.findViewById(R.id.descripActividad);
-        TextView nameActividad = (TextView) this.findViewById(R.id.nameActividad);
+        TextView name = (TextView) this.findViewById(R.id.nombreActividadText);
+        TextView participantes = (TextView) this.findViewById(R.id.participantesActividadText);
+        TextView descripcion = (TextView) this.findViewById(R.id.descripcionActividadText);
+        TextView nameActividad = (TextView) this.findViewById(R.id.nombreActividad);
         TextView participantesActividad = (TextView) this.findViewById(R.id.participantesActividad);
+        TextView descripcionActividad = (TextView) this.findViewById(R.id.descripcionActividad);
 
-        name.setTypeface(tfb);
-        participantes.setTypeface(tfb);
-        descripcion.setTypeface(tfb);
-        descripcionField.setTypeface(tf);
+        name.setTypeface(tf);
+        name.setTextColor((Color.parseColor("#5d2f89")));
+        name.setTextSize(20);
+        
+        participantes.setTypeface(tf);
+        participantes.setTextColor((Color.parseColor("#5d2f89")));
+        participantes.setTextSize(20);
+        
+        descripcion.setTypeface(tf);
+        descripcion.setTextColor((Color.parseColor("#5d2f89")));
+        descripcion.setTextSize(20);
+        
+        descripcionActividad.setTypeface(tf);
+        descripcionActividad.setTextSize(15);
+
         nameActividad.setTypeface(tf);
+        nameActividad.setTextSize(15);
+
         participantesActividad.setTypeface(tf);
+        participantesActividad.setTextSize(15);
+
 
 	}
 
