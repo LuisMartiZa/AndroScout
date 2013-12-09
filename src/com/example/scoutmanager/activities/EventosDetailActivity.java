@@ -14,8 +14,6 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -44,9 +42,7 @@ public class EventosDetailActivity extends Activity {
 	private ArrayList<String> educandosSelected;
 	private ImageButton addEducando;
 	private String modo= "";
-	
-	private AlertDialog.Builder popUpGuardar;
-	
+		
 	private static final int SELECT_REQUEST= 188;
 	
 	private View.OnClickListener onClick =  new View.OnClickListener() {
@@ -134,7 +130,7 @@ public class EventosDetailActivity extends Activity {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
 	        case R.id.accept:
-	        	saveDialog();
+	   	        executeSaveCommand(false);
 	        	return true;
 	            
 	        case R.id.discard:
@@ -144,24 +140,6 @@ public class EventosDetailActivity extends Activity {
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
-	}
-	
-	private void saveDialog(){
-		popUpGuardar = new AlertDialog.Builder(this);
-    	
-   	    popUpGuardar.setMessage("Para crear el evento, debe tener al menos un educando asignado")
-   	    .setTitle("CREAR EVENTO")
-   	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
-   	           public void onClick(DialogInterface dialog, int id) {
-   	            	dialog.cancel();
-   	               }
-   	           });
-   	    if(arrayListEducandos.size() == 0){
-   	    	popUpGuardar.show();
-   	    }else{
-   	        executeSaveCommand(false);
-
-   	    }
 	}
 	
 	private void initializeActivity() throws AdaFrameworkException {
@@ -191,13 +169,13 @@ public class EventosDetailActivity extends Activity {
 	}
 	
  	public void executeDeleteCommand() {
-		try {
-			if (ev.getID() != null) {
+		
+		if (ev.getID() != null) {
+		
+			ev.setStatus(Entity.STATUS_DELETED);
 			
-				ev.setStatus(Entity.STATUS_DELETED);
-				
-				String wherePattern = "tEvento_ID = ?";
-				
+			String wherePattern = "tEvento_ID = ?";
+			try {
 				List<Educando> educandosList= new ArrayList<Educando>();
 				
 			    educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { ev.getID().toString() }, "tEvento_ID ASC", null, null, null, null);
@@ -211,19 +189,23 @@ public class EventosDetailActivity extends Activity {
 			    			
 			    			DataBase.Context.EducandosSet.save(educando);
 			    		}
-
+	
 			    	}
 			    }
-								
-				DataBase.Context.EventosSet.save(ev);
-
-				setResult(Activity.RESULT_OK);
-				finish();
+			} catch (Exception e) {
+				Log.v("DELETECOMMAND", "Mensaje "+e);
+	
 			}
-			
-		} catch (Exception e) {
-			Log.v("DELETECOMMAND", "Mensaje "+e);
-
+							
+			try {
+				DataBase.Context.EventosSet.save(ev);
+			} catch (AdaFrameworkException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+			setResult(Activity.RESULT_OK);
+			finish();
 		}
 	}
 	
@@ -316,13 +298,21 @@ public class EventosDetailActivity extends Activity {
     	}
     }
 		
-	private void fillArrayListEducandos() throws AdaFrameworkException{
+	private void fillArrayListEducandos() throws AdaFrameworkException {
 		
 		DataBase.Context.EducandosSet.fill();
+	
 		arrayListEducandos= new ArrayList<Educando>();
 		
 		String wherePattern = "tEvento_ID = ?";
-        List<Educando> educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { ev.getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+        List<Educando> educandosList;
+		try {
+			educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { ev.getID().toString() }, "tEvento_ID ASC", null, null, null, null);
+		} catch (AdaFrameworkException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			educandosList= new ArrayList<Educando>();
+		}
 
 		for(int i=0; i<educandosList.size();++i){
 			Educando educando = educandosList.get(i);

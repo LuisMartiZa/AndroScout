@@ -237,7 +237,7 @@
                     android:layout_gravity="left"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="21dp"
-                    android:text="MÓVIL" />
+                    android:text="TELÉFONO CONTACTO" />
 
                 <View
                     android:id="@+id/View05"

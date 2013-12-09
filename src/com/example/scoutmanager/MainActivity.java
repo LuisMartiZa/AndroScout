@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.example.scoutmanager.activities.ActividadesListActivity;
 import com.example.scoutmanager.activities.AsistenciaDetailActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
@@ -28,12 +29,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 //import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 //import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +46,8 @@ public class MainActivity extends Activity {
 	private ListView listView;
 	
 	private SlidingMenu menu;
+
+	private ImageButton gitHubButton;
 	
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -249,6 +254,18 @@ public class MainActivity extends Activity {
     public void setLateralMenu()
     {
     	this.listView = (ListView) findViewById(R.id.listView);
+    	
+    	this.gitHubButton = (ImageButton) findViewById(R.id.gitHubButton);
+    	
+    	this.gitHubButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Uri uri = Uri.parse("https://github.com/LuisMartiZa");
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+				startActivity(intent);
+			}
+		});
 
 		ArrayList<Menu_items> items = new ArrayList<Menu_items>();
 		items.add(new Menu_items(R.drawable.asistencia, "Asistencia"));

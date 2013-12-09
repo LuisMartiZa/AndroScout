@@ -546,10 +546,16 @@ public class EducandosDetailActivity extends Activity {
 	        EditText surnameField = (EditText) this.findViewById(R.id.surnameEducando);
 	        EditText dirField = (EditText) this.findViewById(R.id.dirEducando);
 	        EditText birthdayField = (EditText) this.findViewById(R.id.educandoBirthday);
+	        EditText emailField = (EditText) this.findViewById(R.id.educandoEmail);
+	        EditText telefonoField = (EditText) this.findViewById(R.id.telefonoEducando);
+
 	        
 	        nameField.setTypeface(tf);
 	        surnameField.setTypeface(tf);
 	        dirField.setTypeface(tf);
 	        birthdayField.setTypeface(tf);
+
+	        emailField.setTypeface(tf);
+	        telefonoField.setTypeface(tf);
 		}
 }
