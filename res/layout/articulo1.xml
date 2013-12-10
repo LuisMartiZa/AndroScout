@@ -21,16 +21,6 @@
         android:textSize="22sp" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp"
-        android:text="1"
-        android:textSize="30sp" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,5 +29,15 @@
         android:layout_marginTop="41dp"
         android:text="El Scout cifra su honor"
         android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:text="1"
+        android:textSize="30sp" />
 
 </RelativeLayout>

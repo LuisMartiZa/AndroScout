@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.example.scoutmanager.activities.ActividadesListActivity;
 import com.example.scoutmanager.activities.AsistenciaDetailActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
@@ -30,7 +29,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-//import android.graphics.Typeface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,7 +37,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
-//import android.widget.TextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -90,20 +89,8 @@ public class MainActivity extends Activity {
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
-		
-		
-		
-		/*Typeface tf = Typeface.createFromAsset(getAssets(),
-                "fonts/Roboto-Light.ttf");
-        
-        TextView main1 = (TextView) findViewById(R.id.main1);
-        TextView main2 = (TextView) findViewById(R.id.main2);
-        TextView main3 = (TextView) findViewById(R.id.main3);
 
-        main1.setTypeface(tf);
-        main2.setTypeface(tf);
-        main3.setTypeface(tf);*/
-
+		initializeTypeface();
     }
 
     @Override
@@ -124,6 +111,20 @@ public class MainActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
+    
+    private void initializeTypeface(){
+		
+		Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/Roboto-Light.ttf");
+        
+        TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
+        TextView main2 = (TextView) findViewById(R.id.textVievMainEventoCercano);
+
+        main1.setTypeface(tf);
+        main1.setText("El educando que mas asiste es: Luis Martinez Zarza");
+        main2.setTypeface(tf);
+        main2.setText("El evento mas cercano es: Festival de Delegaci—n");
+    }
     
     public void fillObjectSets() throws AdaFrameworkException
     {	
