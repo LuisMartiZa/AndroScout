@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View row = convertView;
 		ViewHolder holder = null;
+		Typeface tf = Typeface.createFromAsset(getContext().getAssets(),
+                "fonts/Roboto-Light.ttf");
 
 		if (row == null) {
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -48,6 +51,7 @@ public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 
 		Educando educando = data.get(position);
 		holder.imageTitle.setText(educando.getNombre());
+		holder.imageTitle.setTypeface(tf);
 		
 		if(!educando.getImagen().equals("")){
 			File image = new  File(educando.getImagen()); 

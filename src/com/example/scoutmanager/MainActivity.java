@@ -3,6 +3,7 @@ package com.example.scoutmanager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,6 +17,7 @@ import com.example.scoutmanager.activities.TutoresListActivity;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
+import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.example.scoutmanager.model.entities.Seccion;
@@ -31,6 +33,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.TextUtils.StringSplitter;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,6 +96,8 @@ public class MainActivity extends Activity {
 		}
 
 		initializeTypeface();
+		
+		getMaxAsistenciaEducando();
     }
 
     @Override
@@ -112,6 +119,16 @@ public class MainActivity extends Activity {
 	    }
 	}
     
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+     super.onActivityResult(requestCode, resultCode, data);
+     if(resultCode==RESULT_OK){
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);
+        this.finish();
+     }
+    }
+    
     private void initializeTypeface(){
 		
 		Typeface tf = Typeface.createFromAsset(getAssets(),
@@ -124,6 +141,63 @@ public class MainActivity extends Activity {
         main1.setText("El educando que mas asiste es: Luis Martinez Zarza");
         main2.setTypeface(tf);
         main2.setText("El evento mas cercano es: Festival de Delegaci—n");
+        
+        LayoutInflater factory = getLayoutInflater();
+
+        View textEntryView = factory.inflate(R.layout.articulo1, null);
+
+        TextView landmarkEditNameView = (TextView) textEntryView.findViewById(R.id.articulo11);
+        
+        landmarkEditNameView.setTypeface(tf);
+    }
+    
+    private void getMaxAsistenciaEducando(){
+    	try {
+			DataBase.Context.EducandosSet.fill();
+		} catch (AdaFrameworkException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	ArrayList<Integer> asistencia = new ArrayList<Integer>();
+    	
+    	for(int i=0; i< DataBase.Context.EducandosSet.size();i++)
+    	{
+    		asistencia.add(DataBase.Context.EducandosSet.get(i).getAsistencia().getAsistencias());
+    	}
+    	
+    	int maximo= Collections.max(asistencia);
+    	
+    	ArrayList<String> maxEducandos = new ArrayList<String>();
+    	
+    	for(int j=0; j< DataBase.Context.EducandosSet.size(); j++)
+    	{
+    		if(maximo == DataBase.Context.EducandosSet.get(j).getAsistencia().getAsistencias())
+    			maxEducandos.add(DataBase.Context.EducandosSet.get(j).getNombre() + " " + DataBase.Context.EducandosSet.get(j).getApellidos());
+    	}
+    	
+    	Log.v("MAXEDUCANDOS", "Maximos " + maxEducandos);
+    	
+    	if(maxEducandos.size() == 1){
+    		TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
+            main1.setText("El educando que mas asiste es: " + maxEducandos.get(0));
+    	}else
+    	{
+    		TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
+            main1.setText("Los educandos que mas asisten son: " + maxEducandos.toString().replaceAll("[\\[\\]]", ""));
+    	}
+    	
+    }
+    
+    public String customImplode(String glue, String[] strArray)
+    {
+        String ret = "";
+        for(int i=0;i<strArray.length;i++)
+        {
+            if (strArray[i].trim() != "")
+                ret += (i == strArray.length - 1) ? strArray[i] : strArray[i] + glue;
+        }
+        return ret;
     }
     
     public void fillObjectSets() throws AdaFrameworkException
@@ -298,7 +372,7 @@ public class MainActivity extends Activity {
 			        text = "Ha pulsado asistencia";
 			        
 			        Intent asistencia = new Intent(view.getContext(), AsistenciaDetailActivity.class);
-			        startActivity(asistencia);
+			        startActivityForResult(asistencia, 1);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();

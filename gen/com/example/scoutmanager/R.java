@@ -199,6 +199,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int apellidosText=0x7f04002d;
         public static final int apellidosTutor=0x7f040062;
         public static final int apellidosTutorText=0x7f040061;
+        public static final int articulo11=0x7f04001e;
         public static final int asistenciaEducando=0x7f040023;
         public static final int asistenciaListView=0x7f040020;
         public static final int birthdayText=0x7f040035;
@@ -286,7 +287,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textDanzas=0x7f04000f;
         public static final int textJuegos=0x7f040012;
         public static final int textVievMainEventoCercano=0x7f040015;
-        public static final int textView1=0x7f04001e;
         public static final int textView2=0x7f04001d;
         public static final int textView3=0x7f04001c;
         public static final int textView4=0x7f04001f;

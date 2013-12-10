@@ -51,7 +51,7 @@ public class LateralMenuAdapter extends ArrayAdapter<Object> {
 
 		// Set data into the view.
 		
-		TextView tvTitle = (TextView) rowView.findViewById(R.id.textView1);
+		TextView tvTitle = (TextView) rowView.findViewById(R.id.articulo11);
 		Typeface tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/Roboto-Light.ttf");
 		tvTitle.setTypeface(tf);
 		tvTitle.setText(this.items.get(position).getTitle());

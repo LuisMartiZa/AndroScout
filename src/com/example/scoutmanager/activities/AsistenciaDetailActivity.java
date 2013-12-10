@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -63,5 +64,13 @@ public class AsistenciaDetailActivity extends Activity {
 			
 			arrayListEducandos.add(DataBase.Context.EducandosSet.get(i));
 		}
+	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+			setResult(Activity.RESULT_OK);
+			finish();
+	    }
+	    return super.onKeyDown(keyCode, event);
 	}
 }

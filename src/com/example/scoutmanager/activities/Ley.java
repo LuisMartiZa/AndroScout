@@ -96,7 +96,6 @@ public class Ley extends Activity {
                     return arg0 == ((View) arg1);
 
             }
-
     }
 
 }
