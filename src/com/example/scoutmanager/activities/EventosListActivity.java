@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -134,4 +135,12 @@ public class EventosListActivity extends Activity {
  			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
  		}
     }
+	 
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+		    if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+				setResult(Activity.RESULT_OK);
+				finish();
+		    }
+		    return super.onKeyDown(keyCode, event);
+		}
 }

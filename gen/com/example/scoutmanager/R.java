@@ -286,11 +286,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int telefonoTutor=0x7f040064;
         public static final int textDanzas=0x7f04000f;
         public static final int textJuegos=0x7f040012;
-        public static final int textVievMainEventoCercano=0x7f040015;
+        public static final int textVievMainEventoCercano=0x7f040014;
         public static final int textView2=0x7f04001d;
         public static final int textView3=0x7f04001c;
         public static final int textView4=0x7f04001f;
-        public static final int textViewMainAsistencia=0x7f040014;
+        public static final int textViewMainAsistencia=0x7f040015;
         public static final int tipoTutor=0x7f040068;
         public static final int tipoTutorList=0x7f04006d;
         public static final int tipoTutorText=0x7f040067;

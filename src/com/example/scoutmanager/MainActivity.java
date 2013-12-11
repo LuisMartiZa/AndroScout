@@ -3,7 +3,9 @@ package com.example.scoutmanager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -97,7 +99,21 @@ public class MainActivity extends Activity {
 
 		initializeTypeface();
 		
-		getMaxAsistenciaEducando();
+		try {
+			DataBase.Context.EducandosSet.fill();
+			if (DataBase.Context.EducandosSet.size() > 0)
+				getMaxAsistenciaEducando();
+		} catch (AdaFrameworkException e) {
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
+		
+		try {
+			DataBase.Context.EventosSet.fill();
+			if (DataBase.Context.EventosSet.size() > 0)
+				getMaxAsistenciaEducando();
+		} catch (AdaFrameworkException e) {
+			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+		}
     }
 
     @Override
@@ -138,9 +154,9 @@ public class MainActivity extends Activity {
         TextView main2 = (TextView) findViewById(R.id.textVievMainEventoCercano);
 
         main1.setTypeface(tf);
-        main1.setText("El educando que mas asiste es: Luis Martinez Zarza");
+        main1.setText("");
         main2.setTypeface(tf);
-        main2.setText("El evento mas cercano es: Festival de Delegaci—n");
+        main2.setText("");
         
         LayoutInflater factory = getLayoutInflater();
 
@@ -175,29 +191,53 @@ public class MainActivity extends Activity {
     		if(maximo == DataBase.Context.EducandosSet.get(j).getAsistencia().getAsistencias())
     			maxEducandos.add(DataBase.Context.EducandosSet.get(j).getNombre() + " " + DataBase.Context.EducandosSet.get(j).getApellidos());
     	}
-    	
-    	Log.v("MAXEDUCANDOS", "Maximos " + maxEducandos);
-    	
+    	    	
     	if(maxEducandos.size() == 1){
     		TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
-            main1.setText("El educando que mas asiste es: " + maxEducandos.get(0));
+            main1.setText("El educando que mas asiste es " + maxEducandos.get(0));
     	}else
     	{
     		TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
-            main1.setText("Los educandos que mas asisten son: " + maxEducandos.toString().replaceAll("[\\[\\]]", ""));
+            main1.setText("Los educandos que mas asisten son " + maxEducandos.toString().replaceAll("[\\[\\]]", ""));
     	}
     	
     }
     
-    public String customImplode(String glue, String[] strArray)
-    {
-        String ret = "";
-        for(int i=0;i<strArray.length;i++)
-        {
-            if (strArray[i].trim() != "")
-                ret += (i == strArray.length - 1) ? strArray[i] : strArray[i] + glue;
-        }
-        return ret;
+    private void getEventosCercanos(){
+    	try {
+			DataBase.Context.EventosSet.fill();
+		} catch (AdaFrameworkException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	ArrayList<String> eventosCercanos = new ArrayList<String>();
+    	
+    	for(int i=0; i< DataBase.Context.EventosSet.size(); i++)
+    	{
+    		int eventMonth = Integer.parseInt((String) android.text.format.DateFormat.format("MM", DataBase.Context.EventosSet.get(i).getFechaEvento()));
+    		
+    		Calendar calendar = Calendar.getInstance();
+    		int thisMonth = calendar.get(Calendar.MONTH) + 1;
+    		
+    		Log.v("MESES", "Evento mes: " + eventMonth);
+    		Log.v("MESES", "Actual mes: " + thisMonth);
+
+
+    		if(eventMonth == thisMonth )
+    			eventosCercanos.add(DataBase.Context.EventosSet.get(i).getNombre());
+    	}
+    	
+    	if(eventosCercanos.size() ==0)
+    	{
+    		TextView main2 = (TextView) findViewById(R.id.textVievMainEventoCercano);
+            main2.setText("No hay eventos programados para este mes");
+    	}else{
+    		
+    		TextView main2 = (TextView) findViewById(R.id.textVievMainEventoCercano);
+            main2.setText("Pr—ximamente asistiremos a " + eventosCercanos.toString().replaceAll("[\\[\\]]", ""));
+    	}
+    	
     }
     
     public void fillObjectSets() throws AdaFrameworkException
@@ -383,7 +423,7 @@ public class MainActivity extends Activity {
 			        text = "Ha pulsado eventos";
 			        
 			        Intent eventos = new Intent(view.getContext(), EventosListActivity.class);
-			        startActivity(eventos);
+			        startActivityForResult(eventos, 1);
 
 			        toast = Toast.makeText(context, text, duration);
 			        toast.show();

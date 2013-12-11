@@ -78,6 +78,8 @@ public class EventosDetailActivity extends Activity {
 			addEducando= (ImageButton)findViewById(R.id.addEducandoEventoButton);
 			addEducando.setOnClickListener(onClick);
 			
+			modo=intentExtras.getString("modo");
+			
 			initializeActivity();
 			
 			initializeTypeface();
@@ -228,7 +230,7 @@ public class EventosDetailActivity extends Activity {
 				DataBase.Context.EventosSet.fill();
 				
 				if(arrayListEducandos.size()>0){
-					
+					Log.v("EVENTOS", "1");
 					for(int n=0; n< arrayListEducandos.size(); n++){
 						educando= arrayListEducandos.get(n);
 						
@@ -240,9 +242,9 @@ public class EventosDetailActivity extends Activity {
 								Educando older= arrayListEducandosOlder.get(i);
 								if(older.getID() != educando.getID()){
 									older.setStatus(Entity.STATUS_UPDATED);
-									for(int j=0; j<older.getTutores().size(); j++){
-										if(older.getTutores().get(j).getID() == ev.getID())
-											older.getTutores().remove(j);
+									for(int j=0; j<older.getEventos().size(); j++){
+										if(older.getEventos().get(j).getID() == ev.getID())
+											older.getEventos().remove(j);
 									}
 
 									DataBase.Context.EducandosSet.save(older);
@@ -258,7 +260,19 @@ public class EventosDetailActivity extends Activity {
 						DataBase.Context.EducandosSet.save(educando);
 						
 					}
+				}else if (arrayListEducandos.size()==0) {
+					for(int i=0;i<arrayListEducandosOlder.size();i++){
+						Educando older= arrayListEducandosOlder.get(i);
+						older.setStatus(Entity.STATUS_UPDATED);
+						for(int j=0; j<older.getEventos().size(); j++){
+							if(older.getEventos().get(j).getID() == ev.getID())
+								older.getEventos().remove(j);
+						}
+
+						DataBase.Context.EducandosSet.save(older);
+					}
 				}
+				
 				
 				if(!assing)
 					finish();
@@ -303,6 +317,7 @@ public class EventosDetailActivity extends Activity {
 		DataBase.Context.EducandosSet.fill();
 	
 		arrayListEducandos= new ArrayList<Educando>();
+		arrayListEducandosOlder= new ArrayList<Educando>();
 		
 		String wherePattern = "tEvento_ID = ?";
         List<Educando> educandosList;
