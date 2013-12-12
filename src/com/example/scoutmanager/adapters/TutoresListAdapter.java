@@ -1,12 +1,17 @@
 package com.example.scoutmanager.adapters;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.scoutmanager.R;
+import com.example.scoutmanager.model.DataBase;
+import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Tutor;
+import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,16 +52,46 @@ public class TutoresListAdapter extends ArrayAdapter<Tutor> implements Filterabl
         
         Tutor tutor =  mDisplayedValues.get(position);
         
-    	TextView name= (TextView) itemView.findViewById(R.id.tipoTutorList);
+    	TextView name= (TextView) itemView.findViewById(R.id.nombreTutorList);
         name.setTypeface(tf);
         name.setTextSize(20);
         
-        TextView surname= (TextView) itemView.findViewById(R.id.hijosTutorList);
+        TextView surname= (TextView) itemView.findViewById(R.id.apellidoTutorList);
         surname.setTypeface(tf);
         surname.setTextSize(20);
         
+        TextView tipo= (TextView) itemView.findViewById(R.id.tipoTutorList);
+        tipo.setTypeface(tf);
+        tipo.setTextSize(15);
+        tipo.setTextColor(Color.GRAY);
+        
         name.setText(tutor.getNombre() );
         surname.setText(tutor.getApellidos());
+        
+
+        try {
+			DataBase.Context.EducandosSet.fill();
+		} catch (AdaFrameworkException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ArrayList<String> arrayListEducandos= new ArrayList<String>();
+		
+		String wherePattern = "tTutor_ID = ?";
+        List<Educando> educandosList = new ArrayList<Educando>();
+		try {
+			educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_TUTORES, false, null, wherePattern, new String[] { tutor.getID().toString() }, "tTutor_ID ASC", null, null, null, null);
+		} catch (AdaFrameworkException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		for(int i=0; i<educandosList.size();++i){
+			Educando educando = educandosList.get(i);
+			arrayListEducandos.add(educando.getNombre());
+		}
+		
+		tipo.setText(tutor.getTipo() + " de " + arrayListEducandos.toString().replaceAll("[\\[\\]]", "") + " " + educandosList.get(0).getApellidos());
 
         return itemView;
     }

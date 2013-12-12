@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,7 +18,6 @@ import com.example.scoutmanager.activities.TutoresListActivity;
 import com.example.scoutmanager.adapters.LateralMenuAdapter;
 import com.example.scoutmanager.model.DataBase;
 import com.example.scoutmanager.model.entities.Actividades;
-import com.example.scoutmanager.model.entities.Educando;
 import com.example.scoutmanager.model.entities.Etapa;
 import com.example.scoutmanager.model.entities.Menu_items;
 import com.example.scoutmanager.model.entities.Seccion;
@@ -35,7 +33,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.TextUtils.StringSplitter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -110,7 +107,7 @@ public class MainActivity extends Activity {
 		try {
 			DataBase.Context.EventosSet.fill();
 			if (DataBase.Context.EventosSet.size() > 0)
-				getMaxAsistenciaEducando();
+				getEventosCercanos();
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
@@ -220,10 +217,6 @@ public class MainActivity extends Activity {
     		Calendar calendar = Calendar.getInstance();
     		int thisMonth = calendar.get(Calendar.MONTH) + 1;
     		
-    		Log.v("MESES", "Evento mes: " + eventMonth);
-    		Log.v("MESES", "Actual mes: " + thisMonth);
-
-
     		if(eventMonth == thisMonth )
     			eventosCercanos.add(DataBase.Context.EventosSet.get(i).getNombre());
     	}

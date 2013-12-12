@@ -131,7 +131,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:ems="10"
-                    android:inputType="text" >
+                    android:inputType="date" >
                 </EditText>
             </LinearLayout>
             

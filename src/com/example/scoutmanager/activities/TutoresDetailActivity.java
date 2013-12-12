@@ -313,7 +313,7 @@ public class TutoresDetailActivity extends Activity {
 	private void initializeListView() throws AdaFrameworkException {
 		    	
     	if (educandosListView != null) {
-    		educandosListViewAdapter= new EducandosListAdapter(TutoresDetailActivity.this, R.layout.tutores_row, arrayListEducandos);
+    		educandosListViewAdapter= new EducandosListAdapter(TutoresDetailActivity.this, R.layout.educandos_row, arrayListEducandos);
     		educandosListView.setAdapter(this.educandosListViewAdapter);
     	}
     }

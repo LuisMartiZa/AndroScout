@@ -40,12 +40,12 @@ public class EducandosListAdapter extends ArrayAdapter<Educando> {
                 "fonts/Roboto-Light.ttf");
         
         Educando educando =  data.get(position);
-        TextView name= (TextView) itemView.findViewById(R.id.tipoTutorList);
+        TextView name= (TextView) itemView.findViewById(R.id.nombreEducandoList);
         name.setTypeface(tf);
         name.setText(educando.getNombre());
         name.setTextSize(20);
         
-        TextView surname= (TextView) itemView.findViewById(R.id.hijosTutorList);
+        TextView surname= (TextView) itemView.findViewById(R.id.apellidoEducandoList);
         surname.setTypeface(tf);
         surname.setText(educando.getApellidos());
         surname.setTextSize(20);

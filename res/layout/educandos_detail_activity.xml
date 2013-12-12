@@ -37,6 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
+                android:focusable="true" 
+                android:focusableInTouchMode="true"
                 android:layout_below="@+id/educandoImagenAdd"
                 android:orientation="vertical" >
 

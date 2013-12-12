@@ -307,7 +307,7 @@ public class EventosDetailActivity extends Activity {
 	private void initializeListView() throws AdaFrameworkException {
 		    	
     	if (educandosListView != null) {
-    		educandosListViewAdapter= new EducandosListAdapter(EventosDetailActivity.this, R.layout.tutores_row, arrayListEducandos);
+    		educandosListViewAdapter= new EducandosListAdapter(EventosDetailActivity.this, R.layout.educandos_row, arrayListEducandos);
     		educandosListView.setAdapter(this.educandosListViewAdapter);
     	}
     }
