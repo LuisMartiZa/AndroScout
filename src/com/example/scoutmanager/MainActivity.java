@@ -194,8 +194,10 @@ public class MainActivity extends Activity {
             main1.setText("El educando que mas asiste es " + maxEducandos.get(0));
     	}else
     	{
-    		TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
-            main1.setText("Los educandos que mas asisten son " + maxEducandos.toString().replaceAll("[\\[\\]]", ""));
+    		if(maximo != 0){
+	    		TextView main1 = (TextView) findViewById(R.id.textViewMainAsistencia);
+	            main1.setText("Los educandos que mas asisten son " + maxEducandos.toString().replaceAll("[\\[\\]]", ""));
+    		}
     	}
     	
     }

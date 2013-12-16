@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -309,7 +310,28 @@ public class EventosDetailActivity extends Activity {
     	if (educandosListView != null) {
     		educandosListViewAdapter= new EducandosListAdapter(EventosDetailActivity.this, R.layout.educandos_row, arrayListEducandos);
     		educandosListView.setAdapter(this.educandosListViewAdapter);
+    		
+    		setListViewHeightBasedOnChildren(educandosListView);
     	}
+    }
+	
+	private void setListViewHeightBasedOnChildren(ListView listView) {
+        EducandosListAdapter listAdapter = (EducandosListAdapter) listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+ 
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+ 
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
     }
 		
 	private void fillArrayListEducandos() throws AdaFrameworkException {
