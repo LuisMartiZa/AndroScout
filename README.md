@@ -1,9 +1,9 @@
-# SCOUT MANAGER
+# ANDROSCOUT
 
 
 ## Description
 
-Scout Manager is a degree project of UCA (Universidad de Cádiz)
+AndroScout is a degree project of UCA (Universidad de Cádiz)
 
 ## Special thanks
 
