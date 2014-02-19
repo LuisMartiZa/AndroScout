@@ -190,13 +190,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int View05=0x7f04003e;
         public static final int View06=0x7f040042;
         public static final int View07=0x7f040046;
-        public static final int accept=0x7f040072;
-        public static final int action_search=0x7f040076;
-        public static final int action_settings=0x7f040075;
+        public static final int accept=0x7f040074;
+        public static final int action_search=0x7f040078;
+        public static final int action_settings=0x7f040077;
         public static final int addEducandoEventoButton=0x7f040054;
         public static final int addHijosButton=0x7f04006c;
         public static final int apellidoEducandoList=0x7f04004b;
-        public static final int apellidoTutorList=0x7f040070;
+        public static final int apellidoTutorList=0x7f040072;
         public static final int apellidosEducandoAsistencia=0x7f040022;
         public static final int apellidosText=0x7f04002d;
         public static final int apellidosTutor=0x7f040064;
@@ -205,12 +205,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int asistenciaEducando=0x7f040023;
         public static final int asistenciaListView=0x7f040020;
         public static final int birthdayText=0x7f040035;
+        public static final int callButton=0x7f04006f;
         public static final int decrementButton=0x7f040024;
         public static final int descripcionActividad=0x7f04000b;
         public static final int descripcionActividadText=0x7f040009;
         public static final int dirEducando=0x7f040033;
         public static final int dirText=0x7f040031;
-        public static final int discard=0x7f040073;
+        public static final int discard=0x7f040075;
         public static final int educandoBirthday=0x7f040037;
         public static final int educandoEmail=0x7f04003b;
         public static final int educandoEvento=0x7f040048;
@@ -250,6 +251,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int lugarEvento=0x7f04004e;
         public static final int lugarEventoField=0x7f040051;
         public static final int lugarEventoText=0x7f040058;
+        public static final int mailButton=0x7f04006e;
         public static final int margin=0x7f040002;
         public static final int movilText=0x7f04003d;
         public static final int movilTutorText=0x7f040065;
@@ -260,7 +262,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int nameEventoField=0x7f040050;
         public static final int nameEventoList=0x7f04005c;
         public static final int nameText=0x7f040029;
-        public static final int newAction=0x7f040074;
+        public static final int newAction=0x7f040076;
         public static final int nombreActividad=0x7f040006;
         public static final int nombreActividadText=0x7f040005;
         public static final int nombreEducandoAsistencia=0x7f040021;
@@ -268,7 +270,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int nombreEvento=0x7f040057;
         public static final int nombreEventoText=0x7f040056;
         public static final int nombreTutor=0x7f040062;
-        public static final int nombreTutorList=0x7f04006f;
+        public static final int nombreTutorList=0x7f040071;
         public static final int nombreTutorText=0x7f040061;
         public static final int pagerLey=0x7f04005f;
         public static final int participantesActividad=0x7f040008;
@@ -295,9 +297,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textView4=0x7f04001f;
         public static final int textViewMainAsistencia=0x7f040015;
         public static final int tipoTutor=0x7f04006a;
-        public static final int tipoTutorList=0x7f040071;
+        public static final int tipoTutorList=0x7f040073;
         public static final int tipoTutorText=0x7f040069;
-        public static final int tutoresListView=0x7f04006e;
+        public static final int tutoresListView=0x7f040070;
         public static final int view1=0x7f04002a;
         public static final int youtube_view2=0x7f04000c;
     }

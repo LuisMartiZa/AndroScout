@@ -53,13 +53,12 @@ public class EducandosDetailActivity extends Activity {
 	private ArrayAdapter<String> etapasAdapter;
 	private ArrayAdapter<String> seccionesAdapter;
 	private List<String> etapasArray =  new ArrayList<String>();
-	List<String> seccionesArray =  new ArrayList<String>();
+	private List<String> seccionesArray =  new ArrayList<String>();
 	private Educando educando = new Educando();
 	
 	private ImageView mImageView;
 	private ImageView AddImage;
 	private static final int CAMERA_PIC_REQUEST = 1337;  
-	public final static String APP_PATH_SD_CARD = "/scoutmanager";
 	private String mCurrentPhotoPath = "";
 	private static final String CAMERA_DIR = "/dcim/";
 	private static final String JPEG_FILE_PREFIX = "IMG_";
@@ -119,7 +118,7 @@ public class EducandosDetailActivity extends Activity {
         		  Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
 	              mImageView.setImageBitmap(thumbnail);
 	              try {
-					SaveImage(thumbnail);
+					saveImage(thumbnail);
 		            galleryAddPic();
 
 	              } catch (IOException e) {
@@ -178,7 +177,7 @@ public class EducandosDetailActivity extends Activity {
 			
 	}
 	
-	public void executeShowCommand(int pIndex) {
+	private void executeShowCommand(int pIndex) {
 		try {
 
 			DataBase.Context.EducandosSet.fill();
@@ -251,7 +250,7 @@ public class EducandosDetailActivity extends Activity {
 		}
 	}
 	
- 	public void executeDeleteCommand() {
+ 	private void executeDeleteCommand() {
 		try {
 			
 			if (educando.getID() != null) {
@@ -284,7 +283,7 @@ public class EducandosDetailActivity extends Activity {
 		}
 	}
 	
-	public void executeSaveCommand(boolean parents) {
+	private void executeSaveCommand(boolean parents) {
 		try {
 			
 			educando.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
@@ -345,7 +344,7 @@ public class EducandosDetailActivity extends Activity {
 		}
 	}
 	
-	public void initializeSecciones()
+	private void initializeSecciones()
 	{
 		seccionesArray.add("Castores");
 		seccionesArray.add("Manada");
@@ -380,7 +379,7 @@ public class EducandosDetailActivity extends Activity {
 	    seccion.setAdapter(seccionesAdapter);
 	}
 	
-	public void initializeEtapas(int pPosition)
+	private void initializeEtapas(int pPosition)
 	{
 		etapasArray.clear();
 		 switch (pPosition) {
@@ -466,7 +465,8 @@ public class EducandosDetailActivity extends Activity {
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 			String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
 			File albumF = getAlbumDir();
-			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);			
+			File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);		
+			 mCurrentPhotoPath= imageF.getAbsolutePath();
 			return imageF;
 		}
 
@@ -479,7 +479,7 @@ public class EducandosDetailActivity extends Activity {
 		    this.sendBroadcast(mediaScanIntent);
 		}
 		
-		private void SaveImage(Bitmap finalBitmap) throws IOException {
+		private void saveImage(Bitmap finalBitmap) throws IOException {
 
 		    File file =createImageFile();
 		    mCurrentPhotoPath= file.getAbsolutePath();

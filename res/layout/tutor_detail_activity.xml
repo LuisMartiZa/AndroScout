@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:focusable="true" 
+                android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical" >
 
@@ -37,7 +37,6 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="21dp"
                         android:text="NOMBRE" />
-
                 </LinearLayout>
 
                 <View
@@ -124,15 +123,20 @@
                     android:layout_marginTop="5dp"
                     android:background="#5d2f89" />
 
-                <EditText
-                    android:id="@+id/telefonoTutor"
-                    android:layout_width="283dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:ems="10"
-                    android:inputType="text" >
-                </EditText>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp" >
+
+                    <EditText
+                        android:id="@+id/telefonoTutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="40dp"
+                        android:ems="10"
+                        android:inputType="text" >
+                    </EditText>
+
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -162,15 +166,20 @@
                     android:layout_marginTop="5dp"
                     android:background="#5d2f89" />
 
-                <EditText
-                    android:id="@+id/emailTutor"
-                    android:layout_width="283dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:ems="10"
-                    android:inputType="text" >
-                </EditText>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/emailTutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:ems="10"
+                        android:inputType="text" >
+                    </EditText>
+                </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -210,7 +219,7 @@
                     android:inputType="text" >
                 </EditText>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:id="@+id/linearLayout6"
                 android:layout_width="match_parent"
@@ -241,7 +250,6 @@
                         android:layout_marginTop="15dp"
                         android:background="@null"
                         android:src="@android:drawable/ic_menu_add" />
-                    
                 </LinearLayout>
 
                 <View
@@ -253,14 +261,31 @@
                     android:background="#5d2f89" />
 
                 <ListView
-		            android:id="@+id/hijosListView"
-		            android:layout_width="283dp"
+                    android:id="@+id/hijosListView"
+                    android:layout_width="283dp"
                     android:layout_height="250dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp" />
-                
             </LinearLayout>
-            
+
+            <ImageButton
+                android:id="@+id/mailButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/linearLayout4"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="64dp"
+                android:src="@android:drawable/sym_action_email" />
+
+            <ImageButton
+                android:id="@+id/callButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/mailButton"
+                android:layout_alignLeft="@+id/mailButton"
+                android:src="@android:drawable/sym_action_call" />
+
         </RelativeLayout>
 
     </ScrollView>

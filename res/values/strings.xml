@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Scout Manager</string>
+    <string name="app_name">AndroScout</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="Articulo1">1. El scout cifra su honor en ser digno de confianza.</string>

@@ -33,13 +33,13 @@ import android.widget.Toast;
 
 public class EducandosGridActivity extends Activity {
 	private GridView gridView;
-	private EducandosGridAdapter customGridAdapter;
+	private EducandosGridAdapter educandosGridAdapter;
 	private ArrayList<Educando> arrayListEducando;
 	private AlertDialog.Builder builder;
 
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.educandos_grid_activity);
 		
@@ -57,8 +57,8 @@ public class EducandosGridActivity extends Activity {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
 		gridView = (GridView) findViewById(R.id.gridView);
-		customGridAdapter = new EducandosGridAdapter(this, R.layout.grid_row, arrayListEducando);
-		gridView.setAdapter(customGridAdapter);
+		educandosGridAdapter = new EducandosGridAdapter(this, R.layout.grid_row, arrayListEducando);
+		gridView.setAdapter(educandosGridAdapter);
 
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -88,7 +88,7 @@ public class EducandosGridActivity extends Activity {
 
 	}
 	
-	public void executeAddNewCommand() {
+	private void executeAddNewCommand() {
     	try {
     		
     		Intent detailIntent = new Intent(EducandosGridActivity.this, EducandosDetailActivity.class);
@@ -132,7 +132,7 @@ public class EducandosGridActivity extends Activity {
 		}
 	}
 	
-	public void executeDeleteCommand(int position) {
+	private void executeDeleteCommand(int position) {
 		try {
 			DataBase.Context.EducandosSet.fill();
 			Educando educando = DataBase.Context.EducandosSet.get(position);

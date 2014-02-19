@@ -20,7 +20,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +37,6 @@ import android.widget.Toast;
 
 public class TutoresDetailActivity extends Activity {
 	
-	private ActionBar actionbar;
 	private Tutor tutor = new Tutor();
 	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter;
@@ -43,6 +44,9 @@ public class TutoresDetailActivity extends Activity {
 	private ArrayList<Educando> arrayListEducandosOlder= new ArrayList<Educando>();
 	private ArrayList<String> educandosSelected;
 	private ImageButton addEducando;
+	private ImageButton call;
+	private ImageButton email;
+
 	private String modo= "";
 
 	private AlertDialog.Builder popUpGuardar;
@@ -56,7 +60,24 @@ public class TutoresDetailActivity extends Activity {
 
 		}
 	};
+	
+	private View.OnClickListener onClickCall =  new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			executeCall();
 
+		}
+	};
+
+	private View.OnClickListener onClickEmail =  new View.OnClickListener() {
+		
+		public void onClick(View v) {
+			executeEmail();
+
+		}
+	};
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		
@@ -66,6 +87,8 @@ public class TutoresDetailActivity extends Activity {
     	try {
     		Bundle intentExtras = this.getIntent().getExtras();
     		
+    		ActionBar actionbar;
+
 			actionbar= this.getActionBar();
 			actionbar.setTitle("TUTOR/A");
 			
@@ -82,6 +105,12 @@ public class TutoresDetailActivity extends Activity {
 			educandosListView =(ListView)findViewById(R.id.hijosListView);
 			addEducando= (ImageButton)findViewById(R.id.addHijosButton);
 			addEducando.setOnClickListener(onClick);
+			
+			call = (ImageButton)findViewById(R.id.callButton);
+			call.setOnClickListener(onClickCall);
+			
+			email = (ImageButton)findViewById(R.id.mailButton);
+			email.setOnClickListener(onClickEmail);
 			
 			initializeActivity();
 			
@@ -344,6 +373,18 @@ public class TutoresDetailActivity extends Activity {
 			
 			educandosSelected.add(educando.getNombre()+" "+educando.getApellidos());
 		}
+	}
+	
+	private void executeCall() {
+		Intent callIntent = new Intent(Intent.ACTION_CALL);
+		callIntent.setData(Uri.parse("tel:"+tutor.getTelefono()));
+		startActivity(callIntent);
+	}
+	
+	private void executeEmail(){
+		Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", tutor.getEmail(), null));
+		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[SCOUTS]");
+		startActivity(Intent.createChooser(emailIntent, null));
 	}
 	
 	private void initializeTypeface(){

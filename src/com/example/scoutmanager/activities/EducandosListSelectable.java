@@ -113,7 +113,7 @@ public class EducandosListSelectable extends Activity {
         }
     }
     
-    public void executeSaveSelected(){
+    private void executeSaveSelected(){
     	
     	getItemsSelected();
     	

@@ -35,7 +35,6 @@ import android.widget.Toast;
 public class EventosDetailActivity extends Activity {
 	
 	private Evento ev = new Evento();
-	private ActionBar actionbar;
 	private ListView educandosListView;
     private ArrayAdapter<Educando> educandosListViewAdapter;
 	private ArrayList<Educando> arrayListEducandos= new ArrayList<Educando>();
@@ -63,6 +62,8 @@ public class EventosDetailActivity extends Activity {
 		try {
 			Bundle intentExtras = this.getIntent().getExtras();
 			
+			ActionBar actionbar;
+
 			actionbar= this.getActionBar();
 			actionbar.setTitle("EVENTOS");
 			
@@ -155,7 +156,7 @@ public class EventosDetailActivity extends Activity {
 	}
 	
 	
-	public void executeShowCommand(Long pIndex) {
+	private void executeShowCommand(Long pIndex) {
 		try {
 
 			DataBase.Context.EventosSet.fill();
@@ -171,7 +172,7 @@ public class EventosDetailActivity extends Activity {
 		}
 	}
 	
- 	public void executeDeleteCommand() {
+ 	private void executeDeleteCommand() {
 		
 		if (ev.getID() != null) {
 		
@@ -203,7 +204,6 @@ public class EventosDetailActivity extends Activity {
 			try {
 				DataBase.Context.EventosSet.save(ev);
 			} catch (AdaFrameworkException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	
@@ -213,7 +213,7 @@ public class EventosDetailActivity extends Activity {
 	}
 	
 	
-	public void executeSaveCommand(boolean assing) {
+	private void executeSaveCommand(boolean assing) {
 		try {
 			
 			ev.bind(this, DataBinder.BINDING_UI_TO_ENTITY);
@@ -318,7 +318,6 @@ public class EventosDetailActivity extends Activity {
 	private void setListViewHeightBasedOnChildren(ListView listView) {
         EducandosListAdapter listAdapter = (EducandosListAdapter) listView.getAdapter();
         if (listAdapter == null) {
-            // pre-condition
             return;
         }
  
@@ -346,7 +345,6 @@ public class EventosDetailActivity extends Activity {
 		try {
 			educandosList = DataBase.Context.EducandosSet.search(Educando.TABLE_EDUCANDOS_JOIN_EVENTOS, false, null, wherePattern, new String[] { ev.getID().toString() }, "tEvento_ID ASC", null, null, null, null);
 		} catch (AdaFrameworkException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			educandosList= new ArrayList<Educando>();
 		}

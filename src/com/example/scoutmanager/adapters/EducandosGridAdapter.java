@@ -30,6 +30,11 @@ public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 		this.context = context;
 		this.data = data;
 	}
+	
+	static class ViewHolder {
+		TextView imageTitle;
+		ImageView image;
+	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -121,10 +126,5 @@ public class EducandosGridAdapter extends ArrayAdapter<Educando> {
 		}
 		
 		return row;
-	}
-
-	static class ViewHolder {
-		TextView imageTitle;
-		ImageView image;
 	}
 }

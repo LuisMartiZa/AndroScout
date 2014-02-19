@@ -33,7 +33,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -85,11 +84,11 @@ public class MainActivity extends Activity {
 		actionbar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5d2f89")));
 		actionbar.setHomeButtonEnabled(true);
 		
-		this.setLateralMenu();
+		setLateralMenu();
 		try {
 			DataBase.Context.ActividadesSet.fill();
 			if (DataBase.Context.ActividadesSet.size() == 0)
-				this.populateActividades();
+				fillActividades();
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
@@ -99,7 +98,7 @@ public class MainActivity extends Activity {
 		try {
 			DataBase.Context.EducandosSet.fill();
 			if (DataBase.Context.EducandosSet.size() > 0)
-				getMaxAsistenciaEducando();
+				getMaxAssistanceEducando();
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
@@ -107,7 +106,7 @@ public class MainActivity extends Activity {
 		try {
 			DataBase.Context.EventosSet.fill();
 			if (DataBase.Context.EventosSet.size() > 0)
-				getEventosCercanos();
+				getNearEventos();
 		} catch (AdaFrameworkException e) {
 			Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 		}
@@ -164,7 +163,7 @@ public class MainActivity extends Activity {
         landmarkEditNameView.setTypeface(tf);
     }
     
-    private void getMaxAsistenciaEducando(){
+    private void getMaxAssistanceEducando(){
     	try {
 			DataBase.Context.EducandosSet.fill();
 		} catch (AdaFrameworkException e) {
@@ -202,7 +201,7 @@ public class MainActivity extends Activity {
     	
     }
     
-    private void getEventosCercanos(){
+    private void getNearEventos(){
     	try {
 			DataBase.Context.EventosSet.fill();
 		} catch (AdaFrameworkException e) {
@@ -235,7 +234,7 @@ public class MainActivity extends Activity {
     	
     }
     
-    public void fillObjectSets() throws AdaFrameworkException
+    private void fillObjectSets() throws AdaFrameworkException
     {	
     	//Fill Etapas object set
     	Etapa castorsinpaletas = new Etapa("Castor sin paletas");
@@ -298,11 +297,7 @@ public class MainActivity extends Activity {
     	
     }
     
-    public SlidingMenu getSlidingMenu(){
-    	 return this.menu;
-    }
-    
-    public String loadJSONFromAsset() {
+    private String loadJSONFromAsset() {
         String json = null;
         try {
 
@@ -327,7 +322,7 @@ public class MainActivity extends Activity {
 
     }
     
-    public void populateActividades(){
+    private void fillActividades(){
 		try{
 			String data = null;
 			
@@ -361,7 +356,7 @@ public class MainActivity extends Activity {
     	
     }
     
-    public void setLateralMenu()
+    private void setLateralMenu()
     {
     	this.listView = (ListView) findViewById(R.id.listView);
     	
@@ -459,7 +454,7 @@ public class MainActivity extends Activity {
 			        
 			    case 5:
 			    	menu.toggle(true);
-			        text = "Ha pulsado educandos";
+			        text = "Ha pulsado tutores";
 			        
 			        Intent tutores = new Intent(view.getContext(), TutoresListActivity.class);
 			        startActivity(tutores);

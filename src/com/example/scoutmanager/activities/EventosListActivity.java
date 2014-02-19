@@ -124,7 +124,7 @@ public class EventosListActivity extends Activity {
 		}
 	}
 	
-	 public void executeAddNewCommand() {
+	 private void executeAddNewCommand() {
     	try {
     		Intent detailIntent = new Intent(this, EventosDetailActivity.class);
 			detailIntent.putExtra("modo", "nuevo");
