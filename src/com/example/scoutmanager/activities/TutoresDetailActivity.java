@@ -382,9 +382,14 @@ public class TutoresDetailActivity extends Activity {
 	}
 	
 	private void executeEmail(){
-		Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", tutor.getEmail(), null));
+		
+		String emailList [] = {tutor.getEmail()};
+		Intent emailIntent = new Intent(Intent.ACTION_SEND);
+		emailIntent.setType("message/rfc822");
+		emailIntent.putExtra(Intent.EXTRA_EMAIL, emailList);
 		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[SCOUTS]");
-		startActivity(Intent.createChooser(emailIntent, null));
+		emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas " + tutor.getNombre() + " me pongo en contacto con usted para: \n");
+		startActivity(Intent.createChooser(emailIntent, "Selecciona la aplicaci—n para env’o:"));
 	}
 	
 	private void initializeTypeface(){
