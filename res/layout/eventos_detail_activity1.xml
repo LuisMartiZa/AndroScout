@@ -133,6 +133,14 @@
                     android:ems="10"
                     android:inputType="date" >
                 </EditText>
+                
+                <fragment
+					android:id="@+id/map"
+					android:layout_width="match_parent"
+					android:layout_height="300dp"
+               		android:layout_marginTop="10dp"
+					android:name="com.google.android.gms.maps.MapFragment"/>
+                
             </LinearLayout>
             
             <LinearLayout
