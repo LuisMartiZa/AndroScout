@@ -1,6 +1,7 @@
 package com.example.scoutmanager.activities;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -177,7 +178,13 @@ public class EducandosDetailActivity extends Activity {
               cursor.close();
 
 
-              Bitmap imageSelected = BitmapFactory.decodeFile(filePath);
+              Bitmap imageSelected = null;
+			try {
+				imageSelected = decodeUri(selectedImage);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
         	  
               mImageView.setImageBitmap(imageSelected);
               try {
@@ -573,7 +580,7 @@ public class EducandosDetailActivity extends Activity {
 		    if (file.exists ()) file.delete (); 
 		    try {
 		           FileOutputStream out = new FileOutputStream(file);
-		           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+		           finalBitmap.compress(Bitmap.CompressFormat.JPEG, 80, out);
 		           out.flush();
 		           out.close();
 
@@ -582,6 +589,36 @@ public class EducandosDetailActivity extends Activity {
 
 		    }
 		}
+		
+		private Bitmap decodeUri(Uri selectedImage) throws FileNotFoundException {
+
+	        // Decode image size
+	        BitmapFactory.Options o = new BitmapFactory.Options();
+	        o.inJustDecodeBounds = true;
+	        BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
+
+	        // The new size we want to scale to
+	        final int REQUIRED_SIZE = 140;
+
+	        // Find the correct scale value. It should be the power of 2.
+	        int width_tmp = o.outWidth, height_tmp = o.outHeight;
+	        int scale = 1;
+	        while (true) {
+	            if (width_tmp / 2 < REQUIRED_SIZE
+	               || height_tmp / 2 < REQUIRED_SIZE) {
+	                break;
+	            }
+	            width_tmp /= 2;
+	            height_tmp /= 2;
+	            scale *= 2;
+	        }
+
+	        // Decode with inSampleSize
+	        BitmapFactory.Options o2 = new BitmapFactory.Options();
+	        o2.inSampleSize = scale;
+	        return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
+
+	    }
 		
 		private void initializeTypeface(){
 			Typeface tf = Typeface.createFromAsset(this.getAssets(),

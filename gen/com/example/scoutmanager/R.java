@@ -353,27 +353,28 @@ containing a value of this type.
         public static final int ic_action_add_person=0x7f02002b;
         public static final int ic_action_discard=0x7f02002c;
         public static final int ic_action_new=0x7f02002d;
-        public static final int ic_launcher=0x7f02002e;
-        public static final int ic_plusone_medium_off_client=0x7f02002f;
-        public static final int ic_plusone_small_off_client=0x7f020030;
-        public static final int ic_plusone_standard_off_client=0x7f020031;
-        public static final int ic_plusone_tall_off_client=0x7f020032;
-        public static final int iconoflordelis=0x7f020033;
-        public static final int increment_button=0x7f020034;
-        public static final int integracioncastores=0x7f020035;
-        public static final int integracionclan=0x7f020036;
-        public static final int integracionmanada=0x7f020037;
-        public static final int integraciontropa=0x7f020038;
-        public static final int integracionunidad=0x7f020039;
-        public static final int juegos=0x7f02003a;
-        public static final int ley=0x7f02003b;
-        public static final int participacioncastores=0x7f02003c;
-        public static final int participacionclan=0x7f02003d;
-        public static final int participacionmanada=0x7f02003e;
-        public static final int participaciontropa=0x7f02003f;
-        public static final int participacionunidad=0x7f020040;
-        public static final int rizo=0x7f020041;
-        public static final int shadow=0x7f020042;
+        public static final int ic_action_share=0x7f02002e;
+        public static final int ic_launcher=0x7f02002f;
+        public static final int ic_plusone_medium_off_client=0x7f020030;
+        public static final int ic_plusone_small_off_client=0x7f020031;
+        public static final int ic_plusone_standard_off_client=0x7f020032;
+        public static final int ic_plusone_tall_off_client=0x7f020033;
+        public static final int iconoflordelis=0x7f020034;
+        public static final int increment_button=0x7f020035;
+        public static final int integracioncastores=0x7f020036;
+        public static final int integracionclan=0x7f020037;
+        public static final int integracionmanada=0x7f020038;
+        public static final int integraciontropa=0x7f020039;
+        public static final int integracionunidad=0x7f02003a;
+        public static final int juegos=0x7f02003b;
+        public static final int ley=0x7f02003c;
+        public static final int participacioncastores=0x7f02003d;
+        public static final int participacionclan=0x7f02003e;
+        public static final int participacionmanada=0x7f02003f;
+        public static final int participaciontropa=0x7f020040;
+        public static final int participacionunidad=0x7f020041;
+        public static final int rizo=0x7f020042;
+        public static final int shadow=0x7f020043;
     }
     public static final class id {
         public static final int ActividadesListView=0x7f050012;
@@ -386,8 +387,8 @@ containing a value of this type.
         public static final int View06=0x7f050047;
         public static final int View07=0x7f05004b;
         public static final int accept=0x7f05007a;
-        public static final int action_search=0x7f05007e;
-        public static final int action_settings=0x7f05007d;
+        public static final int action_search=0x7f05007f;
+        public static final int action_settings=0x7f05007e;
         public static final int addEducandoEventoButton=0x7f050059;
         public static final int addHijosButton=0x7f050072;
         public static final int apellidoEducandoList=0x7f050050;
@@ -459,7 +460,7 @@ containing a value of this type.
         public static final int nameEventoField=0x7f050055;
         public static final int nameEventoList=0x7f050062;
         public static final int nameText=0x7f05002e;
-        public static final int newAction=0x7f05007c;
+        public static final int newAction=0x7f05007d;
         public static final int nombreActividad=0x7f05000b;
         public static final int nombreActividadText=0x7f05000a;
         public static final int nombreEducandoAsistencia=0x7f050026;
@@ -483,6 +484,7 @@ containing a value of this type.
         public static final int scrollView1=0x7f05000f;
         public static final int seccionText=0x7f050046;
         public static final int selected_view=0x7f050009;
+        public static final int share=0x7f05007c;
         public static final int slidingmenumain=0x7f050066;
         public static final int spinnerEtapa=0x7f05004c;
         public static final int spinnerSeccion=0x7f050048;
@@ -547,11 +549,12 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int detail_action=0x7f0a0000;
-        public static final int list_action=0x7f0a0001;
-        public static final int list_selectable_action=0x7f0a0002;
-        public static final int main=0x7f0a0003;
-        public static final int searchview_in_menu=0x7f0a0004;
-        public static final int tutor_action=0x7f0a0005;
+        public static final int evento_detail_action=0x7f0a0001;
+        public static final int list_action=0x7f0a0002;
+        public static final int list_selectable_action=0x7f0a0003;
+        public static final int main=0x7f0a0004;
+        public static final int searchview_in_menu=0x7f0a0005;
+        public static final int tutor_action=0x7f0a0006;
     }
     public static final class string {
         public static final int A=0x7f060028;

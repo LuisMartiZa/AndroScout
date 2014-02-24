@@ -14,6 +14,8 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -44,6 +46,10 @@ public class EventosDetailActivity extends Activity {
 	private String modo= "";
 		
 	private static final int SELECT_REQUEST= 188;
+	
+	private AlertDialog.Builder popUpShare;
+	private AlertDialog.Builder popUpNo;
+	
 	
 	private View.OnClickListener onClick =  new View.OnClickListener() {
 		
@@ -125,7 +131,7 @@ public class EventosDetailActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    // Inflate the menu items for use in the action bar
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.detail_action, menu);
+	    inflater.inflate(R.menu.evento_detail_action, menu);
 	    return super.onCreateOptionsMenu(menu);
 	}
     
@@ -139,6 +145,10 @@ public class EventosDetailActivity extends Activity {
 	            
 	        case R.id.discard:
 	            executeDeleteCommand();
+	            return true;
+	            
+	        case R.id.share:
+	            executeShareCommand();
 	            return true;
 	            
 	        default:
@@ -287,7 +297,81 @@ public class EventosDetailActivity extends Activity {
 		}
 	}
 	
+	private void executeShareCommand() {
+		popUpShare = new AlertDialog.Builder(this);
+    	
+		popUpShare.setCancelable(true);
+   	    popUpShare.setMessage("ÀDesea comunicar a los Padres, mediante un correo, acerca del evento?")
+   	    .setTitle("ENVIAR CORREO")
+   	    .setPositiveButton("SI", new DialogInterface.OnClickListener()  {
+   	           public void onClick(DialogInterface dialog, int id) {
+   	        	   
+   	        	   if(ev.getID() == null){
+   	        		   Log.v("PRUEBA", "ID NULO");
+   	        		   
+	   	        		popUpNo = new AlertDialog.Builder(EventosDetailActivity.this);
+	   	         	
+	   	        		popUpNo.setCancelable(true);
+	   	        	    popUpNo.setMessage("Para poder enviar el correo el evento debe estar creado.")
+	   	        	    .setTitle("IMPOSIBLE ENVIAR")
+	   	        	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
+	   	        	           public void onClick(DialogInterface dialog, int id) {
+	   	        	            	dialog.cancel();
+	   	        	           }
+	   	        	    });
+	   	        	           
+	   	        	    popUpNo.show();
+   	        		   
+   	        	   }else{
+   	        		   
+   	        		executeEmail();
+   	            	dialog.cancel();
+   	        	   }
+   	            }
+   	     })
+   	           
+   	    .setNegativeButton("NO",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				dialog.cancel();
+			}
+		});
+   	    
+   	    popUpShare.show();
+	}
 	
+	private void executeEmail(){
+		
+		try {
+			DataBase.Context.TutoresSet.fill();
+		} catch (AdaFrameworkException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<String> emailList = new ArrayList<String>();
+		
+		for(int i=0; i<DataBase.Context.TutoresSet.size(); i++){
+			emailList.add(DataBase.Context.TutoresSet.get(i).getEmail());
+			Log.v("EMAIL", DataBase.Context.TutoresSet.get(i).getEmail());
+		}
+		
+		for (String s : emailList){
+		    Log.v("My array list content: ", s);
+		}
+		
+		int x = emailList.size();
+        String[] appArray = new String[x];
+        appArray = emailList.toArray(appArray);
+		
+		Intent emailIntent = new Intent(Intent.ACTION_SEND);
+		emailIntent.setType("message/rfc822");
+		//emailIntent.putExtra(Intent.EXTRA_EMAIL, appArray);
+		emailIntent.putExtra(Intent.EXTRA_BCC, appArray);
+		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[SCOUTS]");
+		emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas me pongo en contacto con usted para comunicarle acerca del " + ev.getNombre() + " que tendr‡ lugar en " + ev.getLugar() +" \n");
+		startActivity(Intent.createChooser(emailIntent, "Selecciona la aplicaci—n para env’o:"));
+		
+	}
 	
 	private void executeShowListSelectable() {
 		try {
