@@ -21,7 +21,10 @@ import com.mobandme.ada.exceptions.AdaFrameworkException;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -30,6 +33,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,11 +62,15 @@ public class EducandosDetailActivity extends Activity {
 	
 	private ImageView mImageView;
 	private ImageView AddImage;
-	private static final int CAMERA_PIC_REQUEST = 1337;  
+	private static final int CAMERA_PIC_REQUEST = 1337;
+	private static final int GALLERY_PIC_REQUEST = 1338;  
 	private String mCurrentPhotoPath = "";
 	private static final String CAMERA_DIR = "/dcim/";
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";
+	
+	private AlertDialog.Builder popUpImagen;
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -95,9 +103,35 @@ public class EducandosDetailActivity extends Activity {
 	        mImageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+                	
+                	//Options for the dialogue menu
+                    final CharSequence[] items = {"Camara", "Galer’a"};
 
+                    popUpImagen = new AlertDialog.Builder(EducandosDetailActivity.this);
+                    
+                    popUpImagen.setTitle("Escoge una opci—n");
+                    popUpImagen.setItems(items, new DialogInterface.OnClickListener() {
+                        
+                        public void onClick(DialogInterface dialog, int item) {
+
+                            // Camera option
+                            if (item == 0){
+
+                            	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+                                
+                            }else{
+                                
+                            	Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                            	photoPickerIntent.setType("image/*");
+                            	startActivityForResult(photoPickerIntent, GALLERY_PIC_REQUEST);
+                            	
+                            } 
+                        }
+                        
+                    });
+                    
+                    popUpImagen.show();
                 }
 	         });
 
@@ -127,6 +161,34 @@ public class EducandosDetailActivity extends Activity {
 	              AddImage= (ImageView) findViewById(R.id.imageEducando);
 				  AddImage.setVisibility(View.INVISIBLE);
         	  }         
+          }
+          
+          if (requestCode == GALLERY_PIC_REQUEST && resultCode == RESULT_OK) {
+        	  
+        	  Uri selectedImage = data.getData();
+              String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+              Cursor cursor = getContentResolver().query(
+                                 selectedImage, filePathColumn, null, null, null);
+              cursor.moveToFirst();
+
+              int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+              String filePath = cursor.getString(columnIndex);
+              cursor.close();
+
+
+              Bitmap imageSelected = BitmapFactory.decodeFile(filePath);
+        	  
+              mImageView.setImageBitmap(imageSelected);
+              try {
+				saveImage(imageSelected);
+	            galleryAddPic();
+
+              } catch (IOException e) {
+				e.printStackTrace();
+              }
+              AddImage= (ImageView) findViewById(R.id.imageEducando);
+			  AddImage.setVisibility(View.INVISIBLE);       
           }
 	 }
 	
@@ -198,9 +260,34 @@ public class EducandosDetailActivity extends Activity {
 		        mImageView.setOnClickListener(new OnClickListener() {
 	                @Override
 	                public void onClick(View v) {
-	                	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-	                    startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+	                	
+	                	//Options for the dialogue menu
+	                    final CharSequence[] items = {"Camara", "Galer’a"};
 
+	                    popUpImagen = new AlertDialog.Builder(EducandosDetailActivity.this);
+	                    
+	                    popUpImagen.setTitle("Escoge una opci—n");
+	                    popUpImagen.setItems(items, new DialogInterface.OnClickListener() {
+	                        
+	                        public void onClick(DialogInterface dialog, int item) {
+
+	                            // Camera option
+	                            if (item == 0){
+
+	                            	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+	                                startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+	                                
+	                            }else{
+	                                
+	                            	Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+	                            	photoPickerIntent.setType("image/*");
+	                            	startActivityForResult(photoPickerIntent, GALLERY_PIC_REQUEST);
+	                            	
+	                            } 
+	                        }
+	                    });
+	                	
+	                    popUpImagen.show();
 	                }
 		         });
 				
