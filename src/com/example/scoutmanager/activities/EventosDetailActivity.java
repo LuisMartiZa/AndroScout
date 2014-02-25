@@ -367,8 +367,8 @@ public class EventosDetailActivity extends Activity {
 		emailIntent.setType("message/rfc822");
 		//emailIntent.putExtra(Intent.EXTRA_EMAIL, appArray);
 		emailIntent.putExtra(Intent.EXTRA_BCC, appArray);
-		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[SCOUTS]");
-		emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas me pongo en contacto con usted para comunicarle acerca del " + ev.getNombre() + " que tendr‡ lugar en " + ev.getLugar() +" \n");
+		emailIntent.putExtra(Intent.EXTRA_SUBJECT, "[SCOUTS] " + ev.getNombre() + ".");
+		emailIntent.putExtra(Intent.EXTRA_TEXT, "Buenas me pongo en contacto con usted para comunicarle acerca del " + ev.getNombre() + " que tendr‡ lugar en " + ev.getLugar() +".\n\n Mensaje generado por AndroScout.");
 		startActivity(Intent.createChooser(emailIntent, "Selecciona la aplicaci—n para env’o:"));
 		
 	}

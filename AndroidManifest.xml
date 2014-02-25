@@ -53,6 +53,8 @@
         <activity android:name="com.example.scoutmanager.activities.AsistenciaDetailActivity"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosListSelectable"></activity>
         <activity android:name="com.example.scoutmanager.activities.EducandosGridActivity"></activity> 
+        <activity android:name="com.example.scoutmanager.activities.ImportarExportarActivity"></activity> 
+        
         
         <meta-data
     		android:name="com.google.android.gms.version"

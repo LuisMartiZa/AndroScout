@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import com.example.scoutmanager.activities.AsistenciaDetailActivity;
 import com.example.scoutmanager.activities.EducandosGridActivity;
 import com.example.scoutmanager.activities.EventosListActivity;
+import com.example.scoutmanager.activities.ImportarExportarActivity;
 import com.example.scoutmanager.activities.Ley;
 import com.example.scoutmanager.activities.ActividadesActivity;
 import com.example.scoutmanager.activities.TutoresListActivity;
@@ -35,6 +36,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -115,8 +117,10 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-		return false;
+		
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
+	    return super.onCreateOptionsMenu(menu);
         
     }
     
@@ -126,6 +130,10 @@ public class MainActivity extends Activity {
 	    switch (item.getItemId()) {
 	        case android.R.id.home:
 	        	menu.toggle();
+	        	
+	        case R.id.action_settings:
+	        	executeIEBD();
+	        	
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -161,6 +169,13 @@ public class MainActivity extends Activity {
         TextView landmarkEditNameView = (TextView) textEntryView.findViewById(R.id.articulo11);
         
         landmarkEditNameView.setTypeface(tf);
+    }
+    
+    private void executeIEBD(){
+		
+    	Intent imexBD = new Intent(this, ImportarExportarActivity.class);
+	    startActivityForResult(imexBD, 1);
+		
     }
     
     private void getMaxAssistanceEducando(){
