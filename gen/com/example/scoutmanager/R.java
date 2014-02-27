@@ -555,11 +555,12 @@ containing a value of this type.
     public static final class menu {
         public static final int detail_action=0x7f0a0000;
         public static final int evento_detail_action=0x7f0a0001;
-        public static final int list_action=0x7f0a0002;
-        public static final int list_selectable_action=0x7f0a0003;
-        public static final int main=0x7f0a0004;
-        public static final int searchview_in_menu=0x7f0a0005;
-        public static final int tutor_action=0x7f0a0006;
+        public static final int import_export_menu=0x7f0a0002;
+        public static final int list_action=0x7f0a0003;
+        public static final int list_selectable_action=0x7f0a0004;
+        public static final int main=0x7f0a0005;
+        public static final int searchview_in_menu=0x7f0a0006;
+        public static final int tutor_action=0x7f0a0007;
     }
     public static final class string {
         public static final int A=0x7f060028;

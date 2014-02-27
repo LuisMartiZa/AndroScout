@@ -1,6 +1,7 @@
 package com.example.scoutmanager.model.context;
 
 import android.content.Context;
+import android.os.Environment;
 
 import com.mobandme.ada.ObjectContext;
 import com.mobandme.ada.ObjectSet;
@@ -46,6 +47,19 @@ public class ApplicationDataContext extends ObjectContext {
 	}
 	
 	/**************************************************/
+	/*      		PUBLIC METHODS   	 			  */
+	/**************************************************/
+	
+	public boolean restoreDB(String pathFolder) {
+		return this.restore(pathFolder);
+	}
+	
+	public boolean backupDB() {
+		
+		return this.backup(Environment.getExternalStorageDirectory() + "/BackupFolder");
+	}
+	
+	/**************************************************/
 	/*      		PRIVATE METHODS   	 			  */
 	/**************************************************/
 	
@@ -70,6 +84,7 @@ public class ApplicationDataContext extends ObjectContext {
 		} catch (Exception e) {
 		}
 	}
+	
 	
 	private void initializeObjectSets() throws AdaFrameworkException {
 		
