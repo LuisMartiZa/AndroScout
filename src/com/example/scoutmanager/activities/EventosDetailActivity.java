@@ -63,8 +63,6 @@ public class EventosDetailActivity extends Activity {
 		
 		setContentView(R.layout.eventos_detail_activity1);
 		
-		
-		
 		try {
 			Bundle intentExtras = this.getIntent().getExtras();
 			
