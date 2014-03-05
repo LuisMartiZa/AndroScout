@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -161,11 +162,9 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 			    		try {
 							downloadDB();
 						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
 							Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
 				             .show();
 							} catch (DropboxException e) {
-							// TODO Auto-generated catch block
 								Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
 					             .show();
 								}
@@ -190,11 +189,11 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 							uploadDB();
 						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
-							Toast.makeText(getBaseContext(), "COPIA DE SEGURIDAD EXITOSA", Toast.LENGTH_LONG)
+							Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
 				             .show();
 							} catch (DropboxException e) {
 							// TODO Auto-generated catch block
-								Toast.makeText(getBaseContext(), "COPIA DE SEGURIDAD EXITOSA", Toast.LENGTH_LONG)
+								Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
 					             .show();
 							}
 	                   // logOut();
@@ -316,7 +315,6 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 
      private void uploadDB() throws FileNotFoundException, DropboxException{
     	 File file = new File(Environment.getExternalStorageDirectory() + "/BackupFolder/BACKUP_database.db.bak");
-    	 //FileInputStream inputStream = new FileInputStream(file);
     	 
     	 Upload upload = new Upload(8,ImportarExportarActivity.this, mDBApi,"/BACKUP_database.db.bak",file);
          upload.execute();
@@ -518,17 +516,14 @@ class Upload extends AsyncTask<Void, Long, Boolean>
 
        private DropboxAPI<?> mApi;
        private String mPath;
-
        private UploadRequest mRequest;
        private Context mContext;
-
        private String mErrorMsg;
+       private ProgressDialog mDialog;
+       private Long mFileLen;
 
        //new class variables:
-       int mFilesUploaded;
        private File mFilesToUpload;
-       int mCurrentFileIndex;
-       int totalBytes = 0;
 
        API_Listener api_Listener;
        ImportarExportarActivity importarExportar_Activity;
@@ -544,9 +539,12 @@ class Upload extends AsyncTask<Void, Long, Boolean>
               requestNumber=request_num;
 
               //set number of files uploaded to zero.
-              mFilesUploaded = 0;
               mFilesToUpload = filesToUpload;
-              mCurrentFileIndex = 0;
+              
+              mDialog = new ProgressDialog(mContext);
+              mDialog.setMessage("SUBIENDO BASE DE DATOS A DROPBOX");
+
+              mDialog.show();
        }
 
 
@@ -569,7 +567,6 @@ class Upload extends AsyncTask<Void, Long, Boolean>
 	               // operation,
 	               // so we can cancel it later if we want to
 	               fis = new FileInputStream(file);                      
-	               String path = mPath + file.getName();
 	               mRequest = mApi.putFileOverwriteRequest(mPath, fis,file.length(),null);                  
 	              
 	               mRequest.upload();
@@ -619,7 +616,13 @@ class Upload extends AsyncTask<Void, Long, Boolean>
 
               return false;
        }
-
+       
+       @Override
+       protected void onProgressUpdate(Long... progress) {
+           int percent = (int)(100.0*(double)progress[0]/mFileLen + 0.5);
+           mDialog.setProgress(percent);
+       }
+      
        @Override
        protected void onPostExecute(Boolean result)
        {
@@ -650,16 +653,14 @@ class Download extends AsyncTask<Void, Long, Boolean>
 {
 
        private DropboxAPI<?> mApi;
-       private String mPath;
-
-       private UploadRequest mRequest;
+       private ProgressDialog mDDialog;
        private Context mContext;
-
        private String mErrorMsg;
+       private Long mFileLen;
 
        //new class variables:
        int mFilesUploaded;
-       private File mFilesToUpload;
+       private File mFileToDownload;
        int mCurrentFileIndex;
        int totalBytes = 0;
 
@@ -667,18 +668,19 @@ class Download extends AsyncTask<Void, Long, Boolean>
        ImportarExportarActivity importarExportar_Activity;
        private int requestNumber;
 
-       public Download(int request_num,ImportarExportarActivity activity, DropboxAPI<?> api, File filesToDownload)
+       public Download(int request_num,ImportarExportarActivity activity, DropboxAPI<?> api, File fileToDownload)
        {
               // We set the context this way so we don't accidentally leak activities
               mContext = activity;      
               api_Listener=(API_Listener) activity;
               mApi = api;
               requestNumber=request_num;
+              mFileToDownload = fileToDownload;
+              
+              mDDialog = new ProgressDialog(mContext);
+              mDDialog.setMessage("DESCARGANDO BASE DE DATOS DE DROPBOX");
 
-              //set number of files uploaded to zero.
-              mFilesUploaded = 0;
-              mFilesToUpload = filesToDownload;
-              mCurrentFileIndex = 0;
+              mDDialog.show();
        }
 
 
@@ -695,7 +697,7 @@ class Download extends AsyncTask<Void, Long, Boolean>
               try
               {                         
                      
-	               File file = mFilesToUpload;
+	               File file = mFileToDownload;
 		
 	               // By creating a request, we get a handle to the putFile
 	               // operation,
@@ -748,6 +750,12 @@ class Download extends AsyncTask<Void, Long, Boolean>
               }
 
               return false;
+       }
+       
+       @Override
+       protected void onProgressUpdate(Long... progress) {
+           int percent = (int)(100.0*(double)progress[0]/mFileLen + 0.5);
+           mDDialog.setProgress(percent);
        }
 
        @Override
