@@ -3,6 +3,41 @@
     android:layout_height="fill_parent" >
 
     <TableRow
+        android:id="@+id/tableRow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/BDText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="21dp"
+                android:text="BASE DE DATOS" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="284dp"
+                android:layout_height="2dip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:background="#5d2f89" />
+
+        </LinearLayout>
+
+    </TableRow>
+
+    <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,8 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="35dp"
             android:layout_weight="1"
             android:text="IMPORTAR BASE DE DATOS" />
         
@@ -33,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="25dp"
-            android:layout_marginLeft="50dp"
             android:layout_marginTop="25dp"
             android:layout_weight="1"
             android:text="EXPORTAR BASE DE DATOS" />
