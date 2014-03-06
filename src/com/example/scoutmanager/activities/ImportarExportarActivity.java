@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,6 +28,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,9 +90,7 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
                          if(sucess)
                          {
                             Toast.makeText(ImportarExportarActivity.this, "BASE DE DATOS SUBIDA A DROPBOX CORRECTAMENTE", Toast.LENGTH_LONG).show();
-                            Intent i=new Intent(ImportarExportarActivity.this,ImportarExportarActivity.class);
-                            startActivity(i);
-                            finish();
+                            
                          }
                    }
                    
@@ -99,9 +100,8 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
                          if(sucess)
                          {
                             Toast.makeText(ImportarExportarActivity.this, "BASE DE DATOS DESCARGADA DE DROPBOX CORRECTAMENTE", Toast.LENGTH_LONG).show();
-                            Intent i=new Intent(ImportarExportarActivity.this,ImportarExportarActivity.class);
-                            startActivity(i);
-                            finish();
+        	                importDB(Environment.getExternalStorageDirectory() + "/BackupFolder");
+
                          }
                    }
             }
@@ -113,9 +113,7 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
      }
      @Override
      public void onFail(String errormessage)
-     {
-           
-           
+     { 
      }
 	
 	 @Override
@@ -154,27 +152,63 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 			    public void onClick(View v)
 			    {
 			    	
-			    	//Intent intent = new Intent(getApplicationContext(), FileChooserActivity.class);
-		    	    //startActivityForResult(intent, SELECT_FILE);
-		    	    
-		    	    
-		    	    if (mLoggedIn) {
-			    		try {
-							downloadDB();
-						} catch (FileNotFoundException e) {
-							Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
-				             .show();
-							} catch (DropboxException e) {
-								Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
-					             .show();
+			    	// custom dialog
+					final Dialog dialog = new Dialog(ImportarExportarActivity.this);
+					dialog.setContentView(R.layout.dialogimportarexportar);
+					dialog.setTitle("Elige una opci—n");
+		 
+					Typeface tf = Typeface.createFromAsset(getAssets(),
+			                "fonts/Roboto-Light.ttf");
+					
+					// set the custom dialog components - text, image and button
+					TextView textDropBox = (TextView) dialog.findViewById(R.id.textDropbox);
+					TextView textSD = (TextView) dialog.findViewById(R.id.textSD);
+					
+					textDropBox.setTypeface(tf);
+					textSD.setTypeface(tf);
+
+					ImageButton imageDropBox = (ImageButton) dialog.findViewById(R.id.imageButtonDrop);
+					ImageButton imageSD = (ImageButton) dialog.findViewById(R.id.imageButtonSD);
+
+					
+					// if button is clicked, close the custom dialog
+					imageDropBox.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							dialog.dismiss();
+							
+							if (mLoggedIn) {
+					    		try {
+									downloadDB();
+								} catch (FileNotFoundException e) {
+									Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
+						             .show();
+								} catch (DropboxException e) {
+									Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
+							         .show();
 								}
-	                   // logOut();
-	                } else {
-	                    // Start the remote authentication
-	                	mode=false;
-	                	mDBApi.getSession().startOAuth2Authentication(ImportarExportarActivity.this);
-	                   
-	                }
+			                   // logOut();
+			                } else {
+			                    // Start the remote authentication
+			                	mode=false;
+			                	mDBApi.getSession().startOAuth2Authentication(ImportarExportarActivity.this);
+			                   
+			                }
+						}
+					});
+					
+					// if button is clicked, close the custom dialog
+					imageSD.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							dialog.dismiss();
+							
+							Intent intent = new Intent(getApplicationContext(), FileChooserActivity.class);
+				    	    startActivityForResult(intent, SELECT_FILE);
+						}
+					});
+					
+					dialog.show();
 		    	    
 			    }
 			});
@@ -184,27 +218,69 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 			    @Override
 			    public void onClick(View v)
 			    {
-			    	if (mLoggedIn) {
-			    		try {
-							uploadDB();
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
-				             .show();
-							} catch (DropboxException e) {
-							// TODO Auto-generated catch block
-								Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
-					             .show();
-							}
-	                   // logOut();
-	                } else {
-	                    // Start the remote authentication
-	                	mode=true;
-	                   mDBApi.getSession().startOAuth2Authentication(ImportarExportarActivity.this);
-	                }
 			    	
-			    	//exportDB();
-			    	
+			    	// custom dialog
+					final Dialog dialog = new Dialog(ImportarExportarActivity.this);
+					dialog.setContentView(R.layout.dialogimportarexportar);
+					dialog.setTitle("Elige una opci—n");
+		 
+					Typeface tf = Typeface.createFromAsset(getAssets(),
+			                "fonts/Roboto-Light.ttf");
+					
+					// set the custom dialog components - text, image and button
+					TextView textDropBox = (TextView) dialog.findViewById(R.id.textDropbox);
+					TextView textSD = (TextView) dialog.findViewById(R.id.textSD);
+					
+					textDropBox.setTypeface(tf);
+					textSD.setTypeface(tf);
+
+					ImageButton imageDropBox = (ImageButton) dialog.findViewById(R.id.imageButtonDrop);
+					ImageButton imageSD = (ImageButton) dialog.findViewById(R.id.imageButtonSD);
+
+					
+					// if button is clicked, close the custom dialog
+					imageDropBox.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							dialog.dismiss();
+							
+							if (mLoggedIn) {
+					    		File f = new File(Environment.getExternalStorageDirectory() + "/BackupFolder/BACKUP_database.db.bak");
+					       	 
+					    		if(!f.exists()){
+					    			DataBase.Context.backupDB();
+					    		}
+					    		
+					    		try {
+									uploadDB();
+								} catch (FileNotFoundException e) {
+									Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
+						             .show();
+									} catch (DropboxException e) {
+										Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG)
+							             .show();
+									}
+			                   // logOut();
+			                } else {
+			                    // Start the remote authentication
+			                	mode=true;
+			                   mDBApi.getSession().startOAuth2Authentication(ImportarExportarActivity.this);
+			                }
+						}
+					});
+					
+					// if button is clicked, close the custom dialog
+					imageSD.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							dialog.dismiss();
+							
+							exportDB();
+						}
+					});
+					
+					dialog.show();
+			    		    	
 			    }
 			});
 			
@@ -300,7 +376,7 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
     		 popUpShare = new AlertDialog.Builder(this);
     	    	
     			popUpShare.setCancelable(true);
-    	   	    popUpShare.setMessage("No es posible compartir la Base de Datos, ya que todav’a no se ha exportado. Vuelva a intentarlo tras exportarla.")
+    	   	    popUpShare.setMessage("No es posible compartir la Base de Datos, ya que todav’a no se ha exportado. Vuelva a intentarlo tras exportarla a la SD.")
     	   	    .setTitle("IMPOSIBLE COMPARTIR")
     	   	    .setPositiveButton("OK", new DialogInterface.OnClickListener()  {
 	   	           public void onClick(DialogInterface dialog, int id) {
@@ -376,7 +452,7 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        }
 	    }
 
-	    private void logOut() {
+	    /*private void logOut() {
 	        // Remove credentials from the session
 	        mDBApi.getSession().unlink();
 
@@ -384,7 +460,7 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        clearKeys();
 	        // Change UI state to display logged out version
 	        setLoggedIn(false,"");
-	    }
+	    }*/
 
 	    /**
 	     * Convenience function to change UI state based on being logged in
@@ -393,14 +469,18 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	    	mLoggedIn = loggedIn;
 	    	
 	    	if(mode == "UP"){
+	    		File f = new File(Environment.getExternalStorageDirectory() + "/BackupFolder/BACKUP_database.db.bak");
+		       	 
+	    		if(!f.exists()){
+	    			DataBase.Context.backupDB();
+	    		}
+	    		
 		    	try {
 					uploadDB();
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					showToast(e.toString());
 				} catch (DropboxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					showToast(e.toString());
 				}
 	    	}
 	    	
@@ -408,11 +488,9 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 		    	try {
 					downloadDB();
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					showToast(e.toString());
 				} catch (DropboxException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					showToast(e.toString());
 				}
 	    	}
 	    }
@@ -495,12 +573,12 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        }
 	    }
 
-	    private void clearKeys() {
+	    /*private void clearKeys() {
 	        SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
 	        Editor edit = prefs.edit();
 	        edit.clear();
 	        edit.commit();
-	    }
+	    }*/
 
 	    private AndroidAuthSession buildSession() {
 	        AppKeyPair appKeyPair = new AppKeyPair(APP_KEY, APP_SECRET);
@@ -629,6 +707,7 @@ class Upload extends AsyncTask<Void, Long, Boolean>
 
               if (result)
               {
+            	  	mDialog.dismiss();
                      api_Listener.onSuccess(requestNumber, result);               
               }
               else
@@ -764,7 +843,8 @@ class Download extends AsyncTask<Void, Long, Boolean>
 
               if (result)
               {
-                     api_Listener.onSuccess(requestNumber, result);               
+            	  mDDialog.dismiss();
+                  api_Listener.onSuccess(requestNumber, result);               
               }
               else
               {

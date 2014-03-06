@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    android:orientation="vertical" >
+
+    <ImageButton
+        android:id="@+id/imageButtonDrop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/dropbox" />
+
+    <ImageButton
+        android:id="@+id/imageButtonSD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageButtonDrop"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageButtonDrop"
+        android:layout_marginRight="35dp"
+        android:src="@drawable/sd" />
+
+    <TextView
+        android:id="@+id/textDropbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageButtonDrop"
+        android:layout_below="@+id/imageButtonDrop"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="18dp"
+        android:text="DropBox" />
+
+    <TextView
+        android:id="@+id/textSD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textDropbox"
+        android:layout_alignRight="@+id/imageButtonSD"
+        android:layout_marginRight="18dp"
+        android:text="Tarjeta SD" />
+
+</RelativeLayout>
