@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,7 +48,6 @@ import com.dropbox.client2.exception.DropboxParseException;
 import com.dropbox.client2.exception.DropboxPartialFileException;
 import com.dropbox.client2.exception.DropboxServerException;
 import com.dropbox.client2.exception.DropboxUnlinkedException;
-import com.dropbox.client2.session.AccessTokenPair;
 import com.dropbox.client2.session.AppKeyPair;
 import com.example.scoutmanager.R;
 import com.example.scoutmanager.activities.Upload.API_Listener;
@@ -142,6 +142,8 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
                   direct.mkdir();
 
               }
+             
+ 	        setLoggedIn(mDBApi.getSession().isLinked(),"");
 			
 			importar = (TableRow) findViewById(R.id.tableRow1);
 			exportar = (TableRow) findViewById(R.id.tableRow2);
@@ -283,9 +285,6 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 			    		    	
 			    }
 			});
-			
-	        setLoggedIn(mDBApi.getSession().isLinked(),"");
-
 	 }
 	 
 	 @Override
@@ -428,6 +427,9 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        super.onResume();
 	        AndroidAuthSession session = mDBApi.getSession();
 
+	       if( session.isLinked()){
+	    	   loadAuth(session);
+	       }else{
 	        // The next part must be inserted in the onResume() method of the
 	        // activity from which session.startAuthentication() was called, so
 	        // that Dropbox authentication completes properly.
@@ -450,6 +452,7 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	                Log.i("DBoauth", "Error authenticating", e);
 	            }
 	        }
+	       }
 	    }
 
 	    /*private void logOut() {
@@ -462,6 +465,14 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        setLoggedIn(false,"");
 	    }*/
 
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+		    if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+		    	mDBApi.getSession().finishAuthentication();
+				finish();
+		    }
+		    return super.onKeyDown(keyCode, event);
+		}
+	 
 	    /**
 	     * Convenience function to change UI state based on being logged in
 	     */
@@ -533,14 +544,15 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
 	        String key = prefs.getString(ACCESS_KEY_NAME, null);
 	        String secret = prefs.getString(ACCESS_SECRET_NAME, null);
-	        if (key == null || secret == null || key.length() == 0 || secret.length() == 0) return;
+	        if (key == null || secret == null || key.length() == 0 || secret.length() == 0){
+	            Log.d("FALLO SHAREDPREFERENCES", "O la key o el secret es nulo o de longitud cero");
+
+	        	return;
+	        }
 
 	        if (key.equals("oauth2:")) {
 	            // If the key is set to "oauth2:", then we can assume the token is for OAuth 2.
 	            session.setOAuth2AccessToken(secret);
-	        } else {
-	            // Still support using old OAuth 1 tokens.
-	            session.setAccessTokenPair(new AccessTokenPair(key, secret));
 	        }
 	    }
 
@@ -558,17 +570,11 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	            edit.putString(ACCESS_KEY_NAME, "oauth2:");
 	            edit.putString(ACCESS_SECRET_NAME, oauth2AccessToken);
 	            edit.commit();
+	            
+	            Log.d("ACCESSTOKEN BUENOS", "Se guardan los access token");
 	            return;
-	        }
-	        // Store the OAuth 1 access token, if there is one.  This is only necessary if
-	        // you're still using OAuth 1.
-	        AccessTokenPair oauth1AccessToken = session.getAccessTokenPair();
-	        if (oauth1AccessToken != null) {
-	            SharedPreferences prefs = getSharedPreferences(ACCOUNT_PREFS_NAME, 0);
-	            Editor edit = prefs.edit();
-	            edit.putString(ACCESS_KEY_NAME, oauth1AccessToken.key);
-	            edit.putString(ACCESS_SECRET_NAME, oauth1AccessToken.secret);
-	            edit.commit();
+	        }else{
+	            Log.d("ACCESSTOKEN MALOS", "No se guardan los access token");
 	            return;
 	        }
 	    }
