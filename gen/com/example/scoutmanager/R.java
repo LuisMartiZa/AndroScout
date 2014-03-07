@@ -182,16 +182,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int integracionunidad=0x7f020023;
         public static final int juegos=0x7f020024;
         public static final int ley=0x7f020025;
-        public static final int no=0x7f020026;
-        public static final int participacioncastores=0x7f020027;
-        public static final int participacionclan=0x7f020028;
-        public static final int participacionmanada=0x7f020029;
-        public static final int participaciontropa=0x7f02002a;
-        public static final int participacionunidad=0x7f02002b;
-        public static final int rizo=0x7f02002c;
-        public static final int sd=0x7f02002d;
-        public static final int shadow=0x7f02002e;
-        public static final int tick=0x7f02002f;
+        public static final int logo=0x7f020026;
+        public static final int no=0x7f020027;
+        public static final int participacioncastores=0x7f020028;
+        public static final int participacionclan=0x7f020029;
+        public static final int participacionmanada=0x7f02002a;
+        public static final int participaciontropa=0x7f02002b;
+        public static final int participacionunidad=0x7f02002c;
+        public static final int rizo=0x7f02002d;
+        public static final int sd=0x7f02002e;
+        public static final int shadow=0x7f02002f;
+        public static final int tick=0x7f020030;
     }
     public static final class id {
         public static final int ActividadesListView=0x7f06000d;

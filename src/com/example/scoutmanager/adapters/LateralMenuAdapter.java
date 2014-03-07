@@ -8,6 +8,7 @@ import com.example.scoutmanager.model.entities.Menu_items;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,8 +57,7 @@ public class LateralMenuAdapter extends ArrayAdapter<Object> {
 		tvTitle.setTypeface(tf);
 		tvTitle.setText(this.items.get(position).getTitle());
 		tvTitle.setTextSize(20);
-		tvTitle.setTextColor(Color.WHITE);
-        rowView.setBackgroundColor(Color.parseColor("#99CC00"));
+		tvTitle.setTextColor(Color.parseColor("#5d2f89"));
 		
 		ImageView ivItem = (ImageView) rowView.findViewById(R.id.imageView1);
 		ivItem.setImageResource(this.items.get(position).getImage());

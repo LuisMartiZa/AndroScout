@@ -465,13 +465,6 @@ public class ImportarExportarActivity extends Activity implements API_Listener{
 	        setLoggedIn(false,"");
 	    }*/
 
-	 public boolean onKeyDown(int keyCode, KeyEvent event) {
-		    if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-		    	mDBApi.getSession().finishAuthentication();
-				finish();
-		    }
-		    return super.onKeyDown(keyCode, event);
-		}
 	 
 	    /**
 	     * Convenience function to change UI state based on being logged in
